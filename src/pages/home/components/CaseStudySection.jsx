@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { PortfolioMockupStage } from "../../../components/portfolio-video-mockup/PortfolioMockupStage.jsx";
 import { ProjectContainer } from "../../../components/project-container/ProjectContainer.jsx";
 import { SectionDivider } from "../../../components/section-divider/SectionDivider.jsx";
 import "./CaseStudySection.css";
@@ -12,6 +13,14 @@ const CASE_STUDIES = [
     label: "Design System",
     title: "Scaling a Casino Platform with a Design System",
     body: "Building a reusable component library, documentation platform and shared architecture that accelerated product development.",
+    media: (
+      <PortfolioMockupStage
+        desktopSrc="/images/design-system-desktop.jpg"
+        mobileSrc="/images/mines-mobile.jpg"
+        desktopLabel="Joker Plus design system colours page"
+        mobileLabel="Joker Plus mines win and loss tiles"
+      />
+    ),
   },
   {
     number: "02",
@@ -53,7 +62,15 @@ function useInViewOnce({ threshold = 0.28, rootMargin = "0px 0px -8% 0px" } = {}
   return [ref, inView];
 }
 
-function CaseStudyBlock({ number, section, label, title, body, isFirst = false }) {
+function CaseStudyBlock({
+  number,
+  section,
+  label,
+  title,
+  body,
+  media = null,
+  isFirst = false,
+}) {
   const [ref, inView] = useInViewOnce();
 
   return (
@@ -68,6 +85,7 @@ function CaseStudyBlock({ number, section, label, title, body, isFirst = false }
           title={title}
           body={body}
           chips={CHIPS}
+          media={media}
         />
       </div>
     </div>

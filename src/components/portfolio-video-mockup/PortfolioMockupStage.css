@@ -1,0 +1,36 @@
+.portfolio-mockup-stage {
+  --desktop-w: 780px;
+  --phone-w: 156px;
+  --phone-overhang: 36px;
+
+  position: relative;
+  box-sizing: border-box;
+  width: min(calc(var(--desktop-w) + var(--phone-overhang)), 100%);
+}
+
+.portfolio-mockup-stage__desktop {
+  width: min(var(--desktop-w), calc(100% - var(--phone-overhang)));
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border-color: color-mix(in srgb, var(--joker-black-300) 80%, transparent);
+  box-shadow: none;
+}
+
+.portfolio-mockup-stage__mobile {
+  position: absolute;
+  right: 0;
+  bottom: -12px;
+  z-index: 2;
+  width: var(--phone-w);
+  aspect-ratio: 9 / 19.5;
+  height: auto;
+  border: 2px solid var(--joker-black-300);
+  border-radius: 22px;
+  box-shadow:
+    0 16px 36px rgb(0 0 0 / 30%),
+    0 4px 12px rgb(0 0 0 / 16%);
+}
+
+.portfolio-mockup-stage__mobile .portfolio-image-mockup__image {
+  object-position: center center;
+}

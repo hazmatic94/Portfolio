@@ -9,6 +9,7 @@ export function ProjectContainer({
   body,
   chips = [],
   ctaLabel = "View Project",
+  media = null,
 }) {
   return (
     <div className="project-container-shell">
@@ -26,7 +27,7 @@ export function ProjectContainer({
           <span className="project-container__label">{label}</span>
         </header>
 
-        <div className="project-container__bottom" />
+        <div className="project-container__bottom">{media}</div>
       </article>
 
       <div className="project-container__content">
