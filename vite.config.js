@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     fs: {
-      allow: [".."],
+      allow: ["..", designSystemRoot],
     },
   },
   optimizeDeps: {
@@ -25,6 +25,10 @@ export default defineConfig({
       {
         find: /^@joker\/design-system\/styles\/(.+)$/,
         replacement: `${designSystemRoot}/src/styles/$1`,
+      },
+      {
+        find: /^@joker\/design-system\/assets\/(.+)$/,
+        replacement: `${designSystemRoot}/assets/$1`,
       },
       {
         find: "@joker/design-system",

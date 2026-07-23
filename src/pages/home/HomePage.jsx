@@ -1,3 +1,4 @@
+import { Footer } from "../../components/footer/Footer.jsx";
 import { Hero } from "../../components/hero/Hero.jsx";
 import { Nav } from "../../components/nav/Nav.jsx";
 import { CaseStudySection } from "./components/CaseStudySection.jsx";
@@ -11,7 +12,7 @@ export function HomePage() {
       <Hero />
       <PhilosophySection />
       <CaseStudySection />
-      <main className="home-page__scroll" />
+      <Footer />
     </>
   );
 }
