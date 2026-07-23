@@ -1,0 +1,10 @@
+:root {
+  --text-cover-wipe-duration: 560ms;
+  --text-cover-wipe-easing: var(--ease-standard);
+}
+
+@keyframes text-cover-wipe-reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

@@ -1,0 +1,108 @@
+.hero {
+  --hero-enter-logo-delay: 480ms;
+  --hero-enter-dots-delay: 1120ms;
+  --hero-enter-text-delay: 1960ms;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  overflow: hidden;
+  background: #121212;
+  border-bottom: var(--border-width-default) solid var(--joker-black-300);
+}
+
+.hero__dot-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='1.3' y='1.3' width='1.4' height='1.4' fill='rgba(95%2C95%2C95%2C0.44)'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+  clip-path: inset(0 100% 0 0);
+  animation: hero-dots-reveal 880ms var(--ease-standard) both;
+  animation-delay: var(--hero-enter-dots-delay);
+}
+
+.hero__video-frame {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0.94);
+  animation: hero-logo-enter 720ms var(--ease-out) both;
+  animation-delay: var(--hero-enter-logo-delay);
+}
+
+.hero__video {
+  display: block;
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+  transform: scale(1.82);
+  transform-origin: center center;
+}
+
+.hero__role,
+.hero__meta {
+  position: absolute;
+  bottom: 20px;
+  z-index: 3;
+  margin: 0;
+  font-size: var(--text-body-14);
+  font-weight: 400;
+  line-height: var(--text-body-line-height);
+  color: var(--joker-white-50);
+  clip-path: inset(0 100% 0 0);
+  animation: text-cover-wipe-reveal var(--text-cover-wipe-duration)
+    var(--text-cover-wipe-easing) both;
+  animation-delay: var(--hero-enter-text-delay);
+}
+
+.hero__role {
+  left: var(--spacing-24);
+}
+
+.hero__meta {
+  right: var(--spacing-24);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-24);
+  clip-path: inset(0 0 0 100%);
+  animation: text-cover-wipe-reveal var(--text-cover-wipe-duration)
+    var(--text-cover-wipe-easing) both;
+  animation-delay: calc(var(--hero-enter-text-delay) + 80ms);
+}
+
+@keyframes hero-logo-enter {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-dots-reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__dot-grid,
+  .hero__video-frame,
+  .hero__role,
+  .hero__meta {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .hero__video-frame {
+    transform: none;
+  }
+}
