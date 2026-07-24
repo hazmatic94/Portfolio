@@ -30,7 +30,7 @@ export function Footer() {
         </div>
 
         <div className="site-footer__cta">
-          <Button variant="secondary">Get in touch</Button>
+          <Button variant="secondary">Get in Touch</Button>
         </div>
 
         <div className="site-footer__logo">

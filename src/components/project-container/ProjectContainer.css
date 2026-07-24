@@ -28,7 +28,7 @@
   position: relative;
   container-type: inline-size;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .project-container__media-clip > .portfolio-mockup-stage {
@@ -67,24 +67,37 @@
 }
 
 .project-container__content {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 650px) auto;
+  grid-template-rows: auto auto;
+  align-items: start;
   justify-content: space-between;
-  gap: var(--spacing-24);
-}
-
-.case-study-text {
-  display: flex;
-  flex-direction: column;
-  gap: 42px;
-  max-width: 650px;
-  min-width: 0;
+  column-gap: var(--spacing-24);
+  row-gap: 42px;
 }
 
 .case-study-text__copy {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-8);
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.project-container__cta {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+
+.case-study-text__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-8);
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .case-study-text__title {
@@ -107,11 +120,15 @@
   color: var(--joker-black-50);
 }
 
-.case-study-text__chips {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--spacing-8);
+.case-study-text__highlight {
+  margin: 24px 0 0;
+  font-family: var(--font);
+  font-size: var(--text-body-16);
+  font-weight: var(--text-body-weight);
+  font-style: italic;
+  line-height: var(--text-body-line-height);
+  letter-spacing: 0.03em;
+  color: var(--joker-gold-400);
 }
 
 .case-study-text__chip {
@@ -133,13 +150,20 @@
 
 @media (max-width: 786px) {
   .project-container__content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-32);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: var(--spacing-32);
   }
 
-  .case-study-text {
-    max-width: none;
+  .project-container__cta {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: start;
+  }
+
+  .case-study-text__chips {
+    grid-column: 1;
+    grid-row: 2;
   }
 }
 
@@ -165,7 +189,7 @@
     width: 100%;
   }
 
-  .case-study-text {
-    gap: var(--spacing-24);
+  .project-container__content {
+    row-gap: var(--spacing-24);
   }
 }

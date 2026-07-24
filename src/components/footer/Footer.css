@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  padding: 100px var(--spacing-24);
+  padding: 100px var(--spacing-24) 60px;
   background: #121212;
   text-align: center;
 }
@@ -119,8 +119,8 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  height: 60px;
   margin: 0;
+  padding-bottom: 16px;
   background: #121212;
   font-family: var(--font);
   font-size: var(--text-body-14);

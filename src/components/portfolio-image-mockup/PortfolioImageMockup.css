@@ -4,16 +4,44 @@
 
 .portfolio-image-mockup__frame {
   box-sizing: border-box;
-  padding: 6px;
-  border: 1px solid var(--joker-black-200);
+  padding: var(--spacing-4);
+  border: 1px solid var(--joker-black-300);
   border-radius: 10px;
-  background: #121212;
+  background: var(--joker-black-500);
+  cursor: pointer;
+  transition:
+    transform 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out),
+    background-color 240ms var(--ease-out),
+    border-color 240ms var(--ease-out);
+}
+
+.portfolio-image-mockup__frame:hover {
+  transform: translateY(-3px);
+  background-color: var(--joker-black-400);
+  border-color: var(--joker-black-200);
+  box-shadow:
+    0 12px 28px rgb(0 0 0 / 28%),
+    0 4px 10px rgb(0 0 0 / 16%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-image-mockup__frame {
+    transition:
+      background-color 240ms var(--ease-out),
+      border-color 240ms var(--ease-out);
+  }
+
+  .portfolio-image-mockup__frame:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .portfolio-image-mockup__media {
   box-sizing: border-box;
   overflow: hidden;
-  border: 1px solid var(--joker-black-400);
+  border: 1px solid var(--joker-black-300);
   border-radius: 6px;
 }
 

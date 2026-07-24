@@ -4,6 +4,7 @@ import "./ProjectContainer.css";
 export function ProjectContainer({
   title,
   body,
+  highlight = null,
   chips = [],
   ctaLabel = "View Project",
   media = null,
@@ -19,23 +20,27 @@ export function ProjectContainer({
       </article>
 
       <div className="project-container__content">
-        <div className="case-study-text">
-          <div className="case-study-text__copy">
-            <h3 className="case-study-text__title">{title}</h3>
-            <p className="case-study-text__body">{body}</p>
-          </div>
-          {chips.length > 0 ? (
-            <div className="case-study-text__chips">
-              {chips.map((chip) => (
-                <span key={chip} className="case-study-text__chip">
-                  {chip}
-                </span>
-              ))}
-            </div>
+        <div className="case-study-text__copy">
+          <h3 className="case-study-text__title">{title}</h3>
+          <p className="case-study-text__body">{body}</p>
+          {highlight ? (
+            <p className="case-study-text__highlight">{highlight}</p>
           ) : null}
         </div>
 
-        <Button variant="secondary">{ctaLabel}</Button>
+        <div className="project-container__cta">
+          <Button variant="secondary">{ctaLabel}</Button>
+        </div>
+
+        {chips.length > 0 ? (
+          <div className="case-study-text__chips">
+            {chips.map((chip) => (
+              <span key={chip} className="case-study-text__chip">
+                {chip}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );

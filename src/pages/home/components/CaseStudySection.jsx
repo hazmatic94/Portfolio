@@ -6,16 +6,21 @@ import { ProjectContainer } from "../../../components/project-container/ProjectC
 import { SectionDivider } from "../../../components/section-divider/SectionDivider.jsx";
 import "./CaseStudySection.css";
 
-const DEFAULT_CHIPS = ["Front End", "Product Design", "React Library"];
-
 const CASE_STUDIES = [
   {
     number: "01",
     section: "Foundation",
     label: "Design System",
-    title: "Scaling a Casino Platform with a Design System",
+    title: "NPM package consumed across the platform",
     body: "Building a reusable component library, documentation platform and shared architecture that accelerated product development.",
-    chips: ["Design system", "NPM Package", "React Library"],
+    highlight:
+      "Design + engineering shared a single source of truth.",
+    chips: [
+      "Design Tokens",
+      "Npm package",
+      "Interactive Docs",
+      "Component API",
+    ],
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay" showCode />
     ),
@@ -34,9 +39,11 @@ const CASE_STUDIES = [
     number: "02",
     section: "Architecture",
     label: "Responsive Shell",
-    title: "Designing a Responsive Game Shell",
+    title: "One responsive shell powering 5 original games",
     body: "Creating a scalable application shell that unified navigation, betting panels, responsive layouts and game experiences.",
-    chips: DEFAULT_CHIPS,
+    highlight:
+      "New games plug into shell layout instead of rebuilding chrome.",
+    chips: ["Responsive shell", "Betting Panels", "Layout System"],
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview
@@ -61,9 +68,10 @@ const CASE_STUDIES = [
     number: "03",
     section: "Experience",
     label: "Joker Originals",
-    title: "Designing Native Game Experiences",
+    title: "Gameplay primitives for Mines, HiLo, Roulette, Coin Flip + more",
     body: "Crafting original game mechanics, motion systems and reusable gameplay components",
-    chips: DEFAULT_CHIPS,
+    highlight: "Games feel native to the platform, not bolted on.",
+    chips: ["Game Components", "Motion System", "Interaction Design"],
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview
@@ -91,7 +99,8 @@ function CaseStudyBlock({
   section,
   title,
   body,
-  chips = DEFAULT_CHIPS,
+  highlight = null,
+  chips = [],
   media = null,
   mediaOverlay = null,
 }) {
@@ -108,6 +117,7 @@ function CaseStudyBlock({
         <ProjectContainer
           title={title}
           body={body}
+          highlight={highlight}
           chips={chips}
           media={media}
           mediaOverlay={mediaOverlay}
