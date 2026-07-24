@@ -11,14 +11,11 @@ const CASE_STUDIES = [
     number: "01",
     section: "Foundation",
     label: "Design System",
-    title: "NPM package consumed across the platform",
-    body: "Building a reusable component library, documentation platform and shared architecture that accelerated product development.",
-    highlight:
-      "Design + engineering shared a single source of truth.",
+    title: "One package. Every product.",
+    body: "A shared component library powering the shell, games and documentation.",
     chips: [
       "Design Tokens",
       "Npm package",
-      "Interactive Docs",
       "Component API",
     ],
     mediaOverlay: (
@@ -39,10 +36,8 @@ const CASE_STUDIES = [
     number: "02",
     section: "Architecture",
     label: "Responsive Shell",
-    title: "One responsive shell powering 5 original games",
-    body: "Creating a scalable application shell that unified navigation, betting panels, responsive layouts and game experiences.",
-    highlight:
-      "New games plug into shell layout instead of rebuilding chrome.",
+    title: "Application Shell",
+    body: "A responsive application shell with reusable layouts and shared interaction patterns.",
     chips: ["Responsive shell", "Betting Panels", "Layout System"],
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
@@ -68,9 +63,8 @@ const CASE_STUDIES = [
     number: "03",
     section: "Experience",
     label: "Joker Originals",
-    title: "Gameplay primitives for Mines, HiLo, Roulette, Coin Flip + more",
+    title: "Original games, built end to end",
     body: "Crafting original game mechanics, motion systems and reusable gameplay components",
-    highlight: "Games feel native to the platform, not bolted on.",
     chips: ["Game Components", "Motion System", "Interaction Design"],
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
@@ -99,7 +93,6 @@ function CaseStudyBlock({
   section,
   title,
   body,
-  highlight = null,
   chips = [],
   media = null,
   mediaOverlay = null,
@@ -117,7 +110,6 @@ function CaseStudyBlock({
         <ProjectContainer
           title={title}
           body={body}
-          highlight={highlight}
           chips={chips}
           media={media}
           mediaOverlay={mediaOverlay}

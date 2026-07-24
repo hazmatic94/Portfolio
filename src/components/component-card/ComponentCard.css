@@ -53,6 +53,11 @@
   border: var(--border-width-default) solid var(--joker-black-400);
   border-radius: var(--spacing-8);
   overflow: hidden;
+  transition: border-color 240ms var(--ease-out);
+}
+
+.component-card__frame:hover .component-card {
+  border-color: var(--joker-black-200);
 }
 
 .component-card__top {
@@ -118,10 +123,11 @@
   width: var(--mobile-shell-width);
   height: var(--mobile-shell-height);
   margin-top: var(--mobile-shell-offset-top);
-  border: 4px solid var(--joker-black-400);
+  padding: 1px;
+  border: none;
   border-radius: 36px;
   overflow: hidden;
-  background: var(--joker-black-900, #0a0a0a);
+  background: var(--joker-black-200);
 }
 
 .component-card__mobile-image {
@@ -130,6 +136,7 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  border-radius: 35px;
 }
 
 .component-card__coin {

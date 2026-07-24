@@ -1,0 +1,9 @@
+/* Portfolio CTA tracking — DS buttons default to 0 */
+.project-container__cta button,
+.project-container__cta button *,
+.site-footer__cta button,
+.site-footer__cta button *,
+.component-card-shell button,
+.component-card-shell button * {
+  letter-spacing: 0.05em;
+}

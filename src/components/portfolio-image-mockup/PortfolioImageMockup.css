@@ -43,6 +43,11 @@
   overflow: hidden;
   border: 1px solid var(--joker-black-300);
   border-radius: 6px;
+  transition: border-color 240ms var(--ease-out);
+}
+
+.portfolio-image-mockup__frame:hover .portfolio-image-mockup__media {
+  border-color: var(--joker-black-200);
 }
 
 .portfolio-image-mockup__image {

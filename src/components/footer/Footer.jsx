@@ -21,11 +21,10 @@ export function Footer() {
         </div>
 
         <div className="site-footer__copy">
-          <h2 className="site-footer__title">Exploring new opportunities.</h2>
+          <h2 className="site-footer__title">Interested in working together?</h2>
           <p className="site-footer__body">
-            I&apos;m looking to join teams building thoughtful digital products
-            through strong design systems, interaction design and modern frontend
-            workflows.
+            I&apos;m always happy to chat about product design, design systems and
+            frontend architecture.
           </p>
         </div>
 

@@ -17,12 +17,14 @@
   font-size: var(--text-body-16);
   font-weight: 500;
   line-height: var(--text-body-line-height);
-  letter-spacing: 0.03em;
+  letter-spacing: -0.05em;
   color: var(--joker-white-50);
 }
 
 .section-divider__number {
   font-style: italic;
+  padding-inline: 0.15em;
+  margin-inline: -0.15em;
 }
 
 .section-divider__pipe {
