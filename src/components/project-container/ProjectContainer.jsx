@@ -1,33 +1,21 @@
 import { Button } from "@joker/design-system";
-import originalsIcon from "@joker/design-system/assets/joker-originals-icon.svg";
 import "./ProjectContainer.css";
 
 export function ProjectContainer({
-  brand = "Joker Plus",
-  label,
   title,
   body,
   chips = [],
   ctaLabel = "View Project",
   media = null,
+  mediaOverlay = null,
 }) {
   return (
     <div className="project-container-shell">
       <article className="project-container">
-        <header className="project-container__top-rail">
-          <div className="project-container__text-wrapper">
-            <img
-              className="project-container__icon"
-              src={originalsIcon}
-              alt=""
-              aria-hidden="true"
-            />
-            <span className="project-container__brand">{brand}</span>
-          </div>
-          <span className="project-container__label">{label}</span>
-        </header>
-
-        <div className="project-container__bottom">{media}</div>
+        <div className="project-container__media">
+          <div className="project-container__media-clip">{media}</div>
+          {mediaOverlay}
+        </div>
       </article>
 
       <div className="project-container__content">

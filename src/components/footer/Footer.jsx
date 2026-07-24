@@ -1,9 +1,15 @@
 import { Button } from "@joker/design-system";
+import { useInViewOnce } from "../../hooks/useInViewOnce.js";
 import "./Footer.css";
 
 export function Footer() {
+  const [ref, inView] = useInViewOnce({ threshold: 0.35 });
+
   return (
-    <>
+    <div
+      ref={ref}
+      className={`site-footer-group site-footer-group--reveal${inView ? " is-in-view" : ""}`}
+    >
       <footer className="site-footer" aria-label="Footer">
         <div className="site-footer__status-row">
           <span className="site-footer__rule" aria-hidden="true" />
@@ -23,7 +29,9 @@ export function Footer() {
           </p>
         </div>
 
-        <Button variant="secondary">Get in touch</Button>
+        <div className="site-footer__cta">
+          <Button variant="secondary">Get in touch</Button>
+        </div>
 
         <div className="site-footer__logo">
           <video
@@ -41,6 +49,6 @@ export function Footer() {
       <p className="site-footer__legal">
         © 2026 Harry Maher. All rights reserved.
       </p>
-    </>
+    </div>
   );
 }

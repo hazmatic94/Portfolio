@@ -3,6 +3,10 @@ import "./PortfolioMockupStage.css";
 
 export function PortfolioMockupStage({
   desktopSrc,
+  desktopSrcSet,
+  desktopSizes,
+  desktopWidth,
+  desktopHeight,
   mobileSrc,
   desktopLabel = "Desktop preview",
   mobileLabel = "Mobile preview",
@@ -12,6 +16,10 @@ export function PortfolioMockupStage({
       <PortfolioImageMockup
         className="portfolio-mockup-stage__desktop"
         src={desktopSrc}
+        srcSet={desktopSrcSet}
+        sizes={desktopSizes}
+        width={desktopWidth}
+        height={desktopHeight}
         alt={desktopLabel}
       />
       {mobileSrc ? (

@@ -1,93 +1,85 @@
 .project-container-shell {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-40);
+  gap: 42px;
   width: 100%;
   max-width: 1000px;
+  overflow: visible;
 }
 
 .project-container {
   box-sizing: border-box;
   width: 100%;
   overflow: visible;
-  border: var(--border-width-default) solid var(--joker-black-300);
-  border-radius: var(--spacing-8);
-  background: var(--joker-black-700);
 }
 
-.project-container__top-rail {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.project-container__media {
+  --overlay-card-width: 286px;
+  --overlay-card-overlap: 200px;
+  --overlay-card-safe-zone: max(
+    0px,
+    calc(var(--overlay-card-width) - var(--overlay-card-overlap))
+  );
+
+  position: relative;
   box-sizing: border-box;
-  height: calc(var(--spacing-40) + var(--spacing-12));
-  padding-inline: var(--spacing-24);
-  background: var(--joker-black-700);
-  border-bottom: var(--border-width-default) solid var(--joker-black-300);
-  border-radius: var(--spacing-8) var(--spacing-8) 0 0;
-  font-family: var(--font);
-  font-size: var(--text-body-14);
-  font-weight: var(--text-body-weight);
-  line-height: var(--text-body-line-height);
-  letter-spacing: 0.03em;
-}
-
-.project-container__top-rail {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  height: calc(var(--spacing-40) + var(--spacing-12));
-  padding-inline: var(--spacing-24);
-  background: var(--joker-black-700);
-  border-bottom: var(--border-width-default) solid var(--joker-black-300);
-  font-family: var(--font);
-  font-size: var(--text-body-14);
-  font-weight: var(--text-body-weight);
-  line-height: var(--text-body-line-height);
-  letter-spacing: 0.03em;
-}
-
-.project-container__text-wrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-8);
-  color: var(--joker-gold-400);
-}
-
-.project-container__icon {
-  display: block;
-  width: 20px;
-  height: 20px;
-  flex: 0 0 auto;
-}
-
-.project-container__brand {
-  color: inherit;
-}
-
-.project-container__label {
-  color: var(--joker-white-50);
-}
-
-.project-container__bottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  height: 548px;
-  padding: 28px 32px 36px;
+  width: 100%;
+  min-height: 420px;
+  padding-block: 28px 0;
   overflow: visible;
-  background: #111111;
-  border-radius: 0 0 var(--spacing-8) var(--spacing-8);
+}
+
+.project-container__media-clip {
+  --media-fade-width: clamp(72px, 14vw, 180px);
+  --desktop-mockup-width: var(--desktop-w, 800px);
+
+  position: relative;
+  container-type: inline-size;
+  width: calc(100% - var(--overlay-card-safe-zone));
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.project-container__media-clip > .portfolio-mockup-stage {
+  margin-left: min(0px, calc(100% - var(--desktop-w, 800px)));
+}
+
+.project-container__media-clip::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  z-index: 1;
+  width: var(--media-fade-width);
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to right,
+    var(--joker-black-800) 0%,
+    color-mix(in srgb, var(--joker-black-800) 72%, transparent) 52%,
+    transparent 100%
+  );
+}
+
+@container (max-width: 799px) {
+  .project-container__media-clip::after {
+    opacity: 1;
+  }
+}
+
+.project-container__media-overlay {
+  position: absolute;
+  right: 0;
+  bottom: 48px;
+  z-index: 3;
+  pointer-events: auto;
 }
 
 .project-container__content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--spacing-24);
-  padding-inline: 42px;
 }
 
 .case-study-text {
@@ -146,4 +138,43 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--joker-black-50);
+}
+
+@media (max-width: 786px) {
+  .project-container__content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-32);
+  }
+
+  .case-study-text {
+    max-width: none;
+  }
+}
+
+@media (max-width: 690px) {
+  .project-container-shell {
+    gap: var(--spacing-32);
+  }
+
+  .project-container__media {
+    padding-block: 0;
+  }
+
+  .project-container__media-clip {
+    display: none;
+  }
+
+  .project-container__media-overlay {
+    position: static;
+    right: auto;
+    bottom: auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .case-study-text {
+    gap: var(--spacing-24);
+  }
 }

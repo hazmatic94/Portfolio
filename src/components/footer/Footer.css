@@ -1,3 +1,21 @@
+.site-footer-group {
+  background: #121212;
+}
+
+.site-footer-group--reveal {
+  --footer-fade-duration: 600ms;
+  --footer-fade-easing: var(--ease-out);
+  --footer-wipe-duration: var(--text-cover-wipe-duration);
+  --footer-wipe-easing: var(--text-cover-wipe-easing);
+  --footer-status-delay: 0ms;
+  --footer-rule-delay: 260ms;
+  --footer-title-delay: 500ms;
+  --footer-body-delay: 580ms;
+  --footer-cta-delay: 660ms;
+  --footer-logo-delay: 820ms;
+  --footer-legal-delay: 1040ms;
+}
+
 .site-footer {
   display: flex;
   flex-direction: column;
@@ -78,6 +96,11 @@
   color: var(--joker-black-50);
 }
 
+.site-footer__cta {
+  display: flex;
+  justify-content: center;
+}
+
 .site-footer__logo {
   display: flex;
   justify-content: center;
@@ -121,8 +144,123 @@
   }
 }
 
+.site-footer-group--reveal .site-footer__status {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.site-footer-group--reveal .site-footer__status-row .site-footer__rule:first-child {
+  clip-path: inset(0 0 0 100%);
+}
+
+.site-footer-group--reveal .site-footer__status-row .site-footer__rule:last-child {
+  clip-path: inset(0 100% 0 0);
+}
+
+.site-footer-group--reveal .site-footer__title,
+.site-footer-group--reveal .site-footer__body,
+.site-footer-group--reveal .site-footer__cta {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.site-footer-group--reveal .site-footer__logo,
+.site-footer-group--reveal .site-footer__legal {
+  opacity: 0;
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__status {
+  animation: site-footer-status-scale-in var(--footer-fade-duration) var(--footer-fade-easing) both;
+  animation-delay: var(--footer-status-delay);
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__status-row .site-footer__rule:first-child,
+.site-footer-group--reveal.is-in-view .site-footer__status-row .site-footer__rule:last-child {
+  animation: text-cover-wipe-reveal var(--footer-wipe-duration) var(--footer-wipe-easing) both;
+  animation-delay: var(--footer-rule-delay);
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__title {
+  animation: site-footer-fade-up var(--footer-fade-duration) var(--footer-fade-easing) both;
+  animation-delay: var(--footer-title-delay);
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__body {
+  animation: site-footer-fade-up var(--footer-fade-duration) var(--footer-fade-easing) both;
+  animation-delay: var(--footer-body-delay);
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__cta {
+  animation: site-footer-fade-up var(--footer-fade-duration) var(--footer-fade-easing) both;
+  animation-delay: var(--footer-cta-delay);
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__logo {
+  animation: site-footer-logo-settle 720ms var(--footer-fade-easing) both;
+  animation-delay: var(--footer-logo-delay);
+}
+
+.site-footer-group--reveal.is-in-view .site-footer__legal {
+  animation: site-footer-fade-in 480ms var(--footer-fade-easing) both;
+  animation-delay: var(--footer-legal-delay);
+}
+
+@keyframes site-footer-status-scale-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes site-footer-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes site-footer-logo-settle {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  58% {
+    transform: scale(0.86);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes site-footer-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-footer__status-dot {
     animation: none;
+  }
+
+  .site-footer-group--reveal .site-footer__status-row .site-footer__rule,
+  .site-footer-group--reveal .site-footer__status,
+  .site-footer-group--reveal .site-footer__title,
+  .site-footer-group--reveal .site-footer__body,
+  .site-footer-group--reveal .site-footer__cta,
+  .site-footer-group--reveal .site-footer__logo,
+  .site-footer-group--reveal .site-footer__legal {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+    transform: none;
   }
 }

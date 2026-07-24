@@ -1,0 +1,183 @@
+.component-card-shell {
+  --component-card-code-text: #ffffff;
+  --component-card-code-kw: #f88285;
+  --component-card-code-str: #66ec93;
+  --component-card-code-return: #ffdca1;
+
+  box-sizing: border-box;
+}
+
+.component-card__frame {
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid var(--joker-black-200);
+  border-radius: 10px;
+  background: #121212;
+  box-shadow:
+    0 18px 40px rgb(0 0 0 / 0.24),
+    0 6px 14px rgb(0 0 0 / 0.14);
+}
+
+.component-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+  border: var(--border-width-default) solid var(--joker-black-400);
+  border-radius: var(--spacing-8);
+  overflow: hidden;
+}
+
+.component-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 245px;
+  background: var(--joker-black-800);
+}
+
+.component-card--preview-only {
+  height: 345px;
+}
+
+.component-card--preview-only .component-card__top {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+
+.component-card__top:has(.component-card__mobile-preview) {
+  position: relative;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.component-card__mobile-preview {
+  --mobile-shell-width: 249px;
+  --mobile-shell-height: 530px;
+  --mobile-shell-offset-top: 14px;
+  --mobile-shell-inset-x: 14px;
+  --mobile-shell-fade-height: 96px;
+
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding-inline: var(--mobile-shell-inset-x);
+  overflow: visible;
+}
+
+.component-card__mobile-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  height: var(--mobile-shell-fade-height);
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    var(--joker-black-800) 18%,
+    transparent 100%
+  );
+}
+
+.component-card__mobile-frame {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: var(--mobile-shell-width);
+  height: var(--mobile-shell-height);
+  margin-top: var(--mobile-shell-offset-top);
+  border: 4px solid var(--joker-black-400);
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--joker-black-900, #0a0a0a);
+}
+
+.component-card__mobile-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.component-card__coin {
+  --coin-size: 190px;
+}
+
+.component-card__bottom {
+  position: relative;
+  box-sizing: border-box;
+  height: 100px;
+  padding: 16px;
+  background: var(--joker-black-700);
+  border-top: var(--border-width-default) solid var(--joker-black-300);
+  overflow: hidden;
+}
+
+.component-card__bottom-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.component-card__bottom-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--joker-black-700) 55%, transparent);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+}
+
+.component-card__view-code {
+  transform: scale(0.8);
+  transform-origin: center;
+}
+
+.component-card__code {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.component-card__code code {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  white-space: normal;
+  word-break: break-word;
+  color: var(--component-card-code-text);
+}
+
+.component-card__code-kw {
+  color: var(--component-card-code-kw);
+}
+
+.component-card__code-str {
+  color: var(--component-card-code-str);
+}
+
+.component-card__code-return {
+  color: var(--component-card-code-return);
+}
+
+.component-card__code-name,
+.component-card__code-punct {
+  color: var(--component-card-code-text);
+}

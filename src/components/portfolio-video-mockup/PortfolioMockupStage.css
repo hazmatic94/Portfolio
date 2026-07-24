@@ -1,19 +1,41 @@
 .portfolio-mockup-stage {
-  --desktop-w: 780px;
+  --desktop-w: 800px;
   --phone-w: 156px;
   --phone-overhang: 36px;
 
   position: relative;
   box-sizing: border-box;
-  width: min(calc(var(--desktop-w) + var(--phone-overhang)), 100%);
+  flex: 0 0 auto;
+  width: var(--desktop-w);
+}
+
+.portfolio-mockup-stage:not(:has(.portfolio-mockup-stage__mobile)) {
+  width: var(--desktop-w);
 }
 
 .portfolio-mockup-stage__desktop {
-  width: min(var(--desktop-w), calc(100% - var(--phone-overhang)));
-  aspect-ratio: 16 / 10;
+  width: var(--desktop-w);
   height: auto;
-  border-color: color-mix(in srgb, var(--joker-black-300) 80%, transparent);
   box-shadow: none;
+}
+
+.portfolio-mockup-stage__desktop .portfolio-image-mockup__media {
+  height: auto;
+}
+
+.portfolio-mockup-stage__desktop .portfolio-image-mockup__image {
+  display: block;
+  width: var(--desktop-w);
+  min-width: var(--desktop-w);
+  max-width: none;
+  height: auto;
+  object-fit: initial;
+  object-position: bottom left;
+}
+
+.portfolio-mockup-stage:not(:has(.portfolio-mockup-stage__mobile))
+  .portfolio-mockup-stage__desktop {
+  width: var(--desktop-w);
 }
 
 .portfolio-mockup-stage__mobile {

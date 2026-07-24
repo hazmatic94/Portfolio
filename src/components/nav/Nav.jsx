@@ -16,14 +16,23 @@ export function Nav() {
   return (
     <div className="nav-shell">
       <header className={`nav${scrolled ? " nav--scrolled" : ""}`}>
-        <a href="#" className="nav__logo" aria-label="Harry Maher">
+        <a href="/" className="nav__logo" aria-label="Harry Maher home">
           <NavLogo />
         </a>
         <nav className="nav__links" aria-label="Primary">
-          <a href="#" className="nav__link">
+          <a
+            href="/downloads/Harry_Maher_Product_Designer_CV.pdf"
+            download="Harry_Maher_Product_Designer_CV.pdf"
+            className="nav__link"
+          >
             Cv
           </a>
-          <a href="#" className="nav__link">
+          <a
+            href="https://www.linkedin.com/in/harry-maher-067b73251/"
+            className="nav__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Ln
           </a>
         </nav>

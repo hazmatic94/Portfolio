@@ -1,9 +1,20 @@
 .portfolio-image-mockup {
   box-sizing: border-box;
+}
+
+.portfolio-image-mockup__frame {
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid var(--joker-black-200);
+  border-radius: 10px;
+  background: #121212;
+}
+
+.portfolio-image-mockup__media {
+  box-sizing: border-box;
   overflow: hidden;
-  border: 1px solid var(--joker-black-300);
-  border-radius: var(--spacing-8);
-  background: #111111;
+  border: 1px solid var(--joker-black-400);
+  border-radius: 6px;
 }
 
 .portfolio-image-mockup__image {
