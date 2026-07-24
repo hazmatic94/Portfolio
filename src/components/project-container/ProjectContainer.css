@@ -14,13 +14,6 @@
 }
 
 .project-container__media {
-  --overlay-card-width: 286px;
-  --overlay-card-overlap: 200px;
-  --overlay-card-safe-zone: max(
-    0px,
-    calc(var(--overlay-card-width) - var(--overlay-card-overlap))
-  );
-
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -31,12 +24,10 @@
 
 .project-container__media-clip {
   --media-fade-width: clamp(72px, 14vw, 180px);
-  --desktop-mockup-width: var(--desktop-w, 800px);
 
   position: relative;
   container-type: inline-size;
-  width: calc(100% - var(--overlay-card-safe-zone));
-  max-width: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
