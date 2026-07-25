@@ -12,6 +12,21 @@ body,
 
 @keyframes text-cover-wipe-reveal {
   to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Clears clip after wipe so italic glyphs (01/02/03) aren't shaved */
+@keyframes text-cover-wipe-reveal-clear {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  90% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  100% {
     clip-path: none;
   }
 }

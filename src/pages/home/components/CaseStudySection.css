@@ -56,7 +56,7 @@
 }
 
 .case-study-block--reveal.is-in-view .section-divider__number {
-  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+  animation: text-cover-wipe-reveal-clear var(--case-study-wipe-duration)
     var(--case-study-wipe-easing) both;
   animation-delay: var(--case-study-number-delay);
 }

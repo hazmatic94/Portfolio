@@ -123,11 +123,16 @@
   width: var(--mobile-shell-width);
   height: var(--mobile-shell-height);
   margin-top: var(--mobile-shell-offset-top);
-  padding: 1px;
-  border: none;
+  padding: 0;
+  border: 1px solid var(--joker-black-300);
   border-radius: 36px;
   overflow: hidden;
-  background: var(--joker-black-200);
+  background: var(--joker-black-900, #0a0a0a);
+  transition: border-color 240ms var(--ease-out);
+}
+
+.component-card__frame:hover .component-card__mobile-frame {
+  border-color: var(--joker-black-200);
 }
 
 .component-card__mobile-image {
@@ -151,6 +156,11 @@
   background: var(--joker-black-700);
   border-top: var(--border-width-default) solid var(--joker-black-300);
   overflow: hidden;
+  transition: border-color 240ms var(--ease-out);
+}
+
+.component-card__frame:hover .component-card__bottom {
+  border-top-color: var(--joker-black-200);
 }
 
 .component-card__bottom-inner {
