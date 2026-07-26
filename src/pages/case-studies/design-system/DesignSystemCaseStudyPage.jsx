@@ -1,4 +1,5 @@
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
+import { TypographyTokenListPreview } from "../../../components/typography-token-list-preview/TypographyTokenListPreview.jsx";
 import { FoundationTokenCardsGrid } from "../../../components/foundation-token-cards-grid/FoundationTokenCardsGrid.jsx";
 import { CaseStudySplitFrames } from "../../../components/case-study-split-frames/CaseStudySplitFrames.jsx";
 import { ComponentCard } from "../../../components/component-card/ComponentCard.jsx";
@@ -77,6 +78,7 @@ export function DesignSystemCaseStudyPage() {
           <CaseStudySplitFrames
             left={<FoundationTokenCardsGrid />}
             leftFramed={false}
+            right={<TypographyTokenListPreview />}
           />
         </section>
       </main>
