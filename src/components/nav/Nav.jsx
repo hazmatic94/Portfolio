@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { NavLogo } from "./NavLogo.jsx";
 import "./Nav.css";
 
@@ -16,9 +17,9 @@ export function Nav() {
   return (
     <div className="nav-shell">
       <header className={`nav${scrolled ? " nav--scrolled" : ""}`}>
-        <a href="/" className="nav__logo" aria-label="Harry Maher home">
+        <Link to="/" className="nav__logo" aria-label="Harry Maher home">
           <NavLogo />
-        </a>
+        </Link>
         <nav className="nav__links" aria-label="Primary">
           <a
             href="/downloads/Harry_Maher_Product_Designer_CV.pdf"

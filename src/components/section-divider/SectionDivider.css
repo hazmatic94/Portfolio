@@ -15,9 +15,9 @@
   flex-shrink: 0;
   font-family: var(--font);
   font-size: var(--text-body-16);
-  font-weight: 500;
+  font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
-  letter-spacing: -0.05em;
+  letter-spacing: 0.05em;
   color: var(--joker-white-50);
 }
 

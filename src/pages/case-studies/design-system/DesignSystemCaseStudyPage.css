@@ -1,0 +1,41 @@
+.design-system-case-study {
+  background: #121212;
+}
+
+.design-system-case-study__shell {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-24);
+}
+
+.design-system-case-study__top {
+  padding-top: 80px;
+}
+
+.design-system-case-study__hero-section {
+  margin-top: 80px;
+}
+
+.design-system-case-study__hero {
+  margin-top: 0;
+}
+
+.design-system-case-study__hero .project-container__media {
+  padding-block: 0;
+}
+
+.design-system-case-study__overview {
+  padding-top: 200px;
+}
+
+.design-system-case-study__foundations {
+  padding-top: 200px;
+  padding-bottom: 100px;
+}
+
+@media (max-width: 690px) {
+  .design-system-case-study__shell {
+    padding-inline: var(--spacing-16);
+  }
+}
