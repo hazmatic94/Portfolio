@@ -7,8 +7,9 @@
 }
 
 .philosophy-section__content {
-  width: 550px;
-  max-width: calc(100% - var(--spacing-48));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 550px;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -41,6 +42,26 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 800px) {
+  .philosophy-section {
+    --philosophy-enter-delay: 1480ms;
+    padding-top: 72px;
+  }
+
+  .philosophy-section__content {
+    max-width: 100%;
+  }
+
+  .philosophy-section__title {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .philosophy-section__body {
+    font-size: var(--text-body-16);
   }
 }
 

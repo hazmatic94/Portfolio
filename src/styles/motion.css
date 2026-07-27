@@ -10,6 +10,15 @@ body,
   background-color: var(--joker-black-800);
 }
 
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes text-cover-wipe-reveal {
   to {
     clip-path: inset(0 0 0 0);

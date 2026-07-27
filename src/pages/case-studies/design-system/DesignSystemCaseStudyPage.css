@@ -1,12 +1,14 @@
 .design-system-case-study {
   background: #121212;
+  --case-study-next-label-gap: 100px;
+  --case-study-next-footer-gap: 100px;
 }
 
 .design-system-case-study__shell {
   width: 100%;
-  max-width: 1000px;
+  max-width: var(--case-study-content-width, 1000px);
   margin-inline: auto;
-  padding-inline: var(--spacing-24);
+  padding-inline: var(--case-study-gutter, var(--spacing-24));
 }
 
 .design-system-case-study__top {
@@ -17,6 +19,29 @@
   margin-top: 80px;
 }
 
+@media (max-width: 800px) {
+  .design-system-case-study {
+    --case-study-next-label-gap: var(--spacing-48);
+    --case-study-next-footer-gap: var(--spacing-48);
+  }
+
+  .design-system-case-study__top {
+    padding-top: var(--spacing-48);
+  }
+
+  .design-system-case-study__hero-section {
+    margin-top: var(--spacing-48);
+  }
+
+  .design-system-case-study .case-study-inline-copy {
+    margin-top: var(--spacing-32);
+  }
+
+  .design-system-case-study__next-label {
+    padding-inline: var(--case-study-gutter, var(--spacing-24));
+  }
+}
+
 .design-system-case-study__hero {
   margin-top: 0;
 }
@@ -25,17 +50,302 @@
   padding-block: 0;
 }
 
-.design-system-case-study__overview {
-  padding-top: 200px;
+.design-system-case-study__hero .portfolio-image-mockup__frame {
+  transform: none;
+  transition:
+    background-color 240ms var(--ease-out),
+    border-color 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out);
 }
 
-.design-system-case-study__foundations {
-  padding-top: 200px;
-  padding-bottom: 100px;
+.design-system-case-study__hero .portfolio-image-mockup__frame:hover {
+  transform: none;
+  background-color: var(--joker-black-400);
+  border-color: var(--joker-black-200);
+  box-shadow:
+    0 12px 28px rgb(0 0 0 / 28%),
+    0 4px 10px rgb(0 0 0 / 16%);
 }
 
-@media (max-width: 690px) {
-  .design-system-case-study__shell {
-    padding-inline: var(--spacing-16);
+.design-system-case-study__hero
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media {
+  border-color: var(--joker-black-200);
+}
+
+.design-system-case-study__hero .component-card__frame {
+  transition:
+    background-color 240ms var(--ease-out),
+    border-color 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out);
+}
+
+.design-system-case-study__hero .component-card__frame:hover {
+  transform: none;
+  background-color: var(--joker-black-400);
+  border-color: var(--joker-black-200);
+  box-shadow:
+    0 12px 28px rgb(0 0 0 / 28%),
+    0 4px 10px rgb(0 0 0 / 16%);
+}
+
+.design-system-case-study__overview,
+.design-system-case-study__foundations,
+.design-system-case-study__components,
+.design-system-case-study__developer-experience,
+.design-system-case-study__product-adoption,
+.design-system-case-study__next-project {
+  padding-top: var(--case-study-section-gap);
+}
+
+.design-system-case-study__next-label {
+  margin: var(--case-study-next-label-gap) 0 0;
+  font-family: var(--font);
+  font-size: 32px;
+  font-weight: var(--text-body-weight);
+  line-height: 1.15;
+  letter-spacing: -0.05em;
+  text-align: center;
+  color: var(--joker-white-50);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.design-system-case-study__next-label:hover {
+  color: var(--joker-black-50);
+  cursor: pointer;
+}
+
+.design-system-case-study__next-project .site-footer__legal {
+  margin-top: var(--case-study-next-footer-gap);
+}
+
+/* Intro reveal — page header + intro copy */
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-page-header__back,
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-page-header__lead,
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-page-header__pipe,
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-page-header__trail {
+  clip-path: inset(0 100% 0 0);
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal
+  .case-study-page-header__side
+  .case-study-page-header__rule {
+  clip-path: inset(0 0 0 100%);
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal
+  .case-study-page-header__rule--end {
+  clip-path: inset(0 100% 0 0);
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-intro__title,
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-intro__body,
+.design-system-case-study__intro-reveal.case-study-block--reveal .case-study-intro__cta {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-page-header__back {
+  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: 0ms;
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-page-header__side
+  .case-study-page-header__rule,
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-page-header__rule--end {
+  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: 120ms;
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-page-header__lead {
+  animation: text-cover-wipe-reveal-clear var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: 200ms;
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-page-header__pipe,
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-page-header__trail {
+  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: 260ms;
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-intro__title {
+  animation: case-study-fade-up 600ms var(--case-study-fade-easing) both;
+  animation-delay: 360ms;
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-intro__body {
+  animation: case-study-fade-up 600ms var(--case-study-fade-easing) both;
+  animation-delay: 440ms;
+}
+
+.design-system-case-study__intro-reveal.case-study-block--reveal.is-in-view
+  .case-study-intro__cta {
+  animation: case-study-fade-up 600ms var(--case-study-fade-easing) both;
+  animation-delay: 520ms;
+}
+
+/* Section inline copy + media */
+.case-study-block--reveal .case-study-inline-copy__title,
+.case-study-block--reveal .case-study-inline-copy__body,
+.case-study-block--reveal .design-system-case-study__section-media {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.case-study-block--reveal.is-in-view .case-study-inline-copy__title {
+  animation: case-study-fade-up 600ms var(--case-study-fade-easing) both;
+  animation-delay: var(--case-study-inline-title-delay, 280ms);
+}
+
+.case-study-block--reveal.is-in-view .case-study-inline-copy__body {
+  animation: case-study-fade-up 600ms var(--case-study-fade-easing) both;
+  animation-delay: var(--case-study-inline-body-delay, 360ms);
+}
+
+.case-study-block--reveal.is-in-view .design-system-case-study__section-media {
+  animation: case-study-mockup-reveal var(--case-study-fade-duration)
+    var(--case-study-fade-easing) both;
+  animation-delay: var(--case-study-inline-media-delay, 520ms);
+}
+
+/* Next project footer */
+.design-system-case-study__next-project.case-study-block--reveal
+  .case-study-page-header__lead,
+.design-system-case-study__next-project.case-study-block--reveal
+  .case-study-page-header__pipe,
+.design-system-case-study__next-project.case-study-block--reveal
+  .case-study-page-header__trail {
+  clip-path: inset(0 100% 0 0);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal
+  .case-study-page-header__rule {
+  clip-path: inset(0 0 0 100%);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal
+  .case-study-page-header__rule--end {
+  clip-path: inset(0 100% 0 0);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal
+  .design-system-case-study__next-label,
+.design-system-case-study__next-project.case-study-block--reveal
+  .site-footer__legal {
+  opacity: 0;
+}
+
+.design-system-case-study__next-project.case-study-block--reveal
+  .design-system-case-study__next-label {
+  transform: translateY(12px);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .case-study-page-header__lead {
+  animation: text-cover-wipe-reveal-clear var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: var(--case-study-number-delay);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .case-study-page-header__pipe {
+  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: var(--case-study-pipe-delay);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .case-study-page-header__trail {
+  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: var(--case-study-title-delay);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .case-study-page-header__rule,
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .case-study-page-header__rule--end {
+  animation: text-cover-wipe-reveal var(--case-study-wipe-duration)
+    var(--case-study-wipe-easing) both;
+  animation-delay: var(--case-study-rule-delay);
+}
+
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .design-system-case-study__next-label {
+  animation: case-study-fade-up 600ms var(--case-study-fade-easing) both;
+  animation-delay: 360ms;
+}
+
+.design-system-case-study__next-project.case-study-block--reveal.is-in-view
+  .site-footer__legal {
+  animation: case-study-fade-up 480ms var(--case-study-fade-easing) both;
+  animation-delay: 520ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .design-system-case-study__hero .portfolio-image-mockup__frame,
+  .design-system-case-study__hero .component-card__frame {
+    transition:
+      background-color 240ms var(--ease-out),
+      border-color 240ms var(--ease-out);
+  }
+
+  .design-system-case-study__hero .portfolio-image-mockup__frame:hover,
+  .design-system-case-study__hero .component-card__frame:hover {
+    box-shadow: none;
+  }
+
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-page-header__back,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-page-header__lead,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-page-header__pipe,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-page-header__trail,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-page-header__side
+    .case-study-page-header__rule,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-page-header__rule--end,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-intro__title,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-intro__body,
+  .design-system-case-study__intro-reveal.case-study-block--reveal
+    .case-study-intro__cta,
+  .case-study-block--reveal .case-study-inline-copy__title,
+  .case-study-block--reveal .case-study-inline-copy__body,
+  .case-study-block--reveal .design-system-case-study__section-media,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .case-study-page-header__lead,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .case-study-page-header__pipe,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .case-study-page-header__trail,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .case-study-page-header__rule,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .case-study-page-header__rule--end,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .design-system-case-study__next-label,
+  .design-system-case-study__next-project.case-study-block--reveal
+    .site-footer__legal {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+    transform: none;
   }
 }

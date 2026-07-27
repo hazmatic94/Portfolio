@@ -1,4 +1,5 @@
 .foundation-token-cards {
+  --foundation-token-card-height: calc((540px - 16px) / 2);
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -118,6 +119,11 @@
   overflow: hidden;
   border-bottom: 1px solid var(--joker-black-300);
   border-radius: 8px 8px 0 0;
+  transition: border-color 240ms var(--ease-out);
+}
+
+.foundation-token-cards__tile .portfolio-image-mockup__frame:hover .color-swatch-card__swatch {
+  border-color: var(--joker-black-200);
 }
 
 .foundation-token-cards .color-swatch-card__meta {
@@ -205,6 +211,12 @@
   align-items: center;
   width: max(var(--spacing-size), 4px);
   height: 4px;
+  transform-origin: center center;
+}
+
+.foundation-token-cards .spacing-swatch-card.is-in-view .spacing-swatch-card__units {
+  animation: foundation-token-spacing-complete-pop var(--foundation-token-cycle, 5000ms)
+    var(--ease-out) infinite;
 }
 
 .foundation-token-cards .spacing-swatch-card__unit {
@@ -249,12 +261,34 @@
   }
 }
 
+/* Last unit finishes growing ~51% into the cycle (23 * 72ms stagger + 18% grow). */
+@keyframes foundation-token-spacing-complete-pop {
+  0%,
+  51% {
+    transform: scale(1);
+  }
+
+  54% {
+    transform: scale(1.035);
+  }
+
+  60%,
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .foundation-token-cards .spacing-swatch-card.is-in-view .spacing-swatch-card__unit {
     animation: none;
     width: 1px;
     height: 4px;
     opacity: 1;
+  }
+
+  .foundation-token-cards .spacing-swatch-card.is-in-view .spacing-swatch-card__units {
+    animation: none;
+    transform: none;
   }
 
   .foundation-token-cards .foundation-token-cards__color-swatch-card.is-in-view
@@ -266,6 +300,11 @@
   .foundation-token-cards .radius-swatch-card.is-in-view .radius-swatch-card__bracket path {
     animation: none;
     stroke-dashoffset: 0;
+  }
+
+  .foundation-token-cards .radius-swatch-card.is-in-view .radius-swatch-card__brackets {
+    animation: none;
+    transform: none;
   }
 }
 
@@ -296,6 +335,19 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+}
+
+.foundation-token-cards .radius-swatch-card__brackets {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+
+.foundation-token-cards .radius-swatch-card.is-in-view .radius-swatch-card__brackets {
+  animation: foundation-token-radius-complete-pop var(--foundation-token-cycle, 5000ms)
+    var(--ease-out) infinite;
 }
 
 .foundation-token-cards .motion-swatch-card__preview {
@@ -399,6 +451,23 @@
   }
 }
 
+/* TR bracket finishes drawing ~48% into the cycle (120ms delay + 46% draw). */
+@keyframes foundation-token-radius-complete-pop {
+  0%,
+  48% {
+    transform: scale(1);
+  }
+
+  51% {
+    transform: scale(1.035);
+  }
+
+  57%,
+  100% {
+    transform: scale(1);
+  }
+}
+
 @keyframes foundation-token-motion-track {
   from {
     left: 24px;
@@ -406,5 +475,98 @@
 
   to {
     left: calc(100% - 38px);
+  }
+}
+
+@media (max-width: 800px) {
+  .foundation-token-cards {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .foundation-token-cards__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: var(--spacing-8);
+    align-items: stretch;
+    height: auto;
+    min-height: 0;
+  }
+
+  .foundation-token-cards__tile,
+  .foundation-token-cards__tile .portfolio-image-mockup__frame,
+  .foundation-token-cards__tile-media,
+  .foundation-token-cards__card {
+    height: auto;
+    min-height: 0;
+  }
+
+  .foundation-token-cards__tile-media,
+  .foundation-token-cards .color-swatch-card {
+    overflow: visible;
+  }
+
+  .foundation-token-cards .color-swatch-card__swatch {
+    height: 84px;
+    min-height: 84px;
+    max-height: 84px;
+  }
+
+  .foundation-token-cards .color-swatch-card__meta {
+    gap: var(--spacing-8);
+    padding: var(--spacing-16);
+    overflow: visible;
+  }
+
+  .foundation-token-cards__label,
+  .motion-swatch-card__title,
+  .radius-swatch-card__title {
+    font-size: var(--text-body-12);
+    line-height: 1.2;
+  }
+
+  .foundation-token-cards .token-copy-chip {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: 4px 6px;
+    font-size: 10px;
+    white-space: normal;
+    word-break: break-all;
+    text-align: left;
+  }
+
+  .foundation-token-cards .motion-swatch-card__swatch,
+  .foundation-token-cards .radius-swatch-card__swatch {
+    padding: 12px 12px 0;
+  }
+
+  .foundation-token-cards .radius-swatch-card {
+    --radius-corner-arm: 28px;
+    --radius-bracket-gap: 4px;
+  }
+
+  .foundation-token-cards .base-tag {
+    font-size: 9px;
+    padding: 2px 7px;
+  }
+
+  .foundation-token-cards .motion-duration-preview::before {
+    top: 50%;
+    left: 12px;
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    animation-name: foundation-token-motion-track-mobile;
+  }
+}
+
+@keyframes foundation-token-motion-track-mobile {
+  from {
+    left: 12px;
+  }
+
+  to {
+    left: calc(100% - 22px);
   }
 }

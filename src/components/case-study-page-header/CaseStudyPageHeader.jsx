@@ -40,10 +40,31 @@ export function CaseStudyPageHeader({
 
       <p className="case-study-page-header__title">
         <span className="case-study-page-header__lead">{lead}</span>
-        <span className="case-study-page-header__pipe" aria-hidden="true" />
+        <span className="case-study-page-header__pipe" aria-hidden="true">
+          |
+        </span>
         <span className="case-study-page-header__trail">{title}</span>
       </p>
 
+      <span
+        className="case-study-page-header__rule case-study-page-header__rule--end"
+        aria-hidden="true"
+      />
+    </header>
+  );
+}
+
+export function CaseStudyProjectRail({ lead, title }) {
+  return (
+    <header className="case-study-page-header case-study-page-header--rail">
+      <span className="case-study-page-header__rule" aria-hidden="true" />
+      <p className="case-study-page-header__title">
+        <span className="case-study-page-header__lead">{lead}</span>
+        <span className="case-study-page-header__pipe" aria-hidden="true">
+          |
+        </span>
+        <span className="case-study-page-header__trail">{title}</span>
+      </p>
       <span
         className="case-study-page-header__rule case-study-page-header__rule--end"
         aria-hidden="true"

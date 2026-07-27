@@ -3,6 +3,12 @@
   background: #121212;
 }
 
+@media (max-width: 800px) {
+  .case-study-intro {
+    margin-top: var(--spacing-48);
+  }
+}
+
 .case-study-intro__content {
   display: flex;
   flex-direction: column;
@@ -14,7 +20,7 @@
 .case-study-intro__title {
   width: 100%;
   max-width: 550px;
-  margin: 0 0 var(--spacing-8);
+  margin: 0 0 var(--spacing-12);
   font-family: var(--font);
   font-size: 32px;
   font-weight: var(--text-body-weight);
@@ -28,7 +34,7 @@
   max-width: 550px;
   margin: 0;
   font-family: var(--font);
-  font-size: 20px;
+  font-size: var(--text-body-16);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
   letter-spacing: 0.05em;
@@ -42,10 +48,4 @@
 .case-study-intro__cta button,
 .case-study-intro__cta a {
   letter-spacing: 0.05em;
-}
-
-@media (max-width: 690px) {
-  .case-study-intro__body {
-    font-size: var(--text-body-16);
-  }
 }

@@ -18,6 +18,7 @@ const CASE_STUDIES = [
       "Npm package",
       "Component API",
     ],
+    href: "/case-studies/design-system",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay" showCode />
     ),
@@ -25,7 +26,7 @@ const CASE_STUDIES = [
       <PortfolioMockupStage
         desktopSrc="/images/design-system-hero.png"
         desktopSrcSet="/images/design-system-hero.png 1366w, /images/design-system-hero@2x.png 2732w"
-        desktopSizes="800px"
+        desktopSizes="(min-width: 1000px) 952px, 100vw"
         desktopWidth={1366}
         desktopHeight={914}
         desktopLabel="Joker design system colours documentation"
@@ -52,7 +53,7 @@ const CASE_STUDIES = [
       <PortfolioMockupStage
         desktopSrc="/images/game-shell-hero.png"
         desktopSrcSet="/images/game-shell-hero.png 1366w, /images/game-shell-hero@2x.png 2732w"
-        desktopSizes="800px"
+        desktopSizes="(min-width: 1000px) 952px, 100vw"
         desktopWidth={1366}
         desktopHeight={900}
         desktopLabel="Joker Plus responsive game shell with Hilo"
@@ -79,7 +80,7 @@ const CASE_STUDIES = [
       <PortfolioMockupStage
         desktopSrc="/images/joker-originals-hero.png"
         desktopSrcSet="/images/joker-originals-hero.png 1366w, /images/joker-originals-hero@2x.png 2732w"
-        desktopSizes="800px"
+        desktopSizes="(min-width: 1000px) 952px, 100vw"
         desktopWidth={1366}
         desktopHeight={900}
         desktopLabel="Joker Plus Roulette with a three-win streak"
@@ -94,6 +95,7 @@ function CaseStudyBlock({
   title,
   body,
   chips = [],
+  href = null,
   media = null,
   mediaOverlay = null,
 }) {
@@ -111,6 +113,7 @@ function CaseStudyBlock({
           title={title}
           body={body}
           chips={chips}
+          href={href}
           media={media}
           mediaOverlay={mediaOverlay}
         />

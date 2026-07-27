@@ -1,4 +1,78 @@
-.home-page__scroll {
-  min-height: 800px;
-  background: #121212;
+.home-page .philosophy-section {
+  padding-inline: var(--case-study-gutter);
+}
+
+.home-page .project-container-shell {
+  width: 100%;
+  max-width: none;
+}
+
+@media (min-width: 801px) {
+  .home-page .hero__video-frame {
+    transition: transform 240ms var(--ease-out);
+  }
+
+  .home-page .hero__video-frame:hover {
+    transform: translateY(-4px);
+  }
+
+  .home-page .project-container__media--linked .portfolio-image-mockup__frame,
+  .home-page .project-container__media--linked .component-card__frame {
+    pointer-events: auto;
+  }
+
+  .home-page .project-container__media--linked:hover .component-card__frame:not(:hover) {
+    background-color: var(--joker-black-500);
+    border-color: var(--joker-black-300);
+    box-shadow:
+      0 18px 40px rgb(0 0 0 / 24%),
+      0 6px 14px rgb(0 0 0 / 14%);
+    transform: none;
+  }
+
+  .home-page .project-container__media--linked:hover
+    .component-card__frame:not(:hover)
+    .component-card {
+    border-color: var(--joker-black-400);
+  }
+
+  .home-page .project-container__media--linked:hover
+    .component-card__frame:not(:hover)
+    .component-card__code-panel {
+    border-top-color: var(--joker-black-400);
+  }
+
+  .home-page .project-container__media .portfolio-image-mockup__frame,
+  .home-page .project-container__media .component-card__frame {
+    transition:
+      transform 240ms var(--ease-out),
+      box-shadow 240ms var(--ease-out),
+      background-color 240ms var(--ease-out),
+      border-color 240ms var(--ease-out);
+  }
+
+  .home-page .project-container__media .portfolio-image-mockup__frame:hover {
+    transform: translateY(-3px);
+    background-color: var(--joker-black-400);
+    border-color: var(--joker-black-200);
+    box-shadow:
+      0 12px 28px rgb(0 0 0 / 28%),
+      0 4px 10px rgb(0 0 0 / 16%);
+  }
+
+  .home-page .project-container__media .portfolio-image-mockup__frame:hover .portfolio-image-mockup__media {
+    border-color: var(--joker-black-200);
+  }
+
+  .home-page .project-container__media .component-card__frame:hover {
+    transform: translateY(-3px);
+  }
+}
+
+@media (min-width: 801px) and (prefers-reduced-motion: reduce) {
+  .home-page .hero__video-frame:hover,
+  .home-page .project-container__media .portfolio-image-mockup__frame:hover,
+  .home-page .project-container__media .component-card__frame:hover {
+    transform: none;
+  }
 }

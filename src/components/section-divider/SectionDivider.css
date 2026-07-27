@@ -28,9 +28,13 @@
 }
 
 .section-divider__pipe {
-  width: var(--border-width-default);
-  height: 1em;
-  background: var(--joker-black-100);
+  flex-shrink: 0;
+  font-style: normal;
+  line-height: 1;
+}
+
+.section-divider__label .section-divider__pipe {
+  color: var(--joker-black-50);
 }
 
 .section-divider__rule {
@@ -41,4 +45,10 @@
 
 .section-divider__title {
   white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+  .section-divider__title {
+    white-space: normal;
+  }
 }

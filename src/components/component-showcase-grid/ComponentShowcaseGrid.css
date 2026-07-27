@@ -1,0 +1,169 @@
+.component-showcase-grid {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-24);
+}
+
+.component-showcase-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.component-showcase-grid__tile {
+  box-sizing: border-box;
+  min-width: 0;
+  height: 363px;
+  overflow: hidden;
+}
+
+.component-showcase-grid__tile .component-card-shell {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.component-showcase-grid__tile .component-card__frame {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.component-showcase-grid__tile .component-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.component-showcase-grid__tile .component-card__top {
+  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: flex 220ms var(--ease-out), padding 220ms var(--ease-out);
+}
+
+.component-showcase-grid__tile .component-card--code-expanded .component-card__top {
+  flex: 1 1 0;
+  padding-block: 16px;
+}
+
+.component-showcase-grid__tile .component-card__code-panel .code-body {
+  max-height: 100px;
+  transition: max-height 180ms var(--ease-standard);
+}
+
+.component-showcase-grid__tile .component-card--code-expanded .component-card__code-panel .code-body {
+  max-height: min(220px, 58%);
+  overflow: auto;
+}
+
+.component-showcase-grid__button-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.component-showcase-grid__coin-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.component-showcase-grid__coin {
+  --coin-size: 148px;
+  --coin-hover-bob: calc(var(--coin-size) * 0.095);
+}
+
+@media (hover: hover) {
+  .component-showcase-grid__tile:hover .component-showcase-grid__coin {
+    animation: component-showcase-grid-coin-hover 3.2s ease-in-out infinite;
+  }
+
+  .component-showcase-grid__tile:hover .component-showcase-grid__coin .joker-coin__sheen {
+    animation-duration: 4s;
+  }
+}
+
+@keyframes component-showcase-grid-coin-hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(calc(var(--coin-hover-bob) * -1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .component-showcase-grid__tile:hover .component-showcase-grid__coin {
+    animation: none;
+  }
+}
+
+.component-showcase-grid__bet-input {
+  width: min(100%, 260px);
+}
+
+.component-showcase-grid__win-tile-flip {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.component-showcase-grid__win-tile-flip .mines-gold-flip-demo__cover {
+  position: absolute;
+  inset: 0;
+}
+
+.component-showcase-grid__win-tile-flip .mines-gold-flip-demo__win {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.component-showcase-grid__win-tile-flip.is-active .mines-gold-flip-demo__win {
+  opacity: 1;
+  visibility: visible;
+}
+
+.component-showcase-grid__win-tile {
+  flex-shrink: 0;
+}
+
+@media (max-width: 800px) {
+  .component-showcase-grid__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .component-showcase-grid__tile {
+    height: auto;
+    min-height: 320px;
+  }
+
+  .component-showcase-grid__tile .component-card--code-expanded .component-card__code-panel .code-body {
+    max-height: min(240px, 50vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .component-showcase-grid__tile .component-card__top,
+  .component-showcase-grid__tile .component-card__code-panel .code-body {
+    transition: border-color 240ms var(--ease-out);
+  }
+}

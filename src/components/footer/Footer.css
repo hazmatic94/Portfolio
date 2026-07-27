@@ -249,6 +249,16 @@
   }
 }
 
+@media (max-width: 800px) {
+  .site-footer {
+    padding: 72px var(--spacing-24) 48px;
+  }
+
+  .site-footer__status-row {
+    gap: var(--spacing-24);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-footer__status-dot {
     animation: none;

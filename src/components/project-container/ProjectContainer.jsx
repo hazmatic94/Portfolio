@@ -1,4 +1,5 @@
 import { Button } from "@joker/design-system";
+import { Link, useNavigate } from "react-router-dom";
 import "./ProjectContainer.css";
 
 export function ProjectContainer({
@@ -6,16 +7,29 @@ export function ProjectContainer({
   body,
   chips = [],
   ctaLabel = "View Project",
+  href = null,
   media = null,
   mediaOverlay = null,
 }) {
+  const navigate = useNavigate();
+  const MediaTag = href ? Link : "div";
+  const mediaProps = href
+    ? {
+        to: href,
+        "aria-label": `View ${title} case study`,
+      }
+    : {};
+
   return (
     <div className="project-container-shell">
       <article className="project-container">
-        <div className="project-container__media">
+        <MediaTag
+          className={`project-container__media${href ? " project-container__media--linked" : ""}`}
+          {...mediaProps}
+        >
           <div className="project-container__media-clip">{media}</div>
           {mediaOverlay}
-        </div>
+        </MediaTag>
       </article>
 
       <div className="project-container__content">
@@ -25,7 +39,12 @@ export function ProjectContainer({
         </div>
 
         <div className="project-container__cta">
-          <Button variant="secondary">{ctaLabel}</Button>
+          <Button
+            variant="secondary"
+            onClick={href ? () => navigate(href) : undefined}
+          >
+            {ctaLabel}
+          </Button>
         </div>
 
         {chips.length > 0 ? (

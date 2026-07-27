@@ -4,7 +4,6 @@
   width: 100%;
   max-width: 1000px;
   height: 540px;
-  margin-top: 60px;
   margin-inline: auto;
   padding-inline: var(--spacing-24);
   box-sizing: border-box;
@@ -65,6 +64,39 @@
   border-color: var(--joker-black-200);
 }
 
+.case-study-split-frames__panel .ds-home-preview__ticker,
+.case-study-split-frames__panel .ds-home-preview__hero {
+  transition: border-color 240ms var(--ease-out);
+}
+
+.case-study-split-frames__panel .portfolio-image-mockup__frame:hover .ds-home-preview__ticker,
+.case-study-split-frames__panel .portfolio-image-mockup__frame:hover .ds-home-preview__hero {
+  border-color: var(--joker-black-200);
+}
+
+.case-study-split-frames__panel .coin-flip-panel-preview__panel {
+  transition: border-color 240ms var(--ease-out);
+}
+
+.case-study-split-frames__panel .portfolio-image-mockup__frame:hover .coin-flip-panel-preview__panel {
+  border-color: var(--joker-black-200) !important;
+}
+
+.case-study-split-frames__panel .typography-token-list-preview__card:not(:last-child),
+.case-study-split-frames__panel .typography-token-list-preview__spec-divider {
+  transition:
+    border-color 240ms var(--ease-out),
+    background-color 240ms var(--ease-out);
+}
+
+.case-study-split-frames__panel .portfolio-image-mockup__frame:hover .typography-token-list-preview__card:not(:last-child) {
+  border-color: var(--joker-black-200);
+}
+
+.case-study-split-frames__panel .portfolio-image-mockup__frame:hover .typography-token-list-preview__spec-divider {
+  background: var(--joker-black-200);
+}
+
 .case-study-split-frames__media {
   display: flex;
   flex-direction: column;
@@ -73,20 +105,26 @@
   background: var(--joker-black-800);
 }
 
-@media (max-width: 786px) {
+.case-study-split-frames__media .ds-home-preview {
+  grid-template-rows: 40px minmax(260px, 1fr) auto;
+}
+
+@media (max-width: 800px) {
   .case-study-split-frames {
     flex-direction: column;
     height: auto;
-    padding-inline: var(--spacing-16);
+    min-height: 0;
   }
 
-  .case-study-split-frames__panel--fixed {
+  .case-study-split-frames__panel--fixed,
+  .case-study-split-frames__panel--fill {
     flex: none;
     width: 100%;
-    height: 320px;
+    height: 540px;
+    min-height: 540px;
   }
 
-  .case-study-split-frames__panel--fill {
-    height: 240px;
+  .case-study-split-frames__media .ds-home-preview {
+    grid-template-rows: 40px minmax(180px, 280px) auto;
   }
 }

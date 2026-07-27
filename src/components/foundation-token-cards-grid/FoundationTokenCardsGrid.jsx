@@ -137,15 +137,17 @@ function RadiusTokenCard() {
       >
         <div className="color-swatch-card__swatch radius-swatch-card__swatch">
           <div className="radius-swatch-card__fit">
-            <RadiusBracket
-              className="radius-swatch-card__bracket--tl"
-              path={RADIUS_BRACKET_PATHS.tl}
-            />
-            <RadiusBracket
-              className="radius-swatch-card__bracket--tr"
-              path={RADIUS_BRACKET_PATHS.tr}
-            />
             <span className="radius-swatch-card__shape" aria-hidden="true" />
+            <div className="radius-swatch-card__brackets" aria-hidden="true">
+              <RadiusBracket
+                className="radius-swatch-card__bracket--tl"
+                path={RADIUS_BRACKET_PATHS.tl}
+              />
+              <RadiusBracket
+                className="radius-swatch-card__bracket--tr"
+                path={RADIUS_BRACKET_PATHS.tr}
+              />
+            </div>
           </div>
         </div>
         <div className="color-swatch-card__meta">

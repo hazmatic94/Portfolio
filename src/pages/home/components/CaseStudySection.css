@@ -1,4 +1,5 @@
-.case-study-section {
+.case-study-section,
+.case-study-block--reveal {
   --case-study-wipe-duration: var(--text-cover-wipe-duration);
   --case-study-wipe-easing: var(--text-cover-wipe-easing);
   --case-study-fade-duration: 680ms;
@@ -10,7 +11,12 @@
   --case-study-mockup-delay: 300ms;
   --case-study-overlay-delay: 460ms;
   --case-study-copy-delay: 520ms;
+  --case-study-inline-title-delay: 280ms;
+  --case-study-inline-body-delay: 360ms;
+  --case-study-inline-media-delay: 520ms;
+}
 
+.case-study-section {
   padding-block: 100px;
   background: #121212;
   overflow: visible;
@@ -121,14 +127,13 @@
   }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 800px) {
   .case-study-section {
     padding-block: 72px;
   }
 
   .case-study-section__projects {
     margin-top: var(--spacing-32);
-    padding-inline: var(--spacing-16);
   }
 }
 

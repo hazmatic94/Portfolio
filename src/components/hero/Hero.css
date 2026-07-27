@@ -92,6 +92,32 @@
   }
 }
 
+@media (max-width: 800px) {
+  .hero {
+    --hero-enter-logo-delay: 240ms;
+    --hero-enter-dots-delay: 560ms;
+    --hero-enter-text-delay: 920ms;
+  }
+
+  .hero__video {
+    width: 320px;
+    height: 320px;
+    transform: scale(1.456);
+  }
+
+  .hero__role {
+    display: none;
+  }
+
+  .hero__meta {
+    right: var(--spacing-24);
+    left: var(--spacing-24);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-8);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__dot-grid,
   .hero__video-frame,

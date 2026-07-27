@@ -1,0 +1,65 @@
+.code-panel-copy-button {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--joker-gold-400);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    width 140ms ease,
+    height 140ms ease;
+}
+
+.code-panel-copy-button:hover {
+  color: var(--joker-gold-300);
+}
+
+.code-panel-copy-button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.code-panel-copy-button .copy-icon {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  color: currentColor;
+}
+
+.code-panel-copy-button .copy-icon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.code-panel-copy-button.is-copied {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+  border: 1px solid color-mix(in srgb, var(--joker-gold-400) 44%, transparent);
+  background: var(--joker-black-800);
+  color: var(--joker-gold-400);
+  padding: 6.5px 10px 6px;
+}
+
+.code-panel-copy-button.is-copied:hover {
+  color: var(--joker-gold-400);
+}
+
+.code-panel-copy-button__label {
+  font-family: var(--mono);
+  font-size: var(--text-body-12);
+  line-height: 1;
+  white-space: nowrap;
+}

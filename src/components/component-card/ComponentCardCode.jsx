@@ -1,46 +1,33 @@
+import {
+  CodeAttr,
+  CodeFn,
+  CodeImportName,
+  CodeKw,
+  CodeProp,
+  CodePunct,
+  CodeStr,
+  CodeTag,
+  ComponentCardCodeBlock,
+} from "./ComponentCardCodeParts.jsx";
+
 export function ComponentCardCode() {
   return (
-    <pre className="component-card__code">
-      <code>
-        <span className="component-card__code-kw">import</span>
-        {" "}
-        <span className="component-card__code-punct">{"{ "}</span>
-        <span className="component-card__code-name">Coin</span>
-        <span className="component-card__code-punct">{" }"}</span>
-        {" "}
-        <span className="component-card__code-kw">from</span>
-        {" "}
-        <span className="component-card__code-str">"@joker/design-system"</span>
-        ;{"  "}
-        <span className="component-card__code-kw">export</span>
-        {" "}
-        <span className="component-card__code-kw">function</span>
-        {" "}
-        <span className="component-card__code-name">CoinExample</span>
-        <span className="component-card__code-punct">()</span>
-        {" "}
-        <span className="component-card__code-punct">{"{ "}</span>
-        <span className="component-card__code-return">return</span>
-        {" "}
-        <span className="component-card__code-punct">{"<"}</span>
-        <span className="component-card__code-name">Coin</span>
-        {" "}
-        <span className="component-card__code-return">side</span>
-        <span className="component-card__code-punct">=</span>
-        <span className="component-card__code-str">"heads"</span>
-        {" "}
-        <span className="component-card__code-return">style</span>
-        <span className="component-card__code-punct">=</span>
-        <span className="component-card__code-punct">{"{{ "}</span>
-        <span className="component-card__code-str">"--coin-size"</span>
-        <span className="component-card__code-punct">:</span>
-        {" "}
-        <span className="component-card__code-str">"256px"</span>
-        <span className="component-card__code-punct">{" }}"}</span>
-        {" "}
-        <span className="component-card__code-punct">/&gt;;</span>
-        {" }"}
-      </code>
-    </pre>
+    <ComponentCardCodeBlock>
+      <CodeKw>import</CodeKw> <CodePunct>{"{ "}</CodePunct>
+      <CodeImportName>Coin</CodeImportName>
+      <CodePunct>{" }"}</CodePunct> <CodeKw>from</CodeKw>{" "}
+      <CodeStr>"@joker/design-system"</CodeStr>;{"  "}
+      <CodeKw>export</CodeKw> <CodeKw>function</CodeKw> <CodeFn>CoinExample</CodeFn>
+      <CodePunct>()</CodePunct> <CodePunct>{"{ "}</CodePunct>
+      <CodeKw>return</CodeKw> <CodePunct>{"<"}</CodePunct>
+      <CodeTag>Coin</CodeTag> <CodeAttr>side</CodeAttr>
+      <CodePunct>=</CodePunct>
+      <CodeStr>"heads"</CodeStr> <CodeAttr>style</CodeAttr>
+      <CodePunct>=</CodePunct>
+      <CodePunct>{"{{ "}</CodePunct>
+      <CodeProp>--coin-size</CodeProp>
+      <CodePunct>:</CodePunct> <CodeStr>"256px"</CodeStr>
+      <CodePunct>{" }}"}</CodePunct> <CodePunct>/&gt;;</CodePunct>{" }"}
+    </ComponentCardCodeBlock>
   );
 }

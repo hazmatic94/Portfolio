@@ -2,6 +2,14 @@ import { Button } from "@joker/design-system";
 import { useInViewOnce } from "../../hooks/useInViewOnce.js";
 import "./Footer.css";
 
+export function FooterLegal({ className = "" }) {
+  return (
+    <p className={`site-footer__legal${className ? ` ${className}` : ""}`}>
+      © 2026 Harry Maher. All rights reserved.
+    </p>
+  );
+}
+
 export function Footer() {
   const [ref, inView] = useInViewOnce({ threshold: 0.35 });
 
@@ -45,9 +53,7 @@ export function Footer() {
         </div>
       </footer>
 
-      <p className="site-footer__legal">
-        © 2026 Harry Maher. All rights reserved.
-      </p>
+      <FooterLegal />
     </div>
   );
 }

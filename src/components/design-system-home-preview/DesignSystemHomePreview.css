@@ -61,6 +61,16 @@
   }
 }
 
+@media (max-width: 800px) {
+  .ds-home-preview__body {
+    padding: 20px 16px 28px;
+  }
+
+  .ds-home-preview__intro-copy {
+    gap: 20px;
+  }
+}
+
 .ds-home-preview__hero {
   position: relative;
   isolation: isolate;
@@ -118,7 +128,7 @@
 
 .ds-home-preview__body {
   box-sizing: border-box;
-  padding: 24px 16px;
+  padding: 24px 16px 32px;
 }
 
 .ds-home-preview__intro-copy {
