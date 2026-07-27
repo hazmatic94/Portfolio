@@ -446,6 +446,7 @@
 
 @media (max-width: 800px) {
   .foundation-token-cards {
+    --foundation-token-mobile-card-height: 260px;
     height: auto;
     min-height: 0;
     overflow: visible;
@@ -453,9 +454,8 @@
 
   .foundation-token-cards__grid {
     grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-auto-rows: auto;
-    gap: var(--spacing-16);
+    grid-template-rows: repeat(4, minmax(0, var(--foundation-token-mobile-card-height)));
+    gap: var(--spacing-8);
     align-items: stretch;
     height: auto;
     min-height: 0;
@@ -465,19 +465,25 @@
   .foundation-token-cards__tile .portfolio-image-mockup__frame,
   .foundation-token-cards__tile-media,
   .foundation-token-cards__card {
-    height: auto;
+    height: 100%;
     min-height: 0;
   }
 
   .foundation-token-cards__tile-media,
   .foundation-token-cards .color-swatch-card {
-    overflow: visible;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .foundation-token-cards .color-swatch-card {
+    grid-template-rows: minmax(0, 1fr) auto;
   }
 
   .foundation-token-cards .color-swatch-card__swatch {
-    height: 84px;
-    min-height: 84px;
-    max-height: 84px;
+    height: auto;
+    min-height: 0;
+    max-height: none;
   }
 
   .foundation-token-cards .color-swatch-card__meta {
