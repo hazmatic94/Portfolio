@@ -32,6 +32,23 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.component-showcase-grid__tile .component-card__frame:hover {
+  background-color: var(--joker-black-400);
+  border-color: var(--joker-black-200);
+  box-shadow:
+    0 22px 44px rgb(0 0 0 / 0.3),
+    0 8px 16px rgb(0 0 0 / 0.18);
+}
+
+.component-showcase-grid__tile .component-card__frame:hover .component-card {
+  border-color: var(--joker-black-200);
+}
+
+.component-showcase-grid__tile .component-card__frame:hover .component-card__code-panel {
+  border-top-color: var(--joker-black-200);
 }
 
 .component-showcase-grid__tile .component-card {
@@ -52,22 +69,14 @@
   padding: 24px;
   box-sizing: border-box;
   overflow: hidden;
-  transition: flex 220ms var(--ease-out), padding 220ms var(--ease-out);
 }
 
-.component-showcase-grid__tile .component-card--code-expanded .component-card__top {
-  flex: 1 1 0;
-  padding-block: 16px;
+.component-showcase-grid__tile .component-card--has-code {
+  --component-card-code-expanded-max-height: min(260px, 68%);
 }
 
-.component-showcase-grid__tile .component-card__code-panel .code-body {
-  max-height: 100px;
-  transition: max-height 180ms var(--ease-standard);
-}
-
-.component-showcase-grid__tile .component-card--code-expanded .component-card__code-panel .code-body {
-  max-height: min(220px, 58%);
-  overflow: auto;
+.component-showcase-grid__tile .component-card--code-expanded .component-card__code-panel {
+  max-height: var(--component-card-code-expanded-max-height);
 }
 
 .component-showcase-grid__button-preview {
@@ -156,14 +165,13 @@
     min-height: 320px;
   }
 
-  .component-showcase-grid__tile .component-card--code-expanded .component-card__code-panel .code-body {
-    max-height: min(240px, 50vh);
+  .component-showcase-grid__tile .component-card--has-code {
+    --component-card-code-expanded-max-height: min(280px, 52vh);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .component-showcase-grid__tile .component-card__top,
-  .component-showcase-grid__tile .component-card__code-panel .code-body {
+  .component-showcase-grid__tile .component-card__code-panel {
     transition: border-color 240ms var(--ease-out);
   }
 }

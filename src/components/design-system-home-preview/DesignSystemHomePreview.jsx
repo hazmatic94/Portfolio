@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "@joker/design-system";
-import heroVideoSrc from "@joker/design-system/assets/JokerGoldLogoV3.mp4?url";
 import { useHomeHeroGrid } from "./useHomeHeroGrid.js";
 import "./DesignSystemHomePreview.css";
+
+const heroVideoSrc = "/videos/joker-gold-logo.mp4";
 
 const TICKER_ITEMS = [
   "Build Stable",

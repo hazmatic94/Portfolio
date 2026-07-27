@@ -113,9 +113,9 @@ export function DesignSystemCaseStudyPage() {
 
         <CaseStudyRevealSection
           className="design-system-case-study__developer-experience"
-          ariaLabel="Developer experience"
+          ariaLabel="Built for production"
         >
-          <SectionDivider number="04" title="Developer Experience" />
+          <SectionDivider number="04" title="Built for production" />
           <CaseStudyInlineCopy
             title="From design decisions to production code"
             body="I didn't just define the system, I built Originals with it. Every game was a stress test for the components, tokens and patterns. When something broke in real use, it went back into the package."

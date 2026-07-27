@@ -39,3 +39,10 @@ html::-webkit-scrollbar {
     clip-path: none;
   }
 }
+
+@keyframes rail-center-scale-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

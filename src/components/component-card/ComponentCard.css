@@ -49,6 +49,12 @@
   transition: border-color 240ms var(--ease-out);
 }
 
+.component-card--has-code {
+  --component-card-code-collapsed-height: 100px;
+  position: relative;
+  padding-bottom: var(--component-card-code-collapsed-height);
+}
+
 .component-card__frame:hover .component-card {
   border-color: var(--joker-black-200);
 }
@@ -152,30 +158,44 @@
   --syntax-function: #e8c4a0;
   --syntax-base: #e8e6e3;
 
-  position: relative;
-  flex: 0 0 auto;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  max-height: var(--component-card-code-collapsed-height, 100px);
   border: 0;
   border-top: 1px solid var(--joker-black-300);
   border-radius: 0;
   background: var(--joker-black-700);
   padding: 0;
-  transition: border-color 240ms var(--ease-out);
+  overflow: hidden;
+  transition:
+    max-height 180ms var(--ease-standard),
+    border-color 240ms var(--ease-out),
+    box-shadow 180ms var(--ease-standard);
 }
 
 .component-card__frame:hover .component-card__code-panel {
   border-top-color: var(--joker-black-200);
 }
 
+.component-card__code-panel[data-code-expanded="true"] {
+  max-height: min(320px, 72%);
+  box-shadow: 0 -16px 40px rgb(0 0 0 / 0.32);
+}
+
 .component-card__code-panel .code-body {
   position: relative;
+  flex: 1 1 auto;
   min-width: 0;
-  max-height: 100px;
+  min-height: 0;
   overflow: hidden;
-  transition: max-height 180ms var(--ease-standard);
 }
 
 .component-card__code-panel[data-code-expanded="true"] .code-body {
-  max-height: 286px;
   overflow: auto;
 }
 
@@ -191,8 +211,17 @@
 
 .component-card__code-panel[data-code-expanded="true"] pre {
   overflow: auto;
-  padding: 20px 24px 112px;
+  padding: 20px 24px;
   pointer-events: auto;
+}
+
+.component-card__code-panel .code-panel-footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: 4px 24px 12px;
+  border-top: 1px solid var(--joker-black-300);
+  background: var(--joker-black-700);
 }
 
 .component-card__code-panel code {
@@ -343,8 +372,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .component-card__code-panel .code-body {
-    transition: none;
+  .component-card__code-panel {
+    transition: border-color 240ms var(--ease-out);
   }
 
   .component-card__code-panel .code-view-button::after {
