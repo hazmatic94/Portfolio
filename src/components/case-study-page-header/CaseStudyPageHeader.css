@@ -84,6 +84,18 @@
   margin-inline: var(--spacing-48);
 }
 
+.case-study-page-header__rail-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.case-study-page-header__rail-link:hover .case-study-page-header__title {
+  color: var(--joker-black-50);
+}
+
 @media (max-width: 800px) {
   .case-study-page-header:not(.case-study-page-header--rail) {
     display: grid;

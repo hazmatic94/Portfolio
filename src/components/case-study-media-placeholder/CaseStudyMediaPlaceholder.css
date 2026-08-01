@@ -1,0 +1,28 @@
+.case-study-media-placeholder {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  border: 1px dashed var(--joker-black-300);
+  border-radius: 6px;
+  background: var(--joker-black-700);
+  transition: border-color 240ms var(--ease-out);
+}
+
+.case-study-media-placeholder--grid {
+  min-height: 540px;
+}
+
+.case-study-media-placeholder__label {
+  max-width: 16ch;
+  font-family: var(--font);
+  font-size: var(--text-body-12);
+  font-weight: var(--text-body-weight);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--joker-black-50);
+}

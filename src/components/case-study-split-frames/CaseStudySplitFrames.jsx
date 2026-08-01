@@ -30,17 +30,19 @@ export function CaseStudySplitFrames({
   right = <CoinFlipPanelPreview />,
   leftFramed = true,
   rightFramed = true,
+  leftPanelClassName = "case-study-split-frames__panel--fill",
+  rightPanelClassName = "case-study-split-frames__panel--fixed",
 }) {
   return (
     <div className="case-study-split-frames">
       <CaseStudyFramePanel
-        className="case-study-split-frames__panel--fill"
+        className={leftPanelClassName}
         framed={leftFramed}
       >
         {left}
       </CaseStudyFramePanel>
       <CaseStudyFramePanel
-        className="case-study-split-frames__panel--fixed"
+        className={rightPanelClassName}
         framed={rightFramed}
       >
         {right}

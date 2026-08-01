@@ -35,6 +35,12 @@
   width: 405px;
 }
 
+.case-study-split-frames__panel--narrow {
+  flex: 0 0 300px;
+  width: 300px;
+  max-width: 300px;
+}
+
 .case-study-split-frames__panel .portfolio-image-mockup__frame {
   display: flex;
   flex-direction: column;
@@ -117,7 +123,8 @@
   }
 
   .case-study-split-frames__panel--fixed,
-  .case-study-split-frames__panel--fill {
+  .case-study-split-frames__panel--fill,
+  .case-study-split-frames__panel--narrow {
     flex: none;
     width: 100%;
     height: 540px;

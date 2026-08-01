@@ -1,0 +1,333 @@
+.application-shell-blueprint-preview {
+  --blueprint-sidebar-ratio: 30%;
+  --blueprint-main-ratio: 70%;
+  --blueprint-annotation-gap: 12px;
+  --blueprint-annotation-size: 10px;
+  --blueprint-panel-hover-duration: 240ms;
+  --blueprint-panel-hover-easing: var(--ease-out);
+
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.application-shell-blueprint-preview__figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.application-shell-blueprint-preview__shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--joker-black-200);
+  border-radius: 6px;
+  background: var(--joker-black-800);
+}
+
+.application-shell-blueprint-preview__annotation {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex: none;
+  color: var(--joker-black-50);
+  pointer-events: none;
+}
+
+.application-shell-blueprint-preview__annotation--width {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.application-shell-blueprint-preview__annotation--top {
+  bottom: calc(100% + var(--blueprint-annotation-gap));
+  left: 0;
+  gap: var(--blueprint-annotation-gap);
+}
+
+.application-shell-blueprint-preview__annotation--panel {
+  right: 6px;
+  bottom: var(--blueprint-annotation-gap);
+  left: 6px;
+  gap: 6px;
+}
+
+.application-shell-blueprint-preview__annotation--height {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--blueprint-annotation-gap);
+  width: auto;
+}
+
+.application-shell-blueprint-preview__annotation--body-height {
+  margin-left: var(--blueprint-annotation-gap);
+}
+
+.application-shell-blueprint-preview__annotation--bar-height {
+  top: 0;
+  left: 8px;
+  height: 100%;
+  gap: 4px;
+}
+
+.application-shell-blueprint-preview__annotation-side {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+}
+
+.application-shell-blueprint-preview__annotation-side--vertical {
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+}
+
+.application-shell-blueprint-preview__annotation-side--end {
+  justify-content: flex-end;
+}
+
+.application-shell-blueprint-preview__annotation-line--horizontal {
+  flex: 1;
+  height: 1px;
+  background: var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__annotation-line--vertical {
+  flex: 1;
+  width: 1px;
+  background: var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__annotation-arrow {
+  flex: none;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+
+.application-shell-blueprint-preview__annotation-arrow--left {
+  margin-right: -1px;
+  border-right-color: var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__annotation-arrow--right {
+  margin-left: -1px;
+  border-left-color: var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__annotation-arrow--top {
+  margin-bottom: -1px;
+  border-bottom-color: var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__annotation-arrow--bottom {
+  margin-top: -1px;
+  border-top-color: var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__annotation-label {
+  flex: none;
+  font-family: var(--mono);
+  font-size: var(--blueprint-annotation-size);
+  font-weight: var(--text-body-weight);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--joker-black-50);
+  transition: color var(--blueprint-panel-hover-duration)
+    var(--blueprint-panel-hover-easing);
+}
+
+.application-shell-blueprint-preview__zone:hover
+  .application-shell-blueprint-preview__annotation-label {
+  color: var(--joker-gold-400);
+}
+
+.application-shell-blueprint-preview:has(
+    .application-shell-blueprint-preview__shell:hover
+  )
+  .application-shell-blueprint-preview__annotation--top
+  .application-shell-blueprint-preview__annotation-label {
+  color: var(--joker-gold-400);
+}
+
+.application-shell-blueprint-preview:has(
+    .application-shell-blueprint-preview__body:hover
+  )
+  .application-shell-blueprint-preview__annotation--body-height
+  .application-shell-blueprint-preview__annotation-label {
+  color: var(--joker-gold-400);
+}
+
+.application-shell-blueprint-preview__bar {
+  flex: none;
+  width: 100%;
+  height: 48px;
+}
+
+.application-shell-blueprint-preview__bar--top {
+  border-bottom: 1px solid var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__bar--bottom {
+  border-top: 1px solid var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__body {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.application-shell-blueprint-preview__zone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--joker-black-700);
+  cursor: pointer;
+  transition: background-color var(--blueprint-panel-hover-duration)
+    var(--blueprint-panel-hover-easing);
+}
+
+.application-shell-blueprint-preview__panel--main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+  mask-image: radial-gradient(
+    circle at center,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0) 100%
+  );
+  pointer-events: none;
+}
+
+.application-shell-blueprint-preview__zone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+  mask-image: radial-gradient(
+    circle at center,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0) 100%
+  );
+  pointer-events: none;
+  transition: opacity var(--blueprint-panel-hover-duration)
+    var(--blueprint-panel-hover-easing);
+}
+
+.application-shell-blueprint-preview__zone:hover {
+  background: var(--joker-black-500);
+}
+
+.application-shell-blueprint-preview__zone:hover::before {
+  opacity: 1;
+}
+
+.application-shell-blueprint-preview__panel--main:hover::before {
+  opacity: 1;
+}
+
+.application-shell-blueprint-preview__zone-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: var(--text-body-weight);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--joker-gold-400);
+  opacity: 0;
+  transform: scale(0.92);
+  transform-origin: center center;
+  pointer-events: none;
+  transition:
+    opacity var(--blueprint-panel-hover-duration) var(--blueprint-panel-hover-easing),
+    transform var(--blueprint-panel-hover-duration) var(--blueprint-panel-hover-easing);
+}
+
+.application-shell-blueprint-preview__zone:hover .application-shell-blueprint-preview__zone-label {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.application-shell-blueprint-preview__panel {
+  flex: none;
+  height: 100%;
+}
+
+.application-shell-blueprint-preview__panel--sidebar {
+  width: var(--blueprint-sidebar-ratio);
+  border-right: 1px solid var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview__panel--main {
+  width: var(--blueprint-main-ratio);
+}
+
+@media (max-width: 800px) {
+  .application-shell-blueprint-preview__annotation-label {
+    font-size: 9px;
+  }
+
+  .application-shell-blueprint-preview__zone-label {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .application-shell-blueprint-preview__zone,
+  .application-shell-blueprint-preview__zone-label,
+  .application-shell-blueprint-preview__zone::before,
+  .application-shell-blueprint-preview__annotation-label {
+    transition: none;
+  }
+
+  .application-shell-blueprint-preview__zone-label {
+    opacity: 0;
+    transform: none;
+  }
+
+  .application-shell-blueprint-preview__zone:hover .application-shell-blueprint-preview__zone-label {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .application-shell-blueprint-preview__zone:hover::before {
+    opacity: 1;
+  }
+}

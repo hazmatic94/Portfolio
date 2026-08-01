@@ -40,6 +40,7 @@ const CASE_STUDIES = [
     title: "Application Shell",
     body: "A responsive application shell with reusable layouts and shared interaction patterns.",
     chips: ["Responsive shell", "Betting Panels", "Layout System"],
+    href: "/case-studies/application-shell",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview

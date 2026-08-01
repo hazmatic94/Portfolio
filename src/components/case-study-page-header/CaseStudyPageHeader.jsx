@@ -54,8 +54,8 @@ export function CaseStudyPageHeader({
   );
 }
 
-export function CaseStudyProjectRail({ lead, title }) {
-  return (
+export function CaseStudyProjectRail({ lead, title, href = null }) {
+  const header = (
     <header className="case-study-page-header case-study-page-header--rail">
       <span className="case-study-page-header__rule" aria-hidden="true" />
       <p className="case-study-page-header__title">
@@ -70,5 +70,15 @@ export function CaseStudyProjectRail({ lead, title }) {
         aria-hidden="true"
       />
     </header>
+  );
+
+  if (!href) {
+    return header;
+  }
+
+  return (
+    <Link to={href} className="case-study-page-header__rail-link">
+      {header}
+    </Link>
   );
 }

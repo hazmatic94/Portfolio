@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { DesignSystemPackageExportsPreview } from "../../../components/design-system-exports-preview/DesignSystemPackageExportsPreview.jsx";
 import { DesignSystemUsagePreview } from "../../../components/design-system-usage-preview/DesignSystemUsagePreview.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
@@ -147,9 +148,18 @@ export function DesignSystemCaseStudyPage() {
           ariaLabel="Next project"
         >
           <div className="design-system-case-study__shell">
-            <CaseStudyProjectRail lead="02" title="Application Shell" />
+            <CaseStudyProjectRail
+              lead="02"
+              title="Application Shell"
+              href="/case-studies/application-shell"
+            />
           </div>
-          <h2 className="design-system-case-study__next-label">Next</h2>
+          <Link
+            to="/case-studies/application-shell"
+            className="design-system-case-study__next-label"
+          >
+            Next
+          </Link>
           <FooterLegal />
         </CaseStudyRevealSection>
       </main>
