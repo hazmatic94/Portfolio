@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "@joker/design-system";
-import { useNavigate } from "react-router-dom";
 import { useHomeHeroGrid } from "./useHomeHeroGrid.js";
 import "./DesignSystemHomePreview.css";
 
@@ -52,11 +51,8 @@ function HomeTicker() {
   );
 }
 
-export function DesignSystemHomePreview({
-  ctaHref = "/case-studies/application-shell",
-}) {
+export function DesignSystemHomePreview() {
   const [heroEl, setHeroEl] = useState(null);
-  const navigate = useNavigate();
 
   useHomeHeroGrid(heroEl, heroVideoSrc);
 
@@ -104,12 +100,7 @@ export function DesignSystemHomePreview({
               </p>
             </div>
             <div className="ds-home-preview__cta">
-              <Button
-                variant="secondary"
-                onClick={ctaHref ? () => navigate(ctaHref) : undefined}
-              >
-                Get started
-              </Button>
+              <Button variant="secondary">Get started</Button>
             </div>
           </div>
         </section>
