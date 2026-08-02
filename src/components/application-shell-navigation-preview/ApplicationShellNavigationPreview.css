@@ -22,13 +22,7 @@
   overflow: visible;
   border: var(--border-width-default) solid var(--joker-black-300);
   border-radius: var(--radius-card);
-  background-color: var(--joker-black-800);
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--joker-black-500) 70%, transparent) 1px,
-    transparent 1px
-  );
-  background-size: 12px 12px;
-  background-position: center;
+  background: var(--joker-black-800);
 }
 
 .application-shell-navigation-preview__betting-column {
@@ -272,7 +266,10 @@
 }
 
 .application-shell-navigation-preview
-  .hilo-betting-panel-preview__controls-zone::before,
+  .hilo-betting-panel-preview__controls-zone::before {
+  display: none;
+}
+
 .application-shell-navigation-preview
   .hilo-betting-panel-preview__zone-label {
   opacity: 1;

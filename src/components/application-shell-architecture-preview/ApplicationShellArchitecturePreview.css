@@ -1,196 +1,185 @@
-.application-shell-architecture-preview {
-  --architecture-panel-width: 412px;
-  --architecture-panel-height: 238px;
-  --architecture-layer-gap: 56px;
-  --architecture-layer-count: 3;
-  --architecture-stack-duration: 4200ms;
-  --architecture-stack-easing: cubic-bezier(0.22, 1, 0.36, 1);
-  --architecture-stack-stagger: 1050ms;
-  --architecture-stack-entry-offset: 72px;
+.application-shell-architecture-preview-shell {
+  --architecture-edge-fade-size: 117px;
+  --architecture-edge-fade-color: var(--joker-black-800);
+  --architecture-stack-height: 536px;
 
-  box-sizing: border-box;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 0;
-  background: var(--joker-black-800);
+  min-height: var(--architecture-stack-height);
+  overflow: hidden;
+  background: var(--architecture-edge-fade-color);
 }
 
-.application-shell-architecture-preview__stage {
-  display: grid;
-  place-items: center;
+.application-shell-architecture-preview {
+  --architecture-tile-size: 168px;
+  --architecture-tile-gap: 16px;
+  --architecture-row-gap: 16px;
+  --architecture-ticker-duration: 28s;
+  --architecture-stack-height: 536px;
+
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--architecture-row-gap);
   width: 100%;
-  height: 100%;
-  min-height: 0;
+  height: auto;
+  min-height: var(--architecture-stack-height);
+  overflow: visible;
 }
 
-.application-shell-architecture-preview__stack {
-  position: relative;
-  width: var(--architecture-panel-width);
-  height: calc(
-    var(--architecture-panel-height) +
-      (var(--architecture-layer-gap) * (var(--architecture-layer-count) - 1))
-  );
-}
-
-.application-shell-architecture-preview__layer {
+.application-shell-architecture-preview__fade {
   position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.application-shell-architecture-preview__fade--top {
   top: 0;
   left: 0;
-  display: grid;
-  place-items: center;
-  width: var(--architecture-panel-width);
-  height: var(--architecture-panel-height);
+  width: 100%;
+  height: var(--architecture-edge-fade-size);
+  background: linear-gradient(
+    180deg,
+    var(--architecture-edge-fade-color) 0%,
+    rgb(19 19 19 / 0) 100%
+  );
+}
+
+.application-shell-architecture-preview__fade--bottom {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--architecture-edge-fade-size);
+  background: linear-gradient(
+    0deg,
+    var(--architecture-edge-fade-color) 0%,
+    rgb(19 19 19 / 0) 100%
+  );
+}
+
+.application-shell-architecture-preview__fade--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--architecture-edge-fade-size);
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--architecture-edge-fade-color) 0%,
+    rgb(19 19 19 / 0) 100%
+  );
+}
+
+.application-shell-architecture-preview__fade--right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--architecture-edge-fade-size);
+  height: 100%;
+  background: linear-gradient(
+    270deg,
+    var(--architecture-edge-fade-color) 0%,
+    rgb(19 19 19 / 0) 100%
+  );
+}
+
+.application-shell-architecture-preview__ticker {
+  width: 100%;
+  height: var(--architecture-tile-size);
+  flex: none;
   overflow: hidden;
-  filter: drop-shadow(0 12px 20px rgb(0 0 0 / 0.34))
-    drop-shadow(0 3px 6px rgb(0 0 0 / 0.2));
-  transform: translate3d(
-    0,
-    calc(
-      (var(--layer-depth) * var(--architecture-layer-gap)) +
-        var(--architecture-stack-entry-offset)
-    ),
-    0
-  );
-  opacity: 0;
 }
 
-.application-shell-architecture-preview.is-in-view
-  .application-shell-architecture-preview__layer {
-  animation: application-shell-architecture-layer-stack-in
-    var(--architecture-stack-duration) var(--architecture-stack-easing) both;
-  animation-delay: calc(var(--layer-index) * var(--architecture-stack-stagger));
-  will-change: transform, opacity;
+.application-shell-architecture-preview__ticker-track {
+  display: flex;
+  flex: none;
+  gap: var(--architecture-tile-gap);
+  width: max-content;
+  will-change: transform;
 }
 
-.application-shell-architecture-preview__panel-glass {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgb(255 255 255 / 0.04) 0%,
-      rgb(95 95 95 / 0.05) 48%,
-      rgb(0 0 0 / 0.08) 100%
-    );
-  backdrop-filter: blur(10px) saturate(125%);
-  -webkit-backdrop-filter: blur(10px) saturate(125%);
+.application-shell-architecture-preview__ticker-track--right {
+  animation: application-shell-architecture-ticker-right
+    var(--architecture-ticker-duration) linear infinite;
 }
 
-.application-shell-architecture-preview__panel-glass-center {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  mask-image: radial-gradient(
-    circle at 50% 48%,
-    rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 0.82) 36%,
-    rgb(0 0 0 / 0) 74%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle at 50% 48%,
-    rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 0.82) 36%,
-    rgb(0 0 0 / 0) 74%
-  );
-  pointer-events: none;
+.application-shell-architecture-preview__ticker-track--left {
+  animation: application-shell-architecture-ticker-left
+    var(--architecture-ticker-duration) linear infinite;
 }
 
-.application-shell-architecture-preview__panel-outline {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: block;
+.application-shell-architecture-preview__tile {
+  flex: none;
+  box-sizing: border-box;
+  width: var(--architecture-tile-size);
+  height: var(--architecture-tile-size);
+  padding: 1px;
+  border: 1px solid var(--joker-black-200);
+  border-radius: 8px;
+  background: var(--joker-black-700);
+}
+
+.application-shell-architecture-preview__tile-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  overflow: visible;
-  pointer-events: none;
+  border-radius: 7px;
+  background: linear-gradient(
+    180deg,
+    rgb(33 33 33 / 0) 0%,
+    #1b1b1b 50%,
+    rgb(33 33 33 / 0) 100%
+  );
 }
 
-.application-shell-architecture-preview__panel-outline path {
-  fill: none;
-  stroke: var(--joker-black-200);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+.application-shell-architecture-preview__tile-icon {
+  display: block;
+  width: 62px;
+  height: 62px;
+  color: var(--joker-white-50);
 }
 
-.application-shell-architecture-preview__panel-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: var(--text-body-weight);
-  line-height: 1;
-  letter-spacing: 0.05em;
-  color: var(--joker-gold-400);
-  text-align: center;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  transition: opacity 560ms var(--architecture-stack-easing);
-  text-shadow: 0 1px 14px rgb(0 0 0 / 0.5);
-}
-
-.application-shell-architecture-preview__panel-label.is-active {
-  opacity: 1;
-}
-
-@keyframes application-shell-architecture-layer-stack-in {
-  0% {
-    opacity: 0;
-    transform: translate3d(
-      0,
-      calc(
-        (var(--layer-depth) * var(--architecture-layer-gap)) +
-          var(--architecture-stack-entry-offset)
-      ),
-      0
-    );
+@keyframes application-shell-architecture-ticker-right {
+  from {
+    transform: translateX(-50%);
   }
 
-  100% {
-    opacity: 1;
-    transform: translate3d(
-      0,
-      calc(var(--layer-depth) * var(--architecture-layer-gap)),
-      0
-    );
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes application-shell-architecture-ticker-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }
 
 @media (max-width: 800px) {
   .application-shell-architecture-preview {
-    --architecture-panel-width: min(412px, calc(100% - 32px));
-    --architecture-layer-gap: 44px;
-    --architecture-stack-duration: 3800ms;
-    --architecture-stack-stagger: 900ms;
-    --architecture-stack-entry-offset: 60px;
-  }
-
-  .application-shell-architecture-preview__panel-outline {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 412 / 238;
+    --architecture-tile-size: 168px;
+    --architecture-ticker-duration: 24s;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .application-shell-architecture-preview.is-in-view
-    .application-shell-architecture-preview__layer {
-    opacity: 1;
+  .application-shell-architecture-preview__ticker-track--right,
+  .application-shell-architecture-preview__ticker-track--left {
     animation: none;
-    transform: translate3d(
-      0,
-      calc(var(--layer-depth) * var(--architecture-layer-gap)),
-      0
-    );
+    transform: none;
   }
 }

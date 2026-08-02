@@ -50,6 +50,10 @@
   overflow: visible;
 }
 
+.application-shell-case-study__architecture .application-shell-case-study__section-media {
+  overflow: visible;
+}
+
 .application-shell-case-study__hero .project-container__media {
   padding-block: 0;
 }

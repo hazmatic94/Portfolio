@@ -191,7 +191,7 @@
 .application-shell-constraints-preview
   .hilo-betting-panel-preview__controls-zone::before,
 .application-shell-constraints-preview__game-zone::before {
-  opacity: 1;
+  display: none;
 }
 
 .application-shell-constraints-preview
@@ -395,7 +395,7 @@
   }
 
   .application-shell-constraints-preview__game-zone::before {
-    opacity: 1;
+    display: none;
   }
 
   .application-shell-constraints-preview__game-zone:hover::after,
