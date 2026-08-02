@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ApplicationShellBlueprintPreview } from "../../../components/application-shell-blueprint-preview/ApplicationShellBlueprintPreview.jsx";
 import { ApplicationShellConstraintsPreview } from "../../../components/application-shell-constraints-preview/ApplicationShellConstraintsPreview.jsx";
+import { ApplicationShellNavigationPreview } from "../../../components/application-shell-navigation-preview/ApplicationShellNavigationPreview.jsx";
 import { CaseStudyFullWidthFrame } from "../../../components/case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
 import { CaseStudyMediaPlaceholder } from "../../../components/case-study-media-placeholder/CaseStudyMediaPlaceholder.jsx";
@@ -107,15 +108,17 @@ export function ApplicationShellCaseStudyPage() {
 
         <CaseStudyRevealSection
           className="application-shell-case-study__components"
-          ariaLabel="Navigation and panels"
+          ariaLabel="Behaviour"
         >
-          <SectionDivider number="03" title="Navigation & Panels" />
+          <SectionDivider number="03" title="Behaviour" />
           <CaseStudyInlineCopy
-            title="Shared chrome, not one-off screens"
-            body="I designed navigation, betting panels and game containers as composable pieces. Products assemble the shell from those parts instead of forking separate layouts."
+            title="Adaptive betting panel"
+            body="I designed the betting panel to be responsive with the browser giving the user maximum game view."
           />
           <div className="application-shell-case-study__section-media">
-            <CaseStudyMediaPlaceholder label="Navigation & panels — placeholder" variant="grid" />
+            <CaseStudyFullWidthFrame>
+              <ApplicationShellNavigationPreview />
+            </CaseStudyFullWidthFrame>
           </div>
         </CaseStudyRevealSection>
 

@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import "./ApplicationShellBlueprintPreview.css";
 
+const BLUEPRINT_SHELL_WIDTH_LABEL = "1200px";
+const BLUEPRINT_RAIL_HEIGHT_LABEL = "52px";
+const BLUEPRINT_BODY_HEIGHT_LABEL = "784px";
+const BLUEPRINT_GAME_VIEW_WIDTH_LABEL = "874px";
+const BLUEPRINT_BETTING_PANEL_WIDTH_LABEL = "360px";
+
 function formatDimension(value) {
   return `${Math.round(value)}px`;
 }
@@ -138,7 +144,7 @@ export function ApplicationShellBlueprintPreview() {
         >
           <div className="application-shell-blueprint-preview__bar application-shell-blueprint-preview__bar--top application-shell-blueprint-preview__zone">
             <BlueprintHeightAnnotation
-              value="48px"
+              value={BLUEPRINT_RAIL_HEIGHT_LABEL}
               className="application-shell-blueprint-preview__annotation--bar-height"
               hideArrows
             />
@@ -160,7 +166,7 @@ export function ApplicationShellBlueprintPreview() {
               </span>
               {hasDimensions ? (
                 <BlueprintWidthAnnotation
-                  value={formatDimension(sidebarWidth)}
+                  value={BLUEPRINT_BETTING_PANEL_WIDTH_LABEL}
                   className="application-shell-blueprint-preview__annotation--panel"
                 />
               ) : null}
@@ -174,7 +180,7 @@ export function ApplicationShellBlueprintPreview() {
               </span>
               {hasDimensions ? (
                 <BlueprintWidthAnnotation
-                  value={formatDimension(mainWidth)}
+                  value={BLUEPRINT_GAME_VIEW_WIDTH_LABEL}
                   className="application-shell-blueprint-preview__annotation--panel"
                 />
               ) : null}
@@ -183,7 +189,7 @@ export function ApplicationShellBlueprintPreview() {
 
           <div className="application-shell-blueprint-preview__bar application-shell-blueprint-preview__bar--bottom application-shell-blueprint-preview__zone">
             <BlueprintHeightAnnotation
-              value="48px"
+              value={BLUEPRINT_RAIL_HEIGHT_LABEL}
               className="application-shell-blueprint-preview__annotation--bar-height"
               hideArrows
             />
@@ -197,12 +203,12 @@ export function ApplicationShellBlueprintPreview() {
       {hasDimensions ? (
         <>
           <BlueprintWidthAnnotation
-            value={formatDimension(shellWidth)}
+            value={BLUEPRINT_SHELL_WIDTH_LABEL}
             className="application-shell-blueprint-preview__annotation--top"
             style={{ width: shellWidth }}
           />
           <BlueprintHeightAnnotation
-            value={formatDimension(bodyHeight)}
+            value={BLUEPRINT_BODY_HEIGHT_LABEL}
             className="application-shell-blueprint-preview__annotation--body-height"
             style={{
               top: bodyTop,

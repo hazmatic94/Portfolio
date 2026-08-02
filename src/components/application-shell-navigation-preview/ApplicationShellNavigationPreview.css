@@ -1,0 +1,239 @@
+.application-shell-navigation-preview {
+  --navigation-betting-panel-width: 300px;
+  --navigation-panel-inset: 24px;
+  --navigation-annotation-gap: 12px;
+  --navigation-annotation-size: 10px;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+  border: var(--border-width-default) solid var(--joker-black-300);
+  border-radius: var(--radius-card);
+  background: var(--joker-black-800);
+}
+
+.application-shell-navigation-preview__betting-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--navigation-betting-panel-width);
+  height: calc(100% - (var(--navigation-panel-inset) * 2));
+  min-height: 0;
+  margin-block: var(--navigation-panel-inset);
+  overflow: visible;
+}
+
+.application-shell-navigation-preview__betting-panel {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: var(--border-width-default) solid var(--joker-black-300);
+  border-radius: 4px;
+  background: var(--joker-black-700);
+}
+
+.application-shell-navigation-preview__resize-tab {
+  position: absolute;
+  top: calc(24px + 12px + 6px + 46px + 20px - 6px);
+  left: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 52px;
+  height: 42px;
+  padding: 0 6px;
+  margin: 0;
+  font: inherit;
+  border: var(--border-width-default) solid var(--joker-black-200);
+  border-radius: 4px;
+  background: var(--joker-black-400);
+  color: var(--joker-white-50);
+  transform: translate(-50%, -100%);
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  appearance: none;
+}
+
+.application-shell-navigation-preview__resize-tab:hover {
+  background: color-mix(in srgb, var(--joker-black-400) 88%, var(--joker-white-50));
+}
+
+.application-shell-navigation-preview__resize-tab:focus-visible {
+  outline: 2px solid var(--joker-gold-400);
+  outline-offset: 2px;
+}
+
+.application-shell-navigation-preview--resizing {
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.application-shell-navigation-preview--resizing
+  .application-shell-navigation-preview__resize-tab {
+  background: color-mix(in srgb, var(--joker-black-400) 82%, var(--joker-white-50));
+}
+
+.application-shell-navigation-preview__resize-tab-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.application-shell-navigation-preview__width-annotation {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: var(--navigation-annotation-gap);
+  color: var(--joker-black-50);
+  pointer-events: none;
+}
+
+.application-shell-navigation-preview__width-annotation-side {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+}
+
+.application-shell-navigation-preview__width-annotation-side--end {
+  justify-content: flex-end;
+}
+
+.application-shell-navigation-preview__width-annotation-line {
+  flex: 1;
+  height: 1px;
+  background: var(--joker-black-200);
+}
+
+.application-shell-navigation-preview__width-annotation-arrow {
+  flex: none;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+
+.application-shell-navigation-preview__width-annotation-arrow--left {
+  margin-right: -1px;
+  border-right-color: var(--joker-black-200);
+}
+
+.application-shell-navigation-preview__width-annotation-arrow--right {
+  margin-left: -1px;
+  border-left-color: var(--joker-black-200);
+}
+
+.application-shell-navigation-preview__width-annotation-label {
+  flex: none;
+  font-family: var(--mono);
+  font-size: var(--navigation-annotation-size);
+  font-weight: var(--text-body-weight);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--joker-black-50);
+}
+
+.application-shell-navigation-preview .hilo-betting-panel-preview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  min-height: 0;
+  gap: 20px;
+  padding: 24px 20px;
+  border: none !important;
+  border-radius: 0;
+  background: transparent;
+}
+
+.application-shell-navigation-preview .hilo-betting-panel-preview__bet-input {
+  --input-control-height: 46px;
+  --input-icon-size: 16px;
+  --input-field-gap: 6px;
+}
+
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__bet-input
+  .joker-input-label {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--joker-black-50);
+}
+
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__bet-input
+  .joker-input-control {
+  border-color: var(--joker-black-300) !important;
+  background: var(--joker-black-600) !important;
+  box-shadow: none !important;
+  padding-inline: var(--spacing-12);
+}
+
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__bet-input
+  .joker-input-control:hover,
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__bet-input
+  .joker-input-control:focus-within {
+  border-color: var(--joker-black-300) !important;
+  background: var(--joker-black-600) !important;
+  box-shadow: none !important;
+}
+
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__bet-input
+  .joker-input-control
+  input,
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__bet-input
+  .joker-input-control
+  input[data-bet-amount-input] {
+  font-size: 14px;
+  line-height: 1;
+  color: var(--joker-black-50);
+}
+
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__controls-zone {
+  flex: 1;
+  min-height: 0;
+  margin-block: 0;
+  border-radius: 4px;
+}
+
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__controls-zone::before,
+.application-shell-navigation-preview
+  .hilo-betting-panel-preview__zone-label {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.application-shell-navigation-preview .hilo-betting-panel-preview__submit {
+  flex: none;
+}
+
+@media (max-width: 800px) {
+  .application-shell-navigation-preview__betting-column {
+    width: 100%;
+    max-width: none;
+  }
+}

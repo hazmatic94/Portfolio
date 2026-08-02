@@ -1,4 +1,5 @@
 .application-shell-blueprint-preview {
+  --blueprint-bar-height: 48px;
   --blueprint-sidebar-ratio: 30%;
   --blueprint-main-ratio: 70%;
   --blueprint-annotation-gap: 12px;
@@ -172,7 +173,7 @@
 .application-shell-blueprint-preview__bar {
   flex: none;
   width: 100%;
-  height: 48px;
+  height: var(--blueprint-bar-height);
 }
 
 .application-shell-blueprint-preview__bar--top {

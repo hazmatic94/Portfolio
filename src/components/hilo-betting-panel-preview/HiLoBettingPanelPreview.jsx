@@ -3,15 +3,32 @@ import jokerCoinSrc from "@joker/design-system/assets/jokerCoin.svg";
 import "./HiLoBettingPanelPreview.css";
 
 function CoinIcon() {
-  return <img src={jokerCoinSrc} alt="" />;
+  return (
+    <span
+      className="hilo-betting-panel-preview__coin-icon"
+      style={{
+        WebkitMaskImage: `url(${jokerCoinSrc})`,
+        maskImage: `url(${jokerCoinSrc})`,
+      }}
+      aria-hidden="true"
+    />
+  );
 }
 
-export function HiLoBettingPanelPreview() {
+export function HiLoBettingPanelPreview({
+  showDividers = true,
+  showControlsZone = true,
+}) {
+  const className = [
+    "hilo-betting-panel-preview",
+    !showDividers ? "hilo-betting-panel-preview--no-dividers" : "",
+    !showControlsZone ? "hilo-betting-panel-preview--no-controls" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <aside
-      className="hilo-betting-panel-preview"
-      aria-label="HiLo betting panel preview"
-    >
+    <aside className={className} aria-label="HiLo betting panel preview">
       <div className="hilo-betting-panel-preview__fields">
         <BetAmountInput
           label="Bet amount"
@@ -24,21 +41,27 @@ export function HiLoBettingPanelPreview() {
         />
       </div>
 
-      <span
-        className="hilo-betting-panel-preview__divider"
-        aria-hidden="true"
-      />
+      {showDividers ? (
+        <span
+          className="hilo-betting-panel-preview__divider"
+          aria-hidden="true"
+        />
+      ) : null}
 
-      <div className="hilo-betting-panel-preview__controls-zone">
-        <span className="hilo-betting-panel-preview__zone-label">
-          Game Controls
-        </span>
-      </div>
+      {showControlsZone ? (
+        <div className="hilo-betting-panel-preview__controls-zone">
+          <span className="hilo-betting-panel-preview__zone-label">
+            Game Controls
+          </span>
+        </div>
+      ) : null}
 
-      <span
-        className="hilo-betting-panel-preview__divider"
-        aria-hidden="true"
-      />
+      {showDividers ? (
+        <span
+          className="hilo-betting-panel-preview__divider"
+          aria-hidden="true"
+        />
+      ) : null}
 
       <div className="hilo-betting-panel-preview__submit">
         <Button

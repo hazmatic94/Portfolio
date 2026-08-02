@@ -16,6 +16,18 @@
   color: var(--joker-white-50);
 }
 
+.hilo-betting-panel-preview--no-dividers {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.hilo-betting-panel-preview--no-controls {
+  grid-template-rows: auto auto;
+}
+
+.hilo-betting-panel-preview--no-dividers.hilo-betting-panel-preview--no-controls {
+  grid-template-rows: auto auto;
+}
+
 .hilo-betting-panel-preview__fields {
   display: grid;
   gap: var(--spacing-24);
@@ -46,9 +58,23 @@
   color: var(--joker-black-50);
 }
 
+.hilo-betting-panel-preview__coin-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: var(--joker-black-50);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
 .hilo-betting-panel-preview__bet-input :global(.joker-input-prefix) {
-  opacity: 0.72;
-  filter: grayscale(1);
+  opacity: 1;
+  filter: none;
 }
 
 .hilo-betting-panel-preview__controls-zone {
@@ -131,12 +157,28 @@
 }
 
 .hilo-betting-panel-preview__place-bet {
+  --text-heading-h3: 20px;
+  --button-height: 42px;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  padding-block: 0 !important;
   border-color: var(--joker-black-300) !important;
   background: var(--joker-black-500) !important;
   color: var(--joker-black-100) !important;
   box-shadow: none !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
   filter: grayscale(1);
   pointer-events: none;
+}
+
+.hilo-betting-panel-preview__place-bet > span {
+  font-size: 20px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
 }
 
 .hilo-betting-panel-preview__place-bet:hover,
