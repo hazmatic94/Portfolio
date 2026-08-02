@@ -6,9 +6,9 @@ export function ApplicationShellConstraintsPreview() {
   return (
     <GameInner
       className="application-shell-constraints-preview"
-      game={{ label: "Hi Lo" }}
+      game={{ label: "Hi Lo", icon: "hi-lo" }}
       fairPlayLabel="Fair Play"
-      bettingPanel={<HiLoBettingPanelPreview />}
+      bettingPanel={<HiLoBettingPanelPreview disabled />}
       renderMobileBetting={false}
     >
       <div className="application-shell-constraints-preview__game-zone">

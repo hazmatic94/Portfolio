@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { ApplicationShellArchitecturePreview } from "../../../components/application-shell-architecture-preview/ApplicationShellArchitecturePreview.jsx";
 import { ApplicationShellBlueprintPreview } from "../../../components/application-shell-blueprint-preview/ApplicationShellBlueprintPreview.jsx";
 import { ApplicationShellConstraintsPreview } from "../../../components/application-shell-constraints-preview/ApplicationShellConstraintsPreview.jsx";
 import { ApplicationShellNavigationPreview } from "../../../components/application-shell-navigation-preview/ApplicationShellNavigationPreview.jsx";
 import { CaseStudyFullWidthFrame } from "../../../components/case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
-import { CaseStudyMediaPlaceholder } from "../../../components/case-study-media-placeholder/CaseStudyMediaPlaceholder.jsx";
 import { CaseStudySplitFrames } from "../../../components/case-study-split-frames/CaseStudySplitFrames.jsx";
+import { DesignSystemUsagePreview } from "../../../components/design-system-usage-preview/DesignSystemUsagePreview.jsx";
 import { ComponentCard } from "../../../components/component-card/ComponentCard.jsx";
 import { ComponentCardMobilePreview } from "../../../components/component-card/ComponentCardMobilePreview.jsx";
 import { CaseStudyIntro } from "../../../components/case-study-intro/CaseStudyIntro.jsx";
@@ -112,8 +113,8 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="03" title="Behaviour" />
           <CaseStudyInlineCopy
-            title="Adaptive betting panel"
-            body="I designed the betting panel to be responsive with the browser giving the user maximum game view."
+            title="Adaptive Betting Panel"
+            body="The betting panel was designed to shrink with the browser, which gives the user maximum game view."
           />
           <div className="application-shell-case-study__section-media">
             <CaseStudyFullWidthFrame>
@@ -123,33 +124,21 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
-          className="application-shell-case-study__developer-experience"
-          ariaLabel="Responsive behaviour"
+          className="application-shell-case-study__architecture"
+          ariaLabel="Architecture"
         >
-          <SectionDivider number="04" title="Responsive Behaviour" />
+          <SectionDivider number="04" title="Architecture" />
           <CaseStudyInlineCopy
-            title="Designed for real viewport constraints"
-            body="I didn't just resize desktop layouts. The shell was tested across breakpoints so menus, panels and game areas stayed usable on mobile without losing core actions."
+            title="Built to Scale"
+            body="Each layer built on the last, from design system to application shell to gameplay."
           />
           <div className="application-shell-case-study__section-media">
             <CaseStudySplitFrames
-              left={<CaseStudyMediaPlaceholder label="Responsive left — placeholder" />}
-              right={<CaseStudyMediaPlaceholder label="Responsive right — placeholder" />}
+              left={<DesignSystemUsagePreview />}
+              right={<ApplicationShellArchitecturePreview />}
+              leftPanelClassName="case-study-split-frames__panel--fixed"
+              rightPanelClassName="case-study-split-frames__panel--fill"
             />
-          </div>
-        </CaseStudyRevealSection>
-
-        <CaseStudyRevealSection
-          className="application-shell-case-study__product-adoption"
-          ariaLabel="Platform rollout"
-        >
-          <SectionDivider number="05" title="Platform Rollout" />
-          <CaseStudyInlineCopy
-            title="Same shell across Originals and core product"
-            body="Once the frame landed, new games plugged into the same navigation and panel system. The goal was one shell showing up everywhere, not a layout per release."
-          />
-          <div className="application-shell-case-study__section-media">
-            <CaseStudyMediaPlaceholder label="Platform rollout — placeholder" variant="grid" />
           </div>
         </CaseStudyRevealSection>
 

@@ -2,12 +2,16 @@ import { useRef, useState } from "react";
 import { HiLoBettingPanelPreview } from "../hilo-betting-panel-preview/HiLoBettingPanelPreview.jsx";
 import "./ApplicationShellNavigationPreview.css";
 
-const PANEL_WIDTH_MIN = 280;
-const PANEL_WIDTH_MAX = 360;
-const PANEL_WIDTH_DEFAULT = 300;
+const PANEL_MIN = 280;
+const PANEL_MAX = 360;
+const PANEL_DEFAULT = 360;
+
+function formatDimension(value) {
+  return `${Math.round(value)}px`;
+}
 
 function clampPanelWidth(value) {
-  return Math.min(PANEL_WIDTH_MAX, Math.max(PANEL_WIDTH_MIN, Math.round(value)));
+  return Math.min(PANEL_MAX, Math.max(PANEL_MIN, Math.round(value)));
 }
 
 function PanelResizeTab({
@@ -22,8 +26,8 @@ function PanelResizeTab({
       type="button"
       className="application-shell-navigation-preview__resize-tab"
       aria-label="Resize betting panel"
-      aria-valuemin={PANEL_WIDTH_MIN}
-      aria-valuemax={PANEL_WIDTH_MAX}
+      aria-valuemin={PANEL_MIN}
+      aria-valuemax={PANEL_MAX}
       aria-valuenow={panelWidth}
       onPointerDown={onResizeStart}
       onPointerMove={onPointerMove}
@@ -90,7 +94,7 @@ function PanelWidthAnnotation({ value }) {
 }
 
 export function ApplicationShellNavigationPreview() {
-  const [panelWidth, setPanelWidth] = useState(PANEL_WIDTH_DEFAULT);
+  const [panelWidth, setPanelWidth] = useState(PANEL_DEFAULT);
   const [isResizing, setIsResizing] = useState(false);
   const dragStateRef = useRef(null);
 
@@ -137,7 +141,7 @@ export function ApplicationShellNavigationPreview() {
     >
       <div className="application-shell-navigation-preview__betting-column">
         <div className="application-shell-navigation-preview__betting-panel">
-          <HiLoBettingPanelPreview showDividers={false} />
+          <HiLoBettingPanelPreview disabled />
         </div>
         <PanelResizeTab
           panelWidth={panelWidth}
@@ -146,7 +150,7 @@ export function ApplicationShellNavigationPreview() {
           onPointerUp={handleResizeEnd}
           onPointerCancel={handleResizeEnd}
         />
-        <PanelWidthAnnotation value={`${panelWidth}px`} />
+        <PanelWidthAnnotation value={formatDimension(panelWidth)} />
       </div>
     </div>
   );

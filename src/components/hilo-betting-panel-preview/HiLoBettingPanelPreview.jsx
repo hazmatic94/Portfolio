@@ -18,6 +18,7 @@ function CoinIcon() {
 export function HiLoBettingPanelPreview({
   showDividers = true,
   showControlsZone = true,
+  disabled = false,
 }) {
   const className = [
     "hilo-betting-panel-preview",
@@ -36,8 +37,9 @@ export function HiLoBettingPanelPreview({
           fullWidth
           leftIcon={<CoinIcon />}
           defaultValue="50"
-          readOnly
-          tabIndex={-1}
+          disabled={disabled}
+          readOnly={disabled}
+          tabIndex={disabled ? -1 : undefined}
         />
       </div>
 
@@ -67,8 +69,9 @@ export function HiLoBettingPanelPreview({
         <Button
           variant="primary"
           fullWidth
+          disabled={disabled}
           className="hilo-betting-panel-preview__place-bet joker-cta-preview default full-width joker-bet-submit"
-          tabIndex={-1}
+          tabIndex={disabled ? -1 : undefined}
         >
           Place Bet
         </Button>

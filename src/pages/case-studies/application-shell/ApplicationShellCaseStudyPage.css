@@ -125,8 +125,7 @@
 .application-shell-case-study__overview,
 .application-shell-case-study__foundations,
 .application-shell-case-study__components,
-.application-shell-case-study__developer-experience,
-.application-shell-case-study__product-adoption,
+.application-shell-case-study__architecture,
 .application-shell-case-study__next-project {
   padding-top: var(--case-study-section-gap);
 }

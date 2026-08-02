@@ -43,7 +43,8 @@
 
 .case-study-full-width-frame:has(.application-shell-blueprint-preview),
 .case-study-full-width-frame:has(.application-shell-constraints-preview),
-.case-study-full-width-frame:has(.application-shell-navigation-preview) {
+.case-study-full-width-frame:has(.application-shell-navigation-preview),
+.case-study-full-width-frame:has(.application-shell-architecture-preview) {
   overflow: visible;
 }
 
@@ -52,7 +53,9 @@
 .case-study-full-width-frame__panel
   .portfolio-image-mockup__frame:has(.application-shell-constraints-preview),
 .case-study-full-width-frame__panel
-  .portfolio-image-mockup__frame:has(.application-shell-navigation-preview) {
+  .portfolio-image-mockup__frame:has(.application-shell-navigation-preview),
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:has(.application-shell-architecture-preview) {
   overflow: visible;
 }
 
@@ -64,13 +67,17 @@
   .application-shell-constraints-preview,
 .case-study-full-width-frame__panel
   .portfolio-image-mockup__frame:hover
-  .application-shell-navigation-preview {
+  .application-shell-navigation-preview,
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:hover
+  .application-shell-architecture-preview {
   border-color: var(--joker-black-200);
 }
 
 .case-study-full-width-frame__media:has(.application-shell-blueprint-preview),
 .case-study-full-width-frame__media:has(.application-shell-constraints-preview),
-.case-study-full-width-frame__media:has(.application-shell-navigation-preview) {
+.case-study-full-width-frame__media:has(.application-shell-navigation-preview),
+.case-study-full-width-frame__media:has(.application-shell-architecture-preview) {
   overflow: visible;
   border: 0;
   border-radius: 0;
@@ -82,7 +89,9 @@
 .case-study-full-width-frame__panel
   .portfolio-image-mockup__media:has(.application-shell-constraints-preview),
 .case-study-full-width-frame__panel
-  .portfolio-image-mockup__media:has(.application-shell-navigation-preview) {
+  .portfolio-image-mockup__media:has(.application-shell-navigation-preview),
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__media:has(.application-shell-architecture-preview) {
   overflow: visible;
   border: 0;
   border-radius: 0;
