@@ -1,0 +1,96 @@
+.joker-originals-gameplay-preview {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.joker-originals-gameplay-preview__tabs {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-24);
+  width: 100%;
+  margin-bottom: var(--spacing-24);
+}
+
+.joker-originals-gameplay-preview__tab {
+  margin: 0;
+  padding: 0;
+}
+
+.joker-originals-gameplay-preview__tab-button {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.joker-originals-gameplay-preview__tab-button:focus-visible {
+  outline: 2px solid var(--joker-gold-400);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.joker-originals-gameplay-preview__tab-label {
+  box-sizing: border-box;
+  display: block;
+  padding-block: var(--spacing-4);
+  font-family: var(--font);
+  font-size: var(--text-body-16);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height, 1.5);
+  color: var(--joker-black-50);
+  border-bottom: 1px solid transparent;
+  transition:
+    color 200ms var(--ease-standard),
+    border-color 200ms var(--ease-standard);
+}
+
+.joker-originals-gameplay-preview__tab-button[aria-selected="true"]
+  .joker-originals-gameplay-preview__tab-label {
+  color: var(--joker-gold-400);
+  border-bottom-color: var(--joker-gold-400);
+}
+
+.joker-originals-gameplay-preview__panel {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.joker-originals-gameplay-preview__visual {
+  margin-top: 0;
+}
+
+.application-shell-case-study
+  .joker-originals-gameplay-preview__visual.case-study-full-width-frame {
+  margin-top: 0;
+}
+
+.joker-originals-gameplay-preview__visual .portfolio-image-mockup__frame {
+  cursor: default;
+}
+
+.joker-originals-gameplay-preview__visual .portfolio-image-mockup__frame:hover {
+  transform: none;
+  background-color: var(--joker-black-500);
+  border-color: var(--joker-black-300);
+  box-shadow: none;
+}
+
+.joker-originals-gameplay-preview__visual
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media {
+  border-color: var(--joker-black-300);
+}
+
+.joker-originals-gameplay-preview__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}

@@ -147,9 +147,18 @@ export function ApplicationShellCaseStudyPage() {
           ariaLabel="Next project"
         >
           <div className="application-shell-case-study__shell">
-            <CaseStudyProjectRail lead="03" title="Joker Originals" />
+            <CaseStudyProjectRail
+              lead="03"
+              title="Joker Originals"
+              href="/case-studies/joker-originals"
+            />
           </div>
-          <h2 className="application-shell-case-study__next-label">Next</h2>
+          <Link
+            to="/case-studies/joker-originals"
+            className="application-shell-case-study__next-label"
+          >
+            Next
+          </Link>
           <FooterLegal />
         </CaseStudyRevealSection>
       </main>

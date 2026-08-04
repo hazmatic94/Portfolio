@@ -1,6 +1,6 @@
 import "./ProductAdoptionGamesGrid.css";
 
-const GAMES = [
+export const ADOPTION_GAMES = [
   {
     key: "mines",
     label: "Mines game shell",
@@ -43,7 +43,7 @@ export function ProductAdoptionGamesGrid() {
   return (
     <div className="product-adoption-games-grid">
       <div className="product-adoption-games-grid__grid">
-        {GAMES.map((game) => (
+        {ADOPTION_GAMES.map((game) => (
           <div key={game.key} className="product-adoption-games-grid__tile">
             <div className="product-adoption-games-grid__frame">
               <div className="product-adoption-games-grid__media">

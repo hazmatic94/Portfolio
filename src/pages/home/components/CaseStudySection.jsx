@@ -68,6 +68,7 @@ const CASE_STUDIES = [
     title: "Original games, built end to end",
     body: "Crafting original game mechanics, motion systems and reusable gameplay components",
     chips: ["Game Components", "Motion System", "Interaction Design"],
+    href: "/case-studies/joker-originals",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview
