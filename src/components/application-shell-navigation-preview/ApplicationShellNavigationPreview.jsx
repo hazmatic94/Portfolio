@@ -1,10 +1,13 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiLoBettingPanelPreview } from "../hilo-betting-panel-preview/HiLoBettingPanelPreview.jsx";
 import "./ApplicationShellNavigationPreview.css";
 
 const PANEL_MIN = 280;
 const PANEL_MAX = 360;
 const PANEL_DEFAULT = 360;
+const MOBILE_BREAKPOINT = "(max-width: 800px)";
+const MOBILE_RESIZE_HOLD_MS = 500;
+const MOBILE_RESIZE_TRANSITION_MS = 2800;
 
 function formatDimension(value) {
   return `${Math.round(value)}px`;
@@ -12,6 +15,35 @@ function formatDimension(value) {
 
 function clampPanelWidth(value) {
   return Math.min(PANEL_MAX, Math.max(PANEL_MIN, Math.round(value)));
+}
+
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+}
+
+function mobilePanelWidthAt(elapsedMs) {
+  const hold = MOBILE_RESIZE_HOLD_MS;
+  const transition = MOBILE_RESIZE_TRANSITION_MS;
+  const shrinkStart = hold;
+  const shrinkEnd = hold + transition;
+  const growStart = shrinkEnd + hold;
+  const growEnd = growStart + transition;
+  const cycle = growEnd;
+
+  const t = elapsedMs % cycle;
+
+  if (t < shrinkStart) {
+    return PANEL_MAX;
+  }
+  if (t < shrinkEnd) {
+    const progress = easeInOutCubic((t - shrinkStart) / transition);
+    return PANEL_MAX + progress * (PANEL_MIN - PANEL_MAX);
+  }
+  if (t < growStart) {
+    return PANEL_MIN;
+  }
+  const progress = easeInOutCubic((t - growStart) / transition);
+  return PANEL_MIN + progress * (PANEL_MAX - PANEL_MIN);
 }
 
 function PanelResizeTab({
@@ -66,10 +98,10 @@ function PanelResizeTab({
   );
 }
 
-function PanelWidthAnnotation({ value }) {
+function PanelWidthAnnotation({ value, active }) {
   return (
     <div
-      className="application-shell-navigation-preview__width-annotation"
+      className={`application-shell-navigation-preview__width-annotation${active ? " application-shell-navigation-preview__width-annotation--active" : ""}`}
       aria-hidden="true"
     >
       <span className="application-shell-navigation-preview__width-annotation-side">
@@ -96,7 +128,51 @@ function PanelWidthAnnotation({ value }) {
 export function ApplicationShellNavigationPreview() {
   const [panelWidth, setPanelWidth] = useState(PANEL_DEFAULT);
   const [isResizing, setIsResizing] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isAutoResizing, setIsAutoResizing] = useState(false);
   const dragStateRef = useRef(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(MOBILE_BREAKPOINT);
+    const syncMobile = () => setIsMobile(mediaQuery.matches);
+    syncMobile();
+    mediaQuery.addEventListener("change", syncMobile);
+    return () => mediaQuery.removeEventListener("change", syncMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      setPanelWidth(PANEL_DEFAULT);
+      setIsAutoResizing(false);
+      return undefined;
+    }
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduceMotion) {
+      setPanelWidth(PANEL_DEFAULT);
+      setIsAutoResizing(false);
+      return undefined;
+    }
+
+    let frameId = 0;
+    const startTime = performance.now();
+    setIsAutoResizing(true);
+
+    const tick = (timestamp) => {
+      const elapsed = timestamp - startTime;
+      setPanelWidth(mobilePanelWidthAt(elapsed));
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      setIsAutoResizing(false);
+    };
+  }, [isMobile]);
 
   const handleResizeStart = (event) => {
     event.preventDefault();
@@ -134,23 +210,30 @@ export function ApplicationShellNavigationPreview() {
     setIsResizing(false);
   };
 
+  const widthLabelActive = isResizing || isAutoResizing;
+
   return (
     <div
-      className={`application-shell-navigation-preview${isResizing ? " application-shell-navigation-preview--resizing" : ""}`}
+      className={`application-shell-navigation-preview${isResizing ? " application-shell-navigation-preview--resizing" : ""}${isMobile ? " application-shell-navigation-preview--mobile" : ""}${isAutoResizing ? " application-shell-navigation-preview--auto-resize" : ""}`}
       style={{ "--navigation-betting-panel-width": `${panelWidth}px` }}
     >
       <div className="application-shell-navigation-preview__betting-column">
         <div className="application-shell-navigation-preview__betting-panel">
           <HiLoBettingPanelPreview disabled />
         </div>
-        <PanelResizeTab
-          panelWidth={panelWidth}
-          onResizeStart={handleResizeStart}
-          onPointerMove={handleResizeMove}
-          onPointerUp={handleResizeEnd}
-          onPointerCancel={handleResizeEnd}
+        {!isMobile ? (
+          <PanelResizeTab
+            panelWidth={panelWidth}
+            onResizeStart={handleResizeStart}
+            onPointerMove={handleResizeMove}
+            onPointerUp={handleResizeEnd}
+            onPointerCancel={handleResizeEnd}
+          />
+        ) : null}
+        <PanelWidthAnnotation
+          value={formatDimension(panelWidth)}
+          active={widthLabelActive}
         />
-        <PanelWidthAnnotation value={formatDimension(panelWidth)} />
       </div>
     </div>
   );

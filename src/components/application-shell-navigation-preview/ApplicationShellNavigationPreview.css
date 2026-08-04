@@ -160,6 +160,10 @@
 }
 
 .application-shell-navigation-preview--resizing
+  .application-shell-navigation-preview__width-annotation-label,
+.application-shell-navigation-preview--auto-resize
+  .application-shell-navigation-preview__width-annotation-label,
+.application-shell-navigation-preview__width-annotation--active
   .application-shell-navigation-preview__width-annotation-label {
   color: var(--joker-gold-400);
 }
@@ -370,8 +374,27 @@
 }
 
 @media (max-width: 800px) {
-  .application-shell-navigation-preview__betting-column {
-    width: 100%;
-    max-width: none;
+  .application-shell-navigation-preview--mobile {
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: var(--navigation-panel-inset);
+    overflow: hidden;
+  }
+
+  .application-shell-navigation-preview--mobile
+    .application-shell-navigation-preview__betting-column {
+    width: min(var(--navigation-betting-panel-width), 100%);
+    max-width: 360px;
+    margin-inline: auto;
+  }
+
+  .application-shell-navigation-preview__resize-tab {
+    display: none;
+  }
+
+  .application-shell-navigation-preview--mobile
+    .hilo-betting-panel-preview__controls-zone::after {
+    opacity: 1;
+    transform: scale(1);
   }
 }

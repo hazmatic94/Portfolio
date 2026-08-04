@@ -1,5 +1,8 @@
 .application-shell-blueprint-preview {
   --blueprint-bar-height: 44px;
+  --blueprint-mobile-game-height: 70vh;
+  --blueprint-mobile-rail-height: 52px;
+  --blueprint-mobile-betting-height: 100px;
   --blueprint-sidebar-ratio: 30%;
   --blueprint-main-ratio: 70%;
   --blueprint-annotation-gap: 12px;
@@ -61,6 +64,14 @@
   bottom: var(--blueprint-annotation-gap);
   left: 6px;
   gap: 6px;
+}
+
+.application-shell-blueprint-preview__annotation--panel-height {
+  top: var(--blueprint-annotation-gap);
+  right: var(--blueprint-annotation-gap);
+  bottom: var(--blueprint-annotation-gap);
+  left: auto;
+  width: auto;
 }
 
 .application-shell-blueprint-preview__annotation--height {
@@ -300,6 +311,60 @@
   width: var(--blueprint-main-ratio);
 }
 
+.application-shell-blueprint-preview--stacked {
+  height: auto;
+}
+
+.application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__figure {
+  height: auto;
+}
+
+.application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__bar {
+  flex: none;
+  height: var(--blueprint-mobile-rail-height);
+}
+
+.application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__body {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+}
+
+.application-shell-blueprint-preview--stacked
+  .application-shell-blueprint-preview__panel--main {
+  order: 1;
+  flex: none;
+  width: 100%;
+  height: var(--blueprint-mobile-game-height);
+  min-height: var(--blueprint-mobile-game-height);
+  border-bottom: 0;
+}
+
+.application-shell-blueprint-preview--stacked
+  .application-shell-blueprint-preview__panel--sidebar {
+  order: 2;
+  flex: none;
+  width: 100%;
+  height: var(--blueprint-mobile-betting-height);
+  min-height: var(--blueprint-mobile-betting-height);
+  border-right: none;
+  border-top: 1px solid var(--joker-black-200);
+}
+
+.application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__panel {
+  height: auto;
+}
+
 @media (max-width: 800px) {
   .application-shell-blueprint-preview__annotation-label {
     font-size: 9px;
@@ -307,6 +372,30 @@
 
   .application-shell-blueprint-preview__zone-label {
     font-size: 11px;
+  }
+
+  .application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__zone-label {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .application-shell-blueprint-preview--stacked .application-shell-blueprint-preview__zone {
+    background: var(--joker-black-500);
+  }
+
+  .application-shell-blueprint-preview--stacked
+    .application-shell-blueprint-preview__annotation-label {
+    color: var(--joker-gold-400);
+  }
+
+  .application-shell-blueprint-preview--stacked
+    .application-shell-blueprint-preview__zone::before {
+    opacity: 1;
+  }
+
+  .application-shell-blueprint-preview--stacked
+    .application-shell-blueprint-preview__panel--main::before {
+    opacity: 1;
   }
 }
 
@@ -321,6 +410,19 @@
   .application-shell-blueprint-preview__zone-label {
     opacity: 0;
     transform: none;
+  }
+
+  @media (max-width: 800px) {
+    .application-shell-blueprint-preview--stacked
+      .application-shell-blueprint-preview__zone-label {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .application-shell-blueprint-preview--stacked
+      .application-shell-blueprint-preview__zone::before {
+      opacity: 1;
+    }
   }
 
   .application-shell-blueprint-preview__zone:hover .application-shell-blueprint-preview__zone-label {

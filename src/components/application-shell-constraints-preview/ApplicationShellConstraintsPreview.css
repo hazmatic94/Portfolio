@@ -1,5 +1,6 @@
 .application-shell-constraints-preview {
   --constraints-betting-panel-width: 290px;
+  --constraints-play-area-height: calc(540px - 44px - 44px);
   --betting-panel-min-width: 290px;
   --betting-panel-max-width: 290px;
   --betting-panel-layout-fluid-size: 290px;
@@ -377,6 +378,77 @@
   width: auto;
   height: 14px;
   filter: brightness(0) saturate(100%) invert(68%);
+}
+
+@media (max-width: 800px) {
+  .application-shell-constraints-preview {
+    --constraints-mobile-game-height: 70vh;
+    --constraints-mobile-rail-height: 52px;
+    height: auto;
+    overflow: visible;
+  }
+
+  .application-shell-constraints-preview.joker-game-inner-frame,
+  .application-shell-constraints-preview .joker-game-inner {
+    height: auto;
+    grid-template-rows: auto auto;
+  }
+
+  .application-shell-constraints-preview .joker-game-footer-rail {
+    display: none;
+  }
+
+  .application-shell-constraints-preview .joker-game-header-rail {
+    height: var(--constraints-mobile-rail-height);
+    min-height: var(--constraints-mobile-rail-height);
+  }
+
+  .application-shell-constraints-preview .joker-game-inner-layout {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    height: auto;
+    min-height: 0;
+  }
+
+  .application-shell-constraints-preview .joker-game-inner-canvas {
+    order: 1;
+    flex: none;
+    width: 100%;
+    height: var(--constraints-mobile-game-height);
+    min-height: var(--constraints-mobile-game-height);
+  }
+
+  .application-shell-constraints-preview .joker-game-inner-betting {
+    order: 2;
+    flex: none;
+    width: 100%;
+    height: var(--constraints-play-area-height);
+    min-height: var(--constraints-play-area-height);
+    overflow: hidden;
+  }
+
+  .application-shell-constraints-preview .hilo-betting-panel-preview {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-height: 0;
+    border-right: 0;
+    border-top: var(--border-width-default) solid var(--joker-black-300);
+  }
+
+  .application-shell-constraints-preview__game-zone::after,
+  .application-shell-constraints-preview
+    .hilo-betting-panel-preview__controls-zone::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .application-shell-constraints-preview
+    .hilo-betting-panel-preview__zone-label {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,15 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import "./ApplicationShellBlueprintPreview.css";
 
-const BLUEPRINT_SHELL_WIDTH_LABEL = "1200px";
-const BLUEPRINT_RAIL_HEIGHT_LABEL = "52px";
-const BLUEPRINT_BODY_HEIGHT_LABEL = "792px";
-const BLUEPRINT_GAME_VIEW_WIDTH_LABEL = "874px";
-const BLUEPRINT_BETTING_PANEL_WIDTH_LABEL = "360px";
+const BLUEPRINT_MOBILE_BREAKPOINT = "(max-width: 800px)";
 
-function formatDimension(value) {
-  return `${Math.round(value)}px`;
-}
+/** Canonical shell dimensions — labels stay fixed while the diagram scales (desktop + mobile). */
+const BLUEPRINT_DESKTOP_SPEC = {
+  shellWidth: "1200px",
+  bodyHeight: "792px",
+  railHeight: "52px",
+  bettingPanelWidth: "360px",
+  gameViewWidth: "874px",
+};
+
+const BLUEPRINT_MOBILE_SPEC = {
+  gameViewHeight: "70vh",
+  railHeight: "52px",
+};
 
 function BlueprintWidthAnnotation({ value, className = "", style }) {
   return (
@@ -77,64 +83,60 @@ function BlueprintHeightAnnotation({
 export function ApplicationShellBlueprintPreview() {
   const previewRef = useRef(null);
   const shellRef = useRef(null);
-  const sidebarRef = useRef(null);
-  const mainRef = useRef(null);
   const bodyRef = useRef(null);
-  const [dimensions, setDimensions] = useState({
+  const [layout, setLayout] = useState({
     shellWidth: 0,
-    sidebarWidth: 0,
-    mainWidth: 0,
     bodyHeight: 0,
     bodyTop: 0,
+    isStacked: false,
   });
 
   useEffect(() => {
     const preview = previewRef.current;
     const shell = shellRef.current;
-    const sidebar = sidebarRef.current;
-    const main = mainRef.current;
     const body = bodyRef.current;
 
-    if (!preview || !shell || !sidebar || !main || !body) {
+    if (!preview || !shell || !body) {
       return undefined;
     }
+
+    const mediaQuery = window.matchMedia(BLUEPRINT_MOBILE_BREAKPOINT);
 
     const measure = () => {
       const previewRect = preview.getBoundingClientRect();
       const shellRect = shell.getBoundingClientRect();
-      const sidebarRect = sidebar.getBoundingClientRect();
-      const mainRect = main.getBoundingClientRect();
       const bodyRect = body.getBoundingClientRect();
 
-      setDimensions({
+      setLayout({
         shellWidth: shellRect.width,
-        sidebarWidth: sidebarRect.width,
-        mainWidth: mainRect.width,
         bodyHeight: bodyRect.height,
         bodyTop: bodyRect.top - previewRect.top,
+        isStacked: mediaQuery.matches,
       });
     };
 
     measure();
+    mediaQuery.addEventListener("change", measure);
 
     const resizeObserver = new ResizeObserver(measure);
     resizeObserver.observe(preview);
     resizeObserver.observe(shell);
-    resizeObserver.observe(sidebar);
-    resizeObserver.observe(main);
     resizeObserver.observe(body);
 
-    return () => resizeObserver.disconnect();
+    return () => {
+      mediaQuery.removeEventListener("change", measure);
+      resizeObserver.disconnect();
+    };
   }, []);
 
-  const { shellWidth, sidebarWidth, mainWidth, bodyHeight, bodyTop } =
-    dimensions;
-  const hasDimensions = shellWidth > 0;
+  const { shellWidth, bodyHeight, bodyTop, isStacked } = layout;
+  const hasDesktopMeasure = shellWidth > 0 && !isStacked;
+  const spec = isStacked ? BLUEPRINT_MOBILE_SPEC : BLUEPRINT_DESKTOP_SPEC;
 
   return (
     <div
       ref={previewRef}
-      className="application-shell-blueprint-preview"
+      className={`application-shell-blueprint-preview${isStacked ? " application-shell-blueprint-preview--stacked" : ""}`}
       aria-hidden="true"
     >
       <div className="application-shell-blueprint-preview__figure">
@@ -144,7 +146,7 @@ export function ApplicationShellBlueprintPreview() {
         >
           <div className="application-shell-blueprint-preview__bar application-shell-blueprint-preview__bar--top application-shell-blueprint-preview__zone">
             <BlueprintHeightAnnotation
-              value={BLUEPRINT_RAIL_HEIGHT_LABEL}
+              value={spec.railHeight}
               className="application-shell-blueprint-preview__annotation--bar-height"
               hideArrows
             />
@@ -157,58 +159,59 @@ export function ApplicationShellBlueprintPreview() {
             ref={bodyRef}
             className="application-shell-blueprint-preview__body"
           >
-            <div
-              ref={sidebarRef}
-              className="application-shell-blueprint-preview__panel application-shell-blueprint-preview__panel--sidebar application-shell-blueprint-preview__zone"
-            >
+            <div className="application-shell-blueprint-preview__panel application-shell-blueprint-preview__panel--sidebar application-shell-blueprint-preview__zone">
               <span className="application-shell-blueprint-preview__zone-label">
                 Betting Panel
               </span>
-              {hasDimensions ? (
+              {isStacked ? null : (
                 <BlueprintWidthAnnotation
-                  value={BLUEPRINT_BETTING_PANEL_WIDTH_LABEL}
+                  value={BLUEPRINT_DESKTOP_SPEC.bettingPanelWidth}
                   className="application-shell-blueprint-preview__annotation--panel"
                 />
-              ) : null}
+              )}
             </div>
-            <div
-              ref={mainRef}
-              className="application-shell-blueprint-preview__panel application-shell-blueprint-preview__panel--main application-shell-blueprint-preview__zone"
-            >
+            <div className="application-shell-blueprint-preview__panel application-shell-blueprint-preview__panel--main application-shell-blueprint-preview__zone">
               <span className="application-shell-blueprint-preview__zone-label">
                 Game View
               </span>
-              {hasDimensions ? (
+              {isStacked ? (
+                <BlueprintHeightAnnotation
+                  value={BLUEPRINT_MOBILE_SPEC.gameViewHeight}
+                  className="application-shell-blueprint-preview__annotation--panel application-shell-blueprint-preview__annotation--panel-height"
+                />
+              ) : (
                 <BlueprintWidthAnnotation
-                  value={BLUEPRINT_GAME_VIEW_WIDTH_LABEL}
+                  value={BLUEPRINT_DESKTOP_SPEC.gameViewWidth}
                   className="application-shell-blueprint-preview__annotation--panel"
                 />
-              ) : null}
+              )}
             </div>
           </div>
 
-          <div className="application-shell-blueprint-preview__bar application-shell-blueprint-preview__bar--bottom application-shell-blueprint-preview__zone">
-            <BlueprintHeightAnnotation
-              value={BLUEPRINT_RAIL_HEIGHT_LABEL}
-              className="application-shell-blueprint-preview__annotation--bar-height"
-              hideArrows
-            />
-            <span className="application-shell-blueprint-preview__zone-label">
-              Game Footer
-            </span>
-          </div>
+          {!isStacked ? (
+            <div className="application-shell-blueprint-preview__bar application-shell-blueprint-preview__bar--bottom application-shell-blueprint-preview__zone">
+              <BlueprintHeightAnnotation
+                value={spec.railHeight}
+                className="application-shell-blueprint-preview__annotation--bar-height"
+                hideArrows
+              />
+              <span className="application-shell-blueprint-preview__zone-label">
+                Game Footer
+              </span>
+            </div>
+          ) : null}
         </div>
       </div>
 
-      {hasDimensions ? (
+      {hasDesktopMeasure ? (
         <>
           <BlueprintWidthAnnotation
-            value={BLUEPRINT_SHELL_WIDTH_LABEL}
+            value={BLUEPRINT_DESKTOP_SPEC.shellWidth}
             className="application-shell-blueprint-preview__annotation--top"
             style={{ width: shellWidth }}
           />
           <BlueprintHeightAnnotation
-            value={BLUEPRINT_BODY_HEIGHT_LABEL}
+            value={BLUEPRINT_DESKTOP_SPEC.bodyHeight}
             className="application-shell-blueprint-preview__annotation--body-height"
             style={{
               top: bodyTop,
