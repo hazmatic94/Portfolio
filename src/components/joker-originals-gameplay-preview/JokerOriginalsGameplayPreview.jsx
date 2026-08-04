@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import { CaseStudyFullWidthFrame } from "../case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
+import { JokerOriginalsMinesStatesPreview } from "../joker-originals-mines-states-preview/JokerOriginalsMinesStatesPreview.jsx";
 import { ADOPTION_GAMES } from "../product-adoption-games-grid/ProductAdoptionGamesGrid.jsx";
 import "./JokerOriginalsGameplayPreview.css";
 
@@ -47,24 +48,34 @@ export function JokerOriginalsGameplayPreview() {
         })}
       </div>
 
-      <CaseStudyFullWidthFrame className="joker-originals-gameplay-preview__visual">
+      <CaseStudyFullWidthFrame
+        className={`joker-originals-gameplay-preview__visual${
+          activeKey === "mines"
+            ? " joker-originals-gameplay-preview__visual--mines"
+            : ""
+        }`}
+      >
         <div
           id={`${baseId}-panel`}
           role="tabpanel"
           aria-live="polite"
           className="joker-originals-gameplay-preview__panel"
         >
-          <img
-            key={activeGame.key}
-            className="joker-originals-gameplay-preview__image"
-            src={activeGame.src}
-            srcSet={activeGame.srcSet}
-            sizes="(max-width: 800px) 100vw, 1000px"
-            width={activeGame.width}
-            height={activeGame.height}
-            alt={activeGame.label}
-            decoding="async"
-          />
+          {activeKey === "mines" ? (
+            <JokerOriginalsMinesStatesPreview />
+          ) : (
+            <img
+              key={activeGame.key}
+              className="joker-originals-gameplay-preview__image"
+              src={activeGame.src}
+              srcSet={activeGame.srcSet}
+              sizes="(max-width: 800px) 100vw, 1000px"
+              width={activeGame.width}
+              height={activeGame.height}
+              alt={activeGame.label}
+              decoding="async"
+            />
+          )}
         </div>
       </CaseStudyFullWidthFrame>
     </div>
