@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import { CaseStudyFullWidthFrame } from "../case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
+import { JokerOriginalsHiloStatesPreview } from "../joker-originals-hilo-states-preview/JokerOriginalsHiloStatesPreview.jsx";
 import { JokerOriginalsMinesStatesPreview } from "../joker-originals-mines-states-preview/JokerOriginalsMinesStatesPreview.jsx";
 import { ADOPTION_GAMES } from "../product-adoption-games-grid/ProductAdoptionGamesGrid.jsx";
 import "./JokerOriginalsGameplayPreview.css";
@@ -63,6 +64,8 @@ export function JokerOriginalsGameplayPreview() {
         >
           {activeKey === "mines" ? (
             <JokerOriginalsMinesStatesPreview />
+          ) : activeKey === "hilo" ? (
+            <JokerOriginalsHiloStatesPreview key={activeKey} />
           ) : (
             <img
               key={activeGame.key}

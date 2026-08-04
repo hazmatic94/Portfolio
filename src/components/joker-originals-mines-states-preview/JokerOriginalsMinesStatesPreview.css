@@ -14,7 +14,6 @@
 
 .joker-originals-mines-states-preview > * {
   flex: 0 0 auto;
-  pointer-events: none;
 }
 
 .joker-originals-mines-states-preview__mines--pulse {

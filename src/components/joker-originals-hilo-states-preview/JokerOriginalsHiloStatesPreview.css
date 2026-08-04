@@ -1,0 +1,105 @@
+.joker-originals-hilo-states-preview {
+  --hilo-preview-gap: var(--spacing-16);
+  --hilo-preview-chip-overhang: 15px;
+  /* Mini card is natively 110x76; scale to sit inline with the Mines tiles. */
+  --hilo-preview-card-scale: calc(100 / 76);
+  --hilo-preview-card-width: calc(110px * var(--hilo-preview-card-scale));
+  --hilo-preview-card-height: calc(76px * var(--hilo-preview-card-scale));
+
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hilo-preview-gap);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: var(--spacing-24);
+}
+
+.joker-originals-hilo-states-preview > * {
+  pointer-events: none;
+}
+
+.joker-originals-hilo-states-preview__entry {
+  position: relative;
+  /* Earlier entries stack above later ones so connectors overlay the next card. */
+  z-index: calc(10 - var(--hilo-entry-index));
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding-top: var(--hilo-preview-chip-overhang);
+  animation: joker-originals-hilo-entry-in 420ms var(--ease-out) both;
+  animation-delay: calc(120ms + (var(--hilo-entry-index) * 120ms));
+}
+
+.joker-originals-hilo-states-preview__chip {
+  position: absolute;
+  top: var(--hilo-preview-chip-overhang);
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+.joker-originals-hilo-states-preview__card-wrap {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--hilo-preview-card-width);
+  height: var(--hilo-preview-card-height);
+  overflow: visible;
+}
+
+.joker-originals-hilo-states-preview__card-wrap .joker-game-card-mini {
+  flex: 0 0 auto;
+  transform: scale(var(--hilo-preview-card-scale));
+  transform-origin: center center;
+}
+
+.joker-originals-hilo-states-preview__connector {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + (var(--hilo-preview-gap) / 2));
+  z-index: 3;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.joker-originals-hilo-states-preview__connector:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+@keyframes joker-originals-hilo-entry-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .joker-originals-hilo-states-preview__entry {
+    animation: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .joker-originals-hilo-states-preview {
+    --hilo-preview-gap: var(--spacing-12);
+    --hilo-preview-card-scale: calc(80 / 76);
+    padding: var(--spacing-16);
+  }
+}

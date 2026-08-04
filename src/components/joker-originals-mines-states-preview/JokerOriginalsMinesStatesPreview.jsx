@@ -67,22 +67,10 @@ export function JokerOriginalsMinesStatesPreview() {
             ? "joker-originals-mines-states-preview__mines--pulse"
             : undefined
         }
-        playClickSound={false}
-        aria-hidden
       />
-      <WinTile
-        key={`win-${cycleKey}`}
-        revealed={winRevealed}
-        soundOnReveal={false}
-        aria-hidden
-      />
-      <SafeTile key={`safe-${cycleKey}`} revealed={safeRevealed} aria-hidden />
-      <LossTile
-        key={`loss-${cycleKey}`}
-        revealed={lossRevealed}
-        soundOnReveal={false}
-        aria-hidden
-      />
+      <WinTile key={`win-${cycleKey}`} revealed={winRevealed} />
+      <SafeTile key={`safe-${cycleKey}`} revealed={safeRevealed} />
+      <LossTile key={`loss-${cycleKey}`} revealed={lossRevealed} />
     </div>
   );
 }
