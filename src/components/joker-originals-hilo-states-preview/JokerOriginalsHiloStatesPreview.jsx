@@ -11,6 +11,13 @@ import {
   GAMEPLAY_PREVIEW_INITIAL_DELAY_MS,
   GAMEPLAY_PREVIEW_PLAYBACK_MS,
 } from "../joker-originals-gameplay-preview/gameplayPreviewTiming.js";
+import {
+  GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
+  playGameplayCardDealSound,
+  playGameplayLossSound,
+  playGameplayMineWinSound,
+  playGameplaySkipSound,
+} from "../joker-originals-gameplay-preview/gameplayPreviewSounds.js";
 import "./JokerOriginalsHiloStatesPreview.css";
 
 /*
@@ -59,6 +66,12 @@ const HISTORY_ENTRIES = [
     connector: null,
   },
 ];
+
+const CHIP_SOUND_BY_VARIANT = {
+  win: playGameplayMineWinSound,
+  skip: playGameplaySkipSound,
+  loss: playGameplayLossSound,
+};
 
 export function JokerOriginalsHiloStatesPreview() {
   const timersRef = useRef([]);
@@ -112,6 +125,25 @@ export function JokerOriginalsHiloStatesPreview() {
 
     timersRef.current.push(completeTimer);
     return () => window.clearTimeout(completeTimer);
+  }, [playingIndex]);
+
+  useEffect(() => {
+    if (playingIndex == null) return;
+
+    const entry = HISTORY_ENTRIES[playingIndex];
+    const playChipSound = CHIP_SOUND_BY_VARIANT[entry.chipVariant];
+
+    const dealTimer = window.setTimeout(() => {
+      playGameplayCardDealSound();
+    }, 0);
+    const chipTimer = window.setTimeout(() => {
+      playChipSound?.();
+    }, GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(dealTimer);
+      window.clearTimeout(chipTimer);
+    };
   }, [playingIndex]);
 
   return (

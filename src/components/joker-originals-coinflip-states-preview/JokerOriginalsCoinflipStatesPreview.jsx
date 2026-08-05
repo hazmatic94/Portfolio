@@ -4,7 +4,12 @@ import {
   GAMEPLAY_PREVIEW_BETWEEN_STEPS_MS,
   GAMEPLAY_PREVIEW_HOLD_MS,
   GAMEPLAY_PREVIEW_INITIAL_DELAY_MS,
+  GAMEPLAY_PREVIEW_STEP_MS,
 } from "../joker-originals-gameplay-preview/gameplayPreviewTiming.js";
+import {
+  GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
+  playGameplayWinChipSound,
+} from "../joker-originals-gameplay-preview/gameplayPreviewSounds.js";
 import "./JokerOriginalsCoinflipStatesPreview.css";
 
 const STEPS = [
@@ -78,6 +83,15 @@ export function JokerOriginalsCoinflipStatesPreview() {
       cycleStartedAtRef.current = performance.now();
       setLockingIndex(0);
     }, GAMEPLAY_PREVIEW_INITIAL_DELAY_MS);
+
+    STEPS.forEach((_, index) => {
+      schedule(
+        () => playGameplayWinChipSound(),
+        GAMEPLAY_PREVIEW_INITIAL_DELAY_MS +
+          index * GAMEPLAY_PREVIEW_STEP_MS +
+          GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
+      );
+    });
 
     return () => {
       timersRef.current.forEach((timerId) => window.clearTimeout(timerId));

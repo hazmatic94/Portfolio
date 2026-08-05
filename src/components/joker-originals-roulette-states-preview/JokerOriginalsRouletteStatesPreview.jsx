@@ -6,6 +6,10 @@ import {
   GAMEPLAY_PREVIEW_PLAYBACK_MS,
   GAMEPLAY_PREVIEW_STEP_MS,
 } from "../joker-originals-gameplay-preview/gameplayPreviewTiming.js";
+import {
+  GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
+  playGameplayWinChipSound,
+} from "../joker-originals-gameplay-preview/gameplayPreviewSounds.js";
 import "./JokerOriginalsRouletteStatesPreview.css";
 
 const WINS = [
@@ -102,6 +106,21 @@ export function JokerOriginalsRouletteStatesPreview() {
     observer.observe(root, { childList: true, subtree: true });
 
     return () => observer.disconnect();
+  }, [rowReady, cycleKey, reducedMotion]);
+
+  useEffect(() => {
+    if (!rowReady || reducedMotion) return;
+
+    const soundTimers = WINS.map((_, index) =>
+      window.setTimeout(
+        () => playGameplayWinChipSound(),
+        index * GAMEPLAY_PREVIEW_STEP_MS + GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
+      ),
+    );
+
+    return () => {
+      soundTimers.forEach((timerId) => window.clearTimeout(timerId));
+    };
   }, [rowReady, cycleKey, reducedMotion]);
 
   return (

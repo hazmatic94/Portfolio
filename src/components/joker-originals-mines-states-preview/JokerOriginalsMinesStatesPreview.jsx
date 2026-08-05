@@ -69,7 +69,6 @@ export function JokerOriginalsMinesStatesPreview() {
         key={`win-a-${cycleKey}`}
         revealed={firstWinRevealed}
         multiplier="1.25x"
-        soundOnReveal={false}
       />
       <SafeTile
         key={`safe-${cycleKey}`}
@@ -79,12 +78,10 @@ export function JokerOriginalsMinesStatesPreview() {
         key={`win-b-${cycleKey}`}
         revealed={secondWinRevealed}
         multiplier="1.57x"
-        soundOnReveal={false}
       />
       <LossTile
         key={`loss-${cycleKey}`}
         revealed={lossRevealed}
-        soundOnReveal={false}
       />
     </div>
   );

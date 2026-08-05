@@ -55,6 +55,11 @@
   border-bottom-color: var(--joker-gold-400);
 }
 
+.joker-originals-gameplay-preview__tab-button:not([aria-selected="true"]):hover
+  .joker-originals-gameplay-preview__tab-label {
+  color: var(--joker-white-50);
+}
+
 .joker-originals-gameplay-preview__panel {
   display: flex;
   flex: 1;
