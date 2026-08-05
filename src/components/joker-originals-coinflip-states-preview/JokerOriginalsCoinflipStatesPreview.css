@@ -1,0 +1,54 @@
+.joker-originals-coinflip-states-preview {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: var(--spacing-24);
+}
+
+.joker-originals-coinflip-states-preview .joker-coin-progression-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/*
+  Coins are inset by wall + rim vs full-bleed roulette chips.
+  Extra lift keeps the multiplier over the face the same amount.
+*/
+.joker-originals-coinflip-states-preview .joker-roulette-win-chip--coin-mount {
+  --roulette-win-chip-lift: calc(
+    var(--roulette-win-chip-gap) + (var(--roulette-win-chip-height) * 0.5) +
+      (var(--roulette-win-chip-chip-size) * 0.1)
+  );
+}
+
+/* Keep all 4 slots reserved so the row stays centered while coins fill L→R. */
+.joker-originals-coinflip-states-preview .joker-coin-progression__track {
+  justify-content: flex-start;
+}
+
+.joker-originals-coinflip-states-preview .joker-coin-progression__slot {
+  box-sizing: border-box;
+  flex: 0 0 var(--win-streak-row-chip-size);
+  width: var(--win-streak-row-chip-size);
+  min-width: var(--win-streak-row-chip-size);
+  justify-content: center;
+}
+
+.joker-originals-coinflip-states-preview .joker-coin-progression__slot:empty {
+  min-height: calc(var(--win-streak-row-chip-size) + 14px + 30px);
+}
+
+@media (max-width: 800px) {
+  .joker-originals-coinflip-states-preview {
+    padding: var(--spacing-16);
+  }
+}

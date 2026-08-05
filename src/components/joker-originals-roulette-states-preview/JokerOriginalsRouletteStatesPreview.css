@@ -1,0 +1,34 @@
+.joker-originals-roulette-states-preview {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: var(--spacing-24);
+}
+
+/* Keep all 4 slots reserved so the row stays centered while chips fill L→R. */
+.joker-originals-roulette-states-preview .joker-win-streak-row__track {
+  justify-content: flex-start;
+}
+
+.joker-originals-roulette-states-preview .joker-win-streak-row__slot {
+  box-sizing: border-box;
+  flex: 0 0 var(--win-streak-row-chip-size);
+  width: var(--win-streak-row-chip-size);
+  min-width: var(--win-streak-row-chip-size);
+  justify-content: center;
+}
+
+.joker-originals-roulette-states-preview__spacer {
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+
+@media (max-width: 800px) {
+  .joker-originals-roulette-states-preview {
+    padding: var(--spacing-16);
+  }
+}

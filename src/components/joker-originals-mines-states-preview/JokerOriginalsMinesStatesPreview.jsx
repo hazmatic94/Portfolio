@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { LossTile, MinesTile, SafeTile, WinTile } from "@joker/design-system";
+import { LossTile, SafeTile, WinTile } from "@joker/design-system";
+import {
+  GAMEPLAY_PREVIEW_HOLD_MS,
+  GAMEPLAY_PREVIEW_INITIAL_DELAY_MS,
+  GAMEPLAY_PREVIEW_STEP_MS,
+} from "../joker-originals-gameplay-preview/gameplayPreviewTiming.js";
 import "./JokerOriginalsMinesStatesPreview.css";
-
-const INITIAL_DELAY_MS = 480;
-const STEP_MS = 1000;
-const HOLD_AFTER_SEQUENCE_MS = 3200;
-const MINES_PULSE_MS = 280;
-const AFTER_MINES_GAP_MS = 240;
 
 export function JokerOriginalsMinesStatesPreview() {
   const [cycleKey, setCycleKey] = useState(0);
-  const [minesPulse, setMinesPulse] = useState(false);
-  const [winRevealed, setWinRevealed] = useState(false);
+  const [firstWinRevealed, setFirstWinRevealed] = useState(false);
   const [safeRevealed, setSafeRevealed] = useState(false);
+  const [secondWinRevealed, setSecondWinRevealed] = useState(false);
   const [lossRevealed, setLossRevealed] = useState(false);
   const timersRef = useRef([]);
 
@@ -22,15 +21,16 @@ export function JokerOriginalsMinesStatesPreview() {
     ).matches;
 
     if (reducedMotion) {
-      setWinRevealed(true);
+      setFirstWinRevealed(true);
       setSafeRevealed(true);
+      setSecondWinRevealed(true);
       setLossRevealed(true);
       return;
     }
 
-    setMinesPulse(false);
-    setWinRevealed(false);
+    setFirstWinRevealed(false);
     setSafeRevealed(false);
+    setSecondWinRevealed(false);
     setLossRevealed(false);
 
     const schedule = (callback, delay) => {
@@ -38,15 +38,20 @@ export function JokerOriginalsMinesStatesPreview() {
       timersRef.current.push(timerId);
     };
 
-    schedule(() => setMinesPulse(true), INITIAL_DELAY_MS);
-    schedule(() => setMinesPulse(false), INITIAL_DELAY_MS + MINES_PULSE_MS);
+    const firstWinAt = GAMEPLAY_PREVIEW_INITIAL_DELAY_MS;
+    schedule(() => setFirstWinRevealed(true), firstWinAt);
+    schedule(() => setSafeRevealed(true), firstWinAt + GAMEPLAY_PREVIEW_STEP_MS);
+    schedule(
+      () => setSecondWinRevealed(true),
+      firstWinAt + GAMEPLAY_PREVIEW_STEP_MS * 2,
+    );
+    schedule(
+      () => setLossRevealed(true),
+      firstWinAt + GAMEPLAY_PREVIEW_STEP_MS * 3,
+    );
 
-    const winAt = INITIAL_DELAY_MS + MINES_PULSE_MS + AFTER_MINES_GAP_MS;
-    schedule(() => setWinRevealed(true), winAt);
-    schedule(() => setSafeRevealed(true), winAt + STEP_MS);
-    schedule(() => setLossRevealed(true), winAt + STEP_MS * 2);
-
-    const loopAt = winAt + STEP_MS * 2 + 1200 + HOLD_AFTER_SEQUENCE_MS;
+    const loopAt =
+      firstWinAt + GAMEPLAY_PREVIEW_STEP_MS * 3 + GAMEPLAY_PREVIEW_HOLD_MS;
     schedule(() => setCycleKey((key) => key + 1), loopAt);
 
     return () => {
@@ -58,19 +63,29 @@ export function JokerOriginalsMinesStatesPreview() {
   return (
     <div
       className="joker-originals-mines-states-preview"
-      aria-label="Mines tile states from the design system"
+      aria-label="Mines tile run from the design system"
     >
-      <MinesTile
-        key={`mines-${cycleKey}`}
-        className={
-          minesPulse
-            ? "joker-originals-mines-states-preview__mines--pulse"
-            : undefined
-        }
+      <WinTile
+        key={`win-a-${cycleKey}`}
+        revealed={firstWinRevealed}
+        multiplier="1.25x"
+        soundOnReveal={false}
       />
-      <WinTile key={`win-${cycleKey}`} revealed={winRevealed} />
-      <SafeTile key={`safe-${cycleKey}`} revealed={safeRevealed} />
-      <LossTile key={`loss-${cycleKey}`} revealed={lossRevealed} />
+      <SafeTile
+        key={`safe-${cycleKey}`}
+        revealed={safeRevealed}
+      />
+      <WinTile
+        key={`win-b-${cycleKey}`}
+        revealed={secondWinRevealed}
+        multiplier="1.57x"
+        soundOnReveal={false}
+      />
+      <LossTile
+        key={`loss-${cycleKey}`}
+        revealed={lossRevealed}
+        soundOnReveal={false}
+      />
     </div>
   );
 }

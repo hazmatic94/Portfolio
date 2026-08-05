@@ -16,27 +16,6 @@
   flex: 0 0 auto;
 }
 
-.joker-originals-mines-states-preview__mines--pulse {
-  animation: joker-originals-mines-tile-press 280ms var(--ease-standard);
-}
-
-@keyframes joker-originals-mines-tile-press {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(0.985);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .joker-originals-mines-states-preview__mines--pulse {
-    animation: none;
-  }
-}
-
 @media (max-width: 800px) {
   .joker-originals-mines-states-preview {
     --game-tile-size: clamp(64px, 18vw, 100px);

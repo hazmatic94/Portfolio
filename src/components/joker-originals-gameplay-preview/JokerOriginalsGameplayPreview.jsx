@@ -1,7 +1,9 @@
 import { useId, useState } from "react";
 import { CaseStudyFullWidthFrame } from "../case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
+import { JokerOriginalsCoinflipStatesPreview } from "../joker-originals-coinflip-states-preview/JokerOriginalsCoinflipStatesPreview.jsx";
 import { JokerOriginalsHiloStatesPreview } from "../joker-originals-hilo-states-preview/JokerOriginalsHiloStatesPreview.jsx";
 import { JokerOriginalsMinesStatesPreview } from "../joker-originals-mines-states-preview/JokerOriginalsMinesStatesPreview.jsx";
+import { JokerOriginalsRouletteStatesPreview } from "../joker-originals-roulette-states-preview/JokerOriginalsRouletteStatesPreview.jsx";
 import { ADOPTION_GAMES } from "../product-adoption-games-grid/ProductAdoptionGamesGrid.jsx";
 import "./JokerOriginalsGameplayPreview.css";
 
@@ -53,7 +55,11 @@ export function JokerOriginalsGameplayPreview() {
         className={`joker-originals-gameplay-preview__visual${
           activeKey === "mines"
             ? " joker-originals-gameplay-preview__visual--mines"
-            : ""
+            : activeKey === "coin-flip"
+              ? " joker-originals-gameplay-preview__visual--coin-flip"
+              : activeKey === "roulette"
+                ? " joker-originals-gameplay-preview__visual--roulette"
+                : ""
         }`}
       >
         <div
@@ -66,6 +72,10 @@ export function JokerOriginalsGameplayPreview() {
             <JokerOriginalsMinesStatesPreview />
           ) : activeKey === "hilo" ? (
             <JokerOriginalsHiloStatesPreview key={activeKey} />
+          ) : activeKey === "coin-flip" ? (
+            <JokerOriginalsCoinflipStatesPreview key={activeKey} />
+          ) : activeKey === "roulette" ? (
+            <JokerOriginalsRouletteStatesPreview key={activeKey} />
           ) : (
             <img
               key={activeGame.key}

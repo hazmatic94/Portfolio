@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { CaseStudyFullWidthFrame } from "../../../components/case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
 import { CaseStudyMediaPlaceholder } from "../../../components/case-study-media-placeholder/CaseStudyMediaPlaceholder.jsx";
 import { JokerOriginalsGameplayPreview } from "../../../components/joker-originals-gameplay-preview/JokerOriginalsGameplayPreview.jsx";
@@ -102,18 +101,31 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
-          className="joker-originals-case-study__components"
-          ariaLabel="Components"
+          className="joker-originals-case-study__interactions"
+          ariaLabel="Interactions"
         >
-          <SectionDivider number="03" title="Components" />
+          <SectionDivider number="03" title="Interactions" />
           <CaseStudyInlineCopy
-            title="Gameplay Building Blocks"
-            body="Chips, tiles, wheels, and betting controls were composed from the design system and extended where gameplay needed more than a generic pattern."
+            title="Motion Systems"
+            body="Consistent motion and feedback create familiar interactions while giving each game its own distinct personality."
           />
           <div className="joker-originals-case-study__section-media">
-            <CaseStudyFullWidthFrame>
-              <CaseStudyMediaPlaceholder label="Gameplay components preview" />
-            </CaseStudyFullWidthFrame>
+            <CaseStudySplitFrames
+              left={
+                <CaseStudyMediaPlaceholder
+                  label="Motion system A"
+                  variant="panel"
+                />
+              }
+              right={
+                <CaseStudyMediaPlaceholder
+                  label="Motion system B"
+                  variant="panel"
+                />
+              }
+              leftPanelClassName="case-study-split-frames__panel--fixed"
+              rightPanelClassName="case-study-split-frames__panel--fill"
+            />
           </div>
         </CaseStudyRevealSection>
 

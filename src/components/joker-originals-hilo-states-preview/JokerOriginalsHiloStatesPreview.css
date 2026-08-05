@@ -5,6 +5,11 @@
   --hilo-preview-card-scale: calc(100 / 76);
   --hilo-preview-card-width: calc(110px * var(--hilo-preview-card-scale));
   --hilo-preview-card-height: calc(76px * var(--hilo-preview-card-scale));
+  --hilo-card-enter-ms: 480ms;
+  --hilo-chip-pop-ms: 400ms;
+  --hilo-connector-enter-ms: 320ms;
+  --hilo-chip-pop-delay: 480ms;
+  --hilo-connector-delay: 880ms;
 
   box-sizing: border-box;
   display: flex;
@@ -22,9 +27,9 @@
   pointer-events: none;
 }
 
-.joker-originals-hilo-states-preview__entry {
+/* Reserved slots keep the row centered while cards fill L→R. */
+.joker-originals-hilo-states-preview__slot {
   position: relative;
-  /* Earlier entries stack above later ones so connectors overlay the next card. */
   z-index: calc(10 - var(--hilo-entry-index));
   display: flex;
   flex: 0 0 auto;
@@ -32,9 +37,22 @@
   align-items: center;
   justify-content: flex-end;
   box-sizing: border-box;
+  width: var(--hilo-preview-card-width);
+  min-height: calc(
+    var(--hilo-preview-chip-overhang) + var(--hilo-preview-card-height)
+  );
+}
+
+.joker-originals-hilo-states-preview__entry {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
   padding-top: var(--hilo-preview-chip-overhang);
-  animation: joker-originals-hilo-entry-in 420ms var(--ease-out) both;
-  animation-delay: calc(120ms + (var(--hilo-entry-index) * 120ms));
 }
 
 .joker-originals-hilo-states-preview__chip {
@@ -42,7 +60,20 @@
   top: var(--hilo-preview-chip-overhang);
   left: 50%;
   z-index: 2;
-  transform: translate(-50%, -50%);
+  opacity: 0;
+  transform: translate(-50%, 30%) scale(0.84);
+}
+
+.joker-originals-hilo-states-preview__entry.is-playing
+  .joker-originals-hilo-states-preview__chip {
+  animation: joker-originals-hilo-chip-pop var(--hilo-chip-pop-ms)
+    cubic-bezier(0.22, 1, 0.36, 1) var(--hilo-chip-pop-delay) forwards;
+}
+
+.joker-originals-hilo-states-preview__entry.is-settled
+  .joker-originals-hilo-states-preview__chip {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .joker-originals-hilo-states-preview__card-wrap {
@@ -56,7 +87,30 @@
   overflow: visible;
 }
 
-.joker-originals-hilo-states-preview__card-wrap .joker-game-card-mini {
+.joker-originals-hilo-states-preview__card-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.16);
+  transform-origin: center center;
+}
+
+.joker-originals-hilo-states-preview__entry.is-playing
+  .joker-originals-hilo-states-preview__card-stage {
+  animation: joker-originals-hilo-card-enter var(--hilo-card-enter-ms)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.joker-originals-hilo-states-preview__entry.is-settled
+  .joker-originals-hilo-states-preview__card-stage {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.joker-originals-hilo-states-preview__card-stage .joker-game-card-mini {
   flex: 0 0 auto;
   transform: scale(var(--hilo-preview-card-scale));
   transform-origin: center center;
@@ -68,31 +122,102 @@
   left: calc(100% + (var(--hilo-preview-gap) / 2));
   z-index: 3;
   margin: 0;
-  transform: translate(-50%, -50%);
-  opacity: 1;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
   pointer-events: none;
 }
 
-.joker-originals-hilo-states-preview__connector:disabled {
+.joker-originals-hilo-states-preview__entry.is-playing
+  .joker-originals-hilo-states-preview__connector {
+  animation: joker-originals-hilo-connector-enter var(--hilo-connector-enter-ms)
+    ease var(--hilo-connector-delay) forwards;
+}
+
+.joker-originals-hilo-states-preview__entry.is-settled
+  .joker-originals-hilo-states-preview__connector {
   opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.joker-originals-hilo-states-preview__connector:disabled {
   cursor: default;
 }
 
-@keyframes joker-originals-hilo-entry-in {
+@keyframes joker-originals-hilo-card-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.16);
+  }
+
+  68% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes joker-originals-hilo-chip-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 30%) scale(0.84);
+  }
+
+  58% {
+    opacity: 1;
+    transform: translate(-50%, -58%) scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes joker-originals-hilo-connector-enter {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translate(-50%, -50%) scale(0.4);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .joker-originals-hilo-states-preview__entry {
+  .joker-originals-hilo-states-preview__entry.is-playing
+    .joker-originals-hilo-states-preview__card-stage,
+  .joker-originals-hilo-states-preview__entry.is-playing
+    .joker-originals-hilo-states-preview__chip,
+  .joker-originals-hilo-states-preview__entry.is-playing
+    .joker-originals-hilo-states-preview__connector {
     animation: none;
+  }
+
+  .joker-originals-hilo-states-preview__card-stage,
+  .joker-originals-hilo-states-preview__entry.is-settled
+    .joker-originals-hilo-states-preview__card-stage {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .joker-originals-hilo-states-preview__chip,
+  .joker-originals-hilo-states-preview__entry.is-settled
+    .joker-originals-hilo-states-preview__chip {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .joker-originals-hilo-states-preview__connector,
+  .joker-originals-hilo-states-preview__entry.is-settled
+    .joker-originals-hilo-states-preview__connector {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
