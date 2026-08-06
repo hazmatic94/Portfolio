@@ -14,7 +14,6 @@ export function CoinFlipPanelPreview() {
           className="coin-flip-panel-preview__panel"
           defaultBetAmount="50"
           defaultSelectedOddsValue="heads"
-          defaultRoundsToWinValue="2"
           oddsOptions={COIN_FLIP_ODDS_OPTIONS}
           disablePlaceBetUntilBetAmount={false}
           onPlaceBet={() => {}}

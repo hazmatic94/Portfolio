@@ -1,4 +1,6 @@
 .hero {
+  /* Match hmLogoV1.mp4 plate so the video box doesn’t flash a rectangle on load. */
+  --hero-bg: #121312;
   --hero-enter-logo-delay: 480ms;
   --hero-enter-dots-delay: 1120ms;
   --hero-enter-text-delay: 1960ms;
@@ -9,7 +11,7 @@
   justify-content: center;
   height: 500px;
   overflow: hidden;
-  background: #121212;
+  background: var(--hero-bg);
   border-bottom: var(--border-width-default) solid var(--joker-black-300);
 }
 
@@ -32,6 +34,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: var(--hero-bg);
   opacity: 0;
   transform: scale(0.94);
   animation: hero-logo-enter 720ms var(--ease-out) both;
@@ -43,6 +46,7 @@
   width: 400px;
   height: 400px;
   object-fit: contain;
+  background: var(--hero-bg);
   transform: scale(1.82);
   transform-origin: center center;
 }

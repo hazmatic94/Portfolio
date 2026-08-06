@@ -139,6 +139,7 @@
 }
 
 .application-shell-case-study__next-label {
+  display: block;
   margin: var(--case-study-next-label-gap) 0 0;
   font-family: var(--font);
   font-size: 32px;
@@ -146,6 +147,7 @@
   line-height: 1.15;
   letter-spacing: -0.05em;
   text-align: center;
+  text-decoration: none;
   color: var(--joker-white-50);
   transition: color var(--motion-fast) var(--ease-standard);
 }

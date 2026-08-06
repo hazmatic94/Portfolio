@@ -57,6 +57,38 @@
   );
 }
 
+/* Full-bleed mobile Mines chrome for Vision §04 left frame. */
+.mines-panel-preview--mobile {
+  padding: 0;
+  background: var(--joker-black-700);
+}
+
+.mines-panel-preview--mobile .mines-panel-preview__content {
+  height: 100%;
+}
+
+.mines-panel-preview--mobile .mines-panel-preview__panel {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  grid-template-rows: auto auto minmax(0, 1fr) !important;
+}
+
+.mines-panel-preview--mobile .mines-panel-preview__panel .joker-mines-betting-main::after {
+  display: none;
+}
+
+.mines-panel-preview--mobile .mines-panel-preview__fade {
+  background: linear-gradient(
+    to top,
+    var(--joker-black-700) 0%,
+    color-mix(in srgb, var(--joker-black-700) 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
 @media (max-width: 800px) {
   .mines-panel-preview {
     display: flex;

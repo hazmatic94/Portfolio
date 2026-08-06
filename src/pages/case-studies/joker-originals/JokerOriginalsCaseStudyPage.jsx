@@ -24,6 +24,8 @@ import { FooterLegal } from "../../../components/footer/Footer.jsx";
 import { Nav } from "../../../components/nav/Nav.jsx";
 import { PortfolioMockupStage } from "../../../components/portfolio-video-mockup/PortfolioMockupStage.jsx";
 import { ProductAdoptionGamesGrid } from "../../../components/product-adoption-games-grid/ProductAdoptionGamesGrid.jsx";
+import { MinesGameLayoutPreview } from "../../../components/mines-game-layout-preview/MinesGameLayoutPreview.jsx";
+import { WinModalPreview } from "../../../components/win-modal-preview/WinModalPreview.jsx";
 import { SectionDivider } from "../../../components/section-divider/SectionDivider.jsx";
 import "../../../components/project-container/ProjectContainer.css";
 import "../../../styles/case-study-layout.css";
@@ -179,17 +181,17 @@ export function JokerOriginalsCaseStudyPage() {
 
         <CaseStudyRevealSection
           className="joker-originals-case-study__architecture"
-          ariaLabel="Portfolio"
+          ariaLabel="Vision"
         >
-          <SectionDivider number="04" title="Portfolio" />
+          <SectionDivider number="04" title="Vision" />
           <CaseStudyInlineCopy
-            title="Shipped on the Platform"
-            body="Each Original shipped inside the same shell and design system — proof that the stack held up across genres, not just a single demo game."
+            title="Shared Mechanics"
+            body="Shared mechanics, reusable interactions and familiar gameplay created a platform that could grow over time."
           />
           <div className="joker-originals-case-study__section-media">
             <CaseStudySplitFrames
-              left={<CaseStudyMediaPlaceholder label="Shell context" variant="panel" />}
-              right={<ProductAdoptionGamesGrid />}
+              left={<MinesGameLayoutPreview />}
+              right={<WinModalPreview />}
               leftPanelClassName="case-study-split-frames__panel--fixed"
               rightPanelClassName="case-study-split-frames__panel--fill"
             />
