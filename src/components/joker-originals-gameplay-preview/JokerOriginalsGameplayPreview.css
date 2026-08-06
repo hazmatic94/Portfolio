@@ -1,15 +1,43 @@
-.joker-originals-gameplay-preview {
+.joker-originals-gameplay-preview,
+.joker-originals-motion-systems-layout {
   box-sizing: border-box;
   width: 100%;
+  max-width: var(--case-study-content-width, 1000px);
+  margin-inline: auto;
+  margin-top: var(--case-study-copy-media-gap);
+  padding-inline: var(--case-study-gutter, var(--spacing-24));
 }
 
-.joker-originals-gameplay-preview__tabs {
+.joker-originals-gameplay-preview__tabs,
+.joker-originals-motion-systems-layout__tabs {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-24);
   width: 100%;
-  margin-bottom: var(--spacing-24);
+  margin: 0 0 var(--spacing-24);
+  padding: 0;
+}
+
+.joker-originals-gameplay-preview .case-study-full-width-frame,
+.joker-originals-motion-systems-layout .case-study-split-frames {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: 0;
+  height: 540px;
+  min-height: 540px;
+}
+
+.application-shell-case-study
+  .joker-originals-gameplay-preview
+  .case-study-full-width-frame,
+.application-shell-case-study
+  .joker-originals-motion-systems-layout
+  .case-study-split-frames {
+  margin-top: 0;
+  padding-inline: 0;
 }
 
 .joker-originals-gameplay-preview__tab {
@@ -66,15 +94,6 @@
   min-height: 0;
 }
 
-.joker-originals-gameplay-preview__visual {
-  margin-top: 0;
-}
-
-.application-shell-case-study
-  .joker-originals-gameplay-preview__visual.case-study-full-width-frame {
-  margin-top: 0;
-}
-
 .joker-originals-gameplay-preview__visual .portfolio-image-mockup__frame {
   cursor: default;
 }
@@ -98,4 +117,21 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
+}
+
+@media (max-width: 800px) {
+  .joker-originals-motion-systems-layout .case-study-split-frames {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+
+  .joker-originals-motion-systems-layout
+    .case-study-split-frames__panel--fixed,
+  .joker-originals-motion-systems-layout
+    .case-study-split-frames__panel--fill {
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+  }
 }

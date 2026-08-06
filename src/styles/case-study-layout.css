@@ -65,7 +65,6 @@
 .application-shell-case-study .component-showcase-grid,
 .design-system-case-study .product-adoption-games-grid,
 .application-shell-case-study .product-adoption-games-grid,
-.application-shell-case-study .joker-originals-gameplay-preview__tabs,
 .application-shell-case-study .case-study-media-placeholder--grid {
   box-sizing: border-box;
   width: 100%;
@@ -82,7 +81,6 @@
 .application-shell-case-study .component-showcase-grid,
 .design-system-case-study .product-adoption-games-grid,
 .application-shell-case-study .product-adoption-games-grid,
-.application-shell-case-study .joker-originals-gameplay-preview__tabs,
 .application-shell-case-study .case-study-media-placeholder--grid {
   margin-top: var(--case-study-copy-media-gap);
 }

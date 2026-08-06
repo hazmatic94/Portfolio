@@ -1,7 +1,13 @@
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
 import { CaseStudyMediaPlaceholder } from "../../../components/case-study-media-placeholder/CaseStudyMediaPlaceholder.jsx";
-import { JokerOriginalsGameplayPreview } from "../../../components/joker-originals-gameplay-preview/JokerOriginalsGameplayPreview.jsx";
+import {
+  JokerOriginalsGameplayPreview,
+  JokerOriginalsGameplayTabBar,
+} from "../../../components/joker-originals-gameplay-preview/JokerOriginalsGameplayPreview.jsx";
+import { JokerOriginalsMinesInteractivePreview } from "../../../components/joker-originals-mines-interactive-preview/JokerOriginalsMinesInteractivePreview.jsx";
+import { MinesPanelPreview } from "../../../components/mines-panel-preview/MinesPanelPreview.jsx";
 import { CaseStudySplitFrames } from "../../../components/case-study-split-frames/CaseStudySplitFrames.jsx";
 import { ComponentCard } from "../../../components/component-card/ComponentCard.jsx";
 import { ComponentCardMobilePreview } from "../../../components/component-card/ComponentCardMobilePreview.jsx";
@@ -19,6 +25,9 @@ import "../../../pages/home/components/CaseStudySection.css";
 import "./JokerOriginalsCaseStudyPage.css";
 
 export function JokerOriginalsCaseStudyPage() {
+  const motionSystemsBaseId = useId();
+  const [motionSystemsTab, setMotionSystemsTab] = useState("mines");
+
   return (
     <>
       <Nav />
@@ -110,22 +119,39 @@ export function JokerOriginalsCaseStudyPage() {
             body="Consistent motion and feedback create familiar interactions while giving each game its own distinct personality."
           />
           <div className="joker-originals-case-study__section-media">
-            <CaseStudySplitFrames
-              left={
-                <CaseStudyMediaPlaceholder
-                  label="Motion system A"
-                  variant="panel"
-                />
-              }
-              right={
-                <CaseStudyMediaPlaceholder
-                  label="Motion system B"
-                  variant="panel"
-                />
-              }
-              leftPanelClassName="case-study-split-frames__panel--fixed"
-              rightPanelClassName="case-study-split-frames__panel--fill"
-            />
+            <div className="joker-originals-motion-systems-layout">
+              <JokerOriginalsGameplayTabBar
+                baseId={motionSystemsBaseId}
+                activeKey={motionSystemsTab}
+                onChange={setMotionSystemsTab}
+                panelId={`${motionSystemsBaseId}-motion-panel`}
+                className="joker-originals-motion-systems-layout__tabs"
+              />
+              <CaseStudySplitFrames
+                left={
+                  motionSystemsTab === "mines" ? (
+                    <MinesPanelPreview />
+                  ) : (
+                    <CaseStudyMediaPlaceholder
+                      label="Motion system A"
+                      variant="panel"
+                    />
+                  )
+                }
+                right={
+                  motionSystemsTab === "mines" ? (
+                    <JokerOriginalsMinesInteractivePreview />
+                  ) : (
+                    <CaseStudyMediaPlaceholder
+                      label="Motion system B"
+                      variant="panel"
+                    />
+                  )
+                }
+                leftPanelClassName="case-study-split-frames__panel--fixed"
+                rightPanelClassName="case-study-split-frames__panel--fill"
+              />
+            </div>
           </div>
         </CaseStudyRevealSection>
 

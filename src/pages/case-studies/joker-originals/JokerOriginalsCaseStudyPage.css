@@ -134,6 +134,10 @@
   padding-top: var(--case-study-section-gap);
 }
 
+.joker-originals-case-study__interactions .case-study-media-placeholder {
+  border: 0;
+}
+
 .joker-originals-case-study__next-project.case-study-block--reveal {
   --case-study-rule-delay: 260ms;
 }

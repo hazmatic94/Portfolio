@@ -7,49 +7,67 @@ import { JokerOriginalsRouletteStatesPreview } from "../joker-originals-roulette
 import { ADOPTION_GAMES } from "../product-adoption-games-grid/ProductAdoptionGamesGrid.jsx";
 import "./JokerOriginalsGameplayPreview.css";
 
-const GAMEPLAY_TABS = [
+export const JOKER_ORIGALS_GAMEPLAY_TABS = [
   { key: "mines", label: "Mines" },
   { key: "hilo", label: "Hilo" },
   { key: "coin-flip", label: "Coinflip" },
   { key: "roulette", label: "Roulette" },
 ];
 
+export function JokerOriginalsGameplayTabBar({
+  baseId,
+  activeKey,
+  onChange,
+  panelId,
+  className = "",
+}) {
+  return (
+    <div
+      className={`joker-originals-gameplay-preview__tabs${className ? ` ${className}` : ""}`}
+      role="tablist"
+      aria-label="Original games"
+    >
+      {JOKER_ORIGALS_GAMEPLAY_TABS.map((tab) => {
+        const selected = tab.key === activeKey;
+        const tabId = `${baseId}-${tab.key}`;
+        return (
+          <div key={tab.key} className="joker-originals-gameplay-preview__tab">
+            <button
+              type="button"
+              role="tab"
+              id={tabId}
+              className="joker-originals-gameplay-preview__tab-button"
+              aria-selected={selected}
+              aria-controls={panelId}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => onChange(tab.key)}
+            >
+              <span className="joker-originals-gameplay-preview__tab-label">
+                {tab.label}
+              </span>
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function JokerOriginalsGameplayPreview() {
   const baseId = useId();
-  const [activeKey, setActiveKey] = useState(GAMEPLAY_TABS[0].key);
+  const [activeKey, setActiveKey] = useState(JOKER_ORIGALS_GAMEPLAY_TABS[0].key);
   const activeGame =
     ADOPTION_GAMES.find((game) => game.key === activeKey) ?? ADOPTION_GAMES[0];
+  const panelId = `${baseId}-panel`;
 
   return (
     <div className="joker-originals-gameplay-preview">
-      <div
-        className="joker-originals-gameplay-preview__tabs"
-        role="tablist"
-        aria-label="Original games"
-      >
-        {GAMEPLAY_TABS.map((tab) => {
-          const selected = tab.key === activeKey;
-          const tabId = `${baseId}-${tab.key}`;
-          return (
-            <div key={tab.key} className="joker-originals-gameplay-preview__tab">
-              <button
-                type="button"
-                role="tab"
-                id={tabId}
-                className="joker-originals-gameplay-preview__tab-button"
-                aria-selected={selected}
-                aria-controls={`${baseId}-panel`}
-                tabIndex={selected ? 0 : -1}
-                onClick={() => setActiveKey(tab.key)}
-              >
-                <span className="joker-originals-gameplay-preview__tab-label">
-                  {tab.label}
-                </span>
-              </button>
-            </div>
-          );
-        })}
-      </div>
+      <JokerOriginalsGameplayTabBar
+        baseId={baseId}
+        activeKey={activeKey}
+        onChange={setActiveKey}
+        panelId={panelId}
+      />
 
       <CaseStudyFullWidthFrame
         className={`joker-originals-gameplay-preview__visual${
@@ -63,8 +81,9 @@ export function JokerOriginalsGameplayPreview() {
         }`}
       >
         <div
-          id={`${baseId}-panel`}
+          id={panelId}
           role="tabpanel"
+          aria-labelledby={`${baseId}-${activeKey}`}
           aria-live="polite"
           className="joker-originals-gameplay-preview__panel"
         >
