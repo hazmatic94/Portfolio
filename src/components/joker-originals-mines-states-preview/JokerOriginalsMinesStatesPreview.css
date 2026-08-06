@@ -2,23 +2,46 @@
   --game-tile-size: clamp(72px, 12vw, 140px);
   box-sizing: border-box;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.joker-originals-mines-states-preview__stage {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-16);
   width: 100%;
-  height: 100%;
-  min-height: 0;
   padding: var(--spacing-24);
+  opacity: 1;
+  transition: opacity 220ms var(--ease-out);
 }
 
-.joker-originals-mines-states-preview > * {
+.joker-originals-mines-states-preview.is-resetting .joker-originals-mines-states-preview__stage {
+  opacity: 0;
+}
+
+.joker-originals-mines-states-preview__stage > * {
   flex: 0 0 auto;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .joker-originals-mines-states-preview__stage {
+    transition: opacity 120ms linear;
+  }
 }
 
 @media (max-width: 800px) {
   .joker-originals-mines-states-preview {
     --game-tile-size: clamp(64px, 18vw, 100px);
+  }
+
+  .joker-originals-mines-states-preview__stage {
     gap: var(--spacing-12);
     padding: var(--spacing-16);
   }

@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { LossTile, SafeTile, WinTile } from "@joker/design-system";
 import {
-  GAMEPLAY_PREVIEW_HOLD_MS,
   GAMEPLAY_PREVIEW_INITIAL_DELAY_MS,
+  GAMEPLAY_PREVIEW_RESET_FADE_MS,
+  GAMEPLAY_PREVIEW_RESET_SNAP_MS,
   GAMEPLAY_PREVIEW_STEP_MS,
+  GAMEPLAY_PREVIEW_WIN_HOLD_MS,
 } from "../joker-originals-gameplay-preview/gameplayPreviewTiming.js";
+import { MinesCoveredTile } from "./MinesCoveredTile.jsx";
 import "./JokerOriginalsMinesStatesPreview.css";
 
 export function JokerOriginalsMinesStatesPreview() {
@@ -13,6 +16,7 @@ export function JokerOriginalsMinesStatesPreview() {
   const [safeRevealed, setSafeRevealed] = useState(false);
   const [secondWinRevealed, setSecondWinRevealed] = useState(false);
   const [lossRevealed, setLossRevealed] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const timersRef = useRef([]);
 
   useEffect(() => {
@@ -25,9 +29,11 @@ export function JokerOriginalsMinesStatesPreview() {
       setSafeRevealed(true);
       setSecondWinRevealed(true);
       setLossRevealed(true);
+      setIsResetting(false);
       return;
     }
 
+    setIsResetting(false);
     setFirstWinRevealed(false);
     setSafeRevealed(false);
     setSecondWinRevealed(false);
@@ -50,9 +56,21 @@ export function JokerOriginalsMinesStatesPreview() {
       firstWinAt + GAMEPLAY_PREVIEW_STEP_MS * 3,
     );
 
-    const loopAt =
-      firstWinAt + GAMEPLAY_PREVIEW_STEP_MS * 3 + GAMEPLAY_PREVIEW_HOLD_MS;
-    schedule(() => setCycleKey((key) => key + 1), loopAt);
+    const allRevealedAt = firstWinAt + GAMEPLAY_PREVIEW_STEP_MS * 3;
+    const resetStartAt = allRevealedAt + GAMEPLAY_PREVIEW_WIN_HOLD_MS;
+
+    schedule(() => setIsResetting(true), resetStartAt);
+    schedule(() => {
+      setFirstWinRevealed(false);
+      setSafeRevealed(false);
+      setSecondWinRevealed(false);
+      setLossRevealed(false);
+      setCycleKey((key) => key + 1);
+    }, resetStartAt + GAMEPLAY_PREVIEW_RESET_FADE_MS);
+    schedule(
+      () => setIsResetting(false),
+      resetStartAt + GAMEPLAY_PREVIEW_RESET_FADE_MS + GAMEPLAY_PREVIEW_RESET_SNAP_MS,
+    );
 
     return () => {
       timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
@@ -62,30 +80,42 @@ export function JokerOriginalsMinesStatesPreview() {
 
   return (
     <div
-      className="joker-originals-mines-states-preview"
+      className={`joker-originals-mines-states-preview${
+        isResetting ? " is-resetting" : ""
+      }`}
       aria-label="Mines tile run from the design system"
     >
-      <WinTile
-        key={`win-a-${cycleKey}`}
-        revealed={firstWinRevealed}
-        multiplier="1.25x"
-        soundOnReveal={false}
-      />
-      <SafeTile
-        key={`safe-${cycleKey}`}
-        revealed={safeRevealed}
-      />
-      <WinTile
-        key={`win-b-${cycleKey}`}
-        revealed={secondWinRevealed}
-        multiplier="1.57x"
-        soundOnReveal={false}
-      />
-      <LossTile
-        key={`loss-${cycleKey}`}
-        revealed={lossRevealed}
-        soundOnReveal={false}
-      />
+      <div className="joker-originals-mines-states-preview__stage">
+        <MinesCoveredTile revealed={firstWinRevealed}>
+          <WinTile
+            key={`win-a-${cycleKey}`}
+            revealed={firstWinRevealed}
+            multiplier="1.25x"
+            soundOnReveal={false}
+          />
+        </MinesCoveredTile>
+        <MinesCoveredTile revealed={safeRevealed}>
+          <SafeTile
+            key={`safe-${cycleKey}`}
+            revealed={safeRevealed}
+          />
+        </MinesCoveredTile>
+        <MinesCoveredTile revealed={secondWinRevealed}>
+          <WinTile
+            key={`win-b-${cycleKey}`}
+            revealed={secondWinRevealed}
+            multiplier="1.57x"
+            soundOnReveal={false}
+          />
+        </MinesCoveredTile>
+        <MinesCoveredTile revealed={lossRevealed}>
+          <LossTile
+            key={`loss-${cycleKey}`}
+            revealed={lossRevealed}
+            soundOnReveal={false}
+          />
+        </MinesCoveredTile>
+      </div>
     </div>
   );
 }

@@ -7,6 +7,12 @@ import {
   JokerOriginalsGameplayTabBar,
 } from "../../../components/joker-originals-gameplay-preview/JokerOriginalsGameplayPreview.jsx";
 import { JokerOriginalsMinesInteractivePreview } from "../../../components/joker-originals-mines-interactive-preview/JokerOriginalsMinesInteractivePreview.jsx";
+import { JokerOriginalsHiloCardStackPreview } from "../../../components/joker-originals-hilo-card-stack-preview/JokerOriginalsHiloCardStackPreview.jsx";
+import { JokerOriginalsCoinflipCoinTossPreview } from "../../../components/joker-originals-coinflip-coin-toss-preview/JokerOriginalsCoinflipCoinTossPreview.jsx";
+import { JokerOriginalsRouletteGameSlotPreview } from "../../../components/joker-originals-roulette-game-slot-preview/JokerOriginalsRouletteGameSlotPreview.jsx";
+import { CoinFlipPanelPreview } from "../../../components/coin-flip-panel-preview/CoinFlipPanelPreview.jsx";
+import { RoulettePanelPreview } from "../../../components/roulette-panel-preview/RoulettePanelPreview.jsx";
+import { HiloPanelPreview } from "../../../components/hilo-panel-preview/HiloPanelPreview.jsx";
 import { MinesPanelPreview } from "../../../components/mines-panel-preview/MinesPanelPreview.jsx";
 import { CaseStudySplitFrames } from "../../../components/case-study-split-frames/CaseStudySplitFrames.jsx";
 import { ComponentCard } from "../../../components/component-card/ComponentCard.jsx";
@@ -27,6 +33,7 @@ import "./JokerOriginalsCaseStudyPage.css";
 export function JokerOriginalsCaseStudyPage() {
   const motionSystemsBaseId = useId();
   const [motionSystemsTab, setMotionSystemsTab] = useState("mines");
+  const [minesCount, setMinesCount] = useState("1");
 
   return (
     <>
@@ -130,7 +137,16 @@ export function JokerOriginalsCaseStudyPage() {
               <CaseStudySplitFrames
                 left={
                   motionSystemsTab === "mines" ? (
-                    <MinesPanelPreview />
+                    <MinesPanelPreview
+                      minesCount={minesCount}
+                      onMinesCountChange={setMinesCount}
+                    />
+                  ) : motionSystemsTab === "hilo" ? (
+                    <HiloPanelPreview />
+                  ) : motionSystemsTab === "coin-flip" ? (
+                    <CoinFlipPanelPreview />
+                  ) : motionSystemsTab === "roulette" ? (
+                    <RoulettePanelPreview />
                   ) : (
                     <CaseStudyMediaPlaceholder
                       label="Motion system A"
@@ -140,7 +156,13 @@ export function JokerOriginalsCaseStudyPage() {
                 }
                 right={
                   motionSystemsTab === "mines" ? (
-                    <JokerOriginalsMinesInteractivePreview />
+                    <JokerOriginalsMinesInteractivePreview minesCount={minesCount} />
+                  ) : motionSystemsTab === "hilo" ? (
+                    <JokerOriginalsHiloCardStackPreview />
+                  ) : motionSystemsTab === "coin-flip" ? (
+                    <JokerOriginalsCoinflipCoinTossPreview />
+                  ) : motionSystemsTab === "roulette" ? (
+                    <JokerOriginalsRouletteGameSlotPreview />
                   ) : (
                     <CaseStudyMediaPlaceholder
                       label="Motion system B"

@@ -1,5 +1,6 @@
 .joker-originals-mines-interactive-preview {
-  --game-tile-size: clamp(180px, 34vw, 280px);
+  --game-tile-size: clamp(140px, 26vw, 200px);
+  --win-tile-chip-scale: min(1.25, calc(var(--game-tile-size) / 120px));
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -8,22 +9,101 @@
   width: 100%;
   height: 100%;
   min-height: 0;
+  overflow: hidden;
   background: var(--joker-black-800);
 }
 
-.joker-originals-mines-interactive-preview__tile {
-  flex: 0 0 auto;
+.joker-originals-mines-interactive-preview__stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  transition: opacity 220ms var(--ease-out);
+}
+
+.joker-originals-mines-interactive-preview.is-resetting .joker-originals-mines-interactive-preview__stage {
+  opacity: 0;
+}
+
+.joker-originals-mines-interactive-preview__flip {
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.joker-originals-mines-interactive-preview__stack {
+  position: relative;
+  width: var(--game-tile-size);
+  height: var(--game-tile-size);
+  overflow: visible;
+}
+
+.joker-originals-mines-interactive-preview__cover {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.joker-originals-mines-interactive-preview__cover.is-flipped {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+.joker-originals-mines-interactive-preview__win {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.joker-originals-mines-interactive-preview.is-active .joker-originals-mines-interactive-preview__win {
+  opacity: 1;
+  visibility: visible;
+}
+
+.joker-originals-mines-interactive-preview.is-resetting .joker-originals-mines-interactive-preview__win {
+  transition: none;
+}
+
+.joker-originals-mines-interactive-preview .joker-win-tile-multiplier {
+  --chip-height: calc(30px * var(--win-tile-chip-scale));
+  --chip-padding-x: calc(var(--spacing-8) * var(--win-tile-chip-scale));
+  font-size: calc(var(--text-body-14) * var(--win-tile-chip-scale));
 }
 
 .joker-originals-mines-interactive-preview__chip {
   position: absolute;
   right: 16px;
   bottom: 16px;
+  z-index: 3;
+  transition:
+    color 240ms var(--ease-out),
+    border-color 240ms var(--ease-out);
+}
+
+.joker-originals-mines-interactive-preview:hover .joker-originals-mines-interactive-preview__chip {
+  border-color: var(--joker-black-200);
+  color: var(--joker-gold-400);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .joker-originals-mines-interactive-preview__stage {
+    transition: opacity 120ms linear;
+  }
+
+  .joker-originals-mines-interactive-preview__cover.is-flipped {
+    transition: none;
+  }
 }
 
 @media (max-width: 800px) {
   .joker-originals-mines-interactive-preview {
-    --game-tile-size: clamp(140px, 42vw, 220px);
+    --game-tile-size: clamp(120px, 32vw, 168px);
     min-height: 280px;
   }
 }

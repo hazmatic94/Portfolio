@@ -1,7 +1,7 @@
 import { MinesBettingPanel } from "@joker/design-system";
 import "./MinesPanelPreview.css";
 
-export function MinesPanelPreview() {
+export function MinesPanelPreview({ minesCount, onMinesCountChange }) {
   return (
     <div className="mines-panel-preview">
       <div className="mines-panel-preview__content">
@@ -9,6 +9,8 @@ export function MinesPanelPreview() {
           className="mines-panel-preview__panel"
           defaultBetAmount="50"
           defaultMinesAmount="1"
+          minesAmount={minesCount}
+          onMinesAmountChange={onMinesCountChange}
           disablePlaceBetUntilBetAmount={false}
           onPlaceBet={() => {}}
         />
