@@ -89,6 +89,34 @@ const CASE_STUDIES = [
       />
     ),
   },
+  {
+    number: "04",
+    section: "Product",
+    label: "Sportsbook",
+    title: "Designing a curated sports book.",
+    body: "Creating a scalable betting platform focused on clarity, structured markets and intuitive bet construction.",
+    chips: ["Sportsbook", "Betslip", "Matches"],
+    ctaLabel: "Coming soon",
+    mediaOverlay: (
+      <ComponentCard className="project-container__media-overlay">
+        <ComponentCardMobilePreview
+          src="/images/sportsbook-mobile-betslip.png"
+          srcSet="/images/sportsbook-mobile-betslip.png 390w, /images/sportsbook-mobile-betslip@2x.png 1170w"
+          alt="Joker Plus mobile sportsbook with betslip open"
+        />
+      </ComponentCard>
+    ),
+    media: (
+      <PortfolioMockupStage
+        desktopSrc="/images/sportsbook-hero.png"
+        desktopSrcSet="/images/sportsbook-hero.png 1366w, /images/sportsbook-hero@2x.png 2732w"
+        desktopSizes="(min-width: 1000px) 952px, 100vw"
+        desktopWidth={1366}
+        desktopHeight={900}
+        desktopLabel="Joker Plus sportsbook with live matches and odds"
+      />
+    ),
+  },
 ];
 
 function CaseStudyBlock({
@@ -98,6 +126,7 @@ function CaseStudyBlock({
   body,
   chips = [],
   href = null,
+  ctaLabel = "View Project",
   media = null,
   mediaOverlay = null,
 }) {
@@ -116,6 +145,7 @@ function CaseStudyBlock({
           body={body}
           chips={chips}
           href={href}
+          ctaLabel={ctaLabel}
           media={media}
           mediaOverlay={mediaOverlay}
         />

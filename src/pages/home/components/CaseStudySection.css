@@ -31,6 +31,16 @@
   overflow: visible;
 }
 
+.case-study-section__projects .case-study-media-placeholder--grid {
+  min-height: 420px;
+}
+
+@media (min-width: 801px) {
+  .case-study-section__projects .case-study-media-placeholder--grid {
+    min-height: 540px;
+  }
+}
+
 
 .case-study-block--reveal .section-divider__number,
 .case-study-block--reveal .section-divider__pipe,
