@@ -1,0 +1,404 @@
+.sportsbook-upcoming-league-preview {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--joker-black-800);
+}
+
+.sportsbook-upcoming-league-preview__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sportsbook-upcoming-league-preview__card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sportsbook-upcoming-league-preview__date-header,
+.sportsbook-upcoming-league-preview__match-row {
+  display: flex;
+  width: 100%;
+}
+
+.sportsbook-upcoming-league-preview__date-header {
+  border-top: var(--border-width-default) solid var(--joker-black-300);
+  background: var(--joker-black-800);
+}
+
+.sportsbook-upcoming-league-preview__date-header > .joker-date-row,
+.sportsbook-upcoming-league-preview__match-panel,
+.sportsbook-upcoming-league-preview__odds-panel {
+  flex: 0 0 50%;
+  width: 50%;
+  min-width: 0;
+}
+
+.sportsbook-upcoming-league-preview__date-header > .joker-date-row,
+.sportsbook-upcoming-league-preview__odds-labels {
+  height: 40px;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.sportsbook-upcoming-league-preview__odds-labels {
+  display: none;
+}
+
+.sportsbook-upcoming-league-preview__date-header > .joker-date-row {
+  flex: 1 1 100%;
+  width: 100%;
+  border-right: 0;
+}
+
+.sportsbook-upcoming-league-preview__match-row {
+  align-items: stretch;
+  min-height: 88px;
+}
+
+.sportsbook-upcoming-league-preview__match-panel {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  min-height: 88px;
+  padding: var(--spacing-12) var(--spacing-16);
+  gap: 0;
+  border-right: var(--border-width-default) solid var(--joker-black-300);
+  border-bottom: 0;
+  background: var(--joker-black-700);
+}
+
+.sportsbook-upcoming-league-preview__match-leading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+.sportsbook-upcoming-league-preview__match-time {
+  order: 0;
+  font-size: var(--text-body-12);
+  line-height: 1.2;
+}
+
+.sportsbook-upcoming-league-preview__match-leading
+  .joker-upcoming-matches__team-stack {
+  width: 100%;
+  gap: var(--spacing-4);
+}
+
+.sportsbook-upcoming-league-preview__odds-panel {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.sportsbook-upcoming-league-preview__odds-panels {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  border-bottom: 0;
+}
+
+.sportsbook-upcoming-league-preview__odds-panels
+  .joker-odds-panel:not(:last-child) {
+  border-right: var(--border-width-default) solid var(--joker-black-300);
+}
+
+.sportsbook-upcoming-league-preview__odds-panels .joker-odds-panel,
+.sportsbook-upcoming-league-preview__odds-cell {
+  flex: 1 1 0;
+  align-self: stretch;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  padding-inline: var(--spacing-8);
+  font-size: var(--text-body-12);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+/* Overlay — three separate cards, 20px apart, scrolling upward */
+.sportsbook-upcoming-league-preview--overlay {
+  --upcoming-card-height: 196px;
+  --upcoming-card-gap: 20px;
+  --upcoming-stack-height: calc(
+    (3 * var(--upcoming-card-height)) + (2 * var(--upcoming-card-gap))
+  );
+  --upcoming-fade-height: 96px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__viewport {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  height: min(var(--upcoming-stack-height), 100%);
+  max-height: 100%;
+  margin: 0;
+  background: transparent;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__viewport::before,
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__viewport::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 3;
+  height: var(--upcoming-fade-height);
+  min-height: var(--upcoming-fade-height);
+  pointer-events: none;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__viewport::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--joker-black-800) 0%,
+    color-mix(in srgb, var(--joker-black-800) 88%, transparent) 35%,
+    color-mix(in srgb, var(--joker-black-800) 45%, transparent) 65%,
+    transparent 100%
+  );
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__viewport::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--joker-black-800) 0%,
+    color-mix(in srgb, var(--joker-black-800) 88%, transparent) 35%,
+    color-mix(in srgb, var(--joker-black-800) 45%, transparent) 65%,
+    transparent 100%
+  );
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--upcoming-card-gap);
+  animation: sportsbook-upcoming-scroll-up 24s linear infinite;
+  will-change: transform;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--upcoming-card-gap);
+  flex-shrink: 0;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__card-item {
+  display: flex;
+  flex: 0 0 var(--upcoming-card-height);
+  flex-direction: column;
+  min-height: var(--upcoming-card-height);
+  overflow: hidden;
+  border: var(--border-width-default) solid var(--joker-black-300);
+  border-radius: 6px;
+  background: var(--joker-black-800);
+}
+
+@keyframes sportsbook-upcoming-scroll-up {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(
+      calc(-1 * (var(--upcoming-stack-height) + var(--upcoming-card-gap)))
+    );
+  }
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__content {
+  height: auto;
+  overflow: hidden;
+  border: var(--border-width-default) solid var(--joker-black-300);
+  border-radius: 6px;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__date-header {
+  align-items: stretch;
+  background: var(--joker-black-800);
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__date-header
+  > .joker-date-row {
+  flex: 0 0 50%;
+  width: 50%;
+  max-width: 50%;
+  background: var(--joker-black-800);
+  border-right: var(--border-width-default) solid var(--joker-black-300);
+  border-bottom: var(--border-width-default) solid var(--joker-black-300);
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__odds-labels {
+  display: grid;
+  flex: 0 0 50%;
+  width: 50%;
+  max-width: 50%;
+  background: var(--joker-black-800);
+  border-bottom: var(--border-width-default) solid var(--joker-black-300);
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__odds-labels
+  .joker-odds-row {
+  height: 100%;
+  min-height: 0;
+  background: var(--joker-black-800);
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__match-row {
+  align-items: stretch;
+  min-height: 100px;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__match-panel {
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 100%;
+  min-height: 100px;
+  padding: var(--spacing-12) var(--spacing-16);
+  gap: 0;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__odds-panel {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-height: 0;
+  background: var(--joker-black-700);
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__match-leading {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--spacing-8);
+  height: 100%;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__match-time {
+  order: 0;
+  font-size: var(--text-body-12);
+  line-height: 1.2;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__match-leading
+  .joker-upcoming-matches__team-stack {
+  width: 100%;
+  gap: var(--spacing-4);
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__odds-panels {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  align-self: stretch;
+  border-bottom: 0;
+}
+
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__odds-panels
+  > button.joker-odds-panel,
+.sportsbook-upcoming-league-preview--overlay
+  .sportsbook-upcoming-league-preview__odds-panels
+  .sportsbook-upcoming-league-preview__odds-cell {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  font-size: var(--text-body-14);
+  padding-inline: var(--spacing-12);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.sportsbook-upcoming-league-preview__fade {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 80px;
+  min-height: 80px;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    var(--joker-black-800) 0%,
+    color-mix(in srgb, var(--joker-black-800) 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sportsbook-upcoming-league-preview--overlay
+    .sportsbook-upcoming-league-preview__track {
+    animation: none;
+    transform: translateY(0);
+  }
+
+  .sportsbook-upcoming-league-preview--overlay
+    .sportsbook-upcoming-league-preview__stack:nth-child(n + 2) {
+    display: none;
+  }
+}

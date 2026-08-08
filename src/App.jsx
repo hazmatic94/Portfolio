@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { ApplicationShellCaseStudyPage } from "./pages/case-studies/application-shell/ApplicationShellCaseStudyPage.jsx";
 import { DesignSystemCaseStudyPage } from "./pages/case-studies/design-system/DesignSystemCaseStudyPage.jsx";
 import { JokerOriginalsCaseStudyPage } from "./pages/case-studies/joker-originals/JokerOriginalsCaseStudyPage.jsx";
+import { SportsbookCaseStudyPage } from "./pages/case-studies/sportsbook/SportsbookCaseStudyPage.jsx";
 import { HomePage } from "./pages/home/HomePage.jsx";
 import "./styles/page-transitions.css";
 
@@ -36,6 +37,10 @@ function AppRoutes() {
           <Route
             path="/case-studies/joker-originals"
             element={<JokerOriginalsCaseStudyPage />}
+          />
+          <Route
+            path="/case-studies/sportsbook"
+            element={<SportsbookCaseStudyPage />}
           />
         </Routes>
       </div>

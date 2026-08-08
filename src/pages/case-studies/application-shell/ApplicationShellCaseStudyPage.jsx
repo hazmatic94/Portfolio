@@ -81,7 +81,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="01" title="Blueprint" />
           <CaseStudyInlineCopy
-            title="The Framework"
+            title="The framework"
             body="I designed a reusable application shell that established shared layouts, and constraints making new games faster to design, test and ship."
           />
           <div className="application-shell-case-study__section-media">
@@ -97,7 +97,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="02" title="Constraints" />
           <CaseStudyInlineCopy
-            title="Built Around Gameplay"
+            title="Built around gameplay"
             body="Every game inherited the same foundational framework with predefined layout and gameplay constraints."
           />
           <div className="application-shell-case-study__section-media">
@@ -113,7 +113,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="03" title="Behaviour" />
           <CaseStudyInlineCopy
-            title="Adaptive Betting Panel"
+            title="Adaptive betting panel"
             body="The betting panel was designed to shrink with the browser, which gives the user maximum game view."
           />
           <div className="application-shell-case-study__section-media">
@@ -129,7 +129,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="04" title="Architecture" />
           <CaseStudyInlineCopy
-            title="Built to Scale"
+            title="Built to scale"
             body="Each layer built on the last, from design system to application shell to gameplay."
           />
           <div className="application-shell-case-study__section-media">

@@ -34,7 +34,7 @@ export function DesignSystemCaseStudyPage() {
           </div>
 
           <CaseStudyIntro
-            title="One package. Every product."
+            title="Design System"
             body="I built a shared design system so Joker's shell, games and docs could ship from one source of truth, rather than five parallel ones."
             ctaLabel="View Live Demo"
           />
@@ -114,9 +114,9 @@ export function DesignSystemCaseStudyPage() {
 
         <CaseStudyRevealSection
           className="design-system-case-study__developer-experience"
-          ariaLabel="Built for production"
+          ariaLabel="Built for Production"
         >
-          <SectionDivider number="04" title="Built for production" />
+          <SectionDivider number="04" title="Built for Production" />
           <CaseStudyInlineCopy
             title="From design decisions to production code"
             body="I didn't just define the system, I built Originals with it. Every game was a stress test for the components, tokens and patterns. When something broke in real use, it went back into the package."

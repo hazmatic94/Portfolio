@@ -11,7 +11,7 @@ const CASE_STUDIES = [
     number: "01",
     section: "Foundation",
     label: "Design System",
-    title: "One package. Every product.",
+    title: "Design System",
     body: "A shared component library powering the shell, games and documentation.",
     chips: [
       "Design Tokens",
@@ -93,10 +93,10 @@ const CASE_STUDIES = [
     number: "04",
     section: "Product",
     label: "Sportsbook",
-    title: "Designing a curated sports book.",
+    title: "Designing a curated sportsbook",
     body: "Creating a scalable betting platform focused on clarity, structured markets and intuitive bet construction.",
     chips: ["Sportsbook", "Betslip", "Matches"],
-    ctaLabel: "Coming soon",
+    href: "/case-studies/sportsbook",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview

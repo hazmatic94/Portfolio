@@ -50,7 +50,7 @@ export function JokerOriginalsCaseStudyPage() {
           </div>
 
           <CaseStudyIntro
-            title="Joker Originals"
+            title="Original games, built end to end"
             body="Original games, built end to end — mechanics, motion, and reusable gameplay components on top of the shell."
             ctaLabel="View Live Demo"
             ctaHref="/case-studies/joker-originals"
@@ -96,7 +96,7 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="01" title="Collection" />
           <CaseStudyInlineCopy
-            title="Four Original Games"
+            title="Four original games"
             body="After establishing the application shell, I designed and built a scalable library of original casino games that could be expanded consistently over time."
           />
           <div className="joker-originals-case-study__section-media">
@@ -110,7 +110,7 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="02" title="Gameplay" />
           <CaseStudyInlineCopy
-            title="Risk and Reward"
+            title="Risk and reward"
             body="Each game balances player decisions, probability and multipliers to create rewarding moments while maintaining a consistent level of risk."
           />
           <div className="joker-originals-case-study__section-media">
@@ -124,7 +124,7 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="03" title="Interactions" />
           <CaseStudyInlineCopy
-            title="Motion Systems"
+            title="Motion systems"
             body="Consistent motion and feedback create familiar interactions while giving each game its own distinct personality."
           />
           <div className="joker-originals-case-study__section-media">
@@ -185,7 +185,7 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="04" title="Vision" />
           <CaseStudyInlineCopy
-            title="Shared Mechanics"
+            title="Shared mechanics"
             body="Shared mechanics, reusable interactions and familiar gameplay created a platform that could grow over time."
           />
           <div className="joker-originals-case-study__section-media">
@@ -204,13 +204,13 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <div className="joker-originals-case-study__shell">
             <CaseStudyProjectRail
-              lead="01"
-              title="Design System"
-              href="/case-studies/design-system"
+              lead="04"
+              title="Sportsbook"
+              href="/case-studies/sportsbook"
             />
           </div>
           <Link
-            to="/case-studies/design-system"
+            to="/case-studies/sportsbook"
             className="joker-originals-case-study__next-label"
           >
             Next
