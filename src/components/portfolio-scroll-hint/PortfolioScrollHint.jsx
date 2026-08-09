@@ -3,7 +3,18 @@ import "./PortfolioScrollHint.css";
 
 const SCROLL_STOP_DELAY_MS = 360;
 const BOTTOM_THRESHOLD_PX = 24;
-const SCROLL_EDGE_THRESHOLD_PX = 1;
+const SCROLL_EDGE_THRESHOLD_PX = 2;
+
+function scrollPageBy(deltaY, deltaX = 0) {
+  const scrollingElement = document.scrollingElement;
+  if (scrollingElement) {
+    scrollingElement.scrollTop += deltaY;
+    scrollingElement.scrollLeft += deltaX;
+    return;
+  }
+
+  window.scrollBy({ top: deltaY, left: deltaX, behavior: "auto" });
+}
 
 function useNestedScrollChaining(scrollRef) {
   useEffect(() => {
@@ -14,10 +25,11 @@ function useNestedScrollChaining(scrollRef) {
 
     const getEdges = () => {
       const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+      const maxScrollTop = Math.max(0, scrollHeight - clientHeight);
+
       return {
         atTop: scrollTop <= SCROLL_EDGE_THRESHOLD_PX,
-        atBottom:
-          scrollTop + clientHeight >= scrollHeight - SCROLL_EDGE_THRESHOLD_PX,
+        atBottom: scrollTop >= maxScrollTop - SCROLL_EDGE_THRESHOLD_PX,
       };
     };
 
@@ -28,11 +40,7 @@ function useNestedScrollChaining(scrollRef) {
 
       if ((scrollingUp && atTop) || (scrollingDown && atBottom)) {
         event.preventDefault();
-        window.scrollBy({
-          top: event.deltaY,
-          left: event.deltaX,
-          behavior: "auto",
-        });
+        scrollPageBy(event.deltaY, event.deltaX);
       }
     };
 
@@ -56,13 +64,14 @@ function useNestedScrollChaining(scrollRef) {
       const scrollingUp = deltaY < 0;
 
       if ((scrollingDown && atBottom) || (scrollingUp && atTop)) {
-        window.scrollBy({ top: deltaY, left: 0, behavior: "auto" });
+        event.preventDefault();
+        scrollPageBy(deltaY);
       }
     };
 
     scrollEl.addEventListener("wheel", onWheel, { passive: false });
     scrollEl.addEventListener("touchstart", onTouchStart, { passive: true });
-    scrollEl.addEventListener("touchmove", onTouchMove, { passive: true });
+    scrollEl.addEventListener("touchmove", onTouchMove, { passive: false });
 
     return () => {
       scrollEl.removeEventListener("wheel", onWheel);

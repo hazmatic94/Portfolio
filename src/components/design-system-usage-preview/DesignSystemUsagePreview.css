@@ -36,10 +36,11 @@
 
 .ds-usage-preview__scroll {
   padding: 20px 18px;
+  overscroll-behavior-y: auto;
 }
 
 .ds-usage-preview__hint {
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
 }
 

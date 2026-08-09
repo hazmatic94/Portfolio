@@ -13,6 +13,7 @@ import { CaseStudyPageHeader, CaseStudyProjectRail } from "../../../components/c
 import { CaseStudyRevealSection } from "../../../components/case-study-reveal/CaseStudyRevealSection.jsx";
 import { FooterLegal } from "../../../components/footer/Footer.jsx";
 import { Nav } from "../../../components/nav/Nav.jsx";
+import { PageMeta } from "../../../components/page-meta/PageMeta.jsx";
 import { PortfolioMockupStage } from "../../../components/portfolio-video-mockup/PortfolioMockupStage.jsx";
 import { SectionDivider } from "../../../components/section-divider/SectionDivider.jsx";
 import "../../../components/project-container/ProjectContainer.css";
@@ -20,9 +21,20 @@ import "../../../styles/case-study-layout.css";
 import "../../../pages/home/components/CaseStudySection.css";
 import "./DesignSystemCaseStudyPage.css";
 
+const DESIGN_SYSTEM_PAGE_TITLE = "Design System";
+const DESIGN_SYSTEM_META_DESCRIPTION =
+  "Interactive case study exploring the design system that unified Joker's platform, games, and documentation through shared tokens, components, and production code.";
+const DESIGN_SYSTEM_OG_IMAGE = "/og/design-system.jpg";
+
 export function DesignSystemCaseStudyPage() {
   return (
     <>
+      <PageMeta
+        title={DESIGN_SYSTEM_PAGE_TITLE}
+        description={DESIGN_SYSTEM_META_DESCRIPTION}
+        canonicalPath="/case-studies/design-system"
+        ogImage={DESIGN_SYSTEM_OG_IMAGE}
+      />
       <Nav />
       <main className="design-system-case-study">
         <CaseStudyRevealSection
@@ -89,7 +101,7 @@ export function DesignSystemCaseStudyPage() {
           <SectionDivider number="02" title="Foundations" />
           <CaseStudyInlineCopy
             title="A Shared Language"
-            body="I built the foundations first, eliminating guesswork and creating a shared language across every product."
+            body="I defined the foundations upfront, removing guesswork and giving design and code the same shared language."
           />
           <div className="design-system-case-study__section-media">
             <CaseStudySplitFrames
@@ -108,7 +120,7 @@ export function DesignSystemCaseStudyPage() {
           <SectionDivider number="03" title="Components" />
           <CaseStudyInlineCopy
             title="Building Blocks"
-            body="I built the component library first, so every product could be assembled from reusable building blocks instead of redesigned from scratch."
+            body="Core controls and game-specific components became reusable building blocks, making new experiences faster to assemble and iterate."
           />
           <div className="design-system-case-study__section-media">
             <ComponentShowcaseGrid />
@@ -123,7 +135,7 @@ export function DesignSystemCaseStudyPage() {
           <SectionDivider number="04" title="Production" />
           <CaseStudyInlineCopy
             title="Import Once"
-            body="The system shipped as a single package, making adoption fast and implementation consistent across every product."
+            body="The system shipped as a single package, making it simple to bring the same components, tokens and styles into each build."
           />
           <div className="design-system-case-study__section-media">
             <CaseStudySplitFrames

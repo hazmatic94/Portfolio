@@ -127,6 +127,11 @@
   padding-top: var(--case-study-section-gap);
 }
 
+.design-system-case-study__developer-experience
+  .design-system-case-study__section-media {
+  overflow: visible;
+}
+
 .design-system-case-study__next-project.case-study-block--reveal {
   --case-study-rule-delay: 260ms;
 }
