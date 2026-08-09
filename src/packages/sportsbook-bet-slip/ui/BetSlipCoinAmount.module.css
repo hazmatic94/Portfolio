@@ -1,0 +1,21 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  white-space: nowrap;
+}
+
+.value {
+  font-family: var(--font);
+  line-height: var(--text-body-line-height);
+}
+
+.coinSm {
+  width: 16px;
+  height: 16px;
+}
+
+.coinMd {
+  width: 20px;
+  height: 20px;
+}

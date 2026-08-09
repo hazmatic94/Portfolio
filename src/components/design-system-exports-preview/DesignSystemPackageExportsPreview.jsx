@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { CodePanelCopyButton } from "../code-panel-copy-button/CodePanelCopyButton.jsx";
+import { PortfolioScrollHint } from "../portfolio-scroll-hint/PortfolioScrollHint.jsx";
 import "./DesignSystemPackageExportsPreview.css";
 
 const EXPORT_SECTIONS = [
@@ -112,21 +112,6 @@ function buildExportTreeText() {
 
 const EXPORT_TREE_TEXT = buildExportTreeText();
 
-function ScrollChevron() {
-  return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-      <path
-        d="M5 7.5 10 12.5 15 7.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  );
-}
-
 function ExportTree() {
   return (
     <div className="ds-exports-preview__tree">
@@ -165,50 +150,18 @@ function ExportTree() {
 }
 
 export function DesignSystemPackageExportsPreview() {
-  const scrollRef = useRef(null);
-  const [showChevron, setShowChevron] = useState(false);
-
-  useEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl) {
-      return;
-    }
-
-    const updateChevron = () => {
-      const { scrollTop, scrollHeight, clientHeight } = scrollEl;
-      const canScroll = scrollHeight > clientHeight + 1;
-      const atBottom = scrollTop + clientHeight >= scrollHeight - 8;
-      setShowChevron(canScroll && !atBottom);
-    };
-
-    updateChevron();
-    scrollEl.addEventListener("scroll", updateChevron, { passive: true });
-
-    const resizeObserver = new ResizeObserver(updateChevron);
-    resizeObserver.observe(scrollEl);
-
-    return () => {
-      scrollEl.removeEventListener("scroll", updateChevron);
-      resizeObserver.disconnect();
-    };
-  }, []);
-
   return (
     <div className="ds-exports-preview">
       <div className="ds-exports-preview__header">
         <span className="ds-exports-preview__filename">dist/index</span>
         <CodePanelCopyButton value={EXPORT_TREE_TEXT} copyLabel="Copy dist/index" />
       </div>
-      <div ref={scrollRef} className="ds-exports-preview__scroll">
-        <ExportTree />
-      </div>
-      <div className="ds-exports-preview__fade" aria-hidden="true" />
-      <div
-        className={`ds-exports-preview__chevron${showChevron ? "" : " ds-exports-preview__chevron--hidden"}`}
-        aria-hidden="true"
+      <PortfolioScrollHint
+        className="ds-exports-preview__hint"
+        scrollClassName="ds-exports-preview__scroll"
       >
-        <ScrollChevron />
-      </div>
+        <ExportTree />
+      </PortfolioScrollHint>
     </div>
   );
 }

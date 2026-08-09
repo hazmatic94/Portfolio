@@ -9,6 +9,7 @@ import {
   CodeTag,
 } from "../component-card/ComponentCardCodeParts.jsx";
 import { CodePanelCopyButton } from "../code-panel-copy-button/CodePanelCopyButton.jsx";
+import { PortfolioScrollHint } from "../portfolio-scroll-hint/PortfolioScrollHint.jsx";
 import "./DesignSystemUsagePreview.css";
 
 const USAGE_CODE = `import "@joker/design-system/styles.css";
@@ -123,9 +124,12 @@ export function DesignSystemUsagePreview() {
         <span className="ds-usage-preview__filename">GamePage.tsx</span>
         <CodePanelCopyButton value={USAGE_CODE} copyLabel="Copy GamePage.tsx" />
       </div>
-      <div className="ds-usage-preview__scroll">
+      <PortfolioScrollHint
+        className="ds-usage-preview__hint"
+        scrollClassName="ds-usage-preview__scroll"
+      >
         <UsageCode />
-      </div>
+      </PortfolioScrollHint>
     </div>
   );
 }

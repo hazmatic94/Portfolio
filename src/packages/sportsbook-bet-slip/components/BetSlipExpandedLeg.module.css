@@ -1,0 +1,231 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px;
+  align-items: start;
+  gap: var(--spacing-12);
+  width: 100%;
+  min-width: 0;
+  padding: var(--spacing-16);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: var(--spacing-8);
+  row-gap: var(--spacing-4);
+  align-items: center;
+  min-width: 0;
+}
+
+.remove {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--joker-black-50);
+}
+
+.teamName {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--joker-gold-400);
+  font-family: var(--font);
+  font-size: var(--text-body-14);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.odds {
+  grid-column: 3;
+  grid-row: 1;
+  color: var(--joker-white-50);
+  font-family: var(--font);
+  font-size: var(--text-body-14);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+  white-space: nowrap;
+}
+
+.market {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  min-width: 0;
+  margin: 0;
+  color: var(--joker-white-50);
+  font-family: var(--font);
+  font-size: var(--text-body-12);
+  font-weight: 600;
+  line-height: var(--text-body-line-height);
+}
+
+.market > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.marketDivider {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--joker-black-50);
+}
+
+.matchup {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+  overflow: hidden;
+  color: var(--joker-black-50);
+  font-family: var(--font);
+  font-size: var(--text-body-12);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rootConfirm {
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  column-gap: var(--spacing-8);
+  row-gap: var(--spacing-4);
+  align-items: center;
+}
+
+.rootConfirm .body {
+  display: contents;
+}
+
+.rootConfirm .stakeDisplay {
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.rootConfirm .returnsBlock {
+  grid-column: 2 / -1;
+  grid-row: 4;
+  justify-self: end;
+  align-self: start;
+}
+
+.rootPlaced.rootConfirm {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+.rootPlaced.rootConfirm .body {
+  display: contents;
+}
+
+.rootPlaced .teamName {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.rootPlaced .odds {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.rootPlaced .market {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.rootPlaced .matchup {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+.rootPlaced .betRef {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin: var(--spacing-8) 0 0;
+  color: var(--joker-black-50);
+  font-family: var(--font);
+  font-size: var(--text-body-12);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+}
+
+.removeSpacer {
+  grid-column: 1;
+  grid-row: 1;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+}
+
+.returnsBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-4);
+}
+
+.stakeDisplay {
+  color: var(--joker-gold-400);
+}
+
+.stakeDisplayValue {
+  font-size: var(--text-body-14);
+  font-weight: 600;
+}
+
+.returnsValue {
+  color: var(--joker-white-50);
+}
+
+.returnsValueText {
+  font-size: var(--text-body-12);
+  font-weight: 600;
+}
+
+.returnsLabel {
+  color: var(--joker-black-50);
+  font-family: var(--font);
+  font-size: var(--text-body-12);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+  white-space: nowrap;
+}
+
+.returnsValue {
+  align-self: end;
+}
+
+.stakeField:global(.joker-input-field) {
+  width: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  gap: 0;
+  align-self: start;
+}
+
+.stakeField :global(.joker-input-control) {
+  width: 100px;
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
+  padding-inline: var(--spacing-8);
+  border: 1px solid var(--joker-black-300);
+  border-radius: var(--radius-sm);
+  background: var(--joker-black-700);
+}
+
+.stakeField :global(.joker-input-control input) {
+  font-size: var(--text-body-14);
+  text-align: right;
+}
+
+.stakeField :global(.joker-input-icon img) {
+  width: 16px;
+  height: 16px;
+}

@@ -90,11 +90,21 @@
   pointer-events: none;
 }
 
+.sportsbook-case-study__overview
+  .case-study-split-frames__panel--fill
+  .sportsbook-live-games-preview {
+  pointer-events: none;
+}
+
 .sportsbook-case-study__hero {
   margin-top: 0;
 }
 
 .sportsbook-case-study__betslip-image {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 360px;
   object-fit: contain;
   object-position: center top;
   background: var(--joker-black-800);
@@ -102,6 +112,59 @@
 
 .sportsbook-case-study__overview .sportsbook-case-study__section-media {
   overflow: visible;
+}
+
+.sportsbook-case-study__foundations .sportsbook-case-study__section-media {
+  overflow: visible;
+}
+
+.sportsbook-case-study__foundations
+  .case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame {
+  cursor: default;
+  transform: none;
+}
+
+.sportsbook-case-study__foundations .case-study-full-width-frame__media {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+}
+
+.sportsbook-case-study__foundations .sportsbook-betslip-section-preview {
+  pointer-events: auto;
+}
+
+.sportsbook-case-study__foundations
+  .case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media:has(.sportsbook-betslip-section-preview),
+.sportsbook-case-study__foundations
+  .case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:hover
+  .sportsbook-betslip-section-preview
+  :is(
+    .sportsbook-betslip-section-preview__match-row,
+    .sportsbook-betslip-section-preview__match-panel,
+    .sportsbook-betslip-section-preview__odds-panels .joker-odds-panel,
+    .sportsbook-betslip-section-preview__date-header > .joker-date-row
+  ) {
+  border-color: var(--joker-black-300);
+}
+
+.sportsbook-case-study__foundations
+  .case-study-full-width-frame__media:has(.sportsbook-betslip-section-preview) {
+  padding: 0;
+}
+
+@media (max-width: 800px) {
+  .sportsbook-case-study__foundations
+    .case-study-full-width-frame__media:has(.sportsbook-betslip-section-preview) {
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-16);
+  }
 }
 
 .sportsbook-case-study__architecture .sportsbook-case-study__section-media {
@@ -186,6 +249,60 @@
 .sportsbook-case-study__architecture,
 .sportsbook-case-study__next-project {
   padding-top: var(--case-study-section-gap);
+}
+
+.sportsbook-case-study__interactions .sportsbook-case-study__section-media {
+  overflow: visible;
+}
+
+.sportsbook-case-study__interactions
+  .case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame {
+  cursor: default;
+  transform: none;
+}
+
+.sportsbook-case-study__interactions .case-study-full-width-frame__media {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+}
+
+.sportsbook-case-study__interactions .sportsbook-markets-section-preview {
+  pointer-events: auto;
+}
+
+.sportsbook-case-study__interactions
+  .case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media:has(.sportsbook-markets-section-preview),
+.sportsbook-case-study__interactions
+  .case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:hover
+  .sportsbook-markets-section-preview
+  :is(
+    .sportsbook-markets-section-preview__market,
+    .sportsbook-markets-section-preview__market-header,
+    .sportsbook-markets-section-preview__panels .joker-odds-panel,
+    .sportsbook-markets-section-preview__correct-score-cell,
+    .sportsbook-markets-section-preview__asian-handicap-grid .joker-odds-panel
+  ) {
+  border-color: var(--joker-black-300);
+}
+
+.sportsbook-case-study__interactions
+  .case-study-full-width-frame__media:has(.sportsbook-markets-section-preview) {
+  padding: 0;
+}
+
+@media (max-width: 800px) {
+  .sportsbook-case-study__interactions
+    .case-study-full-width-frame__media:has(.sportsbook-markets-section-preview) {
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
+  }
 }
 
 .sportsbook-case-study__interactions .case-study-media-placeholder {

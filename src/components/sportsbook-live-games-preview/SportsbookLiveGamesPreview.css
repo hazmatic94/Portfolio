@@ -1,0 +1,159 @@
+.sportsbook-live-games-preview {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: 16px 0 0;
+  background: var(--joker-black-800);
+}
+
+.sportsbook-live-games-preview__title {
+  margin: 0 0 15px;
+  padding-inline: 24px;
+  height: 24px;
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-h3);
+  font-weight: var(--text-heading-weight);
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--joker-red-400);
+}
+
+.sportsbook-live-games-preview__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sportsbook-live-games-preview__card {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.sportsbook-live-games-preview__card:not(:last-child)
+  .sportsbook-live-games-preview__score
+  .joker-live-match-score {
+  border-bottom: 0;
+}
+
+.sportsbook-live-games-preview__card-header {
+  position: relative;
+  width: 100%;
+}
+
+.sportsbook-live-games-preview__live-badge {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-24);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(-50%);
+}
+
+.sportsbook-live-games-preview__live-badge-dot {
+  position: relative;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.sportsbook-live-games-preview__live-badge-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--joker-red-400);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--joker-red-400) 24%, transparent);
+  animation: sportsbook-live-games-badge-pulse 1.8s var(--ease-standard) infinite;
+}
+
+.sportsbook-live-games-preview__live-badge-label {
+  display: flex;
+  align-items: center;
+  height: 16px;
+  transform: translateY(2px);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--joker-red-400);
+}
+
+@keyframes sportsbook-live-games-badge-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--joker-red-400) 24%, transparent);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--joker-red-400) 12%, transparent),
+      0 0 0 7px color-mix(in srgb, var(--joker-red-400) 18%, transparent);
+  }
+}
+
+.sportsbook-live-games-preview__score.joker-live-match-score-group {
+  display: grid;
+  grid-template-rows: 40px auto;
+  width: 100%;
+  max-width: none;
+}
+
+.sportsbook-live-games-preview__score .joker-date-row,
+.sportsbook-live-games-preview__score .joker-live-match-score {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.sportsbook-live-games-preview__score .joker-date-row {
+  height: 40px;
+  min-height: 40px;
+  padding-inline: var(--spacing-24);
+  border-right: 0;
+}
+
+.sportsbook-live-games-preview__score .joker-live-match-score {
+  min-height: 100px;
+  padding-inline: var(--spacing-24);
+  border-right: 0;
+}
+
+.sportsbook-live-games-preview__fade {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 80px;
+  min-height: 80px;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    var(--joker-black-800) 0%,
+    color-mix(in srgb, var(--joker-black-800) 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sportsbook-live-games-preview__live-badge-dot::before {
+    animation: none;
+  }
+}

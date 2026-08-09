@@ -1,0 +1,19 @@
+.root {
+  display: inline-flex;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--joker-white-50);
+  cursor: pointer;
+}
+
+.root svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

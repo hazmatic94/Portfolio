@@ -35,16 +35,12 @@
 }
 
 .ds-usage-preview__scroll {
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
   padding: 20px 18px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
-.ds-usage-preview__scroll::-webkit-scrollbar {
-  display: none;
+.ds-usage-preview__hint {
+  flex: 1;
+  min-height: 0;
 }
 
 .ds-usage-preview__code {

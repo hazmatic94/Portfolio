@@ -1,0 +1,317 @@
+.dock {
+  position: fixed;
+  bottom: var(--betslip-dock-bottom, var(--spacing-32));
+  left: var(--betslip-dock-left, 50%);
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: var(--betslip-dock-width, 100%);
+  max-width: 450px;
+  max-height: min(
+    650px,
+    calc(
+      100dvh - var(--betslip-dock-bottom, var(--spacing-32)) -
+        var(--betslip-dock-top-clearance, 42px)
+    )
+  );
+  transform: translateX(-50%);
+  pointer-events: auto;
+  animation: betSlipPopIn var(--motion-base) var(--ease-out);
+}
+
+.dockEmbedded {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 3;
+  width: min(100%, 450px);
+  max-width: 450px;
+  max-height: min(650px, calc(100% - 40px));
+}
+
+@keyframes betSlipPopIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes betSlipContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock {
+    animation: none;
+  }
+}
+
+.card {
+  --betslip-card-radius: 8px;
+  --betslip-inner-radius: 7px;
+
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--joker-black-300);
+  border-radius: var(--betslip-card-radius);
+  background: var(--joker-black-700);
+  box-shadow: var(--shadow-4);
+  transition: background-color var(--motion-base) var(--ease-standard);
+}
+
+.viewEnter {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.viewEnterExpanded {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .viewEnter {
+    animation: betSlipContentIn var(--motion-base) var(--ease-out) both;
+  }
+
+  .viewEnterExpanded {
+    animation: none;
+  }
+
+  .selectionSection {
+    overflow: visible;
+  }
+}
+
+.cardExpanded {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--joker-black-500);
+}
+
+.selectionSection {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding: 0;
+  border-bottom: 1px solid var(--joker-black-300);
+  background: var(--joker-black-500);
+}
+
+.selectionSection > :global(.joker-bet-slip-row),
+.selectionSection .viewEnter > :global(.joker-bet-slip-row) {
+  box-sizing: border-box;
+  padding: var(--spacing-16);
+}
+
+.selectionSectionStacked {
+  border-bottom: 0;
+}
+
+.selectionSectionConfirm {
+  border-bottom: 0;
+}
+
+.confirmHeader {
+  padding: var(--spacing-16) var(--spacing-16) 0;
+}
+
+.confirmTitle {
+  color: var(--joker-gold-400);
+  font-family: var(--font);
+  font-size: var(--text-body-16);
+  font-weight: 600;
+  line-height: var(--text-body-line-height);
+}
+
+.actionsWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-base) var(--ease-standard);
+}
+
+.actionsWrap[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+.actionsWrap > .actions {
+  min-height: 0;
+  height: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--motion-fast) var(--ease-in),
+    height var(--motion-base) var(--ease-standard),
+    max-height var(--motion-base) var(--ease-standard);
+}
+
+.actionsWrap[data-open='true'] > .actions {
+  height: 56px;
+  min-height: 56px;
+  max-height: 56px;
+  opacity: 1;
+  transition:
+    opacity var(--motion-base) var(--ease-out),
+    height var(--motion-base) var(--ease-standard),
+    max-height var(--motion-base) var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionsWrap,
+  .actionsWrap > .actions {
+    transition: none;
+  }
+
+  .actionsWrap:not([data-open='true']) {
+    display: none;
+  }
+}
+
+.actions {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  width: 100%;
+  overflow: hidden;
+}
+
+.actions[data-confirm='true'] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.actions[data-confirm='true'] .placeBetCell {
+  border-left: 0;
+  border-bottom-left-radius: var(--betslip-inner-radius);
+}
+
+.stakeCell,
+.placeBetCell {
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stakeCell {
+  border-bottom-left-radius: var(--betslip-inner-radius);
+}
+
+.placeBetCell {
+  border-left: 1px solid var(--joker-black-300);
+  border-bottom-right-radius: var(--betslip-inner-radius);
+}
+
+.stakeField:global(.joker-input-field) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  gap: 0;
+}
+
+.stakeField :global(.joker-input-control) {
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  border-radius: 0 0 0 var(--betslip-inner-radius);
+  box-shadow: none;
+  background: var(--joker-black-700);
+}
+
+.stakeField:global(.joker-input-field:not(.disabled):hover) :global(.joker-input-control) {
+  border: 0;
+  border-radius: 0 0 0 var(--betslip-inner-radius);
+  box-shadow: none;
+  background: var(--joker-black-700);
+}
+
+.stakeField:global(.joker-input-field:not(.disabled):focus-within) :global(.joker-input-control) {
+  border: 0;
+  border-radius: 0 0 0 var(--betslip-inner-radius);
+  box-shadow: inset 0 0 0 1px var(--joker-gold-400);
+  background: var(--joker-gold-1000);
+}
+
+.stakeField:global(.joker-input-field:not(.disabled):focus-within) :global(.joker-input-control input) {
+  color: var(--joker-gold-100);
+}
+
+.stakeField:global(.joker-input-field:not(.disabled):focus-within) :global(.joker-input-control input::placeholder) {
+  color: var(--joker-black-100);
+}
+
+.stakeField :global(.joker-input-control input::placeholder) {
+  text-transform: none;
+}
+
+.stakeField :global(.joker-input-icon) {
+  width: 20px;
+  min-width: 20px;
+}
+
+.stakeField :global(.joker-input-icon img) {
+  width: 20px;
+  height: 20px;
+}
+
+.actions .placeBet {
+  display: flex;
+  width: 100%;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: 100%;
+  border: 0 !important;
+  border-radius: 0 0 var(--betslip-inner-radius) 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  text-transform: uppercase;
+  transform: none !important;
+}
+
+.actions .placeBet:not(:disabled):hover,
+.actions .placeBet:not(:disabled):focus,
+.actions .placeBet:not(:disabled):focus-visible,
+.actions .placeBet:not(:disabled):active {
+  border: 0 !important;
+  border-radius: 0 0 var(--betslip-inner-radius) 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  transform: none !important;
+}

@@ -1,0 +1,51 @@
+@media (prefers-reduced-motion: no-preference) {
+  .countBump {
+    animation: betSlipCountBump var(--motion-base) var(--ease-out);
+  }
+
+  .overflowBump {
+    animation: betSlipCountBump var(--motion-base) var(--ease-out);
+  }
+
+  .legHighlight {
+    animation: betSlipLegHighlight 420ms var(--ease-out) both;
+  }
+
+  .legRowHighlight {
+    animation: betSlipLegRowHighlight 420ms var(--ease-out) both;
+  }
+}
+
+@keyframes betSlipCountBump {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.14);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes betSlipLegHighlight {
+  0% {
+    color: var(--joker-gold-400);
+  }
+
+  100% {
+    color: var(--joker-white-50);
+  }
+}
+
+@keyframes betSlipLegRowHighlight {
+  0% {
+    background: color-mix(in srgb, var(--joker-gold-400) 14%, var(--joker-black-600));
+  }
+
+  100% {
+    background: transparent;
+  }
+}

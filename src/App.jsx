@@ -4,6 +4,7 @@ import { ApplicationShellCaseStudyPage } from "./pages/case-studies/application-
 import { DesignSystemCaseStudyPage } from "./pages/case-studies/design-system/DesignSystemCaseStudyPage.jsx";
 import { JokerOriginalsCaseStudyPage } from "./pages/case-studies/joker-originals/JokerOriginalsCaseStudyPage.jsx";
 import { SportsbookCaseStudyPage } from "./pages/case-studies/sportsbook/SportsbookCaseStudyPage.jsx";
+import { PageScrollHint } from "./components/portfolio-scroll-hint/PortfolioScrollHint.jsx";
 import { HomePage } from "./pages/home/HomePage.jsx";
 import "./styles/page-transitions.css";
 
@@ -23,6 +24,7 @@ function AppRoutes() {
   return (
     <>
       <ScrollToTop />
+      <PageScrollHint />
       <div key={location.pathname} className="page-transition">
         <Routes location={location}>
           <Route path="/" element={<HomePage />} />

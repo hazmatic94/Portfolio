@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { CaseStudyFullWidthFrame } from "../../../components/case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
+import { SportsbookBetslipSectionPreview } from "../../../components/sportsbook-betslip-section-preview/SportsbookBetslipSectionPreview.jsx";
+import { SportsbookLiveGamesPreview } from "../../../components/sportsbook-live-games-preview/SportsbookLiveGamesPreview.jsx";
 import { SportsbookMarketsHeroPreview } from "../../../components/sportsbook-markets-hero-preview/SportsbookMarketsHeroPreview.jsx";
+import { SportsbookMarketsSectionPreview } from "../../../components/sportsbook-markets-section-preview/SportsbookMarketsSectionPreview.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
 import { CaseStudyMediaPlaceholder } from "../../../components/case-study-media-placeholder/CaseStudyMediaPlaceholder.jsx";
 import { CaseStudySplitFrames } from "../../../components/case-study-split-frames/CaseStudySplitFrames.jsx";
@@ -28,22 +31,6 @@ const MOBILE_BETSLIP = {
   alt: "Joker Plus mobile sportsbook with betslip open",
 };
 
-function SportsbookMobileBetslipImage() {
-  return (
-    <img
-      className="portfolio-image-mockup__image sportsbook-case-study__betslip-image"
-      src={MOBILE_BETSLIP.src}
-      srcSet={MOBILE_BETSLIP.srcSet}
-      sizes="(min-width: 801px) 360px, 80vw"
-      width={390}
-      height={844}
-      alt={MOBILE_BETSLIP.alt}
-      loading="lazy"
-      decoding="async"
-    />
-  );
-}
-
 export function SportsbookCaseStudyPage() {
   return (
     <>
@@ -59,7 +46,7 @@ export function SportsbookCaseStudyPage() {
 
           <CaseStudyIntro
             title="Designing a curated sportsbook"
-            body="Creating a scalable betting platform focused on clarity, structured markets and intuitive bet construction."
+            body="The platform relied on one analyst to curate markets and manage odds, so every interaction needed to support a lean operational model."
             ctaLabel="View Live Demo"
             ctaHref="/case-studies/sportsbook"
           />
@@ -104,13 +91,13 @@ export function SportsbookCaseStudyPage() {
         >
           <SectionDivider number="01" title="Overview" />
           <CaseStudyInlineCopy
-            title="A different approach"
-            body="Built around curated markets, simplifying risk while creating a scalable platform."
+            title="Curated by design"
+            body="I designed a betting experience that balanced user clarity with operational simplicity."
           />
           <div className="sportsbook-case-study__section-media">
             <CaseStudySplitFrames
               left={<SportsbookMarketsHeroPreview />}
-              right={null}
+              right={<SportsbookLiveGamesPreview />}
               leftPanelClassName="case-study-split-frames__panel--fill"
               rightPanelClassName="case-study-split-frames__panel--fill"
             />
@@ -119,35 +106,32 @@ export function SportsbookCaseStudyPage() {
 
         <CaseStudyRevealSection
           className="sportsbook-case-study__foundations"
-          ariaLabel="Betslip"
+          ariaLabel="Transaction"
         >
-          <SectionDivider number="02" title="Betslip" />
+          <SectionDivider number="02" title="Transaction" />
           <CaseStudyInlineCopy
-            title="Intuitive bet construction"
-            body="The betslip keeps selections, stakes and potential returns visible while building a slip — on desktop and mobile — so multi-leg bets stay legible before placement."
+            title="A dynamic betslip"
+            body="The betslip grows alongside every selection, providing continuous feedback while keeping stake, odds and potential returns visible throughout the betting journey."
           />
           <div className="sportsbook-case-study__section-media">
-            <CaseStudySplitFrames
-              left={<CaseStudyMediaPlaceholder label="Odds selection" variant="panel" />}
-              right={<SportsbookMobileBetslipImage />}
-              leftPanelClassName="case-study-split-frames__panel--fixed"
-              rightPanelClassName="case-study-split-frames__panel--fill"
-            />
+            <CaseStudyFullWidthFrame>
+              <SportsbookBetslipSectionPreview />
+            </CaseStudyFullWidthFrame>
           </div>
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
           className="sportsbook-case-study__interactions"
-          ariaLabel="Live"
+          ariaLabel="Markets"
         >
-          <SectionDivider number="03" title="Live" />
+          <SectionDivider number="03" title="Markets" />
           <CaseStudyInlineCopy
-            title="Live match states"
-            body="On-air matches, scorelines and updating odds needed clear hierarchy — live content reads first, with upcoming markets supporting discovery without competing for attention."
+            title="Flexible Betting"
+            body="Multiple betting markets inherit a shared interaction model, allowing users to move between market types without relearning the interface."
           />
           <div className="sportsbook-case-study__section-media">
             <CaseStudyFullWidthFrame>
-              <CaseStudyMediaPlaceholder label="Live match module" variant="panel" />
+              <SportsbookMarketsSectionPreview />
             </CaseStudyFullWidthFrame>
           </div>
         </CaseStudyRevealSection>

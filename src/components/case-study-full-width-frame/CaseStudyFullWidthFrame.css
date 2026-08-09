@@ -41,10 +41,33 @@
   background: var(--joker-black-800);
 }
 
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:has(.sportsbook-betslip-section-preview),
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__frame:has(.sportsbook-markets-section-preview) {
+  overflow: hidden;
+}
+
+.case-study-full-width-frame__media:has(.sportsbook-betslip-section-preview),
+.case-study-full-width-frame__media:has(.sportsbook-markets-section-preview) {
+  overflow: hidden;
+  background: transparent;
+}
+
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__media:has(.sportsbook-betslip-section-preview),
+.case-study-full-width-frame__panel
+  .portfolio-image-mockup__media:has(.sportsbook-markets-section-preview) {
+  overflow: hidden;
+  background: transparent;
+}
+
 .case-study-full-width-frame:has(.application-shell-blueprint-preview),
 .case-study-full-width-frame:has(.application-shell-constraints-preview),
 .case-study-full-width-frame:has(.application-shell-navigation-preview),
-.case-study-full-width-frame:has(.application-shell-architecture-preview) {
+.case-study-full-width-frame:has(.application-shell-architecture-preview),
+.case-study-full-width-frame:has(.sportsbook-betslip-section-preview),
+.case-study-full-width-frame:has(.sportsbook-markets-section-preview) {
   overflow: visible;
 }
 
@@ -125,6 +148,20 @@
 
   .case-study-full-width-frame__panel {
     height: 540px;
+    min-height: 540px;
+  }
+
+  .case-study-full-width-frame:has(.sportsbook-betslip-section-preview),
+  .case-study-full-width-frame:has(.sportsbook-markets-section-preview) {
+    height: auto;
+    min-height: 0;
+  }
+
+  .case-study-full-width-frame:has(.sportsbook-betslip-section-preview)
+    .case-study-full-width-frame__panel,
+  .case-study-full-width-frame:has(.sportsbook-markets-section-preview)
+    .case-study-full-width-frame__panel {
+    height: auto;
     min-height: 540px;
   }
 }
