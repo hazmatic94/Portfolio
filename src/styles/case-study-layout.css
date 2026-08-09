@@ -243,9 +243,4 @@
   .application-shell-case-study .product-adoption-games-grid__grid {
     grid-template-columns: 1fr;
   }
-
-  .design-system-case-study .section-divider,
-  .application-shell-case-study .section-divider {
-    gap: var(--spacing-24);
-  }
 }
