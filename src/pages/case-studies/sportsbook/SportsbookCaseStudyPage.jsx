@@ -87,6 +87,7 @@ export function SportsbookCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="sportsbook-case-study__overview"
           ariaLabel="Overview"
         >
@@ -106,6 +107,7 @@ export function SportsbookCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="sportsbook-case-study__foundations"
           ariaLabel="Transaction"
         >
@@ -122,6 +124,7 @@ export function SportsbookCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="sportsbook-case-study__interactions"
           ariaLabel="Markets"
         >
@@ -138,6 +141,7 @@ export function SportsbookCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="sportsbook-case-study__architecture"
           ariaLabel="Expansion"
         >
@@ -152,6 +156,7 @@ export function SportsbookCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="sportsbook-case-study__next-project"
           ariaLabel="Next project"
         >

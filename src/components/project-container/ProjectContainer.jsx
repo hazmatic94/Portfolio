@@ -1,5 +1,6 @@
 import { Button } from "@joker/design-system";
 import { Link, useNavigate } from "react-router-dom";
+import { beginRouteChange } from "../../utils/beginRouteChange.js";
 import "./ProjectContainer.css";
 
 export function ProjectContainer({
@@ -17,6 +18,9 @@ export function ProjectContainer({
     ? {
         to: href,
         "aria-label": `View ${title} case study`,
+        onClick: () => {
+          beginRouteChange();
+        },
       }
     : {};
 
@@ -41,7 +45,14 @@ export function ProjectContainer({
         <div className="project-container__cta">
           <Button
             variant="secondary"
-            onClick={href ? () => navigate(href) : undefined}
+            onClick={
+              href
+                ? () => {
+                    beginRouteChange();
+                    navigate(href);
+                  }
+                : undefined
+            }
           >
             {ctaLabel}
           </Button>

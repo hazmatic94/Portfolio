@@ -67,6 +67,7 @@ export function DesignSystemCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="design-system-case-study__overview"
           ariaLabel="Overview"
         >
@@ -81,6 +82,7 @@ export function DesignSystemCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="design-system-case-study__foundations"
           ariaLabel="Foundations"
         >
@@ -99,6 +101,7 @@ export function DesignSystemCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="design-system-case-study__components"
           ariaLabel="Components"
         >
@@ -113,6 +116,7 @@ export function DesignSystemCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="design-system-case-study__developer-experience"
           ariaLabel="Built for Production"
         >
@@ -130,6 +134,7 @@ export function DesignSystemCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="design-system-case-study__product-adoption"
           ariaLabel="Product adoption"
         >
@@ -144,6 +149,7 @@ export function DesignSystemCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="design-system-case-study__next-project"
           ariaLabel="Next project"
         >

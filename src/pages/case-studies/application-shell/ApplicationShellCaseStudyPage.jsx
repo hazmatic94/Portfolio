@@ -76,6 +76,7 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="application-shell-case-study__overview"
           ariaLabel="Blueprint"
         >
@@ -92,6 +93,7 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="application-shell-case-study__foundations"
           ariaLabel="Constraints"
         >
@@ -108,6 +110,7 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="application-shell-case-study__components"
           ariaLabel="Behaviour"
         >
@@ -124,6 +127,7 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="application-shell-case-study__architecture"
           ariaLabel="Architecture"
         >
@@ -143,6 +147,7 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="application-shell-case-study__next-project"
           ariaLabel="Next project"
         >

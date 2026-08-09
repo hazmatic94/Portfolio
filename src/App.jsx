@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { ApplicationShellCaseStudyPage } from "./pages/case-studies/application-shell/ApplicationShellCaseStudyPage.jsx";
 import { DesignSystemCaseStudyPage } from "./pages/case-studies/design-system/DesignSystemCaseStudyPage.jsx";
@@ -11,9 +11,22 @@ import "./styles/page-transitions.css";
 function ScrollToTop() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  useLayoutEffect(() => {
+    document.documentElement.classList.remove("route-changing");
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
+
+  return null;
+}
+
+function ScrollRestoration() {
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
 
   return null;
 }
@@ -53,6 +66,7 @@ function AppRoutes() {
 export function App() {
   return (
     <BrowserRouter>
+      <ScrollRestoration />
       <AppRoutes />
     </BrowserRouter>
   );

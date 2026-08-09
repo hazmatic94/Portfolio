@@ -14,6 +14,27 @@
   animation: page-blur-fade-in 280ms var(--ease-out) both;
 }
 
+/* Kill divider/section reveals on outgoing page during route change */
+html.route-changing .case-study-block--reveal .section-divider__number,
+html.route-changing .case-study-block--reveal .section-divider__pipe,
+html.route-changing .case-study-block--reveal .section-divider__title,
+html.route-changing .case-study-block--reveal .section-divider__rule,
+html.route-changing .case-study-block--reveal.is-in-view .section-divider__number,
+html.route-changing .case-study-block--reveal.is-in-view .section-divider__pipe,
+html.route-changing .case-study-block--reveal.is-in-view .section-divider__title,
+html.route-changing .case-study-block--reveal.is-in-view .section-divider__rule,
+html.route-changing .case-study-block--reveal .project-container__media-clip,
+html.route-changing .case-study-block--reveal .project-container__media-overlay,
+html.route-changing .case-study-block--reveal .project-container__content,
+html.route-changing .case-study-block--reveal.is-in-view .project-container__media-clip,
+html.route-changing .case-study-block--reveal.is-in-view .project-container__media-overlay,
+html.route-changing .case-study-block--reveal.is-in-view .project-container__content {
+  animation: none !important;
+  clip-path: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page-transition {
     animation: none;

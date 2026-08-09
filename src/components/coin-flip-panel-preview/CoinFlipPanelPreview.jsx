@@ -16,6 +16,7 @@ export function CoinFlipPanelPreview() {
           defaultSelectedOddsValue="heads"
           oddsOptions={COIN_FLIP_ODDS_OPTIONS}
           disablePlaceBetUntilBetAmount={false}
+          submitLabel="Place Bet"
           onPlaceBet={() => {}}
         />
       </div>

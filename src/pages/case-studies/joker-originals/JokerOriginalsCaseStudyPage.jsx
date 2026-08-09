@@ -91,6 +91,7 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="joker-originals-case-study__overview"
           ariaLabel="Collection"
         >
@@ -105,6 +106,7 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="joker-originals-case-study__foundations"
           ariaLabel="Gameplay"
         >
@@ -119,6 +121,7 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="joker-originals-case-study__interactions"
           ariaLabel="Interactions"
         >
@@ -180,6 +183,7 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="joker-originals-case-study__architecture"
           ariaLabel="Vision"
         >
@@ -199,6 +203,7 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="scroll"
           className="joker-originals-case-study__next-project"
           ariaLabel="Next project"
         >

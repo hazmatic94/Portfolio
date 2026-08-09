@@ -3,6 +3,74 @@ import "./PortfolioScrollHint.css";
 
 const SCROLL_STOP_DELAY_MS = 360;
 const BOTTOM_THRESHOLD_PX = 24;
+const SCROLL_EDGE_THRESHOLD_PX = 1;
+
+function useNestedScrollChaining(scrollRef) {
+  useEffect(() => {
+    const scrollEl = scrollRef.current;
+    if (!scrollEl) {
+      return undefined;
+    }
+
+    const getEdges = () => {
+      const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+      return {
+        atTop: scrollTop <= SCROLL_EDGE_THRESHOLD_PX,
+        atBottom:
+          scrollTop + clientHeight >= scrollHeight - SCROLL_EDGE_THRESHOLD_PX,
+      };
+    };
+
+    const onWheel = (event) => {
+      const { atTop, atBottom } = getEdges();
+      const scrollingUp = event.deltaY < 0;
+      const scrollingDown = event.deltaY > 0;
+
+      if ((scrollingUp && atTop) || (scrollingDown && atBottom)) {
+        event.preventDefault();
+        window.scrollBy({
+          top: event.deltaY,
+          left: event.deltaX,
+          behavior: "auto",
+        });
+      }
+    };
+
+    let lastTouchY = 0;
+
+    const onTouchStart = (event) => {
+      lastTouchY = event.touches[0].clientY;
+    };
+
+    const onTouchMove = (event) => {
+      const touchY = event.touches[0].clientY;
+      const deltaY = lastTouchY - touchY;
+      lastTouchY = touchY;
+
+      if (deltaY === 0) {
+        return;
+      }
+
+      const { atTop, atBottom } = getEdges();
+      const scrollingDown = deltaY > 0;
+      const scrollingUp = deltaY < 0;
+
+      if ((scrollingDown && atBottom) || (scrollingUp && atTop)) {
+        window.scrollBy({ top: deltaY, left: 0, behavior: "auto" });
+      }
+    };
+
+    scrollEl.addEventListener("wheel", onWheel, { passive: false });
+    scrollEl.addEventListener("touchstart", onTouchStart, { passive: true });
+    scrollEl.addEventListener("touchmove", onTouchMove, { passive: true });
+
+    return () => {
+      scrollEl.removeEventListener("wheel", onWheel);
+      scrollEl.removeEventListener("touchstart", onTouchStart);
+      scrollEl.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [scrollRef]);
+}
 
 function ScrollChevron() {
   return (
@@ -101,6 +169,7 @@ export function PortfolioScrollHint({
 }) {
   const scrollRef = useRef(null);
   const isVisible = useElementScrollHint(scrollRef);
+  useNestedScrollChaining(scrollRef);
   const fadeStyle = {
     "--portfolio-scroll-hint-fade-color": fadeColor,
     ...(insetX != null ? { left: insetX, right: insetX } : null),
