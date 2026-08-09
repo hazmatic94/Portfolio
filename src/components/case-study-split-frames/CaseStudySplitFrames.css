@@ -115,6 +115,37 @@
   grid-template-rows: 40px minmax(260px, 1fr) auto;
 }
 
+.case-study-split-frames__panel
+  .portfolio-image-mockup__frame:has(.sportsbook-mobile-home-preview-shell) {
+  overflow: hidden;
+}
+
+.case-study-split-frames__media:has(.sportsbook-mobile-home-preview-shell) {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.case-study-split-frames__panel
+  .portfolio-image-mockup__media:has(.sportsbook-mobile-home-preview-shell) {
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.case-study-split-frames__panel
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media:has(.sportsbook-mobile-home-preview-shell) {
+  border-color: var(--joker-black-200);
+}
+
 .case-study-split-frames:has(.application-shell-architecture-preview) {
   --architecture-frame-height: 546px;
   height: var(--architecture-frame-height);

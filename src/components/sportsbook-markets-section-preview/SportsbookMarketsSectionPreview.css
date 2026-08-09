@@ -50,7 +50,7 @@
 .sportsbook-markets-section-preview__hero {
   position: relative;
   flex: 0 0 auto;
-  height: 220px;
+  height: 312px;
   box-sizing: border-box;
   overflow: hidden;
   border-bottom: 1px solid var(--joker-black-300);
@@ -98,9 +98,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-16);
+  gap: var(--spacing-24);
   box-sizing: border-box;
-  padding: var(--spacing-16);
+  padding: var(--spacing-24);
   text-align: center;
 }
 
@@ -108,13 +108,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-8);
+  gap: var(--spacing-16);
 }
 
 .sportsbook-markets-section-preview__competition {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: var(--text-heading-h2);
+  font-size: var(--text-heading-h1);
   font-weight: var(--text-heading-weight);
   line-height: 0.9;
   letter-spacing: -0.03em;
@@ -125,7 +125,7 @@
 .sportsbook-markets-section-preview__schedule {
   margin: 0;
   font-family: var(--font);
-  font-size: var(--text-body-14);
+  font-size: var(--text-body-16);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
 }
@@ -143,9 +143,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-12);
+  gap: var(--spacing-16);
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
 }
 
 .sportsbook-markets-section-preview__team {
@@ -153,20 +153,20 @@
   flex: 1 1 0;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-8);
+  gap: var(--spacing-12);
   min-width: 0;
 }
 
 .sportsbook-markets-section-preview__crest {
   display: block;
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
 }
 
 .sportsbook-markets-section-preview__team-name {
   font-family: var(--font);
-  font-size: var(--text-body-14);
+  font-size: var(--text-body-16);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
   color: var(--joker-white-50);
@@ -175,7 +175,7 @@
 .sportsbook-markets-section-preview__versus {
   flex: 0 0 auto;
   font-family: var(--font-heading);
-  font-size: var(--text-heading-h4);
+  font-size: var(--text-heading-h3);
   font-weight: var(--text-heading-weight);
   line-height: 1;
   letter-spacing: -0.03em;
@@ -260,10 +260,6 @@
 }
 
 @media (max-width: 800px) {
-  .sportsbook-markets-section-preview__hero {
-    height: 200px;
-  }
-
   .sportsbook-markets-section-preview__panels.joker-odds-selection__panels {
     grid-template-columns: minmax(0, 1fr);
   }

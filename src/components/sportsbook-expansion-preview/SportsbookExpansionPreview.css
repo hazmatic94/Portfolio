@@ -1,0 +1,104 @@
+.sportsbook-expansion-preview {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--case-study-content-width, 1000px);
+  margin-inline: auto;
+  margin-top: var(--case-study-copy-media-gap);
+  padding-inline: var(--case-study-gutter, var(--spacing-24));
+}
+
+.sportsbook-expansion-preview .case-study-split-frames {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: 0;
+  height: 540px;
+  min-height: 540px;
+}
+
+.application-shell-case-study
+  .sportsbook-expansion-preview
+  .case-study-split-frames {
+  margin-top: 0;
+  padding-inline: 0;
+}
+
+.sportsbook-expansion-preview__tabs {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-24);
+  width: 100%;
+  margin: 0 0 var(--spacing-24);
+  padding: 0;
+}
+
+.sportsbook-expansion-preview__tab {
+  margin: 0;
+  padding: 0;
+}
+
+.sportsbook-expansion-preview__tab-button {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.sportsbook-expansion-preview__tab-button:focus-visible {
+  outline: 2px solid var(--joker-gold-400);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.sportsbook-expansion-preview__tab-label {
+  box-sizing: border-box;
+  display: block;
+  padding-block: var(--spacing-4);
+  font-family: var(--font);
+  font-size: var(--text-body-16);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height, 1.5);
+  color: var(--joker-black-50);
+  border-bottom: 1px solid transparent;
+  transition:
+    color 200ms var(--ease-standard),
+    border-color 200ms var(--ease-standard);
+}
+
+.sportsbook-expansion-preview__tab-button[aria-selected="true"]
+  .sportsbook-expansion-preview__tab-label {
+  color: var(--joker-gold-400);
+  border-bottom-color: var(--joker-gold-400);
+}
+
+.sportsbook-expansion-preview__tab-button:not([aria-selected="true"]):hover
+  .sportsbook-expansion-preview__tab-label {
+  color: var(--joker-white-50);
+}
+
+.sportsbook-expansion-preview__panel {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .sportsbook-expansion-preview .case-study-split-frames {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+
+  .sportsbook-expansion-preview
+    .case-study-split-frames__panel--fixed,
+  .sportsbook-expansion-preview
+    .case-study-split-frames__panel--fill {
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+  }
+}

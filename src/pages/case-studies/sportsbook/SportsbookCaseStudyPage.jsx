@@ -4,6 +4,7 @@ import { SportsbookBetslipSectionPreview } from "../../../components/sportsbook-
 import { SportsbookLiveGamesPreview } from "../../../components/sportsbook-live-games-preview/SportsbookLiveGamesPreview.jsx";
 import { SportsbookMarketsHeroPreview } from "../../../components/sportsbook-markets-hero-preview/SportsbookMarketsHeroPreview.jsx";
 import { SportsbookMarketsSectionPreview } from "../../../components/sportsbook-markets-section-preview/SportsbookMarketsSectionPreview.jsx";
+import { SportsbookExpansionPreview } from "../../../components/sportsbook-expansion-preview/SportsbookExpansionPreview.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
 import { CaseStudyMediaPlaceholder } from "../../../components/case-study-media-placeholder/CaseStudyMediaPlaceholder.jsx";
 import { CaseStudySplitFrames } from "../../../components/case-study-split-frames/CaseStudySplitFrames.jsx";
@@ -138,20 +139,15 @@ export function SportsbookCaseStudyPage() {
 
         <CaseStudyRevealSection
           className="sportsbook-case-study__architecture"
-          ariaLabel="Platform"
+          ariaLabel="Expansion"
         >
-          <SectionDivider number="04" title="Platform" />
+          <SectionDivider number="04" title="Expansion" />
           <CaseStudyInlineCopy
-            title="Built on the platform"
-            body="Sportsbook extends the same application shell, tokens and interaction patterns as the games — another product surface on one foundation rather than a separate UI stack."
+            title="Scalable by Design"
+            body="A shared event model allows new sports to inherit the same interaction patterns while adapting markets and event data."
           />
           <div className="sportsbook-case-study__section-media">
-            <CaseStudySplitFrames
-              left={<CaseStudyMediaPlaceholder label="Shell layout" variant="panel" />}
-              right={<CaseStudyMediaPlaceholder label="Market cards" variant="panel" />}
-              leftPanelClassName="case-study-split-frames__panel--fixed"
-              rightPanelClassName="case-study-split-frames__panel--fill"
-            />
+            <SportsbookExpansionPreview />
           </div>
         </CaseStudyRevealSection>
 

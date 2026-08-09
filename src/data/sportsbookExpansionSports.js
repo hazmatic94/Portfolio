@@ -1,0 +1,379 @@
+export const SPORTSBOOK_EXPANSION_TABS = [
+  { key: "soccer", label: "Soccer" },
+  { key: "tennis", label: "Tennis" },
+  { key: "ufc", label: "UFC" },
+  { key: "nrl", label: "NRL" },
+];
+
+const SOCCER_UPCOMING_MATCHES = [
+  {
+    id: "la-liga-1",
+    competition: "Spain La Liga",
+    date: "12 June 2026",
+    time: "13:00",
+    teams: [
+      {
+        name: "Real Madrid",
+        logoSrc: "https://crests.football-data.org/86.png",
+        logoAlt: "Real Madrid",
+      },
+      {
+        name: "FC Barcelona",
+        logoSrc: "https://crests.football-data.org/81.png",
+        logoAlt: "FC Barcelona",
+      },
+    ],
+    odds: [
+      { label: "1", odds: "2.55" },
+      { label: "X", odds: "3.20" },
+      { label: "2", odds: "2.60" },
+    ],
+  },
+  {
+    id: "la-liga-2",
+    competition: "Spain La Liga",
+    date: "13 June 2026",
+    time: "15:30",
+    teams: [
+      {
+        name: "Atletico Madrid",
+        logoSrc: "https://crests.football-data.org/78.png",
+        logoAlt: "Atletico Madrid",
+      },
+      {
+        name: "Sevilla FC",
+        logoSrc: "https://crests.football-data.org/559.png",
+        logoAlt: "Sevilla FC",
+      },
+    ],
+    odds: [
+      { label: "1", odds: "1.95" },
+      { label: "X", odds: "3.40" },
+      { label: "2", odds: "3.85" },
+    ],
+  },
+  {
+    id: "premier-league",
+    competition: "English Premier League",
+    date: "14 June 2026",
+    time: "06:00",
+    teams: [
+      {
+        name: "Liverpool FC",
+        logoSrc: "https://crests.football-data.org/64.png",
+        logoAlt: "Liverpool FC",
+      },
+      {
+        name: "Arsenal FC",
+        logoSrc: "https://crests.football-data.org/57.png",
+        logoAlt: "Arsenal FC",
+      },
+    ],
+    odds: [
+      { label: "1", odds: "1.87" },
+      { label: "X", odds: "2.11" },
+      { label: "2", odds: "3.21" },
+    ],
+  },
+];
+
+export const SPORTSBOOK_EXPANSION_SPORTS = {
+  soccer: {
+    game: { label: "FCPlus", icon: "soccer" },
+    liveMatch: {
+      competition: "FIFA World Cup",
+      minutesPlayed: 24,
+      teams: [
+        {
+          name: "Brazil",
+          logoSrc: "https://crests.football-data.org/764.svg",
+          logoAlt: "Brazil",
+          score: 0,
+        },
+        {
+          name: "France",
+          logoSrc: "https://crests.football-data.org/773.svg",
+          logoAlt: "France",
+          score: 2,
+        },
+      ],
+    },
+    upcomingMatches: SOCCER_UPCOMING_MATCHES,
+  },
+  tennis: {
+    game: { label: "Tennis", icon: "soccer" },
+    liveMatch: {
+      competition: "ATP Tour",
+      minutesPlayed: 2,
+      teams: [
+        {
+          name: "C. Alcaraz",
+          logoSrc: "https://crests.football-data.org/764.svg",
+          logoAlt: "Carlos Alcaraz",
+          score: 1,
+        },
+        {
+          name: "J. Sinner",
+          logoSrc: "https://crests.football-data.org/773.svg",
+          logoAlt: "Jannik Sinner",
+          score: 0,
+        },
+      ],
+    },
+    upcomingMatches: [
+      {
+        id: "atp-miami",
+        competition: "ATP Miami Open",
+        date: "22 March 2026",
+        time: "21:00",
+        teams: [
+          {
+            name: "C. Alcaraz",
+            logoSrc: "https://crests.football-data.org/764.svg",
+            logoAlt: "Carlos Alcaraz",
+          },
+          {
+            name: "J. Sinner",
+            logoSrc: "https://crests.football-data.org/773.svg",
+            logoAlt: "Jannik Sinner",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.72" },
+          { label: "X", odds: "—" },
+          { label: "2", odds: "2.05" },
+        ],
+      },
+      {
+        id: "atp-monte-carlo",
+        competition: "ATP Monte Carlo",
+        date: "12 April 2026",
+        time: "19:30",
+        teams: [
+          {
+            name: "N. Djokovic",
+            logoSrc: "https://crests.football-data.org/64.png",
+            logoAlt: "Novak Djokovic",
+          },
+          {
+            name: "A. de Minaur",
+            logoSrc: "https://crests.football-data.org/57.png",
+            logoAlt: "Alex de Minaur",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.55" },
+          { label: "X", odds: "—" },
+          { label: "2", odds: "2.35" },
+        ],
+      },
+      {
+        id: "wta-madrid",
+        competition: "WTA Madrid Open",
+        date: "3 May 2026",
+        time: "16:00",
+        teams: [
+          {
+            name: "I. Swiatek",
+            logoSrc: "https://crests.football-data.org/5.png",
+            logoAlt: "Iga Swiatek",
+          },
+          {
+            name: "C. Gauff",
+            logoSrc: "https://crests.football-data.org/4.png",
+            logoAlt: "Coco Gauff",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.48" },
+          { label: "X", odds: "—" },
+          { label: "2", odds: "2.55" },
+        ],
+      },
+    ],
+  },
+  ufc: {
+    game: { label: "UFC", icon: "soccer" },
+    liveMatch: {
+      competition: "UFC 311",
+      minutesPlayed: 3,
+      teams: [
+        {
+          name: "Makhachev",
+          logoSrc: "https://crests.football-data.org/764.svg",
+          logoAlt: "Islam Makhachev",
+          score: 1,
+        },
+        {
+          name: "Tsarukyan",
+          logoSrc: "https://crests.football-data.org/773.svg",
+          logoAlt: "Arman Tsarukyan",
+          score: 0,
+        },
+      ],
+    },
+    upcomingMatches: [
+      {
+        id: "ufc-312",
+        competition: "UFC 312",
+        date: "8 February 2026",
+        time: "12:00",
+        teams: [
+          {
+            name: "Du Plessis",
+            logoSrc: "https://crests.football-data.org/64.png",
+            logoAlt: "Dricus du Plessis",
+          },
+          {
+            name: "Strickland",
+            logoSrc: "https://crests.football-data.org/57.png",
+            logoAlt: "Sean Strickland",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.65" },
+          { label: "X", odds: "—" },
+          { label: "2", odds: "2.20" },
+        ],
+      },
+      {
+        id: "ufc-fight-night",
+        competition: "UFC Fight Night",
+        date: "15 March 2026",
+        time: "10:00",
+        teams: [
+          {
+            name: "Volkanovski",
+            logoSrc: "https://crests.football-data.org/5.png",
+            logoAlt: "Alexander Volkanovski",
+          },
+          {
+            name: "Lopes",
+            logoSrc: "https://crests.football-data.org/4.png",
+            logoAlt: "Diego Lopes",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.45" },
+          { label: "X", odds: "—" },
+          { label: "2", odds: "2.70" },
+        ],
+      },
+      {
+        id: "ufc-313",
+        competition: "UFC 313",
+        date: "5 April 2026",
+        time: "11:00",
+        teams: [
+          {
+            name: "Pereira",
+            logoSrc: "https://crests.football-data.org/86.png",
+            logoAlt: "Alex Pereira",
+          },
+          {
+            name: "Ankalaev",
+            logoSrc: "https://crests.football-data.org/81.png",
+            logoAlt: "Magomed Ankalaev",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "2.10" },
+          { label: "X", odds: "—" },
+          { label: "2", odds: "1.72" },
+        ],
+      },
+    ],
+  },
+  nrl: {
+    game: { label: "NRL", icon: "soccer" },
+    liveMatch: {
+      competition: "NRL Premiership",
+      minutesPlayed: 58,
+      teams: [
+        {
+          name: "Panthers",
+          logoSrc: "https://crests.football-data.org/64.png",
+          logoAlt: "Penrith Panthers",
+          score: 18,
+        },
+        {
+          name: "Storm",
+          logoSrc: "https://crests.football-data.org/66.png",
+          logoAlt: "Melbourne Storm",
+          score: 12,
+        },
+      ],
+    },
+    upcomingMatches: [
+      {
+        id: "nrl-round-1",
+        competition: "NRL Premiership",
+        date: "6 March 2026",
+        time: "19:30",
+        teams: [
+          {
+            name: "Broncos",
+            logoSrc: "https://crests.football-data.org/64.png",
+            logoAlt: "Brisbane Broncos",
+          },
+          {
+            name: "Cowboys",
+            logoSrc: "https://crests.football-data.org/57.png",
+            logoAlt: "North Queensland Cowboys",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.90" },
+          { label: "X", odds: "21.00" },
+          { label: "2", odds: "1.95" },
+        ],
+      },
+      {
+        id: "nrl-round-2",
+        competition: "NRL Premiership",
+        date: "13 March 2026",
+        time: "17:00",
+        teams: [
+          {
+            name: "Roosters",
+            logoSrc: "https://crests.football-data.org/5.png",
+            logoAlt: "Sydney Roosters",
+          },
+          {
+            name: "Rabbitohs",
+            logoSrc: "https://crests.football-data.org/4.png",
+            logoAlt: "South Sydney Rabbitohs",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.75" },
+          { label: "X", odds: "21.00" },
+          { label: "2", odds: "2.05" },
+        ],
+      },
+      {
+        id: "nrl-round-3",
+        competition: "NRL Premiership",
+        date: "20 March 2026",
+        time: "20:00",
+        teams: [
+          {
+            name: "Panthers",
+            logoSrc: "https://crests.football-data.org/86.png",
+            logoAlt: "Penrith Panthers",
+          },
+          {
+            name: "Storm",
+            logoSrc: "https://crests.football-data.org/81.png",
+            logoAlt: "Melbourne Storm",
+          },
+        ],
+        odds: [
+          { label: "1", odds: "1.82" },
+          { label: "X", odds: "21.00" },
+          { label: "2", odds: "1.98" },
+        ],
+      },
+    ],
+  },
+};

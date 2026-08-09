@@ -171,6 +171,97 @@
   overflow: visible;
 }
 
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__frame,
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__frame:hover {
+  cursor: default;
+  transform: none;
+  background-color: var(--joker-black-500);
+  border-color: var(--joker-black-300);
+  box-shadow: none;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media,
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__media {
+  border-color: var(--joker-black-300);
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__media {
+  padding: 0;
+}
+
+.sportsbook-case-study__architecture .sportsbook-mobile-home-preview-shell,
+.sportsbook-case-study__architecture .sportsbook-mobile-home-preview {
+  pointer-events: none;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__frame,
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__frame:hover {
+  cursor: default;
+  transform: none;
+  background-color: var(--joker-black-500);
+  border-color: var(--joker-black-300);
+  box-shadow: none;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media,
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__media {
+  border-color: var(--joker-black-300);
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__media {
+  padding: 0;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .sportsbook-upcoming-matches-preview {
+  pointer-events: none;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  :global(.joker-odds-panel) {
+  pointer-events: none;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__frame:hover
+  .portfolio-image-mockup__media:has(.sportsbook-mobile-home-preview-shell),
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__frame:hover
+  .sportsbook-mobile-home-preview-shell
+  :is(
+    .sportsbook-mobile-home-preview__hero,
+    .sportsbook-mobile-home-preview__on-air-competition,
+    .sportsbook-mobile-home-preview__live-score
+  ) {
+  border-color: var(--joker-black-300);
+}
+
 .sportsbook-case-study__hero .project-container__media {
   padding-block: 0;
 }
