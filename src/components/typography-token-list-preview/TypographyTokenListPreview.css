@@ -128,3 +128,9 @@
   min-height: 12px;
   background: var(--joker-black-300);
 }
+
+@media (max-width: 800px) {
+  .typography-token-list-preview {
+    padding: 24px;
+  }
+}

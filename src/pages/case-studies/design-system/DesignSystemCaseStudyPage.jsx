@@ -35,7 +35,7 @@ export function DesignSystemCaseStudyPage() {
 
           <CaseStudyIntro
             title="Design System"
-            body="I built a shared design system so Joker's shell, games and docs could ship from one source of truth, rather than five parallel ones."
+            body="I built a shared design system that unified Joker's shell, games and documentation around a single source of truth."
             ctaLabel="View Live Demo"
           />
         </CaseStudyRevealSection>
@@ -73,8 +73,8 @@ export function DesignSystemCaseStudyPage() {
         >
           <SectionDivider number="01" title="Overview" />
           <CaseStudyInlineCopy
-            title="One foundation instead of five"
-            body="Before this, each surface reinvented spacing, colour and patterns. I defined the base tokens and structure so every product started from the same floor."
+            title="One Foundation"
+            body="I invested in the foundations first, creating a consistent system that streamlined every product that followed."
           />
           <div className="design-system-case-study__section-media">
             <CaseStudySplitFrames />
@@ -88,8 +88,8 @@ export function DesignSystemCaseStudyPage() {
         >
           <SectionDivider number="02" title="Foundations" />
           <CaseStudyInlineCopy
-            title="A shared language for design and engineering"
-            body="I set naming, roles and usage rules so a colour or type style meant the same thing in Figma and in code, with no translation layer and no drift."
+            title="A Shared Language"
+            body="I built the foundations first, eliminating guesswork and creating a shared language across every product."
           />
           <div className="design-system-case-study__section-media">
             <CaseStudySplitFrames
@@ -107,8 +107,8 @@ export function DesignSystemCaseStudyPage() {
         >
           <SectionDivider number="03" title="Components" />
           <CaseStudyInlineCopy
-            title="Primitives first, products second"
-            body="I designed the core set of buttons, inputs, status and motion pieces as a real API, not a dump of screens. Games and shell compose from those, they don't fork them."
+            title="Building Blocks"
+            body="I built the component library first, so every product could be assembled from reusable building blocks instead of redesigned from scratch."
           />
           <div className="design-system-case-study__section-media">
             <ComponentShowcaseGrid />
@@ -118,12 +118,12 @@ export function DesignSystemCaseStudyPage() {
         <CaseStudyRevealSection
           reveal="scroll"
           className="design-system-case-study__developer-experience"
-          ariaLabel="Built for Production"
+          ariaLabel="Production"
         >
-          <SectionDivider number="04" title="Built for Production" />
+          <SectionDivider number="04" title="Production" />
           <CaseStudyInlineCopy
-            title="From design decisions to production code"
-            body="I didn't just define the system, I built Originals with it. Every game was a stress test for the components, tokens and patterns. When something broke in real use, it went back into the package."
+            title="Import Once"
+            body="The system shipped as a single package, making adoption fast and implementation consistent across every product."
           />
           <div className="design-system-case-study__section-media">
             <CaseStudySplitFrames
@@ -136,12 +136,12 @@ export function DesignSystemCaseStudyPage() {
         <CaseStudyRevealSection
           reveal="scroll"
           className="design-system-case-study__product-adoption"
-          ariaLabel="Product adoption"
+          ariaLabel="Adoption"
         >
-          <SectionDivider number="05" title="Product Adoption" />
+          <SectionDivider number="05" title="Adoption" />
           <CaseStudyInlineCopy
-            title="Same system across the platform"
-            body="Once the package landed, Originals, shell and docs all pulled from it. That's the point, one system showing up in real products rather than a library that lives in Figma."
+            title="System in Action"
+            body="Consistency speaks for itself. One place to update, with changes flowing across the entire platform."
           />
           <div className="design-system-case-study__section-media">
             <ProductAdoptionGamesGrid />

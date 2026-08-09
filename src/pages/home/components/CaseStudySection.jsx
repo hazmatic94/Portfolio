@@ -12,7 +12,7 @@ const CASE_STUDIES = [
     section: "Foundation",
     label: "Design System",
     title: "Design System",
-    body: "A shared component library powering the shell, games and documentation.",
+    body: "One design system powering multiple products through shared components, tokens, and patterns.",
     chips: [
       "Design Tokens",
       "Npm package",
@@ -38,7 +38,7 @@ const CASE_STUDIES = [
     section: "Architecture",
     label: "Responsive Shell",
     title: "Application Shell",
-    body: "A responsive application shell with reusable layouts and shared interaction patterns.",
+    body: "A responsive foundation designed to streamline product development and accelerate future builds.",
     chips: ["Responsive shell", "Betting Panels", "Layout System"],
     href: "/case-studies/application-shell",
     mediaOverlay: (
@@ -65,8 +65,8 @@ const CASE_STUDIES = [
     number: "03",
     section: "Experience",
     label: "Joker Originals",
-    title: "Original games, built end to end",
-    body: "Crafting original game mechanics, motion systems and reusable gameplay components",
+    title: "Original Games",
+    body: "Creating the platform’s first suite of original casino games from concept to implementation.",
     chips: ["Game Components", "Motion System", "Interaction Design"],
     href: "/case-studies/joker-originals",
     mediaOverlay: (
@@ -93,9 +93,9 @@ const CASE_STUDIES = [
     number: "04",
     section: "Product",
     label: "Sportsbook",
-    title: "Designing a curated sportsbook",
-    body: "Creating a scalable betting platform focused on clarity, structured markets and intuitive bet construction.",
-    chips: ["Sportsbook", "Betslip", "Matches"],
+    title: "Sportsbook",
+    body: "Building a scalable sportsbook that solved today’s operational needs without limiting tomorrow’s growth.",
+    chips: ["Markets", "Betslip", "Matches"],
     href: "/case-studies/sportsbook",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">

@@ -486,10 +486,16 @@
     max-height: none;
   }
 
-  .foundation-token-cards .color-swatch-card__meta {
+  .foundation-token-cards .foundation-token-cards__color-swatch-card .color-swatch-card__meta {
     gap: var(--spacing-8);
     padding: var(--spacing-16);
     overflow: visible;
+  }
+
+  .foundation-token-cards .motion-swatch-card .color-swatch-card__meta,
+  .foundation-token-cards .spacing-swatch-card .color-swatch-card__meta,
+  .foundation-token-cards .radius-swatch-card .color-swatch-card__meta {
+    padding: 24px;
   }
 
   .foundation-token-cards__label,
@@ -500,8 +506,12 @@
   }
 
   .foundation-token-cards .motion-swatch-card__swatch,
+  .foundation-token-cards .spacing-swatch-card__swatch {
+    padding: 24px;
+  }
+
   .foundation-token-cards .radius-swatch-card__swatch {
-    padding: 12px 12px 0;
+    padding: 24px 24px 0;
   }
 
   .foundation-token-cards .radius-swatch-card {

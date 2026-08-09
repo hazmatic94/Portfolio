@@ -31,8 +31,8 @@ export function Footer() {
         <div className="site-footer__copy">
           <h2 className="site-footer__title">Interested in working together?</h2>
           <p className="site-footer__body">
-            I&apos;m always happy to chat about product design, design systems and
-            frontend architecture.
+            If you like my work and think I could help with your next project, feel
+            free to get in touch.
           </p>
         </div>
 
