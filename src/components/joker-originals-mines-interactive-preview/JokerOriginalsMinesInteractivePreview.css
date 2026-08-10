@@ -104,6 +104,5 @@
 @media (max-width: 800px) {
   .joker-originals-mines-interactive-preview {
     --game-tile-size: clamp(120px, 32vw, 168px);
-    min-height: 280px;
   }
 }

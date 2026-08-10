@@ -22,6 +22,11 @@
   justify-content: center;
 }
 
+.joker-originals-roulette-states-preview .joker-win-streak-row,
+.joker-originals-roulette-states-preview__spacer {
+  transform: translateY(calc(var(--win-streak-row-chip-size, 136px) * 0.11));
+}
+
 .joker-originals-roulette-states-preview__spacer {
   flex: 0 0 auto;
   pointer-events: none;
@@ -30,5 +35,10 @@
 @media (max-width: 800px) {
   .joker-originals-roulette-states-preview {
     padding: var(--spacing-16);
+  }
+
+  .joker-originals-roulette-states-preview--compact
+    .joker-win-streak-row__track {
+    justify-content: center;
   }
 }

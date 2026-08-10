@@ -12,3 +12,5 @@ export const GAMEPLAY_PREVIEW_HOLD_MS = 2800;
 export const GAMEPLAY_PREVIEW_WIN_HOLD_MS = 2000;
 export const GAMEPLAY_PREVIEW_RESET_FADE_MS = 220;
 export const GAMEPLAY_PREVIEW_RESET_SNAP_MS = 80;
+/** Matches case-study hero mobile card (`case-study-layout.css`, 345px). */
+export const GAMEPLAY_PREVIEW_MOBILE_FRAME_HEIGHT_PX = 345;

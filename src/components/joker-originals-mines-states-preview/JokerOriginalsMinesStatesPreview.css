@@ -45,4 +45,14 @@
     gap: var(--spacing-12);
     padding: var(--spacing-16);
   }
+
+  .joker-originals-mines-states-preview--compact {
+    --game-tile-size: clamp(110px, 30vw, 148px);
+  }
+
+  .joker-originals-mines-states-preview--compact
+    .joker-originals-mines-states-preview__stage {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
 }

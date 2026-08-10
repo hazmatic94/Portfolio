@@ -1,11 +1,17 @@
 import { useCallback, useState } from "react";
 import { Coin } from "@joker/design-system";
+import { useGameplayPreviewMobileCompact } from "../joker-originals-gameplay-preview/useGameplayPreviewMobileCompact.js";
 import "./JokerOriginalsCoinflipCoinTossPreview.css";
 
-const COIN_SIZE = "clamp(160px, 22vw, 200px)";
-const STAGE_SIZE = "clamp(280px, 38vw, 340px)";
+const COIN_SIZE_PX = 270;
+const STAGE_SIZE_PX = 306;
+const COIN_SIZE_PX_MOBILE = 200;
+const STAGE_SIZE_PX_MOBILE = 248;
 
 export function JokerOriginalsCoinflipCoinTossPreview() {
+  const mobileCompact = useGameplayPreviewMobileCompact();
+  const coinSizePx = mobileCompact ? COIN_SIZE_PX_MOBILE : COIN_SIZE_PX;
+  const stageSizePx = mobileCompact ? STAGE_SIZE_PX_MOBILE : STAGE_SIZE_PX;
   const [side, setSide] = useState("heads");
   const [phase, setPhase] = useState("idle");
   const [outcome, setOutcome] = useState("heads");
@@ -43,9 +49,10 @@ export function JokerOriginalsCoinflipCoinTossPreview() {
             tapHint="Tap to flip"
             tapHintVisible={hintVisible}
             soundEnabled={false}
+            stageSizePx={stageSizePx}
             style={{
-              "--coin-size": COIN_SIZE,
-              "--coin-toss-stage-size": STAGE_SIZE,
+              "--coin-size": `${coinSizePx}px`,
+              "--coin-toss-stage-size": `${stageSizePx}px`,
             }}
           />
         </button>

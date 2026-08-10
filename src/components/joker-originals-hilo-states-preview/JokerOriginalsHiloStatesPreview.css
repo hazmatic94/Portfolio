@@ -273,4 +273,33 @@
     --hilo-preview-card-scale: calc(80 / 76);
     padding: var(--spacing-16);
   }
+
+  .joker-originals-hilo-states-preview--compact {
+    --hilo-preview-card-scale: calc(110 / 76);
+    --hilo-preview-optical-shift: calc(var(--hilo-preview-card-height) * 0.045);
+    justify-content: center;
+    transform: translateY(var(--hilo-preview-optical-shift));
+  }
+
+  /* Flex center uses card height only; chip sits on the card edge and overflows up. */
+  .joker-originals-hilo-states-preview--compact
+    .joker-originals-hilo-states-preview__slot {
+    min-height: var(--hilo-preview-card-height);
+    justify-content: center;
+  }
+
+  .joker-originals-hilo-states-preview--compact
+    .joker-originals-hilo-states-preview__entry {
+    padding-top: 0;
+  }
+
+  .joker-originals-hilo-states-preview--compact
+    .joker-originals-hilo-states-preview__chip {
+    top: 0;
+  }
+
+  .joker-originals-hilo-states-preview--compact
+    .joker-originals-hilo-states-preview__connector {
+    display: none;
+  }
 }

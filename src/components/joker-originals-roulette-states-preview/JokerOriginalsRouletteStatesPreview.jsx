@@ -10,6 +10,7 @@ import {
   GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
   playGameplayWinChipSound,
 } from "../joker-originals-gameplay-preview/gameplayPreviewSounds.js";
+import { useGameplayPreviewMobileCompact } from "../joker-originals-gameplay-preview/useGameplayPreviewMobileCompact.js";
 import "./JokerOriginalsRouletteStatesPreview.css";
 
 const WINS = [
@@ -19,13 +20,16 @@ const WINS = [
   { betColor: "green", multiplier: "36.00x" },
 ];
 
-/** Match coinflip gameplay preview sizing. */
-const CHIP_SIZE = Math.round(88 * 1.55);
 const GAP_PX = 16;
 const RING_SWEEP_MS = 5200;
 const RING_GLOW_MS = 3400;
-const ROW_WIDTH = CHIP_SIZE * WINS.length + GAP_PX * (WINS.length - 1);
-const ROW_HEIGHT = CHIP_SIZE + 14 + 30;
+
+function rowMetrics(wins, mobileCompact) {
+  const chipSize = Math.round(88 * 1.55);
+  const rowWidth = chipSize * wins.length + GAP_PX * (wins.length - 1);
+  const rowHeight = chipSize + 14 + 30;
+  return { chipSize, rowWidth, rowHeight };
+}
 
 function syncRingPhase(root, cycleStartedAt) {
   if (!root || cycleStartedAt == null) return;
@@ -50,6 +54,10 @@ function syncRingPhase(root, cycleStartedAt) {
 }
 
 export function JokerOriginalsRouletteStatesPreview() {
+  const mobileCompact = useGameplayPreviewMobileCompact();
+  const [sequentialIndex, setSequentialIndex] = useState(0);
+  const wins = mobileCompact ? [WINS[sequentialIndex]] : WINS;
+  const { chipSize, rowWidth, rowHeight } = rowMetrics(wins, mobileCompact);
   const rootRef = useRef(null);
   const cycleStartedAtRef = useRef(null);
   const timersRef = useRef([]);
@@ -83,17 +91,22 @@ export function JokerOriginalsRouletteStatesPreview() {
 
     const loopAt =
       GAMEPLAY_PREVIEW_INITIAL_DELAY_MS +
-      GAMEPLAY_PREVIEW_STEP_MS * (WINS.length - 1) +
+      GAMEPLAY_PREVIEW_STEP_MS * (wins.length - 1) +
       GAMEPLAY_PREVIEW_PLAYBACK_MS +
       GAMEPLAY_PREVIEW_HOLD_MS;
 
-    schedule(() => setCycleKey((key) => key + 1), loopAt);
+    schedule(() => {
+      if (mobileCompact) {
+        setSequentialIndex((index) => (index + 1) % WINS.length);
+      }
+      setCycleKey((key) => key + 1);
+    }, loopAt);
 
     return () => {
       timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
       timersRef.current = [];
     };
-  }, [cycleKey]);
+  }, [cycleKey, mobileCompact, wins.length]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -111,7 +124,7 @@ export function JokerOriginalsRouletteStatesPreview() {
   useEffect(() => {
     if (!rowReady || reducedMotion) return;
 
-    const soundTimers = WINS.map((_, index) =>
+    const soundTimers = wins.map((_, index) =>
       window.setTimeout(
         () => playGameplayWinChipSound(),
         index * GAMEPLAY_PREVIEW_STEP_MS + GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
@@ -121,28 +134,32 @@ export function JokerOriginalsRouletteStatesPreview() {
     return () => {
       soundTimers.forEach((timerId) => window.clearTimeout(timerId));
     };
-  }, [rowReady, cycleKey, reducedMotion]);
+  }, [rowReady, cycleKey, reducedMotion, wins]);
 
   return (
     <div
       ref={rootRef}
-      className="joker-originals-roulette-states-preview"
+      className={`joker-originals-roulette-states-preview${mobileCompact ? " joker-originals-roulette-states-preview--compact" : ""}`}
       aria-label="Roulette win streak from the design system"
     >
       {rowReady ? (
         <WinStreakRow
-          key={cycleKey}
-          wins={WINS}
+          key={mobileCompact ? `${cycleKey}-${sequentialIndex}` : cycleKey}
+          wins={wins}
           gap={GAP_PX}
-          chipSize={CHIP_SIZE}
+          chipSize={chipSize}
           animateOnMount={!reducedMotion}
           staggerMs={GAMEPLAY_PREVIEW_STEP_MS}
-          completedThrough={reducedMotion ? WINS.length - 1 : undefined}
+          completedThrough={reducedMotion ? wins.length - 1 : undefined}
         />
       ) : (
         <div
           className="joker-originals-roulette-states-preview__spacer"
-          style={{ width: ROW_WIDTH, height: ROW_HEIGHT }}
+          style={{
+            width: rowWidth,
+            height: rowHeight,
+            "--win-streak-row-chip-size": `${chipSize}px`,
+          }}
           aria-hidden="true"
         />
       )}

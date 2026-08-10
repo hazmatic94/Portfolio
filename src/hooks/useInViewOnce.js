@@ -17,24 +17,19 @@ function isMeaningfullyVisible(entry, threshold) {
 
 function waitForRouteReady(callback) {
   let frameId;
-  let attempts = 0;
+  let cancelled = false;
 
-  const tick = () => {
-    attempts += 1;
+  frameId = requestAnimationFrame(() => {
+    if (cancelled) return;
+    frameId = requestAnimationFrame(() => {
+      if (!cancelled) callback();
+    });
+  });
 
-    if (window.scrollY < 8 || attempts > 20) {
-      callback();
-      return;
-    }
-
-    window.scrollTo(0, 0);
-    frameId = requestAnimationFrame(tick);
+  return () => {
+    cancelled = true;
+    cancelAnimationFrame(frameId);
   };
-
-  window.scrollTo(0, 0);
-  frameId = requestAnimationFrame(tick);
-
-  return () => cancelAnimationFrame(frameId);
 }
 
 export function useInViewOnce({
@@ -76,6 +71,7 @@ export function useInViewOnce({
 
     const startObserving = () => {
       if (document.documentElement.classList.contains("route-changing")) {
+        frameId = requestAnimationFrame(startObserving);
         return;
       }
 

@@ -22,6 +22,7 @@ import { CaseStudyPageHeader, CaseStudyProjectRail } from "../../../components/c
 import { CaseStudyRevealSection } from "../../../components/case-study-reveal/CaseStudyRevealSection.jsx";
 import { FooterLegal } from "../../../components/footer/Footer.jsx";
 import { Nav } from "../../../components/nav/Nav.jsx";
+import { PageMeta } from "../../../components/page-meta/PageMeta.jsx";
 import { PortfolioMockupStage } from "../../../components/portfolio-video-mockup/PortfolioMockupStage.jsx";
 import { ProductAdoptionGamesGrid } from "../../../components/product-adoption-games-grid/ProductAdoptionGamesGrid.jsx";
 import { MinesGameLayoutPreview } from "../../../components/mines-game-layout-preview/MinesGameLayoutPreview.jsx";
@@ -32,6 +33,11 @@ import "../../../styles/case-study-layout.css";
 import "../../../pages/home/components/CaseStudySection.css";
 import "./JokerOriginalsCaseStudyPage.css";
 
+const JOKER_ORIGINALS_PAGE_TITLE = "Joker Originals";
+const JOKER_ORIGINALS_META_DESCRIPTION =
+  "Original casino games designed and built on a shared platform, combining reusable gameplay systems, motion, and scalable architecture.";
+const JOKER_ORIGINALS_OG_IMAGE = "/og/joker-originals.png";
+
 export function JokerOriginalsCaseStudyPage() {
   const motionSystemsBaseId = useId();
   const [motionSystemsTab, setMotionSystemsTab] = useState("mines");
@@ -39,8 +45,14 @@ export function JokerOriginalsCaseStudyPage() {
 
   return (
     <>
+      <PageMeta
+        title={JOKER_ORIGINALS_PAGE_TITLE}
+        description={JOKER_ORIGINALS_META_DESCRIPTION}
+        canonicalPath="/case-studies/joker-originals"
+        ogImage={JOKER_ORIGINALS_OG_IMAGE}
+      />
       <Nav />
-      <main className="application-shell-case-study joker-originals-case-study">
+      <main className="joker-originals-case-study">
         <CaseStudyRevealSection
           as="div"
           className="joker-originals-case-study__shell joker-originals-case-study__intro-reveal"
@@ -50,8 +62,8 @@ export function JokerOriginalsCaseStudyPage() {
           </div>
 
           <CaseStudyIntro
-            title="Original games, built end to end"
-            body="Original games, built end to end — mechanics, motion, and reusable gameplay components on top of the shell."
+            title="Original Games"
+            body="With the shell already in place, each game became about designing its rules, assets and interactions."
             ctaLabel="View Live Demo"
             ctaHref="/case-studies/joker-originals"
           />
@@ -98,7 +110,7 @@ export function JokerOriginalsCaseStudyPage() {
           <SectionDivider number="01" title="Collection" />
           <CaseStudyInlineCopy
             title="Four original games"
-            body="After establishing the application shell, I designed and built a scalable library of original casino games that could be expanded consistently over time."
+            body="Each game explored a different style of play, proving the framework was flexible enough to support new ideas within the constraints already in place."
           />
           <div className="joker-originals-case-study__section-media">
             <ProductAdoptionGamesGrid />
@@ -113,7 +125,7 @@ export function JokerOriginalsCaseStudyPage() {
           <SectionDivider number="02" title="Gameplay" />
           <CaseStudyInlineCopy
             title="Risk and reward"
-            body="Each game balances player decisions, probability and multipliers to create rewarding moments while maintaining a consistent level of risk."
+            body="Simple mechanics made each game easy to learn, while probability and multipliers created depth through player decisions."
           />
           <div className="joker-originals-case-study__section-media">
             <JokerOriginalsGameplayPreview />
@@ -127,8 +139,8 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="03" title="Interactions" />
           <CaseStudyInlineCopy
-            title="Motion systems"
-            body="Consistent motion and feedback create familiar interactions while giving each game its own distinct personality."
+            title="Interactive Components"
+            body="Every game introduced its own components, while shared interaction patterns kept the experience consistent across the platform."
           />
           <div className="joker-originals-case-study__section-media">
             <div className="joker-originals-motion-systems-layout">
@@ -189,16 +201,23 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="04" title="Vision" />
           <CaseStudyInlineCopy
-            title="Shared mechanics"
-            body="Shared mechanics, reusable interactions and familiar gameplay created a platform that could grow over time."
+            title="Shared Patterns"
+            body="Core gameplay patterns stayed familiar while each game’s mechanics introduced something new."
           />
           <div className="joker-originals-case-study__section-media">
-            <CaseStudySplitFrames
-              left={<MinesGameLayoutPreview />}
-              right={<WinModalPreview />}
-              leftPanelClassName="case-study-split-frames__panel--fixed"
-              rightPanelClassName="case-study-split-frames__panel--fill"
-            />
+            <div className="joker-originals-vision-layout">
+              <div className="joker-originals-vision-layout__desktop-split">
+                <CaseStudySplitFrames
+                  left={<MinesGameLayoutPreview />}
+                  right={<WinModalPreview />}
+                  leftPanelClassName="case-study-split-frames__panel--fixed"
+                  rightPanelClassName="case-study-split-frames__panel--fill"
+                />
+              </div>
+              <div className="joker-originals-vision-layout__mobile-shell">
+                <WinModalPreview />
+              </div>
+            </div>
           </div>
         </CaseStudyRevealSection>
 

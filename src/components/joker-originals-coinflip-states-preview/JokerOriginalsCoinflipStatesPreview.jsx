@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Coin, CoinProgression } from "@joker/design-system";
 import {
   GAMEPLAY_PREVIEW_BETWEEN_STEPS_MS,
@@ -10,6 +10,7 @@ import {
   GAMEPLAY_PREVIEW_CHIP_SOUND_DELAY_MS,
   playGameplayWinChipSound,
 } from "../joker-originals-gameplay-preview/gameplayPreviewSounds.js";
+import { useGameplayPreviewMobileCompact } from "../joker-originals-gameplay-preview/useGameplayPreviewMobileCompact.js";
 import "./JokerOriginalsCoinflipStatesPreview.css";
 
 const STEPS = [
@@ -19,8 +20,6 @@ const STEPS = [
   { multiplier: "2.50x", side: "heads" },
 ];
 
-/** Default DS receiver is 88px; sized up for the 540px gameplay frame. */
-const RECEIVER_SIZE = Math.round(88 * 1.55);
 const GAP_PX = 16;
 const RING_SWEEP_MS = 5200;
 const RING_GLOW_MS = 3400;
@@ -48,6 +47,13 @@ function syncRingPhase(root, cycleStartedAt) {
 }
 
 export function JokerOriginalsCoinflipStatesPreview() {
+  const mobileCompact = useGameplayPreviewMobileCompact();
+  const [sequentialIndex, setSequentialIndex] = useState(0);
+  const steps = useMemo(
+    () => (mobileCompact ? [STEPS[sequentialIndex]] : STEPS),
+    [mobileCompact, sequentialIndex],
+  );
+  const receiverSize = Math.round(88 * 1.55);
   const rootRef = useRef(null);
   const cycleStartedAtRef = useRef(null);
   const timersRef = useRef([]);
@@ -68,8 +74,8 @@ export function JokerOriginalsCoinflipStatesPreview() {
     ).matches;
 
     if (reducedMotion) {
-      setActiveIndex(STEPS.length - 1);
-      setCompletedThrough(STEPS.length - 1);
+      setActiveIndex(steps.length - 1);
+      setCompletedThrough(steps.length - 1);
       setLockingIndex(null);
       return;
     }
@@ -84,7 +90,7 @@ export function JokerOriginalsCoinflipStatesPreview() {
       setLockingIndex(0);
     }, GAMEPLAY_PREVIEW_INITIAL_DELAY_MS);
 
-    STEPS.forEach((_, index) => {
+    steps.forEach((_, index) => {
       schedule(
         () => playGameplayWinChipSound(),
         GAMEPLAY_PREVIEW_INITIAL_DELAY_MS +
@@ -97,7 +103,7 @@ export function JokerOriginalsCoinflipStatesPreview() {
       timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
       timersRef.current = [];
     };
-  }, [cycleKey]);
+  }, [cycleKey, mobileCompact, sequentialIndex, steps.length]);
 
   useEffect(() => {
     if (lockingIndex == null) return;
@@ -109,38 +115,46 @@ export function JokerOriginalsCoinflipStatesPreview() {
     return () => window.cancelAnimationFrame(frame);
   }, [lockingIndex, completedThrough]);
 
+  const handleLockComplete = (index) => {
+    const nextIndex = index + 1;
+    setCompletedThrough(index);
+    setLockingIndex(null);
+
+    if (nextIndex >= steps.length) {
+      setActiveIndex(steps.length - 1);
+      schedule(() => {
+        if (mobileCompact) {
+          setSequentialIndex((current) => (current + 1) % STEPS.length);
+        }
+        setCycleKey((key) => key + 1);
+      }, GAMEPLAY_PREVIEW_HOLD_MS);
+      return;
+    }
+
+    setActiveIndex(nextIndex);
+    schedule(
+      () => setLockingIndex(nextIndex),
+      GAMEPLAY_PREVIEW_BETWEEN_STEPS_MS,
+    );
+  };
+
   return (
     <div
       ref={rootRef}
-      className="joker-originals-coinflip-states-preview"
+      className={`joker-originals-coinflip-states-preview${mobileCompact ? " joker-originals-coinflip-states-preview--compact" : ""}`}
       aria-label="Coin flip progression from the design system"
     >
       <div className="joker-coin-progression-demo">
         <CoinProgression
-          steps={STEPS}
+          key={mobileCompact ? `${cycleKey}-${sequentialIndex}` : cycleKey}
+          steps={steps}
           activeIndex={activeIndex}
           completedThrough={completedThrough}
           lockingIndex={lockingIndex}
-          receiverSize={RECEIVER_SIZE}
+          receiverSize={receiverSize}
           gap={GAP_PX}
-          onLockComplete={(index) => {
-            const nextIndex = index + 1;
-            setCompletedThrough(index);
-            setLockingIndex(null);
-
-            if (nextIndex >= STEPS.length) {
-              setActiveIndex(STEPS.length - 1);
-              schedule(() => setCycleKey((key) => key + 1), GAMEPLAY_PREVIEW_HOLD_MS);
-              return;
-            }
-
-            setActiveIndex(nextIndex);
-            schedule(
-              () => setLockingIndex(nextIndex),
-              GAMEPLAY_PREVIEW_BETWEEN_STEPS_MS,
-            );
-          }}
-          renderCoin={(index) => <Coin side={STEPS[index].side} />}
+          onLockComplete={handleLockComplete}
+          renderCoin={(index) => <Coin side={steps[index].side} />}
         />
       </div>
     </div>

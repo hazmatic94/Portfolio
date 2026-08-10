@@ -13,13 +13,22 @@
 }
 
 .joker-originals-hilo-card-stack-preview__stage {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .joker-originals-hilo-card-stack-preview__stack {
-  transform: scale(var(--hilo-card-stack-scale));
-  transform-origin: center center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 801px) {
+  .joker-originals-hilo-card-stack-preview__stack {
+    transform: scale(var(--hilo-card-stack-scale));
+    transform-origin: center center;
+  }
 }
 
 .joker-originals-hilo-card-stack-preview__chip {
@@ -38,8 +47,70 @@
 }
 
 @media (max-width: 800px) {
+  /* Native stack footprint at scale 1: ~296×393 (cards + shell padding). */
   .joker-originals-hilo-card-stack-preview {
-    --hilo-card-stack-scale: clamp(0.56, 28vw, 0.68);
-    min-height: 280px;
+    --hilo-stack-outer-height: 393;
+    --hilo-stack-outer-width: 296;
+    --hilo-stack-mobile-height: 300px;
+    --hilo-stack-mobile-scale: calc(
+      var(--hilo-stack-mobile-height) / (var(--hilo-stack-outer-height) * 1px)
+    );
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack.joker-game-card-stack {
+    box-sizing: border-box;
+    height: var(--hilo-stack-mobile-height);
+    width: calc(
+      var(--hilo-stack-mobile-height) * var(--hilo-stack-outer-width) /
+        var(--hilo-stack-outer-height)
+    );
+    padding: calc(var(--spacing-24) * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack .joker-game-card-stack__cards {
+    --game-card-stack-width: calc(248px * var(--hilo-stack-mobile-scale));
+    --game-card-stack-height: calc(338px * var(--hilo-stack-mobile-scale));
+    --game-card-stack-step-middle: calc(8px * var(--hilo-stack-mobile-scale));
+    --game-card-stack-step-back: calc(14px * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack .joker-game-card {
+    width: calc(248px * var(--hilo-stack-mobile-scale));
+    height: calc(338px * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack .joker-game-card__content-frame {
+    padding: calc(var(--spacing-16) * var(--hilo-stack-mobile-scale))
+      calc(var(--spacing-12) * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack .joker-game-card-face__center {
+    gap: calc(var(--spacing-16) * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack .joker-game-card-face__corner {
+    gap: calc(var(--spacing-4) * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack .joker-game-card-face__rank {
+    font-size: calc(82px * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack
+    .joker-game-card-face__corner-rank {
+    font-size: calc(30px * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack
+    .joker-game-card-face__center
+    .joker-game-card-face__suit {
+    width: calc(72px * var(--hilo-stack-mobile-scale));
+    height: calc(72px * var(--hilo-stack-mobile-scale));
+  }
+
+  .joker-originals-hilo-card-stack-preview__stack
+    .joker-game-card-face__corner-suit {
+    width: calc(30px * var(--hilo-stack-mobile-scale));
+    height: calc(30px * var(--hilo-stack-mobile-scale));
   }
 }

@@ -19,6 +19,7 @@ import {
   playGameplaySkipSound,
 } from "../joker-originals-gameplay-preview/gameplayPreviewSounds.js";
 import "./JokerOriginalsHiloStatesPreview.css";
+import { useGameplayPreviewMobileCompact } from "../joker-originals-gameplay-preview/useGameplayPreviewMobileCompact.js";
 
 /*
  * Mirrors the HiLo history rail from the game shell build:
@@ -74,6 +75,11 @@ const CHIP_SOUND_BY_VARIANT = {
 };
 
 export function JokerOriginalsHiloStatesPreview() {
+  const mobileCompact = useGameplayPreviewMobileCompact();
+  const [sequentialIndex, setSequentialIndex] = useState(0);
+  const entries = mobileCompact
+    ? [HISTORY_ENTRIES[sequentialIndex]]
+    : HISTORY_ENTRIES;
   const timersRef = useRef([]);
   const [cycleKey, setCycleKey] = useState(0);
   const [completedThrough, setCompletedThrough] = useState(-1);
@@ -91,7 +97,7 @@ export function JokerOriginalsHiloStatesPreview() {
     ).matches;
 
     if (reducedMotion) {
-      setCompletedThrough(HISTORY_ENTRIES.length - 1);
+      setCompletedThrough(entries.length - 1);
       setPlayingIndex(null);
       return;
     }
@@ -105,7 +111,7 @@ export function JokerOriginalsHiloStatesPreview() {
       timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
       timersRef.current = [];
     };
-  }, [cycleKey]);
+  }, [cycleKey, entries.length]);
 
   useEffect(() => {
     if (playingIndex == null) return;
@@ -115,8 +121,13 @@ export function JokerOriginalsHiloStatesPreview() {
       setCompletedThrough(playingIndex);
       setPlayingIndex(null);
 
-      if (nextIndex >= HISTORY_ENTRIES.length) {
-        schedule(() => setCycleKey((key) => key + 1), GAMEPLAY_PREVIEW_HOLD_MS);
+      if (nextIndex >= entries.length) {
+        schedule(() => {
+          if (mobileCompact) {
+            setSequentialIndex((index) => (index + 1) % HISTORY_ENTRIES.length);
+          }
+          setCycleKey((key) => key + 1);
+        }, GAMEPLAY_PREVIEW_HOLD_MS);
         return;
       }
 
@@ -125,12 +136,12 @@ export function JokerOriginalsHiloStatesPreview() {
 
     timersRef.current.push(completeTimer);
     return () => window.clearTimeout(completeTimer);
-  }, [playingIndex]);
+  }, [playingIndex, entries.length, mobileCompact]);
 
   useEffect(() => {
     if (playingIndex == null) return;
 
-    const entry = HISTORY_ENTRIES[playingIndex];
+    const entry = entries[playingIndex];
     const playChipSound = CHIP_SOUND_BY_VARIANT[entry.chipVariant];
 
     const dealTimer = window.setTimeout(() => {
@@ -144,21 +155,21 @@ export function JokerOriginalsHiloStatesPreview() {
       window.clearTimeout(dealTimer);
       window.clearTimeout(chipTimer);
     };
-  }, [playingIndex]);
+  }, [playingIndex, entries]);
 
   return (
     <div
-      className="joker-originals-hilo-states-preview"
+      className={`joker-originals-hilo-states-preview${mobileCompact ? " joker-originals-hilo-states-preview--compact" : ""}`}
       aria-label="Hilo card history states from the game shell"
     >
-      {HISTORY_ENTRIES.map((entry, index) => {
+      {entries.map((entry, index) => {
         const isPlaying = playingIndex === index;
         const isSettled = index <= completedThrough && !isPlaying;
         const show = isPlaying || index <= completedThrough;
 
         return (
           <div
-            key={entry.id}
+            key={`${entry.id}-${mobileCompact ? sequentialIndex : 0}-${cycleKey}`}
             className="joker-originals-hilo-states-preview__slot"
             style={{ "--hilo-entry-index": index }}
           >
@@ -190,7 +201,7 @@ export function JokerOriginalsHiloStatesPreview() {
                       />
                     </GameCardMini>
                   </div>
-                  {entry.connector ? (
+                  {entry.connector && !mobileCompact ? (
                     <HiLoEllipseButton
                       aria-hidden="true"
                       className="joker-originals-hilo-states-preview__connector"

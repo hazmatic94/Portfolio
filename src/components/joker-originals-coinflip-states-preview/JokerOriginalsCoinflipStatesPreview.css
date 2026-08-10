@@ -30,6 +30,10 @@
   );
 }
 
+.joker-originals-coinflip-states-preview .joker-coin-progression {
+  transform: translateY(calc(var(--win-streak-row-chip-size) * 0.11));
+}
+
 /* Keep all 4 slots reserved so the row stays centered while coins fill L→R. */
 .joker-originals-coinflip-states-preview .joker-coin-progression__track {
   justify-content: flex-start;
@@ -50,5 +54,10 @@
 @media (max-width: 800px) {
   .joker-originals-coinflip-states-preview {
     padding: var(--spacing-16);
+  }
+
+  .joker-originals-coinflip-states-preview--compact
+    .joker-coin-progression__track {
+    justify-content: center;
   }
 }

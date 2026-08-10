@@ -64,9 +64,3 @@
   border-color: var(--joker-black-200);
   color: var(--joker-gold-400);
 }
-
-@media (max-width: 800px) {
-  .joker-originals-roulette-game-slot-preview {
-    min-height: 280px;
-  }
-}

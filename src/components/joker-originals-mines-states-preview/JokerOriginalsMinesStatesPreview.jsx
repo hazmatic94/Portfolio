@@ -1,25 +1,71 @@
 import { useEffect, useRef, useState } from "react";
 import { LossTile, SafeTile, WinTile } from "@joker/design-system";
 import {
+  GAMEPLAY_PREVIEW_HOLD_MS,
   GAMEPLAY_PREVIEW_INITIAL_DELAY_MS,
+  GAMEPLAY_PREVIEW_PLAYBACK_MS,
   GAMEPLAY_PREVIEW_RESET_FADE_MS,
   GAMEPLAY_PREVIEW_RESET_SNAP_MS,
   GAMEPLAY_PREVIEW_STEP_MS,
   GAMEPLAY_PREVIEW_WIN_HOLD_MS,
 } from "../joker-originals-gameplay-preview/gameplayPreviewTiming.js";
+import { useGameplayPreviewMobileCompact } from "../joker-originals-gameplay-preview/useGameplayPreviewMobileCompact.js";
 import { MinesCoveredTile } from "./MinesCoveredTile.jsx";
 import "./JokerOriginalsMinesStatesPreview.css";
 
+const MINES_STEPS = [
+  { id: "win-a", type: "win", multiplier: "1.25x" },
+  { id: "safe", type: "safe" },
+  { id: "win-b", type: "win", multiplier: "1.57x" },
+  { id: "loss", type: "loss" },
+];
+
+function MinesStepTile({ step, revealed, cycleKey }) {
+  if (step.type === "win") {
+    return (
+      <MinesCoveredTile revealed={revealed}>
+        <WinTile
+          key={`${step.id}-${cycleKey}`}
+          revealed={revealed}
+          multiplier={step.multiplier}
+          soundOnReveal={false}
+        />
+      </MinesCoveredTile>
+    );
+  }
+
+  if (step.type === "safe") {
+    return (
+      <MinesCoveredTile revealed={revealed}>
+        <SafeTile key={`${step.id}-${cycleKey}`} revealed={revealed} />
+      </MinesCoveredTile>
+    );
+  }
+
+  return (
+    <MinesCoveredTile revealed={revealed}>
+      <LossTile key={`${step.id}-${cycleKey}`} revealed={revealed} soundOnReveal={false} />
+    </MinesCoveredTile>
+  );
+}
+
 export function JokerOriginalsMinesStatesPreview() {
+  const mobileCompact = useGameplayPreviewMobileCompact();
   const [cycleKey, setCycleKey] = useState(0);
+  const [sequentialIndex, setSequentialIndex] = useState(0);
   const [firstWinRevealed, setFirstWinRevealed] = useState(false);
   const [safeRevealed, setSafeRevealed] = useState(false);
   const [secondWinRevealed, setSecondWinRevealed] = useState(false);
   const [lossRevealed, setLossRevealed] = useState(false);
+  const [mobileRevealed, setMobileRevealed] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
   const timersRef = useRef([]);
 
   useEffect(() => {
+    if (mobileCompact) {
+      return undefined;
+    }
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -30,7 +76,7 @@ export function JokerOriginalsMinesStatesPreview() {
       setSecondWinRevealed(true);
       setLossRevealed(true);
       setIsResetting(false);
-      return;
+      return undefined;
     }
 
     setIsResetting(false);
@@ -76,45 +122,102 @@ export function JokerOriginalsMinesStatesPreview() {
       timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
       timersRef.current = [];
     };
-  }, [cycleKey]);
+  }, [cycleKey, mobileCompact]);
+
+  useEffect(() => {
+    if (!mobileCompact) {
+      return undefined;
+    }
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reducedMotion) {
+      setMobileRevealed(true);
+      setIsResetting(false);
+      return undefined;
+    }
+
+    setMobileRevealed(false);
+    setIsResetting(false);
+
+    const schedule = (callback, delay) => {
+      const timerId = window.setTimeout(callback, delay);
+      timersRef.current.push(timerId);
+    };
+
+    schedule(() => setMobileRevealed(true), GAMEPLAY_PREVIEW_INITIAL_DELAY_MS);
+
+    const resetStartAt =
+      GAMEPLAY_PREVIEW_INITIAL_DELAY_MS +
+      GAMEPLAY_PREVIEW_PLAYBACK_MS +
+      GAMEPLAY_PREVIEW_HOLD_MS;
+
+    schedule(() => setIsResetting(true), resetStartAt);
+    schedule(() => {
+      setMobileRevealed(false);
+      setSequentialIndex((index) => (index + 1) % MINES_STEPS.length);
+      setCycleKey((key) => key + 1);
+    }, resetStartAt + GAMEPLAY_PREVIEW_RESET_FADE_MS);
+    schedule(
+      () => setIsResetting(false),
+      resetStartAt + GAMEPLAY_PREVIEW_RESET_FADE_MS + GAMEPLAY_PREVIEW_RESET_SNAP_MS,
+    );
+
+    return () => {
+      timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
+      timersRef.current = [];
+    };
+  }, [cycleKey, mobileCompact]);
+
+  const mobileStep = MINES_STEPS[sequentialIndex];
 
   return (
     <div
       className={`joker-originals-mines-states-preview${
         isResetting ? " is-resetting" : ""
-      }`}
+      }${mobileCompact ? " joker-originals-mines-states-preview--compact" : ""}`}
       aria-label="Mines tile run from the design system"
     >
       <div className="joker-originals-mines-states-preview__stage">
-        <MinesCoveredTile revealed={firstWinRevealed}>
-          <WinTile
-            key={`win-a-${cycleKey}`}
-            revealed={firstWinRevealed}
-            multiplier="1.25x"
-            soundOnReveal={false}
+        {mobileCompact ? (
+          <MinesStepTile
+            key={`${mobileStep.id}-${sequentialIndex}-${cycleKey}`}
+            step={mobileStep}
+            revealed={mobileRevealed}
+            cycleKey={cycleKey}
           />
-        </MinesCoveredTile>
-        <MinesCoveredTile revealed={safeRevealed}>
-          <SafeTile
-            key={`safe-${cycleKey}`}
-            revealed={safeRevealed}
-          />
-        </MinesCoveredTile>
-        <MinesCoveredTile revealed={secondWinRevealed}>
-          <WinTile
-            key={`win-b-${cycleKey}`}
-            revealed={secondWinRevealed}
-            multiplier="1.57x"
-            soundOnReveal={false}
-          />
-        </MinesCoveredTile>
-        <MinesCoveredTile revealed={lossRevealed}>
-          <LossTile
-            key={`loss-${cycleKey}`}
-            revealed={lossRevealed}
-            soundOnReveal={false}
-          />
-        </MinesCoveredTile>
+        ) : (
+          <>
+            <MinesCoveredTile revealed={firstWinRevealed}>
+              <WinTile
+                key={`win-a-${cycleKey}`}
+                revealed={firstWinRevealed}
+                multiplier="1.25x"
+                soundOnReveal={false}
+              />
+            </MinesCoveredTile>
+            <MinesCoveredTile revealed={safeRevealed}>
+              <SafeTile key={`safe-${cycleKey}`} revealed={safeRevealed} />
+            </MinesCoveredTile>
+            <MinesCoveredTile revealed={secondWinRevealed}>
+              <WinTile
+                key={`win-b-${cycleKey}`}
+                revealed={secondWinRevealed}
+                multiplier="1.57x"
+                soundOnReveal={false}
+              />
+            </MinesCoveredTile>
+            <MinesCoveredTile revealed={lossRevealed}>
+              <LossTile
+                key={`loss-${cycleKey}`}
+                revealed={lossRevealed}
+                soundOnReveal={false}
+              />
+            </MinesCoveredTile>
+          </>
+        )}
       </div>
     </div>
   );

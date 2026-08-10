@@ -7,13 +7,90 @@
   width: 100%;
   height: 100%;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
   background: var(--joker-black-800);
 }
 
 .joker-originals-coinflip-coin-toss-preview__stage {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss__tap-target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+/* Portfolio preview: coin + playfield particles + hint only (no pedestal rings). */
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss-rings {
+  display: none;
+}
+
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss__arena {
+  --coin-toss-ring-plane-center: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  margin-inline: auto;
+}
+
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss__playfield {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: max-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  margin-inline: auto;
+  overflow: visible;
+  transform: none;
+  animation: none;
+}
+
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss-demo__hint {
+  position: static;
+  bottom: auto;
+  left: auto;
+  z-index: 2;
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: center;
+  transform: none;
+}
+
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss__ground {
+  display: none;
+}
+
+.joker-originals-coinflip-coin-toss-preview .joker-coin-toss__stage {
+  position: relative;
+  inset: auto;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--coin-size);
+  height: var(--coin-size);
+  overflow: visible;
 }
 
 .joker-originals-coinflip-coin-toss-preview__chip {
@@ -29,10 +106,4 @@
 .joker-originals-coinflip-coin-toss-preview:hover .joker-originals-coinflip-coin-toss-preview__chip {
   border-color: var(--joker-black-200);
   color: var(--joker-gold-400);
-}
-
-@media (max-width: 800px) {
-  .joker-originals-coinflip-coin-toss-preview {
-    min-height: 280px;
-  }
 }
