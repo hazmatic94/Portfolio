@@ -3,7 +3,6 @@ import {
   GameHeaderRail,
   GameInner,
   LiveMatchScore,
-  StatusChip,
 } from "@joker/design-system";
 import { SPORTSBOOK_EXPANSION_SPORTS } from "../../data/sportsbookExpansionSports.js";
 import { SPORTSBOOK_MOBILE_HOME_LIVE_MATCH } from "../../data/sportsbookMobileHome.js";
@@ -12,8 +11,12 @@ import "./SportsbookMobileHomePreview.css";
 
 const DEFAULT_GAME = SPORTSBOOK_EXPANSION_SPORTS.soccer.game;
 const DEFAULT_HERO_VIDEO_SRC = SPORTSBOOK_EXPANSION_SPORTS.soccer.heroVideoSrc;
+const DEFAULT_HERO_TITLE = SPORTSBOOK_EXPANSION_SPORTS.soccer.heroTitle;
+const DEFAULT_HERO_BODY = SPORTSBOOK_EXPANSION_SPORTS.soccer.heroBody;
+const DEFAULT_AVAILABILITY_LABEL =
+  SPORTSBOOK_EXPANSION_SPORTS.soccer.availabilityLabel;
 const DEFAULT_LIVE_MATCH = SPORTSBOOK_MOBILE_HOME_LIVE_MATCH;
-const PORTFOLIO_SPORT_ICONS = new Set(["tennis", "ufc", "nrl"]);
+const PORTFOLIO_SPORT_ICONS = new Set(["soccer", "tennis", "ufc", "nrl"]);
 
 function sportsbookMobileGameHeaderRail(game) {
   if (!PORTFOLIO_SPORT_ICONS.has(game?.icon)) {
@@ -23,11 +26,12 @@ function sportsbookMobileGameHeaderRail(game) {
   return (
     <GameHeaderRail
       rightLabel="Fair Play"
+      gameIcon="__portfolio-sport-icon__"
       game={
         <>
           <span
             className="joker-game-header-game-icon nav-inline-icon-host"
-            data-rail-icon-artwork="inset-16"
+            data-rail-icon-artwork="full-16"
           >
             <SportsbookSportIcon
               sportIcon={game.icon}
@@ -37,16 +41,34 @@ function sportsbookMobileGameHeaderRail(game) {
           {game.label}
         </>
       }
-      gameIcon="__portfolio-sport-icon__"
     />
   );
 }
 
-function SportsbookMobileHomeHero({ heroVideoSrc }) {
+function SportsbookAvailabilityChip({ label }) {
+  return (
+    <span className="sportsbook-mobile-home-preview__availability-chip">
+      <span
+        className="sportsbook-mobile-home-preview__availability-chip-dot"
+        aria-hidden="true"
+      />
+      <span className="sportsbook-mobile-home-preview__availability-chip-label">
+        {label}
+      </span>
+    </span>
+  );
+}
+
+function SportsbookMobileHomeHero({
+  heroVideoSrc,
+  heroTitle,
+  heroBody,
+  availabilityLabel,
+}) {
   return (
     <section
       className="sportsbook-mobile-home-preview__hero"
-      aria-label="Expert match picks"
+      aria-label={heroTitle}
     >
       <video
         key={heroVideoSrc}
@@ -61,14 +83,11 @@ function SportsbookMobileHomeHero({ heroVideoSrc }) {
       <div className="sportsbook-mobile-home-preview__hero-content">
         <div className="sportsbook-mobile-home-preview__hero-copy">
           <h2 className="sportsbook-mobile-home-preview__hero-title">
-            Expert Match Picks
+            {heroTitle}
           </h2>
-          <p className="sportsbook-mobile-home-preview__hero-body">
-            Expert-selected matches from the world&apos;s leading football
-            leagues, presented as a curated daily card of games.
-          </p>
+          <p className="sportsbook-mobile-home-preview__hero-body">{heroBody}</p>
         </div>
-        <StatusChip matchCount={12} />
+        <SportsbookAvailabilityChip label={availabilityLabel} />
       </div>
     </section>
   );
@@ -106,6 +125,9 @@ export function SportsbookMobileHomePreview({
   game = DEFAULT_GAME,
   liveMatch = DEFAULT_LIVE_MATCH,
   heroVideoSrc = DEFAULT_HERO_VIDEO_SRC,
+  heroTitle = DEFAULT_HERO_TITLE,
+  heroBody = DEFAULT_HERO_BODY,
+  availabilityLabel = DEFAULT_AVAILABILITY_LABEL,
 }) {
   const gameHeaderRail = sportsbookMobileGameHeaderRail(game);
 
@@ -120,7 +142,12 @@ export function SportsbookMobileHomePreview({
         renderMobileBetting={false}
       >
         <div className="sportsbook-mobile-home-preview__page">
-          <SportsbookMobileHomeHero heroVideoSrc={heroVideoSrc} />
+          <SportsbookMobileHomeHero
+            heroVideoSrc={heroVideoSrc}
+            heroTitle={heroTitle}
+            heroBody={heroBody}
+            availabilityLabel={availabilityLabel}
+          />
           <SportsbookMobileHomeOnAir liveMatch={liveMatch} />
         </div>
       </GameInner>

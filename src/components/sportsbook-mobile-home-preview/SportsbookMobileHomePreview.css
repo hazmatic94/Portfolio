@@ -1,4 +1,5 @@
 @import "../../styles/case-study-game-rail-icons.css";
+@import "../../styles/sportsbook-nrl-team-logos.css";
 
 .sportsbook-mobile-home-preview-shell {
   position: relative;
@@ -7,6 +8,7 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
+  border-radius: inherit;
   background: var(--joker-black-800);
 }
 
@@ -18,7 +20,7 @@
   max-width: none;
   overflow: hidden;
   border: 0;
-  border-radius: 0;
+  border-radius: inherit;
   background: transparent;
 }
 
@@ -40,16 +42,18 @@
   padding-inline: var(--spacing-16);
 }
 
-.sportsbook-mobile-home-preview
+/* Match info / fair-play header icon weight — 16px frame, no optical bump. */
+.sportsbook-mobile-home-preview-shell.case-study-game-rail-icons
   .joker-game-header-rail
   .joker-game-header-game-icon.nav-inline-icon-host,
-.sportsbook-mobile-home-preview
+.sportsbook-mobile-home-preview-shell.case-study-game-rail-icons
   .joker-game-header-rail
   .joker-game-header-game-icon.nav-inline-icon-host
   .nav-inline-icon {
-  width: var(--game-rail-icon-size);
-  height: var(--game-rail-icon-size);
-  flex: 0 0 var(--game-rail-icon-size);
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  flex: 0 0 var(--icon-size-sm);
+  --game-rail-icon-optical-scale: 1;
 }
 
 .sportsbook-mobile-home-preview .joker-game-inner-layout {
@@ -97,7 +101,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background: rgb(0 0 0 / 40%);
   pointer-events: none;
 }
@@ -106,7 +110,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background: linear-gradient(to bottom, rgb(0 0 0 / 62%), transparent 58%);
   pointer-events: none;
 }
@@ -124,7 +128,7 @@
 .sportsbook-mobile-home-preview__hero-content {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,6 +165,59 @@
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-line-height);
   color: var(--color-text-secondary);
+}
+
+.sportsbook-mobile-home-preview__availability-chip {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  max-width: 100%;
+  padding: 6px 8px 6px 12px;
+  border: var(--border-width-default) solid var(--joker-black-300);
+  border-radius: 999px;
+  background: var(--joker-black-800);
+  color: var(--joker-white-50);
+  font-family: var(--font);
+  font-size: var(--text-body-16);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-line-height);
+  white-space: nowrap;
+}
+
+.sportsbook-mobile-home-preview__availability-chip-dot {
+  position: relative;
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--joker-green-400);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--joker-green-400) 24%, transparent);
+  animation: sportsbook-mobile-home-availability-pulse 1.8s var(--ease-standard)
+    infinite;
+}
+
+.sportsbook-mobile-home-preview__availability-chip-label {
+  min-width: 0;
+}
+
+@keyframes sportsbook-mobile-home-availability-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--joker-green-400) 24%, transparent);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--joker-green-400) 12%, transparent),
+      0 0 0 7px color-mix(in srgb, var(--joker-green-400) 18%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sportsbook-mobile-home-preview__availability-chip-dot {
+    animation: none;
+  }
 }
 
 .sportsbook-mobile-home-preview__on-air {
@@ -266,6 +323,8 @@
   height: 120px;
   min-height: 120px;
   pointer-events: none;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
   background: linear-gradient(
     to top,
     var(--joker-black-800) 0%,

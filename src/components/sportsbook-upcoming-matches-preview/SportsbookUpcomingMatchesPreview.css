@@ -1,4 +1,7 @@
+@import "../../styles/sportsbook-nrl-team-logos.css";
+
 .sportsbook-upcoming-matches-preview {
+  --upcoming-edge-fade: 80px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -7,7 +10,8 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
-  padding: 16px 0 0;
+  padding: var(--spacing-16);
+  border-radius: inherit;
   background: var(--joker-black-800);
 }
 
@@ -78,6 +82,7 @@
   flex: 0 0 50%;
   width: 50%;
   max-width: 50%;
+  grid-template-columns: repeat(var(--odds-columns, 3), minmax(0, 1fr));
   background: var(--joker-black-800);
   border-bottom: var(--border-width-default) solid var(--joker-black-300);
 }
@@ -176,17 +181,19 @@
 
 .sportsbook-upcoming-matches-preview__fade {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  right: var(--spacing-16);
+  bottom: var(--spacing-16);
+  left: var(--spacing-16);
   z-index: 2;
-  height: 80px;
-  min-height: 80px;
+  height: var(--upcoming-edge-fade);
+  min-height: var(--upcoming-edge-fade);
   pointer-events: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   background: linear-gradient(
     to top,
     var(--joker-black-800) 0%,
-    color-mix(in srgb, var(--joker-black-800) 80%, transparent) 50%,
+    color-mix(in srgb, var(--joker-black-800) 85%, transparent) 45%,
     transparent 100%
   );
 }

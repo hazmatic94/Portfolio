@@ -1,0 +1,16 @@
+/* NRL crests: +2px vs default TeamInfo logo frame (soccer crests). */
+.sportsbook-mobile-home-preview
+  .joker-team-info__logo-wrap:has(.joker-team-info__logo[src*="/images/sportsbook/nrl/"]),
+.sportsbook-upcoming-matches-preview
+  .joker-team-info__logo-wrap:has(.joker-team-info__logo[src*="/images/sportsbook/nrl/"]) {
+  width: calc(var(--icon-size-sm) + 2px);
+  height: calc(var(--icon-size-sm) + 2px);
+}
+
+/* Drop baked-in black mats on dark UI without altering the artwork. */
+.sportsbook-mobile-home-preview
+  .joker-team-info__logo[src*="/images/sportsbook/nrl/"],
+.sportsbook-upcoming-matches-preview
+  .joker-team-info__logo[src*="/images/sportsbook/nrl/"] {
+  mix-blend-mode: lighten;
+}

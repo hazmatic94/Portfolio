@@ -122,22 +122,20 @@
 
 .case-study-split-frames__media:has(.sportsbook-mobile-home-preview-shell) {
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
+  min-height: 0;
   overflow: hidden;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
 }
 
 .case-study-split-frames__panel
   .portfolio-image-mockup__media:has(.sportsbook-mobile-home-preview-shell) {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   overflow: hidden;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  border-radius: 6px;
 }
 
 .case-study-split-frames__panel

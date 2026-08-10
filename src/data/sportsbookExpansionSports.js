@@ -5,6 +5,15 @@ export const SPORTSBOOK_EXPANSION_TABS = [
   { key: "nrl", label: "NRL" },
 ];
 
+const NRL_TEAM_LOGOS = {
+  broncos: "/images/sportsbook/nrl/broncos.png",
+  cowboys: "/images/sportsbook/nrl/cowboys.png",
+  roosters: "/images/sportsbook/nrl/roosters.png",
+  rabbitohs: "/images/sportsbook/nrl/rabbitohs.png",
+  panthers: "/images/sportsbook/nrl/panthers.png",
+  storm: "/images/sportsbook/nrl/storm.png",
+};
+
 const SOCCER_UPCOMING_MATCHES = [
   {
     id: "la-liga-1",
@@ -81,6 +90,11 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
   soccer: {
     game: { label: "FCPlus", icon: "soccer" },
     heroVideoSrc: "/videos/home-video.mp4",
+    heroTitle: "Expert Match Picks",
+    heroBody:
+      "Expert-selected matches from the world's leading football leagues, presented as a curated daily card of games.",
+    availabilityLabel: "12 Matches Available",
+    upcomingTitle: "Upcoming Matches",
     liveMatch: {
       competition: "FIFA World Cup",
       minutesPlayed: 24,
@@ -104,6 +118,11 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
   tennis: {
     game: { label: "Tennis", icon: "tennis" },
     heroVideoSrc: "/videos/sportsbook-hero-tennis.mp4",
+    heroTitle: "Tournament Picks",
+    heroBody:
+      "Daily selections from ATP and WTA tournaments, balancing form, surface and value across every match.",
+    availabilityLabel: "9 Matches Available",
+    upcomingTitle: "Upcoming Matches",
     liveMatch: {
       competition: "ATP Tour",
       minutesPlayed: 2,
@@ -142,7 +161,6 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         ],
         odds: [
           { label: "1", odds: "1.72" },
-          { label: "X", odds: "—" },
           { label: "2", odds: "2.05" },
         ],
       },
@@ -165,7 +183,6 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         ],
         odds: [
           { label: "1", odds: "1.55" },
-          { label: "X", odds: "—" },
           { label: "2", odds: "2.35" },
         ],
       },
@@ -188,7 +205,6 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         ],
         odds: [
           { label: "1", odds: "1.48" },
-          { label: "X", odds: "—" },
           { label: "2", odds: "2.55" },
         ],
       },
@@ -197,6 +213,11 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
   ufc: {
     game: { label: "UFC", icon: "ufc" },
     heroVideoSrc: "/videos/sportsbook-hero-ufc.mp4",
+    heroTitle: "Fight Night Picks",
+    heroBody:
+      "Analyst-selected fights across the main card, combining matchup analysis, recent form and betting value.",
+    availabilityLabel: "6 Fights Available",
+    upcomingTitle: "Upcoming Fights",
     liveMatch: {
       competition: "UFC 311",
       minutesPlayed: 3,
@@ -235,7 +256,6 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         ],
         odds: [
           { label: "1", odds: "1.65" },
-          { label: "X", odds: "—" },
           { label: "2", odds: "2.20" },
         ],
       },
@@ -258,7 +278,6 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         ],
         odds: [
           { label: "1", odds: "1.45" },
-          { label: "X", odds: "—" },
           { label: "2", odds: "2.70" },
         ],
       },
@@ -281,7 +300,6 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         ],
         odds: [
           { label: "1", odds: "2.10" },
-          { label: "X", odds: "—" },
           { label: "2", odds: "1.72" },
         ],
       },
@@ -290,19 +308,24 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
   nrl: {
     game: { label: "NRL", icon: "nrl" },
     heroVideoSrc: "/videos/sportsbook-hero-nrl.mp4",
+    heroTitle: "Round Picks",
+    heroBody:
+      "Weekly selections across the NRL, combining team form, player matchups and value before kickoff.",
+    availabilityLabel: "10 Games Available",
+    upcomingTitle: "Upcoming Matches",
     liveMatch: {
       competition: "NRL Premiership",
       minutesPlayed: 58,
       teams: [
         {
           name: "Panthers",
-          logoSrc: "https://crests.football-data.org/64.png",
+          logoSrc: NRL_TEAM_LOGOS.panthers,
           logoAlt: "Penrith Panthers",
           score: 18,
         },
         {
           name: "Storm",
-          logoSrc: "https://crests.football-data.org/66.png",
+          logoSrc: NRL_TEAM_LOGOS.storm,
           logoAlt: "Melbourne Storm",
           score: 12,
         },
@@ -317,18 +340,17 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "Broncos",
-            logoSrc: "https://crests.football-data.org/64.png",
+            logoSrc: NRL_TEAM_LOGOS.broncos,
             logoAlt: "Brisbane Broncos",
           },
           {
             name: "Cowboys",
-            logoSrc: "https://crests.football-data.org/57.png",
+            logoSrc: NRL_TEAM_LOGOS.cowboys,
             logoAlt: "North Queensland Cowboys",
           },
         ],
         odds: [
           { label: "1", odds: "1.90" },
-          { label: "X", odds: "21.00" },
           { label: "2", odds: "1.95" },
         ],
       },
@@ -340,18 +362,17 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "Roosters",
-            logoSrc: "https://crests.football-data.org/5.png",
+            logoSrc: NRL_TEAM_LOGOS.roosters,
             logoAlt: "Sydney Roosters",
           },
           {
             name: "Rabbitohs",
-            logoSrc: "https://crests.football-data.org/4.png",
+            logoSrc: NRL_TEAM_LOGOS.rabbitohs,
             logoAlt: "South Sydney Rabbitohs",
           },
         ],
         odds: [
           { label: "1", odds: "1.75" },
-          { label: "X", odds: "21.00" },
           { label: "2", odds: "2.05" },
         ],
       },
@@ -363,18 +384,17 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "Panthers",
-            logoSrc: "https://crests.football-data.org/86.png",
+            logoSrc: NRL_TEAM_LOGOS.panthers,
             logoAlt: "Penrith Panthers",
           },
           {
             name: "Storm",
-            logoSrc: "https://crests.football-data.org/81.png",
+            logoSrc: NRL_TEAM_LOGOS.storm,
             logoAlt: "Melbourne Storm",
           },
         ],
         odds: [
           { label: "1", odds: "1.82" },
-          { label: "X", odds: "21.00" },
           { label: "2", odds: "1.98" },
         ],
       },

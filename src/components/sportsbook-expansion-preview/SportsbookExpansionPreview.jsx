@@ -78,12 +78,16 @@ export function SportsbookExpansionPreview() {
               game={activeSport.game}
               liveMatch={activeSport.liveMatch}
               heroVideoSrc={activeSport.heroVideoSrc}
+              heroTitle={activeSport.heroTitle}
+              heroBody={activeSport.heroBody}
+              availabilityLabel={activeSport.availabilityLabel}
             />
           }
           right={
             <SportsbookUpcomingMatchesPreview
               key={activeKey}
               matches={activeSport.upcomingMatches}
+              title={activeSport.upcomingTitle}
             />
           }
           leftPanelClassName="case-study-split-frames__panel--fill"

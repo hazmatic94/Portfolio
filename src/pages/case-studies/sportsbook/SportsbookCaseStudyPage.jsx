@@ -18,6 +18,7 @@ import {
 import { CaseStudyRevealSection } from "../../../components/case-study-reveal/CaseStudyRevealSection.jsx";
 import { FooterLegal } from "../../../components/footer/Footer.jsx";
 import { Nav } from "../../../components/nav/Nav.jsx";
+import { PageMeta } from "../../../components/page-meta/PageMeta.jsx";
 import { PortfolioMockupStage } from "../../../components/portfolio-video-mockup/PortfolioMockupStage.jsx";
 import { SectionDivider } from "../../../components/section-divider/SectionDivider.jsx";
 import "../../../components/project-container/ProjectContainer.css";
@@ -32,9 +33,20 @@ const MOBILE_BETSLIP = {
   alt: "Joker Plus mobile sportsbook with betslip open",
 };
 
+const SPORTSBOOK_PAGE_TITLE = "Sportsbook";
+const SPORTSBOOK_META_DESCRIPTION =
+  "Curated sportsbook case study exploring operational simplicity, scalable event architecture, and intuitive bet construction.";
+const SPORTSBOOK_OG_IMAGE = "/og/sportsbook.png";
+
 export function SportsbookCaseStudyPage() {
   return (
     <>
+      <PageMeta
+        title={SPORTSBOOK_PAGE_TITLE}
+        description={SPORTSBOOK_META_DESCRIPTION}
+        canonicalPath="/case-studies/sportsbook"
+        ogImage={SPORTSBOOK_OG_IMAGE}
+      />
       <Nav />
       <main className="application-shell-case-study sportsbook-case-study">
         <CaseStudyRevealSection

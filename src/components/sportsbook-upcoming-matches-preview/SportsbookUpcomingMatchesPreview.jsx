@@ -9,7 +9,6 @@ import {
 import { SPORTSBOOK_EXPANSION_SPORTS } from "../../data/sportsbookExpansionSports.js";
 import "./SportsbookUpcomingMatchesPreview.css";
 
-const ODDS_LABELS = ["1", "X", "2"];
 const DEFAULT_UPCOMING_MATCHES =
   SPORTSBOOK_EXPANSION_SPORTS.soccer.upcomingMatches;
 
@@ -38,6 +37,8 @@ function groupByDate(matches) {
 }
 
 function UpcomingMatchRow({ match, showDateHeader, showBorder }) {
+  const oddsColumns = match.odds.length;
+
   return (
     <div
       className={`sportsbook-upcoming-matches-preview__match-card${
@@ -47,9 +48,12 @@ function UpcomingMatchRow({ match, showDateHeader, showBorder }) {
       {showDateHeader ? (
         <div className="sportsbook-upcoming-matches-preview__date-header">
           <DateRow>{match.date}</DateRow>
-          <div className="joker-odds-selection__labels sportsbook-upcoming-matches-preview__odds-labels">
-            {ODDS_LABELS.map((label) => (
-              <OddsRow key={label}>{label}</OddsRow>
+          <div
+            className="joker-odds-selection__labels sportsbook-upcoming-matches-preview__odds-labels"
+            style={{ "--odds-columns": oddsColumns }}
+          >
+            {match.odds.map((option) => (
+              <OddsRow key={option.label}>{option.label}</OddsRow>
             ))}
           </div>
         </div>
@@ -77,7 +81,10 @@ function UpcomingMatchRow({ match, showDateHeader, showBorder }) {
           </div>
         </div>
         <div className="sportsbook-upcoming-matches-preview__odds-panel">
-          <div className="joker-odds-selection__panels sportsbook-upcoming-matches-preview__odds-panels">
+          <div
+            className="joker-odds-selection__panels sportsbook-upcoming-matches-preview__odds-panels"
+            style={{ "--odds-columns": oddsColumns }}
+          >
             {match.odds.map((option) => (
               <OddsPanel key={option.label} selected={false}>
                 {option.odds}
@@ -115,6 +122,7 @@ function UpcomingCompetitionBlock({ competition, dates }) {
 
 export function SportsbookUpcomingMatchesPreview({
   matches = DEFAULT_UPCOMING_MATCHES,
+  title = "Upcoming Matches",
 }) {
   const groupedByCompetition = groupByCompetition(matches).map((group) => ({
     ...group,
@@ -123,9 +131,7 @@ export function SportsbookUpcomingMatchesPreview({
 
   return (
     <div className="sportsbook-upcoming-matches-preview">
-      <h3 className="sportsbook-upcoming-matches-preview__title">
-        Upcoming Matches
-      </h3>
+      <h3 className="sportsbook-upcoming-matches-preview__title">{title}</h3>
       <div className="sportsbook-upcoming-matches-preview__content">
         {groupedByCompetition.map((group) => (
           <UpcomingCompetitionBlock

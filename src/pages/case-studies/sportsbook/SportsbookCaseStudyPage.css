@@ -72,16 +72,35 @@
 
 .sportsbook-case-study__overview
   .case-study-split-frames__panel--fill
-  .portfolio-image-mockup__media {
-  padding: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  .portfolio-image-mockup__frame:has(
+    .sportsbook-markets-hero-preview,
+    .sportsbook-live-games-preview
+  ) {
+  padding: var(--spacing-4);
 }
 
 .sportsbook-case-study__overview
   .case-study-split-frames__panel--fill
-  .portfolio-image-mockup__frame {
-  padding-bottom: 0;
+  .portfolio-image-mockup__media:has(
+    .sportsbook-markets-hero-preview,
+    .sportsbook-live-games-preview
+  ) {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.sportsbook-case-study__overview
+  .case-study-split-frames__panel--fill
+  .sportsbook-markets-hero-preview,
+.sportsbook-case-study__overview
+  .case-study-split-frames__panel--fill
+  .sportsbook-live-games-preview {
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: inherit;
 }
 
 .sportsbook-case-study__overview
@@ -196,8 +215,35 @@
 
 .sportsbook-case-study__architecture
   .case-study-split-frames__panel--fill
-  .portfolio-image-mockup__media {
-  padding: 0;
+  .portfolio-image-mockup__frame:has(.sportsbook-mobile-home-preview-shell),
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__frame:has(.sportsbook-upcoming-matches-preview) {
+  padding: var(--spacing-4);
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .portfolio-image-mockup__media:has(.sportsbook-mobile-home-preview-shell),
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .portfolio-image-mockup__media:has(.sportsbook-upcoming-matches-preview) {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fill
+  .sportsbook-mobile-home-preview-shell,
+.sportsbook-case-study__architecture
+  .case-study-split-frames__panel--fixed
+  .sportsbook-upcoming-matches-preview {
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: inherit;
 }
 
 .sportsbook-case-study__architecture .sportsbook-mobile-home-preview-shell,
@@ -226,12 +272,6 @@
   .case-study-split-frames__panel--fixed
   .portfolio-image-mockup__media {
   border-color: var(--joker-black-300);
-}
-
-.sportsbook-case-study__architecture
-  .case-study-split-frames__panel--fixed
-  .portfolio-image-mockup__media {
-  padding: 0;
 }
 
 .sportsbook-case-study__architecture
