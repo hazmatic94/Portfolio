@@ -74,7 +74,7 @@ export function Hero() {
         <video
           ref={videoRef}
           className="hero__video"
-          src="/hmLogoV1.mp4"
+          src="/hmLogoV2.mp4"
           autoPlay
           loop
           muted

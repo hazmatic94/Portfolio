@@ -43,7 +43,7 @@ export function Footer() {
         <div className="site-footer__logo">
           <video
             className="site-footer__logo-video"
-            src="/hmLogoV1.mp4"
+            src="/hmLogoV2.mp4"
             autoPlay
             loop
             muted

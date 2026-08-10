@@ -1,5 +1,5 @@
 .hero {
-  /* Match hmLogoV1.mp4 plate so the video box doesn’t flash a rectangle on load. */
+  /* Match hmLogoV2.mp4 plate so the video box doesn’t flash a rectangle on load. */
   --hero-bg: #121312;
   --hero-enter-logo-delay: 480ms;
   --hero-enter-dots-delay: 1120ms;
