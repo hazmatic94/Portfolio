@@ -1,0 +1,19 @@
+/*
+ * Game header icons in case-study previews.
+ * Inset artwork (16 in 20) uses 1.44 optical scale to match Mines (full-16) in Vision §04.
+ */
+
+.case-study-game-rail-icons
+  .joker-game-header-game-icon.nav-inline-icon-host[data-rail-icon-artwork='inset-16'],
+.case-study-game-rail-icons
+  .joker-game-header-game-icon.nav-inline-icon-host[data-rail-icon-artwork='inset-16']
+  .nav-inline-icon {
+  --game-rail-icon-optical-scale: 1.44;
+}
+
+.case-study-game-rail-icons .joker-game-header-title > span:has(.joker-game-header-game-icon) {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing-8) - 2px);
+  min-width: 0;
+}

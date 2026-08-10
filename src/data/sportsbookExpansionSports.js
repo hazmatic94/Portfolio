@@ -80,6 +80,7 @@ const SOCCER_UPCOMING_MATCHES = [
 export const SPORTSBOOK_EXPANSION_SPORTS = {
   soccer: {
     game: { label: "FCPlus", icon: "soccer" },
+    heroVideoSrc: "/videos/home-video.mp4",
     liveMatch: {
       competition: "FIFA World Cup",
       minutesPlayed: 24,
@@ -101,7 +102,8 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
     upcomingMatches: SOCCER_UPCOMING_MATCHES,
   },
   tennis: {
-    game: { label: "Tennis", icon: "soccer" },
+    game: { label: "Tennis", icon: "tennis" },
+    heroVideoSrc: "/videos/sportsbook-hero-tennis.mp4",
     liveMatch: {
       competition: "ATP Tour",
       minutesPlayed: 2,
@@ -193,7 +195,8 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
     ],
   },
   ufc: {
-    game: { label: "UFC", icon: "soccer" },
+    game: { label: "UFC", icon: "ufc" },
+    heroVideoSrc: "/videos/sportsbook-hero-ufc.mp4",
     liveMatch: {
       competition: "UFC 311",
       minutesPlayed: 3,
@@ -285,7 +288,8 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
     ],
   },
   nrl: {
-    game: { label: "NRL", icon: "soccer" },
+    game: { label: "NRL", icon: "nrl" },
+    heroVideoSrc: "/videos/sportsbook-hero-nrl.mp4",
     liveMatch: {
       competition: "NRL Premiership",
       minutesPlayed: 58,

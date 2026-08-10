@@ -173,7 +173,7 @@ export function MinesGameLayoutPreview() {
 
   return (
     <div
-      className={`mines-game-layout-preview${
+      className={`mines-game-layout-preview case-study-game-rail-icons${
         roundStatus === "lost" ? " is-round-lost" : ""
       }`}
       aria-label="Interactive Mines mobile game layout"

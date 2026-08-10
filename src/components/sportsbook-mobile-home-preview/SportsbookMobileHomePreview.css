@@ -1,3 +1,5 @@
+@import "../../styles/case-study-game-rail-icons.css";
+
 .sportsbook-mobile-home-preview-shell {
   position: relative;
   box-sizing: border-box;
@@ -48,17 +50,6 @@
   width: var(--game-rail-icon-size);
   height: var(--game-rail-icon-size);
   flex: 0 0 var(--game-rail-icon-size);
-}
-
-/* Soccer/sport icons use inset artwork — boost optical scale to match mines. */
-.sportsbook-mobile-home-preview
-  .joker-game-header-rail
-  .joker-game-header-game-icon.nav-inline-icon-host[data-rail-icon-artwork='inset-16'],
-.sportsbook-mobile-home-preview
-  .joker-game-header-rail
-  .joker-game-header-game-icon.nav-inline-icon-host[data-rail-icon-artwork='inset-16']
-  .nav-inline-icon {
-  --game-rail-icon-optical-scale: 1.44;
 }
 
 .sportsbook-mobile-home-preview .joker-game-inner-layout {

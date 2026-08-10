@@ -77,6 +77,7 @@ export function SportsbookExpansionPreview() {
               key={activeKey}
               game={activeSport.game}
               liveMatch={activeSport.liveMatch}
+              heroVideoSrc={activeSport.heroVideoSrc}
             />
           }
           right={
