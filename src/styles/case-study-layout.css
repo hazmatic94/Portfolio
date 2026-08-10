@@ -3,6 +3,7 @@
 .design-system-case-study,
 .application-shell-case-study,
 .joker-originals-case-study,
+.sportsbook-case-study,
 .home-page {
   --case-study-content-max: 1000px;
   --case-study-content-min: 800px;
@@ -16,7 +17,8 @@
 
 .design-system-case-study,
 .application-shell-case-study,
-.joker-originals-case-study {
+.joker-originals-case-study,
+.sportsbook-case-study {
   --case-study-section-gap: 200px;
   --case-study-mockup-width: min(800px, var(--case-study-content-width));
   --case-study-copy-media-gap: 60px;
@@ -56,15 +58,19 @@
 .design-system-case-study .design-system-case-study__shell,
 .application-shell-case-study .application-shell-case-study__shell,
 .joker-originals-case-study .joker-originals-case-study__shell,
+.sportsbook-case-study .sportsbook-case-study__shell,
 .design-system-case-study .section-divider,
 .application-shell-case-study .section-divider,
 .joker-originals-case-study .section-divider,
+.sportsbook-case-study .section-divider,
 .design-system-case-study .case-study-inline-copy,
 .application-shell-case-study .case-study-inline-copy,
 .joker-originals-case-study .case-study-inline-copy,
+.sportsbook-case-study .case-study-inline-copy,
 .design-system-case-study .case-study-split-frames,
 .application-shell-case-study .case-study-split-frames,
 .joker-originals-case-study .case-study-split-frames,
+.sportsbook-case-study .case-study-split-frames,
 .design-system-case-study .case-study-full-width-frame,
 .application-shell-case-study .case-study-full-width-frame,
 .design-system-case-study .component-showcase-grid,
@@ -85,8 +91,10 @@
 .design-system-case-study .case-study-split-frames,
 .application-shell-case-study .case-study-split-frames,
 .joker-originals-case-study .case-study-split-frames,
+.sportsbook-case-study .case-study-split-frames,
 .design-system-case-study .case-study-full-width-frame,
 .application-shell-case-study .case-study-full-width-frame,
+.sportsbook-case-study .case-study-full-width-frame,
 .design-system-case-study .component-showcase-grid,
 .application-shell-case-study .component-showcase-grid,
 .joker-originals-case-study .component-showcase-grid,
@@ -101,7 +109,8 @@
 /* Compress — title column on wide inline copy */
 .design-system-case-study .case-study-inline-copy__title,
 .application-shell-case-study .case-study-inline-copy__title,
-.joker-originals-case-study .case-study-inline-copy__title {
+.joker-originals-case-study .case-study-inline-copy__title,
+.sportsbook-case-study .case-study-inline-copy__title {
   flex: 0 1 45%;
   max-width: 45%;
 }
@@ -133,14 +142,16 @@
 
 .design-system-case-study .portfolio-mockup-stage,
 .application-shell-case-study .portfolio-mockup-stage,
-.joker-originals-case-study .portfolio-mockup-stage {
+.joker-originals-case-study .portfolio-mockup-stage,
+.sportsbook-case-study .portfolio-mockup-stage {
   --desktop-w: var(--case-study-mockup-width);
   width: var(--case-study-mockup-width);
 }
 
 .design-system-case-study .portfolio-mockup-stage__desktop,
 .application-shell-case-study .portfolio-mockup-stage__desktop,
-.joker-originals-case-study .portfolio-mockup-stage__desktop {
+.joker-originals-case-study .portfolio-mockup-stage__desktop,
+.sportsbook-case-study .portfolio-mockup-stage__desktop {
   width: var(--case-study-mockup-width);
 }
 
@@ -149,6 +160,7 @@
   .design-system-case-study,
   .application-shell-case-study,
   .joker-originals-case-study,
+  .sportsbook-case-study,
   .home-page {
     --case-study-content-width: 100%;
     --case-study-mockup-width: 100%;
@@ -156,7 +168,8 @@
 
   .design-system-case-study,
   .application-shell-case-study,
-  .joker-originals-case-study {
+  .joker-originals-case-study,
+  .sportsbook-case-study {
     --case-study-section-gap: 100px;
     --case-study-copy-media-gap: var(--spacing-48);
   }
@@ -164,14 +177,16 @@
   .home-page .project-container__media-clip,
   .design-system-case-study__hero .project-container__media-clip,
   .application-shell-case-study__hero .project-container__media-clip,
-  .joker-originals-case-study__hero .project-container__media-clip {
+  .joker-originals-case-study__hero .project-container__media-clip,
+  .sportsbook-case-study__hero .project-container__media-clip {
     display: none;
   }
 
   .home-page .project-container__media,
   .design-system-case-study__hero .project-container__media,
   .application-shell-case-study__hero .project-container__media,
-  .joker-originals-case-study__hero .project-container__media {
+  .joker-originals-case-study__hero .project-container__media,
+  .sportsbook-case-study__hero .project-container__media {
     min-height: 0;
     padding-block: 0;
   }
@@ -179,7 +194,8 @@
   .home-page .project-container__media-overlay,
   .design-system-case-study__hero .project-container__media-overlay,
   .application-shell-case-study__hero .project-container__media-overlay,
-  .joker-originals-case-study__hero .project-container__media-overlay {
+  .joker-originals-case-study__hero .project-container__media-overlay,
+  .sportsbook-case-study__hero .project-container__media-overlay {
     position: static;
     right: auto;
     bottom: auto;
@@ -189,7 +205,8 @@
     margin-top: 0;
   }
 
-  .home-page .project-container__media-overlay {
+  .home-page .project-container__media-overlay,
+  .sportsbook-case-study__hero .project-container__media-overlay {
     transform: none;
   }
 
@@ -204,7 +221,10 @@
   .application-shell-case-study__hero .project-container__media-overlay .component-card,
   .joker-originals-case-study__hero .project-container__media-overlay.component-card-shell,
   .joker-originals-case-study__hero .project-container__media-overlay .component-card__frame,
-  .joker-originals-case-study__hero .project-container__media-overlay .component-card {
+  .joker-originals-case-study__hero .project-container__media-overlay .component-card,
+  .sportsbook-case-study__hero .project-container__media-overlay.component-card-shell,
+  .sportsbook-case-study__hero .project-container__media-overlay .component-card__frame,
+  .sportsbook-case-study__hero .project-container__media-overlay .component-card {
     width: 100%;
     max-width: 100%;
   }
@@ -212,7 +232,8 @@
   .home-page .project-container__media-overlay .component-card,
   .design-system-case-study__hero .project-container__media-overlay .component-card,
   .application-shell-case-study__hero .project-container__media-overlay .component-card,
-  .joker-originals-case-study__hero .project-container__media-overlay .component-card {
+  .joker-originals-case-study__hero .project-container__media-overlay .component-card,
+  .sportsbook-case-study__hero .project-container__media-overlay .component-card {
     min-height: 345px;
   }
 
@@ -239,14 +260,16 @@
 
   .design-system-case-study .case-study-inline-copy,
   .application-shell-case-study .case-study-inline-copy,
-  .joker-originals-case-study .case-study-inline-copy {
+  .joker-originals-case-study .case-study-inline-copy,
+  .sportsbook-case-study .case-study-inline-copy {
     flex-direction: column;
     gap: var(--spacing-12);
   }
 
   .design-system-case-study .case-study-inline-copy__title,
   .application-shell-case-study .case-study-inline-copy__title,
-  .joker-originals-case-study .case-study-inline-copy__title {
+  .joker-originals-case-study .case-study-inline-copy__title,
+  .sportsbook-case-study .case-study-inline-copy__title {
     flex-basis: auto;
     max-width: none;
   }
@@ -254,9 +277,11 @@
   .design-system-case-study .case-study-split-frames,
   .application-shell-case-study .case-study-split-frames,
   .joker-originals-case-study .case-study-split-frames,
+  .sportsbook-case-study .case-study-split-frames,
   .design-system-case-study .case-study-full-width-frame,
   .application-shell-case-study .case-study-full-width-frame,
-  .joker-originals-case-study .case-study-full-width-frame {
+  .joker-originals-case-study .case-study-full-width-frame,
+  .sportsbook-case-study .case-study-full-width-frame {
     height: auto;
     min-height: 0;
   }

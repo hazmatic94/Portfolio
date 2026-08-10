@@ -14,3 +14,26 @@
   .joker-team-info__logo[src*="/images/sportsbook/nrl/"] {
   mix-blend-mode: lighten;
 }
+
+/* Country flags for tennis and UFC player rows. */
+.sportsbook-mobile-home-preview
+  .joker-team-info__logo-wrap:has(.joker-team-info__logo[src*="flagcdn.com"]),
+.sportsbook-upcoming-matches-preview
+  .joker-team-info__logo-wrap:has(.joker-team-info__logo[src*="flagcdn.com"]) {
+  flex: 0 0 var(--icon-size-sm);
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sportsbook-mobile-home-preview
+  .joker-team-info__logo[src*="flagcdn.com"],
+.sportsbook-upcoming-matches-preview
+  .joker-team-info__logo[src*="flagcdn.com"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}

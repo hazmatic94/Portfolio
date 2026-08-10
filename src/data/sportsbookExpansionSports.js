@@ -14,6 +14,8 @@ const NRL_TEAM_LOGOS = {
   storm: "/images/sportsbook/nrl/storm.png",
 };
 
+const COUNTRY_FLAG = (code) => `https://flagcdn.com/w40/${code}.png`;
+
 const SOCCER_UPCOMING_MATCHES = [
   {
     id: "la-liga-1",
@@ -129,13 +131,13 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
       teams: [
         {
           name: "C. Alcaraz",
-          logoSrc: "https://crests.football-data.org/764.svg",
+          logoSrc: COUNTRY_FLAG("es"),
           logoAlt: "Carlos Alcaraz",
           score: 1,
         },
         {
           name: "J. Sinner",
-          logoSrc: "https://crests.football-data.org/773.svg",
+          logoSrc: COUNTRY_FLAG("it"),
           logoAlt: "Jannik Sinner",
           score: 0,
         },
@@ -150,12 +152,12 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "C. Alcaraz",
-            logoSrc: "https://crests.football-data.org/764.svg",
+            logoSrc: COUNTRY_FLAG("es"),
             logoAlt: "Carlos Alcaraz",
           },
           {
             name: "J. Sinner",
-            logoSrc: "https://crests.football-data.org/773.svg",
+            logoSrc: COUNTRY_FLAG("it"),
             logoAlt: "Jannik Sinner",
           },
         ],
@@ -172,12 +174,12 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "N. Djokovic",
-            logoSrc: "https://crests.football-data.org/64.png",
+            logoSrc: COUNTRY_FLAG("rs"),
             logoAlt: "Novak Djokovic",
           },
           {
             name: "A. de Minaur",
-            logoSrc: "https://crests.football-data.org/57.png",
+            logoSrc: COUNTRY_FLAG("au"),
             logoAlt: "Alex de Minaur",
           },
         ],
@@ -194,12 +196,12 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "I. Swiatek",
-            logoSrc: "https://crests.football-data.org/5.png",
+            logoSrc: COUNTRY_FLAG("pl"),
             logoAlt: "Iga Swiatek",
           },
           {
             name: "C. Gauff",
-            logoSrc: "https://crests.football-data.org/4.png",
+            logoSrc: COUNTRY_FLAG("us"),
             logoAlt: "Coco Gauff",
           },
         ],
@@ -224,13 +226,13 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
       teams: [
         {
           name: "Makhachev",
-          logoSrc: "https://crests.football-data.org/764.svg",
+          logoSrc: COUNTRY_FLAG("ru"),
           logoAlt: "Islam Makhachev",
           score: 1,
         },
         {
           name: "Tsarukyan",
-          logoSrc: "https://crests.football-data.org/773.svg",
+          logoSrc: COUNTRY_FLAG("am"),
           logoAlt: "Arman Tsarukyan",
           score: 0,
         },
@@ -245,12 +247,12 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "Du Plessis",
-            logoSrc: "https://crests.football-data.org/64.png",
+            logoSrc: COUNTRY_FLAG("za"),
             logoAlt: "Dricus du Plessis",
           },
           {
             name: "Strickland",
-            logoSrc: "https://crests.football-data.org/57.png",
+            logoSrc: COUNTRY_FLAG("us"),
             logoAlt: "Sean Strickland",
           },
         ],
@@ -267,12 +269,12 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "Volkanovski",
-            logoSrc: "https://crests.football-data.org/5.png",
+            logoSrc: COUNTRY_FLAG("au"),
             logoAlt: "Alexander Volkanovski",
           },
           {
             name: "Lopes",
-            logoSrc: "https://crests.football-data.org/4.png",
+            logoSrc: COUNTRY_FLAG("br"),
             logoAlt: "Diego Lopes",
           },
         ],
@@ -289,12 +291,12 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
         teams: [
           {
             name: "Pereira",
-            logoSrc: "https://crests.football-data.org/86.png",
+            logoSrc: COUNTRY_FLAG("br"),
             logoAlt: "Alex Pereira",
           },
           {
             name: "Ankalaev",
-            logoSrc: "https://crests.football-data.org/81.png",
+            logoSrc: COUNTRY_FLAG("ru"),
             logoAlt: "Magomed Ankalaev",
           },
         ],

@@ -14,12 +14,29 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgb(0 0 0 / 0.58);
+  background: color-mix(in srgb, var(--joker-black-800) 58%, transparent);
   pointer-events: none;
 }
 
 .sportsbook-markets-hero-preview::after {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      var(--joker-black-800) 0,
+      color-mix(in srgb, var(--joker-black-800) 92%, transparent) 48px,
+      transparent 80px
+    ),
+    linear-gradient(
+      to top,
+      var(--joker-black-800) 0,
+      color-mix(in srgb, var(--joker-black-800) 92%, transparent) 48px,
+      transparent 80px
+    );
 }
 
 .sportsbook-markets-hero-preview__video {
@@ -45,7 +62,7 @@
 
 @media (max-width: 800px) {
   .sportsbook-markets-hero-preview__overlay {
-    padding-inline: var(--spacing-24);
+    padding-inline: var(--spacing-16);
   }
 }
 
@@ -57,6 +74,6 @@
   flex-direction: column;
   justify-content: flex-end;
   box-sizing: border-box;
-  padding: var(--spacing-16) var(--spacing-20);
+  padding: var(--spacing-16);
   pointer-events: none;
 }

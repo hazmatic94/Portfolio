@@ -10,16 +10,16 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
-  padding: var(--spacing-16);
+  padding-top: var(--spacing-24);
   border-radius: inherit;
   background: var(--joker-black-800);
 }
 
 .sportsbook-upcoming-matches-preview__title {
   margin: 0 0 15px;
-  padding-inline: 24px;
-  height: 24px;
-  overflow: hidden;
+  padding-inline: var(--spacing-16);
+  min-height: 24px;
+  overflow: visible;
   font-family: var(--font-heading);
   font-size: var(--text-heading-h3);
   font-weight: var(--text-heading-weight);
@@ -41,6 +41,11 @@
 .sportsbook-upcoming-matches-preview__competition {
   flex: 0 0 auto;
   width: 100%;
+}
+
+.sportsbook-upcoming-matches-preview__competition > .joker-competition-header,
+.sportsbook-upcoming-matches-preview__date-header > .joker-date-row {
+  padding-inline: var(--spacing-16);
 }
 
 .sportsbook-upcoming-matches-preview__date-header,
@@ -119,6 +124,14 @@
   background: var(--joker-black-700);
 }
 
+.sportsbook-upcoming-matches-preview__match-panel.joker-upcoming-matches {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  min-height: 88px;
+  padding-inline: var(--spacing-16);
+}
+
 .sportsbook-upcoming-matches-preview__match-leading {
   display: flex;
   flex: 1 1 auto;
@@ -181,9 +194,9 @@
 
 .sportsbook-upcoming-matches-preview__fade {
   position: absolute;
-  right: var(--spacing-16);
-  bottom: var(--spacing-16);
-  left: var(--spacing-16);
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 2;
   height: var(--upcoming-edge-fade);
   min-height: var(--upcoming-edge-fade);

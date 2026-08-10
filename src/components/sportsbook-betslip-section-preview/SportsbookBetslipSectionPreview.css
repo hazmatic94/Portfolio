@@ -70,6 +70,11 @@
   min-height: 0;
 }
 
+.sportsbook-betslip-section-preview__competition-block > .joker-competition-header,
+.sportsbook-betslip-section-preview__date-header > .joker-date-row {
+  padding-inline: var(--spacing-16);
+}
+
 .sportsbook-betslip-section-preview__date-group {
   display: flex;
   flex: 1 1 auto;
@@ -978,10 +983,10 @@
 @media (max-width: 800px) {
   .sportsbook-betslip-section-preview {
     width: 100%;
-    max-width: var(--betslip-preview-width);
+    max-width: none;
     height: var(--betslip-preview-height);
     min-height: var(--betslip-preview-height);
-    margin-inline: auto;
+    margin-inline: 0;
     border: var(--border-width-default) solid var(--joker-black-300);
     border-radius: 6px;
   }

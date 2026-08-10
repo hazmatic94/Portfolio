@@ -180,9 +180,9 @@
 @media (max-width: 800px) {
   .sportsbook-case-study__foundations
     .case-study-full-width-frame__media:has(.sportsbook-betslip-section-preview) {
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-16);
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
   }
 }
 
