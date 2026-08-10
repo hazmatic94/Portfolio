@@ -49,6 +49,15 @@
   background: var(--hero-bg);
   transform: scale(1.82);
   transform-origin: center center;
+  pointer-events: none;
+}
+
+.hero__video::-webkit-media-controls {
+  display: none !important;
+}
+
+.hero__video::-webkit-media-controls-start-playback-button {
+  display: none !important;
 }
 
 .hero__role,

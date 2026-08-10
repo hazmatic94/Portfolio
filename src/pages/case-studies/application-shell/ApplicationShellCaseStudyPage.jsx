@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ApplicationShellArchitecturePreview } from "../../../components/application-shell-architecture-preview/ApplicationShellArchitecturePreview.jsx";
 import { ApplicationShellBlueprintPreview } from "../../../components/application-shell-blueprint-preview/ApplicationShellBlueprintPreview.jsx";
@@ -14,6 +15,7 @@ import { CaseStudyPageHeader, CaseStudyProjectRail } from "../../../components/c
 import { CaseStudyRevealSection } from "../../../components/case-study-reveal/CaseStudyRevealSection.jsx";
 import { FooterLegal } from "../../../components/footer/Footer.jsx";
 import { Nav } from "../../../components/nav/Nav.jsx";
+import { PageMeta } from "../../../components/page-meta/PageMeta.jsx";
 import { PortfolioMockupStage } from "../../../components/portfolio-video-mockup/PortfolioMockupStage.jsx";
 import { SectionDivider } from "../../../components/section-divider/SectionDivider.jsx";
 import "../../../components/project-container/ProjectContainer.css";
@@ -21,9 +23,22 @@ import "../../../styles/case-study-layout.css";
 import "../../../pages/home/components/CaseStudySection.css";
 import "./ApplicationShellCaseStudyPage.css";
 
+const APPLICATION_SHELL_PAGE_TITLE = "Application Shell";
+const APPLICATION_SHELL_META_DESCRIPTION =
+  "Building a responsive application shell that unified navigation, reusable layouts, and adaptive interaction patterns across the platform.";
+const APPLICATION_SHELL_OG_IMAGE = "/og/application-shell.jpg";
+
 export function ApplicationShellCaseStudyPage() {
+  const structureMediaRef = useRef(null);
+
   return (
     <>
+      <PageMeta
+        title={APPLICATION_SHELL_PAGE_TITLE}
+        description={APPLICATION_SHELL_META_DESCRIPTION}
+        canonicalPath="/case-studies/application-shell"
+        ogImage={APPLICATION_SHELL_OG_IMAGE}
+      />
       <Nav />
       <main className="application-shell-case-study">
         <CaseStudyRevealSection
@@ -36,7 +51,7 @@ export function ApplicationShellCaseStudyPage() {
 
           <CaseStudyIntro
             title="Application Shell"
-            body="A responsive application shell with reusable layouts and shared interaction patterns."
+            body="Building the shell upfront meant every new game started from the same structure, keeping implementation fast and consistent."
             ctaLabel="View Live Demo"
             ctaHref="/case-studies/application-shell"
           />
@@ -83,7 +98,7 @@ export function ApplicationShellCaseStudyPage() {
           <SectionDivider number="01" title="Blueprint" />
           <CaseStudyInlineCopy
             title="The framework"
-            body="I designed a reusable application shell that established shared layouts, and constraints making new games faster to design, test and ship."
+            body="Each game plugged into the same layout, navigation and interaction patterns, keeping the experience familiar across the platform."
           />
           <div className="application-shell-case-study__section-media">
             <CaseStudyFullWidthFrame>
@@ -100,7 +115,7 @@ export function ApplicationShellCaseStudyPage() {
           <SectionDivider number="02" title="Constraints" />
           <CaseStudyInlineCopy
             title="Built around gameplay"
-            body="Every game inherited the same foundational framework with predefined layout and gameplay constraints."
+            body="By defining the shared patterns first, I could spend my time designing the parts that made each game unique."
           />
           <div className="application-shell-case-study__section-media">
             <CaseStudyFullWidthFrame>
@@ -117,7 +132,7 @@ export function ApplicationShellCaseStudyPage() {
           <SectionDivider number="03" title="Behaviour" />
           <CaseStudyInlineCopy
             title="Adaptive betting panel"
-            body="The betting panel was designed to shrink with the browser, which gives the user maximum game view."
+            body="Rather than resizing the game, the interface adapted around it to maximise playable space."
           />
           <div className="application-shell-case-study__section-media">
             <CaseStudyFullWidthFrame>
@@ -129,16 +144,21 @@ export function ApplicationShellCaseStudyPage() {
         <CaseStudyRevealSection
           reveal="scroll"
           className="application-shell-case-study__architecture"
-          ariaLabel="Architecture"
+          ariaLabel="Structure"
         >
-          <SectionDivider number="04" title="Architecture" />
+          <SectionDivider number="04" title="Structure" />
           <CaseStudyInlineCopy
-            title="Built to scale"
-            body="Each layer built on the last, from design system to application shell to gameplay."
+            title="Prebuilt Shell"
+            body="The application shell was packaged into reusable components, letting me import the platform structure instead of rebuilding it for every game."
           />
-          <div className="application-shell-case-study__section-media">
+          <div
+            ref={structureMediaRef}
+            className="application-shell-case-study__section-media application-shell-case-study__structure-media"
+          >
             <CaseStudySplitFrames
-              left={<DesignSystemUsagePreview />}
+              left={
+                <DesignSystemUsagePreview scrollDriveRef={structureMediaRef} />
+              }
               right={<ApplicationShellArchitecturePreview />}
               leftPanelClassName="case-study-split-frames__panel--fixed"
               rightPanelClassName="case-study-split-frames__panel--fill"

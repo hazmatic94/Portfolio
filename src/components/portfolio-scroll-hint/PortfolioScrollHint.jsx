@@ -5,6 +5,16 @@ const SCROLL_STOP_DELAY_MS = 360;
 const BOTTOM_THRESHOLD_PX = 24;
 const SCROLL_EDGE_THRESHOLD_PX = 2;
 
+function setRef(ref, value) {
+  if (typeof ref === "function") {
+    ref(value);
+    return;
+  }
+  if (ref) {
+    ref.current = value;
+  }
+}
+
 function scrollPageBy(deltaY, deltaX = 0) {
   const scrollingElement = document.scrollingElement;
   if (scrollingElement) {
@@ -96,7 +106,11 @@ function ScrollChevron() {
   );
 }
 
-function useScrollHintVisibility(getMetricsRef, bindScrollTargetRef) {
+function useScrollHintVisibility(
+  getMetricsRef,
+  bindScrollTargetRef,
+  { hideAtPageTop = false } = {},
+) {
   const [isVisible, setIsVisible] = useState(false);
   const isScrollingRef = useRef(false);
   const scrollStopTimerRef = useRef(null);
@@ -107,9 +121,16 @@ function useScrollHintVisibility(getMetricsRef, bindScrollTargetRef) {
       return undefined;
     }
 
+    const isPageTop = () =>
+      hideAtPageTop &&
+      bindScrollTargetRef.current() === window &&
+      window.scrollY < BOTTOM_THRESHOLD_PX;
+
     const syncVisibility = () => {
       const { canScroll, atBottom } = getMetricsRef.current();
-      setIsVisible(canScroll && !atBottom && !isScrollingRef.current);
+      setIsVisible(
+        canScroll && !atBottom && !isScrollingRef.current && !isPageTop(),
+      );
     };
 
     const onScroll = () => {
@@ -120,7 +141,7 @@ function useScrollHintVisibility(getMetricsRef, bindScrollTargetRef) {
       scrollStopTimerRef.current = window.setTimeout(() => {
         isScrollingRef.current = false;
         const { canScroll, atBottom } = getMetricsRef.current();
-        setIsVisible(canScroll && !atBottom);
+        setIsVisible(canScroll && !atBottom && !isPageTop());
       }, SCROLL_STOP_DELAY_MS);
     };
 
@@ -139,7 +160,7 @@ function useScrollHintVisibility(getMetricsRef, bindScrollTargetRef) {
       resizeObserver.disconnect();
       window.clearTimeout(scrollStopTimerRef.current);
     };
-  }, [bindScrollTargetRef, getMetricsRef]);
+  }, [bindScrollTargetRef, getMetricsRef, hideAtPageTop]);
 
   return isVisible;
 }
@@ -175,6 +196,7 @@ export function PortfolioScrollHint({
   fadeColor = "var(--joker-black-800)",
   insetX,
   style,
+  scrollRef: scrollRefProp,
 }) {
   const scrollRef = useRef(null);
   const isVisible = useElementScrollHint(scrollRef);
@@ -190,7 +212,10 @@ export function PortfolioScrollHint({
       style={style}
     >
       <div
-        ref={scrollRef}
+        ref={(node) => {
+          scrollRef.current = node;
+          setRef(scrollRefProp, node);
+        }}
         className={`portfolio-scroll-hint__scroll${scrollClassName ? ` ${scrollClassName}` : ""}`}
       >
         {children}
@@ -223,7 +248,9 @@ export function PageScrollHint({ fadeColor = "#121212" }) {
     };
   };
 
-  const isVisible = useScrollHintVisibility(getMetricsRef, bindScrollTargetRef);
+  const isVisible = useScrollHintVisibility(getMetricsRef, bindScrollTargetRef, {
+    hideAtPageTop: true,
+  });
 
   return (
     <div

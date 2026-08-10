@@ -14,8 +14,8 @@ function htmlSiteUrl() {
 export default defineConfig({
   plugins: [react(), htmlSiteUrl()],
   server: {
-    host: "127.0.0.1",
-    port: 5182,
+    host: true,
+    port: 5180,
   },
   // Prebundling can freeze a stale design-system build and drop CSS side effects.
   optimizeDeps: {

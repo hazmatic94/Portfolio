@@ -2,6 +2,7 @@
   --navigation-betting-panel-width: 360px;
   --navigation-betting-panel-height: 452px;
   --navigation-panel-inset: 24px;
+  --navigation-panel-inline-inset: 10px;
   --navigation-annotation-gap: 12px;
   --navigation-annotation-size: 10px;
   --constraints-zone-hover-duration: 240ms;
@@ -29,7 +30,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: var(--navigation-betting-panel-width);
+  width: min(var(--navigation-betting-panel-width), 100%);
+  max-width: 100%;
   height: auto;
   min-height: 0;
   margin-block: 0;
@@ -375,16 +377,14 @@
 
 @media (max-width: 800px) {
   .application-shell-navigation-preview--mobile {
-    align-items: stretch;
+    align-items: center;
     justify-content: flex-start;
-    padding: var(--navigation-panel-inset);
+    padding: var(--navigation-panel-inset) var(--navigation-panel-inline-inset) 0;
     overflow: hidden;
   }
 
   .application-shell-navigation-preview--mobile
     .application-shell-navigation-preview__betting-column {
-    width: min(var(--navigation-betting-panel-width), 100%);
-    max-width: 360px;
     margin-inline: auto;
   }
 

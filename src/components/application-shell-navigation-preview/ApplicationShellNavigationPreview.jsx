@@ -13,15 +13,24 @@ function formatDimension(value) {
   return `${Math.round(value)}px`;
 }
 
-function clampPanelWidth(value) {
-  return Math.min(PANEL_MAX, Math.max(PANEL_MIN, Math.round(value)));
+function panelWidthLimits(frameWidth) {
+  if (frameWidth == null || frameWidth <= 0) {
+    return { min: PANEL_MIN, max: PANEL_MAX };
+  }
+  const max = Math.min(PANEL_MAX, Math.round(frameWidth));
+  const min = Math.min(PANEL_MIN, max);
+  return { min, max };
+}
+
+function clampPanelWidth(value, limits = panelWidthLimits()) {
+  return Math.min(limits.max, Math.max(limits.min, Math.round(value)));
 }
 
 function easeInOutCubic(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 }
 
-function mobilePanelWidthAt(elapsedMs) {
+function mobilePanelWidthAt(elapsedMs, panelMin, panelMax) {
   const hold = MOBILE_RESIZE_HOLD_MS;
   const transition = MOBILE_RESIZE_TRANSITION_MS;
   const shrinkStart = hold;
@@ -33,17 +42,17 @@ function mobilePanelWidthAt(elapsedMs) {
   const t = elapsedMs % cycle;
 
   if (t < shrinkStart) {
-    return PANEL_MAX;
+    return panelMax;
   }
   if (t < shrinkEnd) {
     const progress = easeInOutCubic((t - shrinkStart) / transition);
-    return PANEL_MAX + progress * (PANEL_MIN - PANEL_MAX);
+    return panelMax + progress * (panelMin - panelMax);
   }
   if (t < growStart) {
-    return PANEL_MIN;
+    return panelMin;
   }
   const progress = easeInOutCubic((t - growStart) / transition);
-  return PANEL_MIN + progress * (PANEL_MAX - PANEL_MIN);
+  return panelMin + progress * (panelMax - panelMin);
 }
 
 function PanelResizeTab({
@@ -130,7 +139,36 @@ export function ApplicationShellNavigationPreview() {
   const [isResizing, setIsResizing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isAutoResizing, setIsAutoResizing] = useState(false);
+  const [frameWidth, setFrameWidth] = useState(null);
+  const rootRef = useRef(null);
   const dragStateRef = useRef(null);
+  const limits = panelWidthLimits(frameWidth);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return undefined;
+    }
+
+    const syncWidth = (width) => {
+      setFrameWidth(width);
+    };
+
+    syncWidth(root.getBoundingClientRect().width);
+
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) {
+        return;
+      }
+      const width =
+        entry.contentBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
+      syncWidth(width);
+    });
+    observer.observe(root);
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(MOBILE_BREAKPOINT);
@@ -141,8 +179,15 @@ export function ApplicationShellNavigationPreview() {
   }, []);
 
   useEffect(() => {
+    if (frameWidth == null) {
+      return;
+    }
+    setPanelWidth((current) => clampPanelWidth(current, limits));
+  }, [frameWidth, limits.min, limits.max]);
+
+  useEffect(() => {
     if (!isMobile) {
-      setPanelWidth(PANEL_DEFAULT);
+      setPanelWidth(clampPanelWidth(PANEL_DEFAULT, limits));
       setIsAutoResizing(false);
       return undefined;
     }
@@ -151,7 +196,7 @@ export function ApplicationShellNavigationPreview() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (reduceMotion) {
-      setPanelWidth(PANEL_DEFAULT);
+      setPanelWidth(clampPanelWidth(PANEL_DEFAULT, limits));
       setIsAutoResizing(false);
       return undefined;
     }
@@ -162,7 +207,8 @@ export function ApplicationShellNavigationPreview() {
 
     const tick = (timestamp) => {
       const elapsed = timestamp - startTime;
-      setPanelWidth(mobilePanelWidthAt(elapsed));
+      const { min, max } = panelWidthLimits(frameWidth);
+      setPanelWidth(mobilePanelWidthAt(elapsed, min, max));
       frameId = window.requestAnimationFrame(tick);
     };
 
@@ -172,7 +218,7 @@ export function ApplicationShellNavigationPreview() {
       window.cancelAnimationFrame(frameId);
       setIsAutoResizing(false);
     };
-  }, [isMobile]);
+  }, [isMobile, frameWidth, limits.min, limits.max]);
 
   const handleResizeStart = (event) => {
     event.preventDefault();
@@ -193,7 +239,9 @@ export function ApplicationShellNavigationPreview() {
     }
 
     const deltaX = event.clientX - dragState.startX;
-    setPanelWidth(clampPanelWidth(dragState.startWidth + deltaX));
+    setPanelWidth(
+      clampPanelWidth(dragState.startWidth + deltaX, panelWidthLimits(frameWidth)),
+    );
   };
 
   const handleResizeEnd = (event) => {
@@ -212,10 +260,13 @@ export function ApplicationShellNavigationPreview() {
 
   const widthLabelActive = isResizing || isAutoResizing;
 
+  const displayedPanelWidth = clampPanelWidth(panelWidth, limits);
+
   return (
     <div
+      ref={rootRef}
       className={`application-shell-navigation-preview${isResizing ? " application-shell-navigation-preview--resizing" : ""}${isMobile ? " application-shell-navigation-preview--mobile" : ""}${isAutoResizing ? " application-shell-navigation-preview--auto-resize" : ""}`}
-      style={{ "--navigation-betting-panel-width": `${panelWidth}px` }}
+      style={{ "--navigation-betting-panel-width": `${displayedPanelWidth}px` }}
     >
       <div className="application-shell-navigation-preview__betting-column">
         <div className="application-shell-navigation-preview__betting-panel">
@@ -223,7 +274,7 @@ export function ApplicationShellNavigationPreview() {
         </div>
         {!isMobile ? (
           <PanelResizeTab
-            panelWidth={panelWidth}
+            panelWidth={displayedPanelWidth}
             onResizeStart={handleResizeStart}
             onPointerMove={handleResizeMove}
             onPointerUp={handleResizeEnd}
@@ -231,7 +282,7 @@ export function ApplicationShellNavigationPreview() {
           />
         ) : null}
         <PanelWidthAnnotation
-          value={formatDimension(panelWidth)}
+          value={formatDimension(displayedPanelWidth)}
           active={widthLabelActive}
         />
       </div>

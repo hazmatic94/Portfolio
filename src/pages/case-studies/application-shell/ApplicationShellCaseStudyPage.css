@@ -54,6 +54,13 @@
   overflow: visible;
 }
 
+@media (max-width: 800px) {
+  .application-shell-case-study__structure-media
+    .case-study-split-frames__panel:has(.application-shell-architecture-preview) {
+    order: -1;
+  }
+}
+
 .application-shell-case-study__hero .project-container__media {
   padding-block: 0;
 }

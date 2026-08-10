@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   CodeAttr,
   CodeComment,
@@ -37,6 +38,52 @@ export function GamePage() {
     </FullGameShell>
   );
 }`;
+
+const SCROLL_DRIVE_RANGE_PX = 300;
+
+function clamp01(value) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function useScrollDrivenCodeReveal(driveRootRef, scrollRef) {
+  useEffect(() => {
+    const root = driveRootRef?.current;
+    const scrollEl = scrollRef.current;
+    if (!root || !scrollEl) {
+      return undefined;
+    }
+
+    const sync = () => {
+      const rect = root.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const maxScrollTop = Math.max(
+        0,
+        scrollEl.scrollHeight - scrollEl.clientHeight,
+      );
+
+      if (rect.bottom > viewportHeight) {
+        scrollEl.scrollTop = 0;
+        return;
+      }
+
+      const progress = clamp01((viewportHeight - rect.bottom) / SCROLL_DRIVE_RANGE_PX);
+      scrollEl.scrollTop = progress * maxScrollTop;
+    };
+
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    const resizeObserver = new ResizeObserver(sync);
+    resizeObserver.observe(root);
+    resizeObserver.observe(scrollEl);
+
+    return () => {
+      window.removeEventListener("scroll", sync);
+      window.removeEventListener("resize", sync);
+      resizeObserver.disconnect();
+    };
+  }, [driveRootRef, scrollRef]);
+}
 
 function UsageCode() {
   return (
@@ -117,7 +164,10 @@ function UsageCode() {
   );
 }
 
-export function DesignSystemUsagePreview() {
+export function DesignSystemUsagePreview({ scrollDriveRef = null }) {
+  const codeScrollRef = useRef(null);
+  useScrollDrivenCodeReveal(scrollDriveRef, codeScrollRef);
+
   return (
     <div className="ds-usage-preview">
       <div className="ds-usage-preview__header">
@@ -127,6 +177,7 @@ export function DesignSystemUsagePreview() {
       <PortfolioScrollHint
         className="ds-usage-preview__hint"
         scrollClassName="ds-usage-preview__scroll"
+        scrollRef={codeScrollRef}
       >
         <UsageCode />
       </PortfolioScrollHint>

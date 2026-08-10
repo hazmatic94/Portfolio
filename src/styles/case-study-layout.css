@@ -25,6 +25,22 @@
   background: #121212;
 }
 
+/* Case study hero (desktop): intro already animates — skip mockup slide-in on load */
+@media (min-width: 801px) {
+  [class$="-case-study__hero-section"].case-study-block--reveal .project-container__media-clip,
+  [class$="-case-study__hero-section"].case-study-block--reveal .project-container__media-overlay {
+    opacity: 1;
+    transform: none;
+  }
+
+  [class$="-case-study__hero-section"].case-study-block--reveal.is-in-view
+    .project-container__media-clip,
+  [class$="-case-study__hero-section"].case-study-block--reveal.is-in-view
+    .project-container__media-overlay {
+    animation: none;
+  }
+}
+
 .home-page .section-divider,
 .home-page .case-study-section__projects {
   box-sizing: border-box;
@@ -162,6 +178,9 @@
     justify-content: center;
     width: 100%;
     margin-top: 0;
+  }
+
+  .home-page .project-container__media-overlay {
     transform: none;
   }
 
