@@ -17,7 +17,11 @@
 }
 
 .sportsbook-case-study__hero-section {
-  margin-top: 80px;
+  margin-top: 56px;
+}
+
+.sportsbook-case-study__intro-reveal .case-study-intro {
+  margin-top: 72px;
 }
 
 @media (max-width: 800px) {
@@ -30,8 +34,16 @@
     padding-top: var(--spacing-48);
   }
 
+  .sportsbook-case-study__intro-reveal .case-study-intro {
+    margin-top: var(--spacing-24);
+  }
+
+  .sportsbook-case-study__intro-reveal .case-study-intro__cta {
+    margin-top: var(--spacing-24);
+  }
+
   .sportsbook-case-study__hero-section {
-    margin-top: var(--spacing-48);
+    margin-top: var(--spacing-16);
   }
 
   .sportsbook-case-study .case-study-inline-copy {

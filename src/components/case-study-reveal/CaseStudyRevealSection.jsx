@@ -9,9 +9,10 @@ export function CaseStudyRevealSection({
   children,
 }) {
   const routeReady = useRouteReady();
-  const [ref, inView] = useInViewOnce({
+  const [ref, observedInView] = useInViewOnce({
     requireUserScroll: reveal === "scroll",
   });
+  const inView = reveal === "immediate" ? true : observedInView;
   const showReveal = routeReady && inView;
 
   return (

@@ -49,10 +49,12 @@ export function DesignSystemCaseStudyPage() {
             title="Design System"
             body="I built a shared design system that unified Joker's shell, games and documentation around a single source of truth."
             ctaLabel="View Live Demo"
+            ctaHref="https://joker-ds.vercel.app"
           />
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="immediate"
           className="design-system-case-study__hero-section"
           ariaLabel="Case study hero"
         >

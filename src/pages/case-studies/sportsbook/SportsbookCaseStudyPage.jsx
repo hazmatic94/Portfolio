@@ -88,7 +88,7 @@ export function SportsbookCaseStudyPage() {
       />
       <Nav />
       <main
-        className="application-shell-case-study sportsbook-case-study"
+        className="sportsbook-case-study"
         style={caseStudyStyle}
       >
         <CaseStudyRevealSection
@@ -108,6 +108,7 @@ export function SportsbookCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="immediate"
           className="sportsbook-case-study__hero-section"
           ariaLabel="Case study hero"
         >

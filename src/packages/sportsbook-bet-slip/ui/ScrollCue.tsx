@@ -1,8 +1,17 @@
 import { useEffect, useState, type RefObject } from 'react';
+import styles from './ScrollCue.module.css';
 
 function ChevronDownIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      aria-hidden="true"
+    >
       <path d="m6 9 6 6 6-6" />
     </svg>
   );
@@ -40,8 +49,11 @@ export default function ScrollCue({ scrollerRef }: ScrollCueProps) {
   }, [scrollerRef]);
 
   return (
-    <div className={`joker-mobile-scroll-cue${hidden ? ' is-hidden' : ''}`} aria-hidden={hidden}>
-      <span aria-hidden="true">
+    <div
+      className={`joker-mobile-scroll-cue ${styles.root}${hidden ? ` ${styles.hidden}` : ''}`}
+      aria-hidden={hidden}
+    >
+      <span className={styles.icon} aria-hidden="true">
         <ChevronDownIcon />
       </span>
     </div>

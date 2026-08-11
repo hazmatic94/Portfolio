@@ -1,0 +1,36 @@
+.root {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 48px;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 150ms var(--ease-out),
+    visibility 150ms var(--ease-out);
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.icon {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 8px;
+  color: var(--joker-gold-400);
+}
+
+.icon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}

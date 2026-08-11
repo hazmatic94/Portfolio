@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./PortfolioScrollHint.css";
 
 const SCROLL_STOP_DELAY_MS = 360;
@@ -93,7 +93,13 @@ function useNestedScrollChaining(scrollRef) {
 
 function ScrollChevron() {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      focusable="false"
+    >
       <path
         d="M5 7.5 10 12.5 15 7.5"
         stroke="currentColor"
@@ -112,10 +118,11 @@ function useScrollHintVisibility(
   { hideAtPageTop = false } = {},
 ) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const isScrollingRef = useRef(false);
   const scrollStopTimerRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const scrollTarget = bindScrollTargetRef.current();
     if (!scrollTarget) {
       return undefined;
@@ -145,7 +152,16 @@ function useScrollHintVisibility(
       }, SCROLL_STOP_DELAY_MS);
     };
 
-    syncVisibility();
+    let readyFrame = 0;
+    const markReady = () => {
+      syncVisibility();
+      setIsReady(true);
+    };
+
+    readyFrame = window.requestAnimationFrame(() => {
+      readyFrame = window.requestAnimationFrame(markReady);
+    });
+
     scrollTarget.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", syncVisibility);
 
@@ -155,6 +171,7 @@ function useScrollHintVisibility(
     );
 
     return () => {
+      window.cancelAnimationFrame(readyFrame);
       scrollTarget.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", syncVisibility);
       resizeObserver.disconnect();
@@ -162,7 +179,7 @@ function useScrollHintVisibility(
     };
   }, [bindScrollTargetRef, getMetricsRef, hideAtPageTop]);
 
-  return isVisible;
+  return isReady && isVisible;
 }
 
 function useElementScrollHint(scrollRef) {

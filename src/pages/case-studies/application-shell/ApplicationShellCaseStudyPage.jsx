@@ -58,6 +58,7 @@ export function ApplicationShellCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="immediate"
           className="application-shell-case-study__hero-section"
           ariaLabel="Case study hero"
         >

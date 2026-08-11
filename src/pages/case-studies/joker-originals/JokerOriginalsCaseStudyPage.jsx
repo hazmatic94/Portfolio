@@ -70,6 +70,7 @@ export function JokerOriginalsCaseStudyPage() {
         </CaseStudyRevealSection>
 
         <CaseStudyRevealSection
+          reveal="immediate"
           className="joker-originals-case-study__hero-section"
           ariaLabel="Case study hero"
         >

@@ -66,11 +66,13 @@
 
 .portfolio-scroll-hint--hidden .portfolio-scroll-hint__fade {
   opacity: 0;
+  visibility: hidden;
   transition: opacity 150ms var(--ease-out);
 }
 
 .portfolio-scroll-hint--hidden .portfolio-scroll-hint__chevron {
   opacity: 0;
+  visibility: hidden;
   transform: translateX(-50%) translateY(-6px);
   animation: none;
   transition:
@@ -133,11 +135,13 @@
 
 .page-scroll-hint--hidden .page-scroll-hint__fade {
   opacity: 0;
+  visibility: hidden;
   transition: opacity 150ms var(--ease-out);
 }
 
 .page-scroll-hint--hidden .page-scroll-hint__chevron {
   opacity: 0;
+  visibility: hidden;
   transform: translateX(-50%) translateY(-6px);
   animation: none;
   transition:
