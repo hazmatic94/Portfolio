@@ -52,7 +52,9 @@ function SportsbookBetslipMatchCard({
   const { pickOdds, isPickSelected } = useOddsPanelBetSlip(match);
 
   return (
-    <article className="sportsbook-betslip-section-preview__match-card">
+    <article
+      className={`sportsbook-betslip-section-preview__match-card${showBorder ? " sportsbook-betslip-section-preview__match-card--bordered" : ""}`}
+    >
       {showDateHeader ? (
         <div className="sportsbook-betslip-section-preview__date-header">
           <DateRow>{match.date}</DateRow>
@@ -63,15 +65,10 @@ function SportsbookBetslipMatchCard({
           </div>
         </div>
       ) : null}
-      <div
-        className={`sportsbook-betslip-section-preview__match-row${showBorder ? " sportsbook-betslip-section-preview__match-row--bordered" : ""}`}
-      >
-        <div className="joker-upcoming-matches sportsbook-betslip-section-preview__match-panel">
-          <div className="joker-upcoming-matches__leading sportsbook-betslip-section-preview__match-leading">
-            <Time className="sportsbook-betslip-section-preview__match-time">
-              {match.time}
-            </Time>
-            <div className="joker-upcoming-matches__team-stack">
+      <div className="sportsbook-betslip-section-preview__match-row">
+        <div className="sportsbook-betslip-section-preview__match-panel">
+          <div className="sportsbook-betslip-section-preview__match-info">
+            <div className="sportsbook-betslip-section-preview__team-stack">
               <TeamInfo logoSrc={match.teams[0].crest} logoAlt={match.teams[0].alt}>
                 {match.teams[0].name}
               </TeamInfo>
@@ -79,8 +76,11 @@ function SportsbookBetslipMatchCard({
                 {match.teams[1].name}
               </TeamInfo>
             </div>
+            <Time className="sportsbook-betslip-section-preview__match-time">
+              {match.time}
+            </Time>
           </div>
-          <div className="joker-upcoming-matches__actions sportsbook-betslip-section-preview__match-actions">
+          <div className="sportsbook-betslip-section-preview__match-actions">
             <ViewMarkets />
           </div>
         </div>

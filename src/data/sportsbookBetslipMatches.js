@@ -1,6 +1,6 @@
 export const SPORTSBOOK_BETSLIP_MATCHES = [
   {
-    competition: "Premier League",
+    competition: "English Premier League",
     date: "21 July 2026",
     time: "15:00",
     teams: [
@@ -22,7 +22,7 @@ export const SPORTSBOOK_BETSLIP_MATCHES = [
     ],
   },
   {
-    competition: "Premier League",
+    competition: "English Premier League",
     date: "21 July 2026",
     time: "17:30",
     teams: [
@@ -44,7 +44,7 @@ export const SPORTSBOOK_BETSLIP_MATCHES = [
     ],
   },
   {
-    competition: "Premier League",
+    competition: "English Premier League",
     date: "21 July 2026",
     time: "20:00",
     teams: [
@@ -66,7 +66,7 @@ export const SPORTSBOOK_BETSLIP_MATCHES = [
     ],
   },
   {
-    competition: "Premier League",
+    competition: "English Premier League",
     date: "22 July 2026",
     time: "14:00",
     teams: [
@@ -88,7 +88,7 @@ export const SPORTSBOOK_BETSLIP_MATCHES = [
     ],
   },
   {
-    competition: "Premier League",
+    competition: "English Premier League",
     date: "22 July 2026",
     time: "17:30",
     teams: [

@@ -34,7 +34,13 @@ type BetSlipContextValue = {
 
 const BetSlipContext = createContext<BetSlipContextValue | null>(null);
 
-export function BetSlipProvider({ children }: { children: ReactNode }) {
+export function BetSlipProvider({
+  children,
+  maxSelections,
+}: {
+  children: ReactNode;
+  maxSelections?: number;
+}) {
   const [selections, setSelections] = useState<BetSlipSelection[]>([]);
   const [phase, setPhase] = useState<BetSlipPhase>('stakes');
   const [stake, setStake] = useState('');
@@ -44,6 +50,25 @@ export function BetSlipProvider({ children }: { children: ReactNode }) {
   const [expanded, setExpanded] = useState(false);
   const selectionsRef = useRef(selections);
   selectionsRef.current = selections;
+  const maxSelectionsRef = useRef(maxSelections);
+  maxSelectionsRef.current = maxSelections;
+
+  useEffect(() => {
+    if (maxSelections == null) return;
+    const current = selectionsRef.current;
+    if (current.length <= maxSelections) return;
+    const trimmed = current.slice(0, maxSelections);
+    const kept = new Set(trimmed.map((selection) => selection.id));
+    setSelections(trimmed);
+    setLegStakes((legs) => {
+      const next: Record<string, string> = {};
+      for (const id of kept) {
+        if (legs[id] != null) next[id] = legs[id];
+      }
+      return next;
+    });
+    setExpanded(false);
+  }, [maxSelections]);
 
   useEffect(() => {
     if (!lastAddedSelectionId) return;
@@ -72,7 +97,20 @@ export function BetSlipProvider({ children }: { children: ReactNode }) {
       return;
     }
     setLastAddedSelectionId(next.id);
-    setSelections((current) => [...current, next]);
+    const cap = maxSelectionsRef.current;
+    setSelections((current) => {
+      if (cap === 1) {
+        return [next];
+      }
+      if (cap != null && current.length >= cap) {
+        return current;
+      }
+      return [...current, next];
+    });
+    if (maxSelectionsRef.current === 1) {
+      setLegStakes({});
+      setStake('');
+    }
   }, [resetPhase]);
 
   const removeSelection = useCallback((id: string) => {

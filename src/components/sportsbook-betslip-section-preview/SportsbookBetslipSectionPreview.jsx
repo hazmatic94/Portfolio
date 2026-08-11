@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { SPORTSBOOK_BETSLIP_MATCHES } from "../../data/sportsbookBetslipMatches.js";
 import {
   BetSlipDock,
@@ -7,7 +8,27 @@ import {
 import { SportsbookBetslipUpcomingMatches } from "./SportsbookBetslipUpcomingMatches.jsx";
 import "./SportsbookBetslipSectionPreview.css";
 
-const VISIBLE_BETSLIP_MATCHES = SPORTSBOOK_BETSLIP_MATCHES.slice(0, 4);
+const VISIBLE_BETSLIP_MATCHES = SPORTSBOOK_BETSLIP_MATCHES;
+const BETSLIP_PREVIEW_MOBILE_MAX_WIDTH = "(max-width: 800px)";
+
+function useBetslipPreviewMaxSelections() {
+  const [maxSelections, setMaxSelections] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia(BETSLIP_PREVIEW_MOBILE_MAX_WIDTH).matches
+      ? 1
+      : undefined,
+  );
+
+  useEffect(() => {
+    const media = window.matchMedia(BETSLIP_PREVIEW_MOBILE_MAX_WIDTH);
+    const sync = () => setMaxSelections(media.matches ? 1 : undefined);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
+
+  return maxSelections;
+}
 
 function SportsbookBetslipSectionPreviewContent() {
   const { selections, expanded } = useBetSlip();
@@ -31,8 +52,10 @@ function SportsbookBetslipSectionPreviewContent() {
 }
 
 export function SportsbookBetslipSectionPreview() {
+  const maxSelections = useBetslipPreviewMaxSelections();
+
   return (
-    <BetSlipProvider>
+    <BetSlipProvider maxSelections={maxSelections}>
       <SportsbookBetslipSectionPreviewContent />
     </BetSlipProvider>
   );

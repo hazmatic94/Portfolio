@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { CaseStudyFullWidthFrame } from "../../../components/case-study-full-width-frame/CaseStudyFullWidthFrame.jsx";
 import { SportsbookBetslipSectionPreview } from "../../../components/sportsbook-betslip-section-preview/SportsbookBetslipSectionPreview.jsx";
@@ -38,7 +39,45 @@ const SPORTSBOOK_META_DESCRIPTION =
   "Curated sportsbook case study exploring operational simplicity, scalable event architecture, and intuitive bet construction.";
 const SPORTSBOOK_OG_IMAGE = "/og/sportsbook.png";
 
+function useBetslipPanelHeight() {
+  const foundationsMediaRef = useRef(null);
+  const [panelHeight, setPanelHeight] = useState(null);
+
+  useEffect(() => {
+    const media = foundationsMediaRef.current;
+    if (!media) return undefined;
+
+    const frame = media.querySelector(".case-study-full-width-frame");
+    const target = frame ?? media;
+
+    const sync = () => {
+      const next = Math.ceil(target.getBoundingClientRect().height);
+      setPanelHeight((current) => (current === next ? current : next));
+    };
+
+    sync();
+    const observer = new ResizeObserver(sync);
+    observer.observe(target);
+    window.addEventListener("resize", sync);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", sync);
+    };
+  }, []);
+
+  return { foundationsMediaRef, panelHeight };
+}
+
 export function SportsbookCaseStudyPage() {
+  const { foundationsMediaRef, panelHeight } = useBetslipPanelHeight();
+  const caseStudyStyle =
+    panelHeight == null
+      ? undefined
+      : {
+          "--sportsbook-interactive-panel-height": `${panelHeight}px`,
+        };
+
   return (
     <>
       <PageMeta
@@ -48,7 +87,10 @@ export function SportsbookCaseStudyPage() {
         ogImage={SPORTSBOOK_OG_IMAGE}
       />
       <Nav />
-      <main className="application-shell-case-study sportsbook-case-study">
+      <main
+        className="application-shell-case-study sportsbook-case-study"
+        style={caseStudyStyle}
+      >
         <CaseStudyRevealSection
           as="div"
           className="sportsbook-case-study__shell sportsbook-case-study__intro-reveal"
@@ -128,7 +170,10 @@ export function SportsbookCaseStudyPage() {
             title="A dynamic betslip"
             body="The betslip grows alongside every selection, providing continuous feedback while keeping stake, odds and potential returns visible throughout the betting journey."
           />
-          <div className="sportsbook-case-study__section-media">
+          <div
+            ref={foundationsMediaRef}
+            className="sportsbook-case-study__section-media"
+          >
             <CaseStudyFullWidthFrame>
               <SportsbookBetslipSectionPreview />
             </CaseStudyFullWidthFrame>
