@@ -53,7 +53,7 @@ export function ApplicationShellCaseStudyPage() {
             title="Application Shell"
             body="Building the shell upfront meant every new game started from the same structure, keeping implementation fast and consistent."
             ctaLabel="View Live Demo"
-            ctaHref="/case-studies/application-shell"
+            ctaHref="https://application-shell-five.vercel.app"
           />
         </CaseStudyRevealSection>
 
