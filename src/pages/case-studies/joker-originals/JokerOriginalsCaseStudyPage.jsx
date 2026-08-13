@@ -65,7 +65,7 @@ export function JokerOriginalsCaseStudyPage() {
             title="Original Games"
             body="With the shell already in place, each game became about designing its rules, assets and interactions."
             ctaLabel="View Live Demo"
-            ctaHref="/case-studies/joker-originals"
+            ctaHref="https://original-games-seven.vercel.app"
           />
         </CaseStudyRevealSection>
 
