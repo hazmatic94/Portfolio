@@ -37,6 +37,10 @@
   min-height: 240px;
 }
 
+.coin-flip-panel-preview__panel .joker-rounds-to-win-field {
+  display: none !important;
+}
+
 .coin-flip-panel-preview__fade {
   position: absolute;
   right: 0;
