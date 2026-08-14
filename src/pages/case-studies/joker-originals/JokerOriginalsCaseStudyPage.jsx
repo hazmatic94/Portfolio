@@ -85,7 +85,7 @@ export function JokerOriginalsCaseStudyPage() {
                   <PortfolioMockupStage
                     desktopSrc="/images/joker-originals-hero.png"
                     desktopSrcSet="/images/joker-originals-hero.png 1366w, /images/joker-originals-hero@2x.png 2732w"
-                    desktopSizes="800px"
+                    desktopSizes="(min-width: 1000px) 1000px, 100vw"
                     desktopWidth={1366}
                     desktopHeight={900}
                     desktopLabel="Joker Plus Roulette with a three-win streak"

@@ -1,7 +1,7 @@
 .case-study-full-width-frame {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1048px;
   height: 540px;
   margin-inline: auto;
   padding-inline: var(--spacing-24);
@@ -73,10 +73,6 @@
   overflow: visible;
   height: auto;
   min-height: 0;
-}
-
-.case-study-full-width-frame:has(.sportsbook-betslip-section-preview) {
-  max-width: 1080px;
 }
 
 .case-study-full-width-frame:has(.sportsbook-betslip-section-preview)

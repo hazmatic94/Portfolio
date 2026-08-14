@@ -123,7 +123,7 @@ export function SportsbookCaseStudyPage() {
                   <PortfolioMockupStage
                     desktopSrc="/images/sportsbook-hero.png"
                     desktopSrcSet="/images/sportsbook-hero.png 1366w, /images/sportsbook-hero@2x.png 2732w"
-                    desktopSizes="800px"
+                    desktopSizes="(min-width: 1000px) 1000px, 100vw"
                     desktopWidth={1366}
                     desktopHeight={900}
                     desktopLabel="Joker Plus sportsbook with live matches and odds"

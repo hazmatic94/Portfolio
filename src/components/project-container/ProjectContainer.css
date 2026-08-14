@@ -73,7 +73,7 @@
 }
 
 .project-container__media-clip > .portfolio-mockup-stage {
-  margin-left: min(0px, calc(100% - var(--desktop-w, 800px)));
+  margin-left: min(0px, calc(100% - var(--desktop-w, 1000px)));
 }
 
 .project-container__media-clip::after {

@@ -24,7 +24,7 @@
 
 .case-study-section__projects {
   width: 100%;
-  max-width: 1000px;
+  max-width: var(--case-study-content-width, 1048px);
   margin-inline: auto;
   margin-top: var(--spacing-48);
   padding-inline: var(--spacing-24);

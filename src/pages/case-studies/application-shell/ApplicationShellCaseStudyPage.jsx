@@ -73,7 +73,7 @@ export function ApplicationShellCaseStudyPage() {
                   <PortfolioMockupStage
                     desktopSrc="/images/game-shell-hero.png"
                     desktopSrcSet="/images/game-shell-hero.png 1366w, /images/game-shell-hero@2x.png 2732w"
-                    desktopSizes="800px"
+                    desktopSizes="(min-width: 1000px) 1000px, 100vw"
                     desktopWidth={1366}
                     desktopHeight={900}
                     desktopLabel="Joker Plus responsive game shell with Hilo"

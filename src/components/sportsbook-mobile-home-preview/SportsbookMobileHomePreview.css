@@ -39,8 +39,8 @@
 
 .sportsbook-mobile-home-preview .joker-game-header-rail {
   flex: 0 0 auto;
-  height: var(--game-rail-height);
-  min-height: var(--game-rail-height);
+  height: var(--button-height);
+  min-height: var(--button-height);
   padding-inline: var(--spacing-16);
 }
 

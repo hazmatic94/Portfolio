@@ -1,17 +1,26 @@
-/* Shared case study canvas: compress 1000 → 800, stack below 800 */
+/* Shared case study canvas: 1000px inner, fluid to 1100 above 1536vw, stack below 800 */
 
 .design-system-case-study,
 .application-shell-case-study,
 .joker-originals-case-study,
 .sportsbook-case-study,
 .home-page {
-  --case-study-content-max: 1000px;
+  --case-study-content-inner-max: 1000px;
+  --case-study-fluid-extra: clamp(0px, calc((100vw - 1536px) * 100 / 384), 100px);
+  --case-study-content-max: calc(
+    var(--case-study-content-inner-max) + var(--case-study-gutter) * 2 +
+      var(--case-study-fluid-extra)
+  );
   --case-study-content-min: 800px;
   --case-study-gutter: var(--spacing-24);
   --case-study-content-width: clamp(
     min(100%, var(--case-study-content-min)),
     100% - (var(--case-study-gutter) * 2),
     var(--case-study-content-max)
+  );
+  --case-study-mockup-width: min(
+    var(--case-study-content-inner-max),
+    var(--case-study-content-width)
   );
 }
 
@@ -20,12 +29,10 @@
 .joker-originals-case-study,
 .sportsbook-case-study {
   --case-study-section-gap: 200px;
-  --case-study-mockup-width: min(800px, var(--case-study-content-width));
   --case-study-copy-media-gap: 60px;
 }
 
 .home-page {
-  --case-study-mockup-width: var(--case-study-content-width);
   background: #121212;
 }
 
@@ -153,6 +160,84 @@
 .joker-originals-case-study .portfolio-mockup-stage__desktop,
 .sportsbook-case-study .portfolio-mockup-stage__desktop {
   width: var(--case-study-mockup-width);
+}
+
+.design-system-case-study__hero .project-container__media-clip > .portfolio-mockup-stage,
+.application-shell-case-study__hero .project-container__media-clip > .portfolio-mockup-stage,
+.joker-originals-case-study__hero .project-container__media-clip > .portfolio-mockup-stage,
+.sportsbook-case-study__hero .project-container__media-clip > .portfolio-mockup-stage {
+  margin-left: 0;
+}
+
+.design-system-case-study__hero .project-container__media-clip::after,
+.application-shell-case-study__hero .project-container__media-clip::after,
+.joker-originals-case-study__hero .project-container__media-clip::after,
+.sportsbook-case-study__hero .project-container__media-clip::after {
+  display: none;
+}
+
+@media (min-width: 801px) {
+  .design-system-case-study .design-system-case-study__shell,
+  .application-shell-case-study .application-shell-case-study__shell,
+  .joker-originals-case-study .joker-originals-case-study__shell,
+  .sportsbook-case-study .sportsbook-case-study__shell,
+  .design-system-case-study .section-divider,
+  .application-shell-case-study .section-divider,
+  .joker-originals-case-study .section-divider,
+  .sportsbook-case-study .section-divider,
+  .design-system-case-study .case-study-inline-copy,
+  .application-shell-case-study .case-study-inline-copy,
+  .joker-originals-case-study .case-study-inline-copy,
+  .sportsbook-case-study .case-study-inline-copy,
+  .design-system-case-study .case-study-split-frames,
+  .application-shell-case-study .case-study-split-frames,
+  .joker-originals-case-study .case-study-split-frames,
+  .sportsbook-case-study .case-study-split-frames,
+  .design-system-case-study .case-study-full-width-frame,
+  .application-shell-case-study .case-study-full-width-frame,
+  .sportsbook-case-study .case-study-full-width-frame,
+  .design-system-case-study .component-showcase-grid,
+  .application-shell-case-study .component-showcase-grid,
+  .joker-originals-case-study .component-showcase-grid,
+  .design-system-case-study .product-adoption-games-grid,
+  .application-shell-case-study .product-adoption-games-grid,
+  .joker-originals-case-study .product-adoption-games-grid,
+  .home-page .section-divider,
+  .home-page .case-study-section__projects {
+    transition: max-width 240ms var(--ease-out);
+  }
+}
+
+@media (min-width: 801px) and (prefers-reduced-motion: reduce) {
+  .design-system-case-study .design-system-case-study__shell,
+  .application-shell-case-study .application-shell-case-study__shell,
+  .joker-originals-case-study .joker-originals-case-study__shell,
+  .sportsbook-case-study .sportsbook-case-study__shell,
+  .design-system-case-study .section-divider,
+  .application-shell-case-study .section-divider,
+  .joker-originals-case-study .section-divider,
+  .sportsbook-case-study .section-divider,
+  .design-system-case-study .case-study-inline-copy,
+  .application-shell-case-study .case-study-inline-copy,
+  .joker-originals-case-study .case-study-inline-copy,
+  .sportsbook-case-study .case-study-inline-copy,
+  .design-system-case-study .case-study-split-frames,
+  .application-shell-case-study .case-study-split-frames,
+  .joker-originals-case-study .case-study-split-frames,
+  .sportsbook-case-study .case-study-split-frames,
+  .design-system-case-study .case-study-full-width-frame,
+  .application-shell-case-study .case-study-full-width-frame,
+  .sportsbook-case-study .case-study-full-width-frame,
+  .design-system-case-study .component-showcase-grid,
+  .application-shell-case-study .component-showcase-grid,
+  .joker-originals-case-study .component-showcase-grid,
+  .design-system-case-study .product-adoption-games-grid,
+  .application-shell-case-study .product-adoption-games-grid,
+  .joker-originals-case-study .product-adoption-games-grid,
+  .home-page .section-divider,
+  .home-page .case-study-section__projects {
+    transition: none;
+  }
 }
 
 /* Stack — below 800px */

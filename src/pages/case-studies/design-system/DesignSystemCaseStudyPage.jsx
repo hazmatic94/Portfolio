@@ -65,7 +65,7 @@ export function DesignSystemCaseStudyPage() {
                   <PortfolioMockupStage
                     desktopSrc="/images/design-system-hero.png"
                     desktopSrcSet="/images/design-system-hero.png 1366w, /images/design-system-hero@2x.png 2732w"
-                    desktopSizes="800px"
+                    desktopSizes="(min-width: 1000px) 1000px, 100vw"
                     desktopWidth={1366}
                     desktopHeight={914}
                     desktopLabel="Joker design system colours documentation"

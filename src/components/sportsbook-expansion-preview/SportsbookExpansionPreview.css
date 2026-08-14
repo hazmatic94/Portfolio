@@ -1,7 +1,7 @@
 .sportsbook-expansion-preview {
   box-sizing: border-box;
   width: 100%;
-  max-width: var(--case-study-content-width, 1000px);
+  max-width: var(--case-study-content-width, 1048px);
   margin-inline: auto;
   margin-top: var(--case-study-copy-media-gap);
   padding-inline: var(--case-study-gutter, var(--spacing-24));

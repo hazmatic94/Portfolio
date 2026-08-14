@@ -21,6 +21,15 @@
     pointer-events: auto;
   }
 
+  .home-page .project-container__content {
+    width: 100%;
+    grid-template-columns: minmax(0, 550px) minmax(0, 1fr);
+  }
+
+  .home-page .project-container__cta {
+    justify-self: end;
+  }
+
   .home-page .project-container__media--linked:hover .component-card__frame:not(:hover) {
     background-color: var(--joker-black-500);
     border-color: var(--joker-black-300);
