@@ -69,8 +69,6 @@ const CASE_STUDIES = [
     body: "Creating the platform’s first suite of original casino games from concept to implementation.",
     chips: ["Game Components", "Motion System", "Interaction Design"],
     href: "/case-studies/joker-originals",
-    ctaLabel: "View Live Demo",
-    ctaHref: "https://original-games-seven.vercel.app",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview

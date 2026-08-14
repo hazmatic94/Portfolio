@@ -1,6 +1,9 @@
 .hero {
   /* Match hmLogoV2.mp4 plate so the video box doesn’t flash a rectangle on load. */
   --hero-bg: #121312;
+  --hero-video-base: 400px;
+  --hero-video-scale: 1.82;
+  --hero-video-visual: calc(var(--hero-video-base) * var(--hero-video-scale));
   --hero-enter-logo-delay: 480ms;
   --hero-enter-dots-delay: 1120ms;
   --hero-enter-text-delay: 1960ms;
@@ -34,20 +37,41 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: var(--hero-bg);
-  opacity: 0;
+  opacity: 1;
   transform: scale(0.94);
   animation: hero-logo-enter 720ms var(--ease-out) both;
   animation-delay: var(--hero-enter-logo-delay);
 }
 
-.hero__video {
-  display: block;
-  width: 400px;
-  height: 400px;
-  object-fit: contain;
+.hero__video-stage {
+  position: relative;
+  width: var(--hero-video-visual);
+  height: var(--hero-video-visual);
+  overflow: hidden;
   background: var(--hero-bg);
-  transform: scale(1.82);
+}
+
+.hero__video-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-bg);
+  opacity: 1;
+  pointer-events: none;
+  animation: hero-video-reveal 720ms var(--ease-out) both;
+  animation-delay: var(--hero-enter-logo-delay);
+}
+
+.hero__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: var(--hero-video-base);
+  height: var(--hero-video-base);
+  object-fit: contain;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(var(--hero-video-scale));
   transform-origin: center center;
   pointer-events: none;
 }
@@ -56,7 +80,15 @@
   display: none !important;
 }
 
+.hero__video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
 .hero__video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.hero__video::-webkit-media-controls-overlay-play-button {
   display: none !important;
 }
 
@@ -94,8 +126,13 @@
 
 @keyframes hero-logo-enter {
   to {
-    opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes hero-video-reveal {
+  to {
+    opacity: 0;
   }
 }
 
@@ -107,15 +144,11 @@
 
 @media (max-width: 800px) {
   .hero {
+    --hero-video-base: 320px;
+    --hero-video-scale: 1.456;
     --hero-enter-logo-delay: 240ms;
     --hero-enter-dots-delay: 560ms;
     --hero-enter-text-delay: 920ms;
-  }
-
-  .hero__video {
-    width: 320px;
-    height: 320px;
-    transform: scale(1.456);
   }
 
   .hero__role {
@@ -134,6 +167,7 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__dot-grid,
   .hero__video-frame,
+  .hero__video-reveal,
   .hero__role,
   .hero__meta {
     animation: none;
@@ -142,7 +176,7 @@
     clip-path: none;
   }
 
-  .hero__video-frame {
-    transform: none;
+  .hero__video-reveal {
+    opacity: 0;
   }
 }

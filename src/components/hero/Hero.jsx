@@ -1,4 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  bindAutoplayUnlock,
+  playAutoplayVideo,
+  prepareAutoplayVideo,
+} from "../../utils/autoplayVideo.js";
 import "./Hero.css";
 
 function formatLocalTime(date) {
@@ -9,55 +14,63 @@ function formatLocalTime(date) {
 }
 
 function useHeroLogoAutoplay() {
-  const frameRef = useRef(null);
   const videoRef = useRef(null);
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    const frame = frameRef.current;
     if (!video) {
       return undefined;
     }
 
+    prepareAutoplayVideo(video);
+
     const tryPlay = () => {
-      video.muted = true;
-      const playPromise = video.play();
-      if (playPromise?.catch) {
-        playPromise.catch(() => {});
-      }
+      if (!videoRef.current) return;
+
+      void playAutoplayVideo(videoRef.current).then(() => {
+        if (!videoRef.current?.paused) {
+          hasStartedRef.current = true;
+        }
+      });
     };
 
-    const onAnimationEnd = (event) => {
-      if (event.animationName === "hero-logo-enter") {
-        tryPlay();
-      }
+    const onCanPlay = () => {
+      tryPlay();
     };
-
-    video.addEventListener("loadeddata", tryPlay);
-    frame?.addEventListener("animationend", onAnimationEnd);
 
     const onPageShow = (event) => {
       if (event.persisted) {
         tryPlay();
       }
     };
+
+    video.addEventListener("canplay", onCanPlay);
+    video.addEventListener("loadeddata", onCanPlay);
     window.addEventListener("pageshow", onPageShow);
+
+    const unlock = bindAutoplayUnlock(video, () => {
+      if (!hasStartedRef.current) {
+        tryPlay();
+      }
+    });
 
     tryPlay();
 
     return () => {
-      video.removeEventListener("loadeddata", tryPlay);
-      frame?.removeEventListener("animationend", onAnimationEnd);
+      video.removeEventListener("canplay", onCanPlay);
+      video.removeEventListener("loadeddata", onCanPlay);
       window.removeEventListener("pageshow", onPageShow);
+      unlock();
     };
   }, []);
 
-  return { frameRef, videoRef };
+  return { videoRef };
 }
 
 export function Hero() {
   const [time, setTime] = useState(() => formatLocalTime(new Date()));
-  const { frameRef, videoRef } = useHeroLogoAutoplay();
+  const { videoRef } = useHeroLogoAutoplay();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,20 +83,23 @@ export function Hero() {
   return (
     <section className="hero" aria-label="Hero">
       <div className="hero__dot-grid" aria-hidden="true" />
-      <div ref={frameRef} className="hero__video-frame">
-        <video
-          ref={videoRef}
-          className="hero__video"
-          src="/hmLogoV2.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          controls={false}
-          disablePictureInPicture
-          aria-label="Harry Maher logo"
-        />
+      <div className="hero__video-frame">
+        <div className="hero__video-stage">
+          <video
+            ref={videoRef}
+            className="hero__video"
+            src="/hmLogoV2.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
+            aria-label="Harry Maher logo"
+          />
+          <div className="hero__video-reveal" aria-hidden="true" />
+        </div>
       </div>
       <p className="hero__role">Senior Product Designer</p>
       <div className="hero__meta">
