@@ -69,6 +69,8 @@ const CASE_STUDIES = [
     body: "Creating the platform’s first suite of original casino games from concept to implementation.",
     chips: ["Game Components", "Motion System", "Interaction Design"],
     href: "/case-studies/joker-originals",
+    ctaLabel: "View Live Demo",
+    ctaHref: "https://original-games-seven.vercel.app",
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview
@@ -97,6 +99,7 @@ const CASE_STUDIES = [
     body: "Building a scalable sportsbook that solved today’s operational needs without limiting tomorrow’s growth.",
     chips: ["Markets", "Betslip", "Matches"],
     href: "/case-studies/sportsbook",
+    ctaDisabled: true,
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview
@@ -127,6 +130,8 @@ function CaseStudyBlock({
   chips = [],
   href = null,
   ctaLabel = "View Project",
+  ctaHref = null,
+  ctaDisabled = false,
   media = null,
   mediaOverlay = null,
 }) {
@@ -146,6 +151,8 @@ function CaseStudyBlock({
           chips={chips}
           href={href}
           ctaLabel={ctaLabel}
+          ctaHref={ctaHref}
+          ctaDisabled={ctaDisabled}
           media={media}
           mediaOverlay={mediaOverlay}
         />

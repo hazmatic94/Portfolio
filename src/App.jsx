@@ -33,11 +33,12 @@ function ScrollRestoration() {
 
 function AppRoutes() {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   return (
     <>
       <ScrollToTop />
-      <PageScrollHint />
+      <PageScrollHint hideAtPageTop={!isHomePage} />
       <div key={location.pathname} className="page-transition">
         <Routes location={location}>
           <Route path="/" element={<HomePage />} />

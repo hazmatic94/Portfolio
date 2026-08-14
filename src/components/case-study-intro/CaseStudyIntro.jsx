@@ -11,6 +11,7 @@ export function CaseStudyIntro({
   body,
   ctaLabel = "View Live Demo",
   ctaHref = null,
+  ctaDisabled = false,
 }) {
   const navigate = useNavigate();
 
@@ -31,7 +32,11 @@ export function CaseStudyIntro({
         <h1 className="case-study-intro__title">{title}</h1>
         <p className="case-study-intro__body">{body}</p>
         <div className="case-study-intro__cta">
-          <Button variant="secondary" onClick={ctaHref ? handleCtaClick : undefined}>
+          <Button
+            variant="secondary"
+            disabled={ctaDisabled}
+            onClick={ctaHref && !ctaDisabled ? handleCtaClick : undefined}
+          >
             {ctaLabel}
           </Button>
         </div>

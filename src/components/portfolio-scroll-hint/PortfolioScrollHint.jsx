@@ -252,7 +252,10 @@ export function PortfolioScrollHint({
   );
 }
 
-export function PageScrollHint({ fadeColor = "#121212" }) {
+export function PageScrollHint({
+  fadeColor = "#121212",
+  hideAtPageTop = false,
+}) {
   const getMetricsRef = useRef(() => ({ canScroll: false, atBottom: true }));
   const bindScrollTargetRef = useRef(() => window);
 
@@ -266,7 +269,7 @@ export function PageScrollHint({ fadeColor = "#121212" }) {
   };
 
   const isVisible = useScrollHintVisibility(getMetricsRef, bindScrollTargetRef, {
-    hideAtPageTop: true,
+    hideAtPageTop,
   });
 
   return (

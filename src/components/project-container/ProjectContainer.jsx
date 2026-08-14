@@ -3,16 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { beginRouteChange } from "../../utils/beginRouteChange.js";
 import "./ProjectContainer.css";
 
+function isExternalHref(href) {
+  return /^https?:\/\//i.test(href);
+}
+
 export function ProjectContainer({
   title,
   body,
   chips = [],
   ctaLabel = "View Project",
+  ctaHref = null,
+  ctaDisabled = false,
   href = null,
   media = null,
   mediaOverlay = null,
 }) {
   const navigate = useNavigate();
+  const ctaTarget = ctaHref ?? href;
   const MediaTag = href ? Link : "div";
   const mediaProps = href
     ? {
@@ -45,11 +52,17 @@ export function ProjectContainer({
         <div className="project-container__cta">
           <Button
             variant="secondary"
+            disabled={ctaDisabled}
             onClick={
-              href
+              ctaTarget && !ctaDisabled
                 ? () => {
+                    if (isExternalHref(ctaTarget)) {
+                      window.open(ctaTarget, "_blank", "noopener,noreferrer");
+                      return;
+                    }
+
                     beginRouteChange();
-                    navigate(href);
+                    navigate(ctaTarget);
                   }
                 : undefined
             }

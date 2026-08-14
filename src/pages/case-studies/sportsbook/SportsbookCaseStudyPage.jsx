@@ -103,7 +103,7 @@ export function SportsbookCaseStudyPage() {
             title="Designing a curated sportsbook"
             body="The platform relied on one analyst to curate markets and manage odds, so every interaction needed to support a lean operational model."
             ctaLabel="View Live Demo"
-            ctaHref="/case-studies/sportsbook"
+            ctaDisabled
           />
         </CaseStudyRevealSection>
 
