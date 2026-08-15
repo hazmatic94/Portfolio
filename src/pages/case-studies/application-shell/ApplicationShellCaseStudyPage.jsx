@@ -98,7 +98,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="01" title="Blueprint" />
           <CaseStudyInlineCopy
-            title="The framework"
+            title="The Framework"
             body="Each game plugged into the same layout, navigation and interaction patterns, keeping the experience familiar across the platform."
           />
           <div className="application-shell-case-study__section-media">
@@ -115,7 +115,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="02" title="Constraints" />
           <CaseStudyInlineCopy
-            title="Built around gameplay"
+            title="Built Around Gameplay"
             body="By defining the shared patterns first, I could spend my time designing the parts that made each game unique."
           />
           <div className="application-shell-case-study__section-media">
@@ -132,7 +132,7 @@ export function ApplicationShellCaseStudyPage() {
         >
           <SectionDivider number="03" title="Behaviour" />
           <CaseStudyInlineCopy
-            title="Adaptive betting panel"
+            title="Adaptive Betting Panel"
             body="Rather than resizing the game, the interface adapted around it to maximise playable space."
           />
           <div className="application-shell-case-study__section-media">

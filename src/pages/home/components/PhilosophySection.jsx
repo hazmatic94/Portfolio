@@ -5,7 +5,7 @@ export function PhilosophySection() {
     <section className="philosophy-section" aria-label="Philosophy">
       <div className="philosophy-section__content">
         <h2 className="philosophy-section__title">
-          I build the foundations behind digital products.
+          I Build the Foundations Behind Digital Products.
         </h2>
         <p className="philosophy-section__body">
           Design systems, component libraries and shared architecture that scale

@@ -3,7 +3,7 @@ import { Button } from "@joker/design-system";
 import { useHomeHeroGrid } from "./useHomeHeroGrid.js";
 import "./DesignSystemHomePreview.css";
 
-const heroVideoSrc = "/videos/joker-gold-logo.mp4";
+const heroVideoSrc = "/videos/joker-gold-logo-v4.mp4";
 
 const TICKER_ITEMS = [
   "Build Stable",

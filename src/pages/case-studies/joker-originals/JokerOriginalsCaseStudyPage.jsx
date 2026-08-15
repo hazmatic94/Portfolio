@@ -110,7 +110,7 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="01" title="Collection" />
           <CaseStudyInlineCopy
-            title="Four original games"
+            title="Four Original Games"
             body="Each game explored a different style of play, proving the framework was flexible enough to support new ideas within the constraints already in place."
           />
           <div className="joker-originals-case-study__section-media">
@@ -125,7 +125,7 @@ export function JokerOriginalsCaseStudyPage() {
         >
           <SectionDivider number="02" title="Gameplay" />
           <CaseStudyInlineCopy
-            title="Risk and reward"
+            title="Risk and Reward"
             body="Simple mechanics made each game easy to learn, while probability and multipliers created depth through player decisions."
           />
           <div className="joker-originals-case-study__section-media">

@@ -100,7 +100,7 @@ export function SportsbookCaseStudyPage() {
           </div>
 
           <CaseStudyIntro
-            title="Designing a curated sportsbook"
+            title="Designing a Curated Sportsbook"
             body="The platform relied on one analyst to curate markets and manage odds, so every interaction needed to support a lean operational model."
             ctaLabel="View Live Demo"
             ctaDisabled
@@ -148,7 +148,7 @@ export function SportsbookCaseStudyPage() {
         >
           <SectionDivider number="01" title="Overview" />
           <CaseStudyInlineCopy
-            title="Curated by design"
+            title="Curated by Design"
             body="I designed a betting experience that balanced user clarity with operational simplicity."
           />
           <div className="sportsbook-case-study__section-media">
@@ -168,7 +168,7 @@ export function SportsbookCaseStudyPage() {
         >
           <SectionDivider number="02" title="Transaction" />
           <CaseStudyInlineCopy
-            title="A dynamic betslip"
+            title="A Dynamic Betslip"
             body="The betslip grows alongside every selection, providing continuous feedback while keeping stake, odds and potential returns visible throughout the betting journey."
           />
           <div
