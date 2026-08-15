@@ -1,4 +1,12 @@
 .ds-code-reveal-panel {
+  --reveal-progress: 0;
+  --cta-blend: 0;
+  --cta-anchor: 50%;
+  --body-reveal-height: 100%;
+  --body-reveal-opacity: 1;
+  --veil-opacity: 1;
+  --footer-fill-opacity: 0;
+
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -22,7 +30,15 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
+  height: 100%;
+  max-height: var(--body-reveal-height);
+  opacity: var(--body-reveal-opacity);
   overflow: hidden;
+}
+
+.ds-code-reveal-panel[data-phase="open"] .ds-code-reveal-panel__body {
+  max-height: none;
+  opacity: 1;
 }
 
 .ds-code-reveal-panel__body > .portfolio-scroll-hint {
@@ -45,39 +61,42 @@
 
 .ds-code-reveal-panel[data-phase="opening"] .portfolio-scroll-hint__fade,
 .ds-code-reveal-panel[data-phase="opening"] .portfolio-scroll-hint__chevron,
-.ds-code-reveal-panel[data-phase="open"] .portfolio-scroll-hint__fade,
-.ds-code-reveal-panel[data-phase="open"] .portfolio-scroll-hint__chevron,
 .ds-code-reveal-panel[data-phase="closing"] .portfolio-scroll-hint__fade,
 .ds-code-reveal-panel[data-phase="closing"] .portfolio-scroll-hint__chevron {
   display: none;
 }
 
-.ds-code-reveal-panel .code-reveal-overlay {
+.ds-code-reveal-panel .code-reveal-veil {
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
+  inset: 0;
   z-index: 2;
-  display: grid;
-  height: var(--ds-code-reveal-height, 100%);
-  place-items: center;
+  clip-path: inset(calc(var(--reveal-progress) * 100%) 0 0 0);
   border-top: 1px solid var(--joker-black-300);
-  background: linear-gradient(
-    180deg,
-    rgb(10 10 10 / 0.35) 0%,
-    rgb(19 19 19 / 0.68) 48%,
-    rgb(19 19 19 / 0.88) 100%
-  );
+  background: linear-gradient(180deg, transparent, var(--joker-black-700) 70%);
+  opacity: var(--veil-opacity);
   pointer-events: none;
-  transform: translate3d(0, 0, 0);
-  transition: transform var(--ds-code-reveal-duration, 180ms) var(--ease-out);
-  will-change: transform;
+  will-change: clip-path, opacity;
 }
 
-.ds-code-reveal-panel[data-phase="opening"] .code-reveal-overlay,
-.ds-code-reveal-panel[data-phase="open"] .code-reveal-overlay {
-  transform: translate3d(0, 100%, 0);
-  border-top-color: transparent;
+.ds-code-reveal-panel[data-phase="open"] .code-reveal-veil {
+  pointer-events: none;
+}
+
+.ds-code-reveal-panel .code-reveal-cta {
+  position: absolute;
+  top: var(--cta-anchor);
+  left: 50%;
+  z-index: 5;
+  opacity: calc(1 - var(--cta-blend));
+  transform: translate(-50%, -50%);
+  will-change: top, opacity;
+}
+
+.ds-code-reveal-panel[data-phase="open"] .code-reveal-cta,
+.ds-code-reveal-panel[data-phase="open"] .code-reveal-cta .code-toggle-button,
+.ds-code-reveal-panel[data-phase="open"] .code-reveal-cta .code-view-button {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .ds-code-reveal-panel .code-toggle-button {
@@ -110,7 +129,8 @@
     background-color var(--motion-fast) var(--ease-standard),
     border-color var(--motion-fast) var(--ease-standard),
     box-shadow var(--motion-fast) var(--ease-standard),
-    color var(--motion-fast) var(--ease-standard);
+    color var(--motion-fast) var(--ease-standard),
+    border-radius var(--motion-fast) var(--ease-standard);
   white-space: nowrap;
 }
 
@@ -163,19 +183,27 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 3;
+  z-index: 4;
   display: flex;
   flex-shrink: 0;
   justify-content: center;
-  height: var(--ds-code-reveal-rest-height, 56px);
   box-sizing: border-box;
   padding: 4px 24px 12px;
   border-top: 1px solid var(--joker-black-300);
   background: var(--joker-black-800);
+  opacity: var(--footer-fill-opacity);
+  pointer-events: none;
+  will-change: opacity;
 }
 
-.ds-code-reveal-panel__footer--dormant {
-  visibility: hidden;
+.ds-code-reveal-panel[data-phase="open"] .ds-code-reveal-panel__footer {
+  z-index: 6;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ds-code-reveal-panel[data-phase="opening"] .ds-code-reveal-panel__footer,
+.ds-code-reveal-panel[data-phase="closing"] .ds-code-reveal-panel__footer {
   pointer-events: none;
 }
 
@@ -187,10 +215,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-code-reveal-panel .code-reveal-overlay {
-    transition: none;
-  }
-
   .ds-code-reveal-panel .code-view-button::after {
     transition: none;
   }
