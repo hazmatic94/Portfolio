@@ -12,7 +12,14 @@ export function PortfolioMockupStage({
   mobileLabel = "Mobile preview",
 }) {
   return (
-    <div className="portfolio-mockup-stage">
+    <div
+      className="portfolio-mockup-stage"
+      style={
+        desktopWidth && desktopHeight
+          ? { "--mockup-aspect-ratio": `${desktopWidth} / ${desktopHeight}` }
+          : undefined
+      }
+    >
       <PortfolioImageMockup
         className="portfolio-mockup-stage__desktop"
         src={desktopSrc}

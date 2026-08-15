@@ -2,6 +2,9 @@ import { Button } from "@joker/design-system";
 import { useInViewOnce } from "../../hooks/useInViewOnce.js";
 import "./Footer.css";
 
+const CONTACT_EMAIL = "harrymaherdesign@gmail.com";
+const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Portfolio enquiry")}`;
+
 export function FooterLegal({ className = "" }) {
   return (
     <p className={`site-footer__legal${className ? ` ${className}` : ""}`}>
@@ -37,7 +40,9 @@ export function Footer() {
         </div>
 
         <div className="site-footer__cta">
-          <Button variant="secondary">Get in Touch</Button>
+          <a className="site-footer__cta-link" href={CONTACT_MAILTO}>
+            <Button variant="secondary">Get in Touch</Button>
+          </a>
         </div>
 
         <div className="site-footer__logo">

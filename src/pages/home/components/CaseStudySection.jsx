@@ -28,7 +28,7 @@ const CASE_STUDIES = [
         desktopSrcSet="/images/design-system-hero.png 1366w, /images/design-system-hero@2x.png 2732w"
         desktopSizes="(min-width: 1000px) 1000px, 100vw"
         desktopWidth={1366}
-        desktopHeight={914}
+        desktopHeight={900}
         desktopLabel="Joker design system colours documentation"
       />
     ),
