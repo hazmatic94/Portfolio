@@ -1,4 +1,5 @@
 import { CodePanelCopyButton } from "../code-panel-copy-button/CodePanelCopyButton.jsx";
+import { DesignSystemCodeRevealPanel } from "../design-system-code-reveal-panel/DesignSystemCodeRevealPanel.jsx";
 import { PortfolioScrollHint } from "../portfolio-scroll-hint/PortfolioScrollHint.jsx";
 import "./DesignSystemPackageExportsPreview.css";
 
@@ -149,19 +150,27 @@ function ExportTree() {
   );
 }
 
-export function DesignSystemPackageExportsPreview() {
+export function DesignSystemPackageExportsPreview({ codeReveal = false }) {
+  const body = (
+    <PortfolioScrollHint
+      className="ds-exports-preview__hint"
+      scrollClassName="ds-exports-preview__scroll"
+    >
+      <ExportTree />
+    </PortfolioScrollHint>
+  );
+
   return (
     <div className="ds-exports-preview">
       <div className="ds-exports-preview__header">
         <span className="ds-exports-preview__filename">dist/index</span>
         <CodePanelCopyButton value={EXPORT_TREE_TEXT} copyLabel="Copy dist/index" />
       </div>
-      <PortfolioScrollHint
-        className="ds-exports-preview__hint"
-        scrollClassName="ds-exports-preview__scroll"
-      >
-        <ExportTree />
-      </PortfolioScrollHint>
+      {codeReveal ? (
+        <DesignSystemCodeRevealPanel>{body}</DesignSystemCodeRevealPanel>
+      ) : (
+        body
+      )}
     </div>
   );
 }

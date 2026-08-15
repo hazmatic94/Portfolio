@@ -10,6 +10,7 @@ import {
   CodeTag,
 } from "../component-card/ComponentCardCodeParts.jsx";
 import { CodePanelCopyButton } from "../code-panel-copy-button/CodePanelCopyButton.jsx";
+import { DesignSystemCodeRevealPanel } from "../design-system-code-reveal-panel/DesignSystemCodeRevealPanel.jsx";
 import { PortfolioScrollHint } from "../portfolio-scroll-hint/PortfolioScrollHint.jsx";
 import "./DesignSystemUsagePreview.css";
 
@@ -164,9 +165,22 @@ function UsageCode() {
   );
 }
 
-export function DesignSystemUsagePreview({ scrollDriveRef = null }) {
+export function DesignSystemUsagePreview({
+  scrollDriveRef = null,
+  codeReveal = false,
+}) {
   const codeScrollRef = useRef(null);
-  useScrollDrivenCodeReveal(scrollDriveRef, codeScrollRef);
+  useScrollDrivenCodeReveal(codeReveal ? null : scrollDriveRef, codeScrollRef);
+
+  const body = (
+    <PortfolioScrollHint
+      className="ds-usage-preview__hint"
+      scrollClassName="ds-usage-preview__scroll"
+      scrollRef={codeScrollRef}
+    >
+      <UsageCode />
+    </PortfolioScrollHint>
+  );
 
   return (
     <div className="ds-usage-preview">
@@ -174,13 +188,11 @@ export function DesignSystemUsagePreview({ scrollDriveRef = null }) {
         <span className="ds-usage-preview__filename">GamePage.tsx</span>
         <CodePanelCopyButton value={USAGE_CODE} copyLabel="Copy GamePage.tsx" />
       </div>
-      <PortfolioScrollHint
-        className="ds-usage-preview__hint"
-        scrollClassName="ds-usage-preview__scroll"
-        scrollRef={codeScrollRef}
-      >
-        <UsageCode />
-      </PortfolioScrollHint>
+      {codeReveal ? (
+        <DesignSystemCodeRevealPanel>{body}</DesignSystemCodeRevealPanel>
+      ) : (
+        body
+      )}
     </div>
   );
 }

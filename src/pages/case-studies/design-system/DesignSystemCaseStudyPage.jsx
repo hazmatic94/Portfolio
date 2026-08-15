@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { DesignSystemPackageExportsPreview } from "../../../components/design-system-exports-preview/DesignSystemPackageExportsPreview.jsx";
-import { DesignSystemUsagePreview } from "../../../components/design-system-usage-preview/DesignSystemUsagePreview.jsx";
+import { DesignSystemProductionPreview } from "../../../components/design-system-production-preview/DesignSystemProductionPreview.jsx";
 import { CaseStudyInlineCopy } from "../../../components/case-study-inline-copy/CaseStudyInlineCopy.jsx";
 import { TypographyTokenListPreview } from "../../../components/typography-token-list-preview/TypographyTokenListPreview.jsx";
 import { ComponentShowcaseGrid } from "../../../components/component-showcase-grid/ComponentShowcaseGrid.jsx";
@@ -140,10 +139,7 @@ export function DesignSystemCaseStudyPage() {
             body="The system shipped as a single package, making it simple to bring the same components, tokens and styles into each build."
           />
           <div className="design-system-case-study__section-media">
-            <CaseStudySplitFrames
-              left={<DesignSystemPackageExportsPreview />}
-              right={<DesignSystemUsagePreview />}
-            />
+            <DesignSystemProductionPreview />
           </div>
         </CaseStudyRevealSection>
 
