@@ -45,6 +45,43 @@
   margin-top: var(--spacing-32);
 }
 
+.case-study-intro__cta-wrap {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.case-study-intro__cta-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 1;
+  padding: 6px 12px;
+  border: 1px solid var(--joker-black-300);
+  border-radius: var(--radius-pill);
+  background: var(--joker-black-700);
+  color: var(--joker-white-50);
+  font-family: var(--font);
+  font-size: var(--text-body-12);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+
+.case-study-intro__cta-wrap:hover .case-study-intro__cta-tooltip,
+.case-study-intro__cta-wrap:focus-within .case-study-intro__cta-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .case-study-intro__cta button,
 .case-study-intro__cta a {
   letter-spacing: 0.05em;

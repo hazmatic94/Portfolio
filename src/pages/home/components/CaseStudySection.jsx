@@ -97,7 +97,6 @@ const CASE_STUDIES = [
     body: "Building a scalable sportsbook that solved today’s operational needs without limiting tomorrow’s growth.",
     chips: ["Markets", "Betslip", "Matches"],
     href: "/case-studies/sportsbook",
-    ctaDisabled: true,
     mediaOverlay: (
       <ComponentCard className="project-container__media-overlay">
         <ComponentCardMobilePreview

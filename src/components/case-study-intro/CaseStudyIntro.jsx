@@ -12,6 +12,7 @@ export function CaseStudyIntro({
   ctaLabel = "View Live Demo",
   ctaHref = null,
   ctaDisabled = false,
+  ctaTooltip = null,
 }) {
   const navigate = useNavigate();
 
@@ -32,13 +33,20 @@ export function CaseStudyIntro({
         <h1 className="case-study-intro__title">{title}</h1>
         <p className="case-study-intro__body">{body}</p>
         <div className="case-study-intro__cta">
-          <Button
-            variant="secondary"
-            disabled={ctaDisabled}
-            onClick={ctaHref && !ctaDisabled ? handleCtaClick : undefined}
-          >
-            {ctaLabel}
-          </Button>
+          <div className="case-study-intro__cta-wrap">
+            {ctaTooltip ? (
+              <span className="case-study-intro__cta-tooltip" role="tooltip">
+                {ctaTooltip}
+              </span>
+            ) : null}
+            <Button
+              variant="secondary"
+              disabled={ctaDisabled}
+              onClick={ctaHref && !ctaDisabled ? handleCtaClick : undefined}
+            >
+              {ctaLabel}
+            </Button>
+          </div>
         </div>
       </div>
     </section>
