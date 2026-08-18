@@ -81,6 +81,7 @@ export function SportsbookExpansionPreview() {
               heroTitle={activeSport.heroTitle}
               heroBody={activeSport.heroBody}
               availabilityLabel={activeSport.availabilityLabel}
+              availabilityCount={activeSport.availabilityCount}
             />
           }
           right={

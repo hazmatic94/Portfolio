@@ -95,7 +95,7 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
     heroTitle: "Expert Match Picks",
     heroBody:
       "Expert-selected matches from the world's leading football leagues, presented as a curated daily card of games.",
-    availabilityLabel: "12 Matches Available",
+    availabilityCount: 12,
     upcomingTitle: "Upcoming Matches",
     liveMatch: {
       competition: "FIFA World Cup",
@@ -123,7 +123,7 @@ export const SPORTSBOOK_EXPANSION_SPORTS = {
     heroTitle: "Tournament Picks",
     heroBody:
       "Daily selections from ATP and WTA tournaments, balancing form, surface and value across every match.",
-    availabilityLabel: "9 Matches Available",
+    availabilityCount: 9,
     upcomingTitle: "Upcoming Matches",
     liveMatch: {
       competition: "ATP Tour",

@@ -104,6 +104,7 @@ export function SportsbookCaseStudyPage() {
             body="The platform relied on one analyst to curate markets and manage odds, so every interaction needed to support a lean operational model."
             ctaLabel="View Live Demo"
             ctaDisabled
+            ctaTooltip="Coming Soon"
           />
         </CaseStudyRevealSection>
 

@@ -1,0 +1,14 @@
+.autoplay-video {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.autoplay-video::-webkit-media-controls,
+.autoplay-video::-webkit-media-controls-enclosure,
+.autoplay-video::-webkit-media-controls-start-playback-button,
+.autoplay-video::-webkit-media-controls-overlay-play-button,
+.autoplay-video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+}

@@ -87,6 +87,18 @@
 }
 
 @media (max-width: 800px) {
+  .sportsbook-expansion-preview .sportsbook-mobile-home-preview__hero-title {
+    font-size: calc(var(--heading-h1) * 0.875);
+    line-height: 0.92;
+  }
+
+  .sportsbook-expansion-preview .sportsbook-upcoming-matches-preview__title,
+  .sportsbook-expansion-preview .sportsbook-mobile-home-preview__on-air-title {
+    font-size: calc(var(--heading-h3) * 0.875);
+    line-height: 1.15;
+    min-height: 0;
+  }
+
   .sportsbook-expansion-preview .case-study-split-frames {
     flex-direction: column;
     height: auto;

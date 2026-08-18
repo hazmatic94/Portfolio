@@ -59,7 +59,7 @@
   z-index: 1;
   padding: 6px 12px;
   border: 1px solid var(--joker-black-300);
-  border-radius: var(--radius-pill);
+  border-radius: 4px;
   background: var(--joker-black-700);
   color: var(--joker-white-50);
   font-family: var(--font);
@@ -74,6 +74,10 @@
   transition:
     opacity var(--motion-fast) var(--ease-out),
     transform var(--motion-fast) var(--ease-out);
+}
+
+.case-study-intro__cta-wrap:has(.case-study-intro__cta-tooltip) button:disabled {
+  pointer-events: none;
 }
 
 .case-study-intro__cta-wrap:hover .case-study-intro__cta-tooltip,

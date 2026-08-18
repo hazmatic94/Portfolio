@@ -1,9 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  bindAutoplayUnlock,
-  playAutoplayVideo,
-  prepareAutoplayVideo,
-} from "../../utils/autoplayVideo.js";
+import { mountAutoplayVideo } from "../../utils/autoplayVideo.js";
 import "./Hero.css";
 
 function formatLocalTime(date) {
@@ -15,62 +11,22 @@ function formatLocalTime(date) {
 
 function useHeroLogoAutoplay() {
   const videoRef = useRef(null);
-  const hasStartedRef = useRef(false);
+  const stageRef = useRef(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) {
-      return undefined;
-    }
-
-    prepareAutoplayVideo(video);
-
-    const tryPlay = () => {
-      if (!videoRef.current) return;
-
-      void playAutoplayVideo(videoRef.current).then(() => {
-        if (!videoRef.current?.paused) {
-          hasStartedRef.current = true;
-        }
-      });
-    };
-
-    const onCanPlay = () => {
-      tryPlay();
-    };
-
-    const onPageShow = (event) => {
-      if (event.persisted) {
-        tryPlay();
-      }
-    };
-
-    video.addEventListener("canplay", onCanPlay);
-    video.addEventListener("loadeddata", onCanPlay);
-    window.addEventListener("pageshow", onPageShow);
-
-    const unlock = bindAutoplayUnlock(video, () => {
-      if (!hasStartedRef.current) {
-        tryPlay();
-      }
+    return mountAutoplayVideo(videoRef.current, {
+      onPlaying: () => {
+        stageRef.current?.classList.add("hero__video-stage--playing");
+      },
     });
-
-    tryPlay();
-
-    return () => {
-      video.removeEventListener("canplay", onCanPlay);
-      video.removeEventListener("loadeddata", onCanPlay);
-      window.removeEventListener("pageshow", onPageShow);
-      unlock();
-    };
   }, []);
 
-  return { videoRef };
+  return { videoRef, stageRef };
 }
 
 export function Hero() {
   const [time, setTime] = useState(() => formatLocalTime(new Date()));
-  const { videoRef } = useHeroLogoAutoplay();
+  const { videoRef, stageRef } = useHeroLogoAutoplay();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,10 +40,10 @@ export function Hero() {
     <section className="hero" aria-label="Hero">
       <div className="hero__dot-grid" aria-hidden="true" />
       <div className="hero__video-frame">
-        <div className="hero__video-stage">
+        <div ref={stageRef} className="hero__video-stage">
           <video
             ref={videoRef}
-            className="hero__video"
+            className="hero__video autoplay-video"
             src="/hmLogoV2.mp4"
             autoPlay
             loop

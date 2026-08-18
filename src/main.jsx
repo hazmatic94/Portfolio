@@ -4,6 +4,7 @@ import "@joker/design-system/styles.css";
 import "@joker/design-system/styles/globals.css";
 import "./styles/motion.css";
 import "./styles/cta.css";
+import "./styles/autoplay-video.css";
 import { App } from "./App.jsx";
 
 installDesignSystemSoundMute();

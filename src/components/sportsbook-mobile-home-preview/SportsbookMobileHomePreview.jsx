@@ -3,6 +3,7 @@ import {
   GameHeaderRail,
   GameInner,
   LiveMatchScore,
+  StatusChip,
 } from "@joker/design-system";
 import { SPORTSBOOK_EXPANSION_SPORTS } from "../../data/sportsbookExpansionSports.js";
 import { SPORTSBOOK_MOBILE_HOME_LIVE_MATCH } from "../../data/sportsbookMobileHome.js";
@@ -13,8 +14,8 @@ const DEFAULT_GAME = SPORTSBOOK_EXPANSION_SPORTS.soccer.game;
 const DEFAULT_HERO_VIDEO_SRC = SPORTSBOOK_EXPANSION_SPORTS.soccer.heroVideoSrc;
 const DEFAULT_HERO_TITLE = SPORTSBOOK_EXPANSION_SPORTS.soccer.heroTitle;
 const DEFAULT_HERO_BODY = SPORTSBOOK_EXPANSION_SPORTS.soccer.heroBody;
-const DEFAULT_AVAILABILITY_LABEL =
-  SPORTSBOOK_EXPANSION_SPORTS.soccer.availabilityLabel;
+const DEFAULT_AVAILABILITY_COUNT =
+  SPORTSBOOK_EXPANSION_SPORTS.soccer.availabilityCount;
 const DEFAULT_LIVE_MATCH = SPORTSBOOK_MOBILE_HOME_LIVE_MATCH;
 const PORTFOLIO_SPORT_ICONS = new Set(["soccer", "tennis", "ufc", "nrl"]);
 
@@ -45,7 +46,11 @@ function sportsbookMobileGameHeaderRail(game) {
   );
 }
 
-function SportsbookAvailabilityChip({ label }) {
+function SportsbookAvailabilityChip({ count, label }) {
+  if (typeof count === "number") {
+    return <StatusChip matchCount={count} />;
+  }
+
   return (
     <span className="sportsbook-mobile-home-preview__availability-chip">
       <span
@@ -63,6 +68,7 @@ function SportsbookMobileHomeHero({
   heroVideoSrc,
   heroTitle,
   heroBody,
+  availabilityCount,
   availabilityLabel,
 }) {
   return (
@@ -87,7 +93,10 @@ function SportsbookMobileHomeHero({
           </h2>
           <p className="sportsbook-mobile-home-preview__hero-body">{heroBody}</p>
         </div>
-        <SportsbookAvailabilityChip label={availabilityLabel} />
+        <SportsbookAvailabilityChip
+          count={availabilityCount}
+          label={availabilityLabel}
+        />
       </div>
     </section>
   );
@@ -127,7 +136,8 @@ export function SportsbookMobileHomePreview({
   heroVideoSrc = DEFAULT_HERO_VIDEO_SRC,
   heroTitle = DEFAULT_HERO_TITLE,
   heroBody = DEFAULT_HERO_BODY,
-  availabilityLabel = DEFAULT_AVAILABILITY_LABEL,
+  availabilityCount = DEFAULT_AVAILABILITY_COUNT,
+  availabilityLabel = null,
 }) {
   const gameHeaderRail = sportsbookMobileGameHeaderRail(game);
 
@@ -146,6 +156,7 @@ export function SportsbookMobileHomePreview({
             heroVideoSrc={heroVideoSrc}
             heroTitle={heroTitle}
             heroBody={heroBody}
+            availabilityCount={availabilityCount}
             availabilityLabel={availabilityLabel}
           />
           <SportsbookMobileHomeOnAir liveMatch={liveMatch} />

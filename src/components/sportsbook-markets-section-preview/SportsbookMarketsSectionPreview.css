@@ -260,6 +260,11 @@
 }
 
 @media (max-width: 800px) {
+  .sportsbook-markets-section-preview__competition {
+    font-size: calc(var(--heading-h1) * 0.875);
+    line-height: 0.92;
+  }
+
   .sportsbook-markets-section-preview__panels.joker-odds-selection__panels {
     grid-template-columns: minmax(0, 1fr);
   }

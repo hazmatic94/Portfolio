@@ -1,5 +1,7 @@
+import { useEffect, useRef } from "react";
 import { Button } from "@joker/design-system";
 import { useInViewOnce } from "../../hooks/useInViewOnce.js";
+import { mountAutoplayVideo } from "../../utils/autoplayVideo.js";
 import "./Footer.css";
 
 const CONTACT_EMAIL = "harrymaherdesign@gmail.com";
@@ -15,6 +17,11 @@ export function FooterLegal({ className = "" }) {
 
 export function Footer() {
   const [ref, inView] = useInViewOnce({ threshold: 0.35 });
+  const logoVideoRef = useRef(null);
+
+  useEffect(() => {
+    return mountAutoplayVideo(logoVideoRef.current);
+  }, []);
 
   return (
     <div
@@ -47,7 +54,8 @@ export function Footer() {
 
         <div className="site-footer__logo">
           <video
-            className="site-footer__logo-video"
+            ref={logoVideoRef}
+            className="site-footer__logo-video autoplay-video"
             src="/hmLogoV2.mp4"
             autoPlay
             loop
